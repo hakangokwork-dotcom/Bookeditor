@@ -77,7 +77,9 @@ yedek/kitap-son-hali.md+.docx (her kayıtta, Word'de açılabilir, notlar+karala
 - ✅ Tasarım Claude Design'da tamamlandı (marka: **inkGuide**); tasarım sistemi çalışma alanı arayüzüne uygulandı
 - ✅ **Çok ajanlı üretim turu tamamlandı (17.08.2026):** pazarlama sitesi (public/site/: ana sayfa + gizlilik + destek + indir; inkguide.uk canonical/OG etiketleriyle) · çoklu kitap "Kitaplığım" (data/library.json, güvenli migrasyon, arşivleme) · Kurulum sihirbazı + Ayarlar · 10 dilli i18n (public/i18n.js, 231+ anahtar × 10 dil, Arapça RTL) · tasarım sadakat turu (Çalışma Alanı/Karalama/Kaynaklar/Rehber tasarıma çekildi)
 - ✅ **FAZ 1 TAMAM: indirilebilir program** — `npm run build:exe` → `dist/inkGuide.exe` (64 MB, kurulumsuz tek dosya; @yao-pkg/pkg, node22-win-x64). Paketli modda veri exe'nin YANINDA `data/` klasörüne yazılır; port doluysa sıradakini dener; açılışta tarayıcıyı kendisi açar
-- 🔄 **ŞİMDİ:** exe'nin GitHub Releases'a yüklenmesi + inkguide.uk yayını; ardından SONRAKİ İŞ: mobil
+- ✅ **inkGuide.exe v1.0.0 GitHub Releases'ta** (odak modu + karanlık mod + Kitaba Dönüştür tam ekranı dahil son sürüm)
+- ✅ **Site yayında:** GitHub Pages Actions ile otomatik dağıtım (push'ta), özel alan adı inkguide.uk tanımlı — kullanıcının alan adı kayıt firmasında DNS A kayıtlarını (185.199.108/109/110/111.153) + www CNAME (hakangokwork-dotcom.github.io) girmesi bekleniyor
+- 🔄 **SONRAKİ İŞ: mobil** (ayrı oturumda başlatıldı — PWA yakalama + QR senkron)
 
 ## 6. Üretim Aşaması Yol Haritası (güncel öncelik sırası — 17.08.2026)
 
