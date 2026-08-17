@@ -19,14 +19,14 @@ Yazı odaklı bir "kitap stüdyosu": Scrivener'ın yapısal gücü + iA Writer'�
 
 ### Tasarlanacak ekranlar
 
-1. **Pazarlama ana sayfası** — ürünün vaadi: "Kitabınızın yol arkadaşı". Hero, özellik bölümleri, fiyatlandırma (Ücretsiz / Yazar / Profesyonel), sosyal kanıt, CTA
+1. **Pazarlama ana sayfası** — ana vaat: "Kitabınızın yol arkadaşı. Kitabınız bilgisayarınızdan çıkmaz." (local-first konumlandırma: veriler kullanıcının diskinde, internet gerekmez, açık dosya formatı — yarın biz olmasak bile kitabınız sizde). Hero, özellik bölümleri, **fiyatlandırma yerine "Gönül Rahatlığı" bölümü**: uygulama ücretsizdir, isteyen "bir kahve ısmarlar" (gönlünden ne koparsa / pay-what-you-want). Zorunlu rakam, kilitli özellik, deneme süresi YOK. Önerilen nazik seçenekler: ☕ bir kahve · ☕☕☕ bir kitap · 💛 destekçi ol (serbest tutar). İsteğe bağlı gelecek hizmet olarak uçtan uca şifreli senkron aboneliği ayrı ve küçük gösterilebilir. Sosyal kanıt, CTA: "İndir — ücretsiz"
 2. **Kayıt / Giriş** — e-posta + Google ile; sade, tek kolon
 3. **Kitaplığım (dashboard)** — kitap kartları (kapak rengi/harfi, ilerleme, son düzenleme), yeni kitap oluşturma sihirbazı (tür seçimi, hedef kelime)
 4. **Kitap çalışma alanı** — yukarıdaki üç panelli düzen; odak modu (paneller gizlenir, sadece metin); karanlık mod
 5. **Karalama Defteri** — kart galerisi + karalama editörü
 6. **Kaynaklar** — tablo + ekleme formu + atıf önizlemesi
 7. **Kitaba Dönüştür** — çıktı formatı seçimi, kapak önizlemesi, dışa aktarma geçmişi (sürümler)
-8. **Hesap / Abonelik** — plan, fatura, kullanım
+8. **Destek sayfası** — "bir kahve ısmarla" akışı: sıcak, teşekkür tonunda; tutar seçenekleri + serbest tutar; destekçilere küçük bir jest (uygulama içi 💛 destekçi rozeti). Asla suçluluk hissi veren karanlık desen (dark pattern) kullanma
 
 ### Tasarım dili
 

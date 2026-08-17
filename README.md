@@ -1,6 +1,8 @@
 # 🧭 Yol Arkadaşı — Kitap Yazma Aracı
 
-"Problem" kitabınız için Scrivener'dan ilham alan, tamamen yerel çalışan yazma/not/sentez aracı.
+Scrivener'dan ilham alan, **tamamen yerel çalışan** yazma/not/sentez aracı. Kitabınız bilgisayarınızdan çıkmaz: veriler diskinizde, açık formatta (JSON + Markdown + Word yedeği) durur; internet ve üyelik gerektirmez.
+
+**Model:** Uygulama ücretsizdir. İşinize yaradıysa gönlünüzden ne koparsa — bir kahve ısmarlayabilirsiniz. ☕
 
 ## Başlatma
 
