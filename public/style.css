@@ -140,6 +140,13 @@ textarea.synopsis {
 .draft-toolbar button.fmt { min-width: 32px; justify-content: center; }
 .draft-toolbar button.editor-btn { background: #f4efe3; border-color: #e0d5b8; color: #7a6a3a; font-weight: 600; }
 .draft-toolbar button.editor-btn:hover { background: #eee6d2; }
+button.mic { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+button.mic.recording {
+  background: #c0392b !important; color: #fff !important; border-color: #c0392b !important;
+  animation: micpulse 1.2s ease-in-out infinite;
+}
+@keyframes micpulse { 50% { opacity: .65; } }
+.tray-add button.mic { padding: 5px 8px; font-size: 12px; border: 1px solid var(--border); border-radius: 7px; background: #fff; }
 .note-move { margin-top: 8px; display: flex; align-items: center; gap: 5px; color: var(--muted); }
 .note-move svg { width: 12px; height: 12px; }
 .note-move select { font-size: 11px; padding: 3px 5px; border: 1px solid var(--border); border-radius: 6px; background: #fff; color: var(--muted); max-width: 170px; font-family: inherit; }
@@ -277,6 +284,10 @@ textarea.note-edit:focus { outline: none; }
 .tray-card .note-del { top: 5px; right: 5px; font-size: 11px; }
 .tray-move { margin-top: 6px; width: 100%; font-size: 11px; padding: 3px 5px; border: 1px solid var(--border); border-radius: 6px; background: #fff; color: var(--muted); font-family: inherit; }
 .tray-empty { font-size: 11.5px; color: var(--muted); font-style: italic; padding: 4px 2px; }
+
+.lang-row { margin-top: 16px; display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.lang-row svg { width: 13px; height: 13px; color: var(--accent); }
+.lang-row select { flex: 1; padding: 5px 7px; font-size: 12px; border: 1px solid var(--border); border-radius: 7px; background: #fff; font-family: inherit; }
 
 .stats { margin-top: 20px; font-size: 12.5px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; box-shadow: var(--shadow); }
 .stats .stat-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-soft); }

@@ -27,7 +27,8 @@ const ICONS = {
   scribble: '<path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/>',
   move: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   wand: '<path d="m3 21 9.6-9.6"/><path d="M15.5 3.5 16.5 6l2.5 1-2.5 1-1 2.5-1-2.5L12 7l2.5-1Z"/><path d="M20 12l.5 1.3L22 14l-1.5.7L20 16l-.5-1.3L18 14l1.5-.7Z"/>',
-  undo: '<path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/>'
+  undo: '<path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-15-6.7L3 13"/>',
+  mic: '<path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4M8 22h8"/>'
 };
 
 function ic(name) {
@@ -74,6 +75,7 @@ const GUIDE_HTML = `
     <li><b>2. Sentezle:</b> Notlar birikince "bu bölümün ana fikri ne?" sorusuna cevap veren <i>sentez</i> notları yazın. Aklınıza gelen şema, diyagram ve illüstrasyon fikirlerini 🎨 <i>görsel</i> notu olarak kaydedin — kitap tasarımı aşamasında hazır bir görsel listeniz olur.</li>
     <li><b>3. Yaz:</b> Sentezlere bakarak taslağı yazın. Notlar sağ elinizin altında, taslak önünüzde. Dışarıdan metin getirirken <b>Yapıştır</b> düğmesi satır kırıklarını ve kalıntıları temizler; <b>Düzelt</b> aynı temizliği seçili metne uygular. Araç çubuğundaki <b>B / I / H / Liste / ❝</b> düğmeleri seçili metni biçimlendirir.</li>
     <li><b>Kararsız mısınız?</b> Nereye ait olduğunu bilmediğiniz her şeyi <b>Karalama Defteri</b>'ne atın; hazır olunca notu "bölüme taşı" ile yerine gönderin.</li>
+    <li><b>🎤 Sesli not:</b> Not alanlarının ve taslak araç çubuğunun yanındaki mikrofon düğmesine tıklayıp <b>Türkçe konuşun</b> — söyledikleriniz yazıya dökülür; tekrar tıklayınca durur. Elleriniz doluyken ya da yürürken aklınıza gelen cümleyi kaçırmayın. <i>(Konuşma tanıma tarayıcının servisiyle çalışır; Chrome/Edge gerekir ve ilk kullanımda mikrofon izni ister.)</i></li>
     <li><b>4. Dinlendir & düzelt:</b> Bölümü "bitti" işaretlemeden önce en az bir hafta bekletin.</li>
   </ul>
 
@@ -146,6 +148,72 @@ function resolveCitationsClient(text) {
     const names = src.author.split('&').map(x => x.trim().split(',')[0]).join(' & ');
     return `(${names}, ${src.year})`;
   });
+}
+
+/* ---------------- Sesli not (Türkçe dikte) ---------------- */
+
+let activeRecog = null;
+let activeMicBtn = null;
+
+// En çok kullanılan 10 dil — dikte bu dillerde çalışır
+const DICTE_LANGS = [
+  ['tr-TR', 'Türkçe'],
+  ['en-US', 'English'],
+  ['es-ES', 'Español'],
+  ['zh-CN', '中文'],
+  ['ar-SA', 'العربية'],
+  ['hi-IN', 'हिन्दी'],
+  ['pt-BR', 'Português'],
+  ['fr-FR', 'Français'],
+  ['ru-RU', 'Русский'],
+  ['de-DE', 'Deutsch']
+];
+let dicteLang = localStorage.getItem('dicteLang') || 'tr-TR';
+
+function toggleDictation(btn, insertFn) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    alert('Bu tarayıcı konuşma tanımayı desteklemiyor. Chrome veya Edge kullanın.');
+    return;
+  }
+  if (activeRecog) {
+    const sameBtn = activeMicBtn === btn;
+    try { activeRecog.stop(); } catch { /* zaten durmuş */ }
+    if (sameBtn) return; // aynı düğme: sadece durdur
+  }
+  const r = new SR();
+  r.lang = dicteLang;
+  r.continuous = true;
+  r.interimResults = false;
+  r.onresult = (e) => {
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) {
+        const t = e.results[i][0].transcript.trim();
+        if (t) insertFn(t + ' ');
+      }
+    }
+  };
+  r.onerror = (e) => {
+    if (e.error === 'not-allowed' || e.error === 'service-not-allowed') {
+      alert('Mikrofon izni verilmedi. Tarayıcının adres çubuğundan mikrofona izin verin.');
+    }
+  };
+  r.onend = () => {
+    btn.classList.remove('recording');
+    if (activeRecog === r) { activeRecog = null; activeMicBtn = null; }
+  };
+  activeRecog = r;
+  activeMicBtn = btn;
+  btn.classList.add('recording');
+  try { r.start(); } catch { /* üst üste start */ }
+}
+
+// Bir input alanına dikte metni ekleyen yardımcı
+function micAppender(inputEl) {
+  return (t) => {
+    inputEl.value = (inputEl.value ? inputEl.value.replace(/\s+$/, '') + ' ' : '') + t;
+    inputEl.dispatchEvent(new Event('input', { bubbles: true }));
+  };
 }
 
 /* ---------------- Metin araçları ---------------- */
@@ -346,7 +414,8 @@ function draftToolsHtml() {
     <button id="pasteCleanBtn" title="Panodaki metni temizleyerek yapıştır: satır kırıkları birleşir, fazla boşluklar ve [1] kalıntıları silinir">${ic('clipboard')} Yapıştır</button>
     <button id="fixBtn" title="Seçili metni (seçim yoksa tümünü) temizler ve okunur hale getirir">${ic('sparkles')} Düzelt</button>
     <button id="editorPassBtn" class="editor-btn" title="Editör düzeltmesi: ara başlıklar, madde listeleri, blok alıntılar, tanım vurguları (kalın terim), akıllı tırnaklar (“ ”), üç nokta (…) ve paragraf onarımı. Geri Al ile geri dönebilirsiniz.">${ic('wand')} Editör</button>
-    <button id="editorUndoBtn" title="Son editör düzeltmesini geri al">${ic('undo')} Geri Al</button>`;
+    <button id="editorUndoBtn" title="Son editör düzeltmesini geri al">${ic('undo')} Geri Al</button>
+    <button id="draftMic" class="mic" title="Sesli yaz (Türkçe dikte) — imlecin olduğu yere yazar; tekrar tıklayınca durur">${ic('mic')}</button>`;
 }
 
 function bindDraftTools() {
@@ -383,6 +452,8 @@ function bindDraftTools() {
       eu.style.display = 'none';
     };
   }
+  const dm = $('#draftMic');
+  if (dm) dm.onclick = () => toggleDictation(dm, (t) => insertAtCursor(t));
 }
 
 /* ---------------- Kaydetme ---------------- */
@@ -647,6 +718,7 @@ function renderScratchTray() {
         <option value="gorsel">🎨</option>
       </select>
       <input id="trayText" placeholder="Hızlı not… (Enter)">
+      <button id="trayMic" class="mic" title="Sesli not (Türkçe)">${ic('mic')}</button>
     </div>
     <div class="tray-list">
       ${notes.map(n => `
@@ -671,6 +743,9 @@ function renderScratchTray() {
     if (sel.type === 'scratch') renderEditor();
     $('#trayText').focus();
   };
+
+  const trayMic = $('#trayMic');
+  if (trayMic) trayMic.onclick = () => toggleDictation(trayMic, micAppender($('#trayText')));
 
   tray.querySelectorAll('[data-tray-edit]').forEach(el => {
     const note = book.scratch.notes.find(n => n.id === el.dataset.trayEdit);
@@ -796,6 +871,7 @@ function renderScratch(ed) {
           <option value="gorsel">🎨 Görsel</option>
         </select>
         <input class="note-text" id="noteText" placeholder="Nereye koyacağınızı bilmediğiniz not… (Enter ile ekle)">
+        <button id="noteMic" class="mic" title="Sesli not (Türkçe) — konuşun, yazıya dökülsün; tekrar tıklayınca durur">${ic('mic')}</button>
         <button id="noteAddBtn">Ekle</button>
       </div>
       <div class="note-cards">${noteCards || '<div style="color:var(--muted);font-size:13px">Henüz kararsız not yok.</div>'}</div>
@@ -843,6 +919,8 @@ function renderScratch(ed) {
   };
   $('#noteAddBtn').onclick = addNote;
   $('#noteText').onkeydown = e => { if (e.key === 'Enter') addNote(); };
+  const noteMic = $('#noteMic');
+  if (noteMic) noteMic.onclick = () => toggleDictation(noteMic, micAppender($('#noteText')));
 
   ed.querySelectorAll('[data-editnote]').forEach(el => {
     const note = sc.notes.find(n => n.id === el.dataset.editnote);
@@ -938,6 +1016,7 @@ function renderChapter(ed) {
         <input class="note-text" id="noteText" placeholder="NotebookLM çıktısı, okuma notu, sentez, görsel fikri… (Enter ile ekle)">
         <select id="noteSrc" title="Kaynak (alıntı için)"><option value="">kaynak yok</option>${srcOptions}</select>
         <input id="notePage" placeholder="sayfa" style="width:64px">
+        <button id="noteMic" class="mic" title="Sesli not (Türkçe) — konuşun, yazıya dökülsün; tekrar tıklayınca durur">${ic('mic')}</button>
         <button id="noteAddBtn">Ekle</button>
       </div>
       <div class="note-cards">${noteCards || '<div style="color:var(--muted);font-size:13px">Henüz not yok. Okuduklarınızı, NotebookLM sentezlerinizi buraya biriktirin.</div>'}</div>
@@ -1010,6 +1089,8 @@ function renderChapter(ed) {
   };
   $('#noteAddBtn').onclick = addNote;
   $('#noteText').onkeydown = e => { if (e.key === 'Enter') addNote(); };
+  const noteMic = $('#noteMic');
+  if (noteMic) noteMic.onclick = () => toggleDictation(noteMic, micAppender($('#noteText')));
 
   ed.querySelectorAll('[data-editnote]').forEach(el => {
     const note = ch.notes.find(n => n.id === el.dataset.editnote);
@@ -1182,6 +1263,14 @@ async function init() {
   $('#tipNext').onclick = () => { tipIndex++; renderTip(); };
   $('#exportBtn').onclick = doExport;
   $('#versionBtn').onclick = saveVersion;
+
+  const langSel = $('#dicteLangSel');
+  langSel.innerHTML = DICTE_LANGS.map(([code, name]) =>
+    `<option value="${code}" ${code === dicteLang ? 'selected' : ''}>${name}</option>`).join('');
+  langSel.onchange = () => {
+    dicteLang = langSel.value;
+    localStorage.setItem('dicteLang', dicteLang);
+  };
   $('#addPartBtn').onclick = () => {
     const title = prompt('Yeni kısım başlığı (örn: BÖLÜM VI — …):');
     if (!title) return;

@@ -26,6 +26,7 @@ Ardından tarayıcıda **http://localhost:4321** adresini açın.
 
 - **Notlar kitaba girmez** — size çalışır. NotebookLM çıktılarınızı, okuma notlarınızı, sentezlerinizi bölüm bölüm biriktirin; taslağı bunlara bakarak yazın.
 - **Atıf sistemi:** Kaynaklar sayfasından kaynak ekleyin, taslak içinde `[[kaynak:kahneman2011]]` yazın (veya araç çubuğundaki "atıf ekle" menüsünü kullanın). Kitaba dönüştürünce otomatik olarak **(Kahneman, 2011)** olur ve APA formatında **Kaynakça** oluşur.
+- **🎤 Sesli not:** Mikrofon düğmesiyle Türkçe konuşun, söyledikleriniz nota veya taslağa yazıya dökülsün (Chrome/Edge; tarayıcının konuşma tanıma servisini kullanır).
 - **🧹 Temiz yapıştırma & metin araçları:** Taslak araç çubuğunda **B / I / H / Liste / ❝** biçimlendirme düğmeleri; **Yapıştır** panodaki metni temizleyerek ekler (satır kırıklarını birleştirir, fazla boşlukları ve `[1]` kalıntılarını siler), **Düzelt** aynı temizliği seçili metne veya tümüne uygular.
 - **🗒 Karalama Defteri:** Nereye ait olduğuna karar veremediğiniz her şey için serbest alan + kararsız notlar. Hazır olunca notu "bölüme taşı" ile yerine gönderirsiniz.
 - **🛟 Güvenlik yedeği:** Her kayıtta kitabın son hali `yedek/kitap-son-hali.md` ve `yedek/kitap-son-hali.docx` olarak da yazılır (notlar ve karalama dahil). Uygulama bir gün hiç açılmasa bile Word dosyasını açıp devam edebilirsiniz.

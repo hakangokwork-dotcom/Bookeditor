@@ -23,6 +23,7 @@ Yazı odaklı bir "kitap stüdyosu". Üç panelli çalışma alanı:
 - **Sol panel:** kitap iskeleti (kısımlar → bölümler), durum rozetleri (taslak/yazılıyor/bitti), kelime sayıları, hedefe ilerleme çubuğu, hover'da bölüm taşıma okları, sürüm geçmişi ve "Kitaba Dönüştür" düğmesi
 - **Orta panel:** bölüm editörü — sinopsis, iki yana yaslı kitap önizlemesi, Markdown taslak, biçim araç çubuğu (kalın/italik/başlık/liste/alıntı), tek tıkla "Editör düzeltmesi" (otomatik ara başlık, madde, blok alıntı, akıllı tırnak) + Geri Al, temiz yapıştırma, atıf ekleme
 - **Sağ panel:** "yol arkadaşı" — günün yazma ipucu, kararsız notlar tepsisi (bölüme taşınabilir), istatistikler, otomatik kayıt göstergesi
+- **Sesli not (dikte):** not alanlarında ve taslak araç çubuğunda mikrofon düğmesi — kullanıcı Türkçe konuşur, söyledikleri yazıya dökülür; kayıt sırasında düğme nabız gibi atan kırmızı duruma geçer. Tasarımda mikrofonun üç durumu gösterilmeli: pasif / kayıtta / izin gerekli
 - **Diğer görünümler:** Karalama Defteri (başlıklı çoklu karalama kartları + karalama editörü), kaynak yöneticisi (APA atıf sistemi), İlk Kitap Rehberi, kitaba dönüştürme (Word/HTML/Markdown; kapak + içindekiler + kaynakça)
 
 ### Tasarlanacak ekranlar
@@ -51,7 +52,7 @@ Yazı odaklı bir "kitap stüdyosu". Üç panelli çalışma alanı:
 - **Karanlık mod:** tam destek; kağıt hissini koruyan sıcak koyu tonlar (saf siyah değil)
 - **Erişilebilirlik:** WCAG AA kontrast, klavye navigasyonu, odak halkaları
 - **Responsive:** uygulama masaüstü öncelikli; web sitesi tam responsive (mobilde de kusursuz)
-- **Dil:** Türkçe öncelikli, i18n'e hazır (metinler uzayabilir)
+- **Dil:** Uygulama ve site **10 dilde** sunulacak — Türkçe, English, Español, 中文, العربية, हिन्दी, Português, Français, Русский, Deutsch. Kolay erişilir bir dil seçici tasarla (onboarding'de sorulur, ayarlardan değişir). RTL desteği (Arapça) düşünülmeli. Metin uzunlukları dile göre ciddi değişir — bileşenler esnek olmalı. Sesli not (dikte) aynı 10 dilde çalışır; dil seçimi dikteye de yansır
 
 ### Teslimat
 
