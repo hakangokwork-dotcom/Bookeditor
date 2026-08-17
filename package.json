@@ -1,0 +1,14 @@
+{
+  "name": "yol-arkadasi",
+  "version": "1.0.0",
+  "description": "Kitap yazma yol arkadaşı — notlar, sentezler, kaynaklar ve kitaba dönüştürme",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "docx": "^8.5.0",
+    "express": "^4.19.2",
+    "marked": "^12.0.2"
+  }
+}

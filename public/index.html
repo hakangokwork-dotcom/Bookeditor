@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yol Arkadaşı — Kitap Yazma Aracı</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/vendor/marked.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- SOL: Bölüm ağacı -->
+    <aside class="sidebar">
+      <div class="book-head">
+        <div class="book-title" id="bookTitle"></div>
+        <div class="book-subtitle" id="bookSubtitle"></div>
+        <div class="progress-wrap">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-text" id="progressText"></div>
+        </div>
+      </div>
+
+      <nav class="tree" id="tree"></nav>
+
+      <div class="sidebar-actions">
+        <button id="addPartBtn" title="Yeni kısım ekle">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Kısım
+        </button>
+        <button id="versionBtn" title="Kitabın şu anki halinin anlık görüntüsünü kaydet">
+          <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg> Versiyon
+        </button>
+      </div>
+      <div class="sidebar-actions">
+        <button id="exportBtn" class="primary" title="Kitabı .md, .html ve .docx olarak dışa aktar">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg> Kitaba Dönüştür
+        </button>
+      </div>
+      <div class="export-result" id="exportResult"></div>
+      <div class="versions-box" id="versionsBox"></div>
+    </aside>
+
+    <!-- ORTA: Editör -->
+    <main class="editor" id="editor"></main>
+
+    <!-- SAĞ: Yol Arkadaşı -->
+    <aside class="companion">
+      <h3>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>
+        Yol Arkadaşı
+      </h3>
+      <div class="tip-card">
+        <div class="tip-label">
+          <svg viewBox="0 0 24 24"><path d="M12 3l1.9 5.8 5.8 1.9-5.8 1.9L12 18.4l-1.9-5.8-5.8-1.9 5.8-1.9Z"/></svg>
+          Günün İpucu
+        </div>
+        <div class="tip-text" id="tipText"></div>
+        <button class="tip-next" id="tipNext">Başka ipucu →</button>
+      </div>
+      <div class="tray" id="scratchTray"></div>
+      <div class="stats" id="stats"></div>
+      <div class="save-indicator" id="saveIndicator"></div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

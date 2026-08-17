@@ -1,0 +1,21 @@
+# Bağımlılıklar
+node_modules/
+
+# Kişisel kitap verisi — asla repoya girmez
+data/book.json
+data/book.json.bak
+
+# Üretilen çıktılar ve yedekler
+exports/
+versions/
+yedek/
+
+# Kişisel araştırma kütüphanesi (telifli materyal — repoya girmez)
+Resources/
+
+# Günlükler ve geçici dosyalar
+*.log
+
+# Sistem
+.DS_Store
+Thumbs.db

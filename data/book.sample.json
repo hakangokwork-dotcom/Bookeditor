@@ -1,0 +1,32 @@
+{
+  "meta": {
+    "title": "Kitabım",
+    "subtitle": "",
+    "author": "",
+    "language": "tr",
+    "targetWords": 60000
+  },
+  "frontmatter": {
+    "onsoz": "",
+    "tesekkur": "",
+    "giris": ""
+  },
+  "parts": [
+    {
+      "id": "p1",
+      "title": "BÖLÜM I",
+      "chapters": [
+        {
+          "id": "c1",
+          "title": "İlk Bölüm",
+          "status": "taslak",
+          "synopsis": "",
+          "draft": "",
+          "notes": []
+        }
+      ]
+    }
+  ],
+  "sources": [],
+  "scratch": { "text": "", "notes": [], "pads": [] }
+}
