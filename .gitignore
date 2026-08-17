@@ -1,9 +1,14 @@
 # Bağımlılıklar
 node_modules/
 
-# Kişisel kitap verisi — asla repoya girmez
+# Kişisel kitap verisi ve çalışma anı kayıtları — asla repoya girmez
 data/book.json
 data/book.json.bak
+data/library.json
+data/books/
+
+# Test artıkları
+.playwright-mcp/
 
 # Üretilen çıktılar ve yedekler
 exports/
