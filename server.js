@@ -277,6 +277,35 @@ app.post('/api/export', async (req, res) => {
   }
 });
 
+/* Dışa aktarma geçmişi: kitabın exports klasöründeki dosyaları listeler (salt-okur).
+   Her dosya: ad, boyut, tarih ve /exports altındaki indirme yolu. */
+app.get('/api/exports', (req, res) => {
+  try {
+    const entry = resolveEntry(req);
+    const dir = subdirFor(EXPORT_DIR, entry.id);
+    let files = [];
+    if (fs.existsSync(dir)) {
+      files = fs.readdirSync(dir)
+        .filter(f => /\.(md|html|docx)$/i.test(f))
+        .map(f => {
+          const st = fs.statSync(path.join(dir, f));
+          if (!st.isFile()) return null;
+          return {
+            name: f,
+            size: st.size,
+            mtime: st.mtime.toISOString(),
+            path: (entry.id === 'default' ? '' : entry.id + '/') + f
+          };
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.mtime.localeCompare(a.mtime));
+    }
+    res.json({ files });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
 /* ---- Versiyonlama: kitabın anlık görüntüleri ---- */
 
 function listVersions(dir) {

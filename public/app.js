@@ -11,6 +11,30 @@ let bookId = localStorage.getItem('inkguide.bookId') || 'default';
 
 const $ = (s) => document.querySelector(s);
 
+/* ---------------- Tema (açık / koyu / sistem) ----------------
+   Tercih localStorage 'theme' içinde tutulur; 'system' işletim sistemini izler. */
+let themePref = localStorage.getItem('theme') || 'system';
+const darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
+
+function applyTheme() {
+  const dark = themePref === 'dark' || (themePref === 'system' && darkMedia.matches);
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+}
+applyTheme();
+darkMedia.addEventListener('change', () => { if (themePref === 'system') applyTheme(); });
+
+/* ---------------- Odak modu ----------------
+   Panelleri gizler, yazı alanı ortalanır; oturumluktur (localStorage'a yazılmaz).
+   Çıkış: Esc veya araç çubuğundaki düğme. */
+function toggleFocusMode(force) {
+  const on = force !== undefined ? force : !document.body.classList.contains('focus-mode');
+  document.body.classList.toggle('focus-mode', on);
+  document.querySelectorAll('#focusBtn').forEach(b => b.classList.toggle('active', on));
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) toggleFocusMode(false);
+});
+
 // API adresine aktif kitap kimliğini ekler (?bookId=…) — sunucu verilmezse "default" varsayar
 const apiUrl = (p) => p + (p.includes('?') ? '&' : '?') + 'bookId=' + encodeURIComponent(bookId);
 
@@ -37,7 +61,9 @@ const ICONS = {
   mic: '<path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4M8 22h8"/>',
   gear: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
   folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
-  check: '<path d="M20 6 9 17l-5-5"/>'
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  focus: '<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'
 };
 
 function ic(name) {
@@ -536,7 +562,8 @@ function draftToolsHtml() {
     <button id="fixBtn" title="${esc(t('tool.fixTip'))}">${ic('sparkles')} ${esc(t('tool.fix'))}</button>
     <button id="editorPassBtn" class="editor-btn" title="${esc(t('tool.editorTip'))}">${ic('wand')} ${esc(t('tool.editor'))}</button>
     <button id="editorUndoBtn" title="${esc(t('tool.undoTip'))}">${ic('undo')} ${esc(t('tool.undo'))}</button>
-    <button id="draftMic" class="mic" title="${esc(t('tool.micTip'))}">${ic('mic')}</button>`;
+    <button id="draftMic" class="mic" title="${esc(t('tool.micTip'))}">${ic('mic')}</button>
+    <button id="focusBtn" class="${document.body.classList.contains('focus-mode') ? 'active' : ''}" title="${esc(t('tool.focusTip'))}">${ic('focus')}</button>`;
 }
 
 function bindDraftTools() {
@@ -575,6 +602,8 @@ function bindDraftTools() {
   }
   const dm = $('#draftMic');
   if (dm) dm.onclick = () => toggleDictation(dm, (t) => insertAtCursor(t));
+  const fb = $('#focusBtn');
+  if (fb) fb.onclick = () => toggleFocusMode();
 }
 
 /* ---------------- Kaydetme ---------------- */
@@ -738,6 +767,7 @@ function renderEditor() {
   if (sel.type === 'sources') { renderSources(ed); return; }
   if (sel.type === 'scratch') { renderScratch(ed); return; }
   if (sel.type === 'settings') { renderSettings(ed); return; }
+  if (sel.type === 'convert') { renderConvert(ed); return; }
   renderChapter(ed);
 }
 
@@ -1404,25 +1434,165 @@ function renderStats() {
     <div class="stat-row"><span>${esc(t('stats.sources'))}</span><b>${book.sources.length}</b></div>`;
 }
 
-/* ---------------- Export ---------------- */
+/* ---------------- Kitaba Dönüştür ekranı ---------------- */
 
-async function doExport() {
-  const btn = $('#exportBtn');
-  const original = btn.innerHTML;
-  btn.disabled = true;
-  btn.textContent = t('export.working');
+let convPicked = { docx: true, html: true, md: true }; // format seçim kartları
+let convBusy = false;
+let convDoneAt = null;  // son başarılı dönüştürme zamanı (etiket)
+let convFiles = [];     // son dönüştürmenin dosyaları
+let convError = null;
+
+function fmtSize(bytes) {
+  if (bytes >= 1024 * 1024) {
+    return (bytes / 1024 / 1024).toLocaleString(I18N_LOCALE, { maximumFractionDigits: 1 }) + ' MB';
+  }
+  return Math.max(1, Math.round(bytes / 1024)).toLocaleString(I18N_LOCALE) + ' KB';
+}
+
+function extOf(name) {
+  return (name.split('.').pop() || '').toLowerCase();
+}
+
+// Seçili format kartlarına göre dosya süzgeci (export her zaman üçünü üretir; görünüm süzülür)
+function convVisibleFiles(files) {
+  const picked = files.filter(f => convPicked[extOf(f)]);
+  return picked.length ? picked : files;
+}
+
+function convResultHtml() {
+  if (convError) {
+    return '<span style="color:var(--danger)">' + esc(t('export.error')) + esc(convError) + '</span>';
+  }
+  if (!convFiles.length) return '';
+  return `<b>${esc(t('export.ready'))}</b> ` +
+    convVisibleFiles(convFiles).map(f =>
+      `<a href="/exports/${f}" target="_blank" download>${esc(f.split('/').pop())}</a>`).join('');
+}
+
+async function doConvert() {
+  if (convBusy) return;
+  convBusy = true;
+  convError = null;
+  if (sel.type === 'convert') renderEditor();
   try {
     const res = await fetch(apiUrl('/api/export'), { method: 'POST' });
     const data = await res.json();
     if (!data.ok) throw new Error(data.error);
-    $('#exportResult').innerHTML =
-      `<b>${esc(t('export.ready'))}</b>` +
-      data.files.map(f => `<a href="/exports/${f}" target="_blank" download>${f.split('/').pop()}</a>`).join('');
+    convFiles = data.files || [];
+    convDoneAt = new Date().toLocaleString(I18N_LOCALE, { dateStyle: 'short', timeStyle: 'short' });
+    // Sol paneldeki küçük sonuç alanı da dolar (eski akışla uyum)
+    const er = $('#exportResult');
+    if (er) er.innerHTML = `<b>${esc(t('export.ready'))}</b>` +
+      convFiles.map(f => `<a href="/exports/${f}" target="_blank" download>${esc(f.split('/').pop())}</a>`).join('');
   } catch (e) {
-    $('#exportResult').innerHTML = '<span style="color:#c0392b">' + esc(t('export.error')) + esc(e.message) + '</span>';
+    convError = e.message;
   }
-  btn.disabled = false;
-  btn.innerHTML = original;
+  convBusy = false;
+  if (sel.type === 'convert') renderEditor();
+}
+
+async function loadConvertHistory() {
+  const box = $('#convHistory');
+  if (!box) return;
+  let files = [];
+  try {
+    const res = await fetch(apiUrl('/api/exports'));
+    const data = await res.json();
+    files = data.files || [];
+  } catch { /* sunucu ucu yoksa boş liste */ }
+  if (!files.length) {
+    box.innerHTML = `<div class="conv-hempty">${esc(t('conv.historyEmpty'))}</div>`;
+    return;
+  }
+  // Aynı dönüştürmenin üç dosyasını (aynı ad kökü) tek satırda topla
+  const runs = new Map();
+  for (const f of files) {
+    const base = f.name.replace(/\.[^.]+$/, '');
+    if (!runs.has(base)) runs.set(base, { base, mtime: f.mtime, size: 0, files: [] });
+    const r = runs.get(base);
+    r.files.push(f);
+    r.size += f.size;
+    if (f.mtime > r.mtime) r.mtime = f.mtime;
+  }
+  const rows = [...runs.values()].sort((a, b) => b.mtime.localeCompare(a.mtime));
+  box.innerHTML = rows.map(r => `
+    <div class="conv-hrow">
+      <div class="conv-hdate">${esc(new Date(r.mtime).toLocaleString(I18N_LOCALE, { dateStyle: 'short', timeStyle: 'short' }))}</div>
+      <div>
+        <div class="conv-htags">${r.files.map(f => `<span class="conv-htag">${esc(extOf(f.name))}</span>`).join('')}</div>
+        <div class="conv-hsize">${esc(r.base)} · ${esc(fmtSize(r.size))}</div>
+      </div>
+      <div class="conv-hlinks">
+        ${r.files.map(f => `<a href="/exports/${esc(f.path)}" target="_blank" download title="${esc(t('conv.download'))}">${esc(extOf(f.name))} ↓</a>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function renderConvert(ed) {
+  const m = book.meta;
+  const chapterCount = book.parts.reduce((a, p) => a + p.chapters.length, 0);
+  const fmts = [
+    ['docx', 'Word (.docx)', t('conv.docxDesc')],
+    ['html', 'HTML', t('conv.htmlDesc')],
+    ['md', 'Markdown', t('conv.mdDesc')]
+  ];
+  ed.innerHTML = `
+  <div class="editor-inner" style="max-width:980px">
+    <button class="back-link" id="convBack">${esc(t('conv.back'))}</button>
+    <h1 class="page-title">${ic('book')} ${esc(t('btn.export'))}</h1>
+    <p class="page-intro">${esc(t('conv.intro'))}</p>
+    <div class="conv-grid">
+      <div>
+        <div class="conv-label">${esc(t('conv.format'))}</div>
+        <div class="conv-formats">
+          ${fmts.map(([k, name, desc]) => `
+          <div class="conv-fmt${convPicked[k] ? ' sel' : ''}" data-fmt-card="${k}">
+            <span class="conv-box">${ic('check')}</span>
+            <span style="flex:1">
+              <span class="conv-fmt-name">${esc(name)}</span>
+              <span class="conv-fmt-desc">${esc(desc)}</span>
+            </span>
+          </div>`).join('')}
+        </div>
+        <button class="conv-build" id="convBuild" ${convBusy ? 'disabled' : ''}>
+          ${convBusy ? '<span class="conv-spin"></span>' : ''}
+          ${esc(convBusy ? t('export.working') : (convDoneAt ? t('conv.rebuild') : t('conv.build')))}
+        </button>
+        <div class="conv-hint">${esc(convDoneAt && !convError ? t('conv.doneHint', { time: convDoneAt }) : t('conv.hint'))}</div>
+        <div class="conv-result" id="convResult">${convResultHtml()}</div>
+        <div class="conv-label" style="margin-top:34px">${esc(t('conv.history'))}</div>
+        <div class="conv-history" id="convHistory"><div class="conv-hempty">…</div></div>
+      </div>
+      <div>
+        <div class="conv-label">${esc(t('conv.cover'))}</div>
+        <div class="conv-cover">
+          <div class="conv-spine"></div>
+          <div class="conv-cover-inner">
+            <div class="conv-cover-author">${esc(m.author || '')}</div>
+            <div class="conv-cover-title">${esc(m.title || '')}</div>
+            <div class="conv-cover-rule"></div>
+            <div class="conv-cover-sub">${esc(m.subtitle || '')}</div>
+            <div class="conv-cover-made">${esc(t('conv.madeWith'))}</div>
+          </div>
+        </div>
+        <div class="conv-summary">${esc(t('words', { n: totalWords().toLocaleString(I18N_LOCALE) }))} · ${esc(t('stats.chapters'))}: ${chapterCount}</div>
+        <div class="conv-tip"><div class="t">${esc(t('conv.wordTipTitle'))}</div>${esc(t('conv.wordTipBody'))}</div>
+      </div>
+    </div>
+  </div>`;
+
+  $('#convBack').onclick = () => select('guide');
+  ed.querySelectorAll('[data-fmt-card]').forEach(card => {
+    card.onclick = () => {
+      const k = card.dataset.fmtCard;
+      // En az bir format seçili kalır
+      if (convPicked[k] && Object.values(convPicked).filter(Boolean).length === 1) return;
+      convPicked[k] = !convPicked[k];
+      renderEditor();
+    };
+  });
+  $('#convBuild').onclick = doConvert;
+  loadConvertHistory();
 }
 
 /* ---------------- Versiyonlar ---------------- */
@@ -1759,7 +1929,18 @@ function renderSettings(ed) {
       <div class="set-card">
         <div class="set-title">${esc(t('set.app'))}</div>
         <p class="set-desc">${esc(t('set.appDesc'))}</p>
-        <button id="setRerunOnb" class="set-btn">${esc(t('set.rerunOnb'))}</button>
+        <div class="set-field">
+          <label for="setTheme">${esc(t('set.appearance'))}</label>
+          <select id="setTheme">
+            <option value="light" ${themePref === 'light' ? 'selected' : ''}>${esc(t('theme.light'))}</option>
+            <option value="dark" ${themePref === 'dark' ? 'selected' : ''}>${esc(t('theme.dark'))}</option>
+            <option value="system" ${themePref === 'system' ? 'selected' : ''}>${esc(t('theme.system'))}</option>
+          </select>
+          <div class="set-hint">${esc(t('set.appearanceHint'))}</div>
+        </div>
+        <div class="set-field">
+          <button id="setRerunOnb" class="set-btn">${esc(t('set.rerunOnb'))}</button>
+        </div>
         <div class="set-version">${esc(t('set.version', { v: APP_VERSION }))}</div>
       </div>
     </div>
@@ -1793,6 +1974,13 @@ function renderSettings(ed) {
     localStorage.setItem('dicteLang', dicteLang);
     const side = $('#dicteLangSel');
     if (side) side.value = dicteLang; // sağ paneldeki seçiciyle senkron
+  };
+
+  // Görünüm (açık / koyu / sistem)
+  $('#setTheme').onchange = e => {
+    themePref = e.target.value;
+    localStorage.setItem('theme', themePref);
+    applyTheme();
   };
 
   // Kurulumu yeniden göster
@@ -2005,6 +2193,10 @@ async function openBook(id) {
   previewMode = false;
   scratchPadId = null;
   editorUndoText = null;
+  convBusy = false;
+  convDoneAt = null;
+  convFiles = [];
+  convError = null;
   clearTimeout(saveTimer);
   migrateBook();
   $('#libraryView').hidden = true;
@@ -2020,7 +2212,8 @@ async function openBook(id) {
 async function init() {
   // Statik düğmeler (bir kez bağlanır)
   $('#tipNext').onclick = () => { tipIndex++; renderTip(); };
-  $('#exportBtn').onclick = doExport;
+  // "Kitaba Dönüştür": doğrudan export yerine tam ekran dönüştürme sayfası
+  $('#exportBtn').onclick = () => select('convert');
   $('#versionBtn').onclick = saveVersion;
   $('#libraryLink').onclick = (e) => { e.preventDefault(); showLibrary(); };
 
