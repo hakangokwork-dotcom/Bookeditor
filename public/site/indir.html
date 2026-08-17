@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İndir — inkGuide</title>
+<meta name="description" content="inkGuide'ı Windows ve macOS için ücretsiz indirin. Kurulum sonrası üç adımda kitabınıza başlayın.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* --- İndirme sayfasına özel --- */
+  .page-hero { padding-top: 76px; padding-bottom: 48px; max-width: 720px; }
+  .page-hero p { margin: 18px 0 0; }
+
+  .dl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(276px, 1fr)); gap: 20px; margin-top: 36px; }
+  .dl-card {
+    display: flex; flex-direction: column; gap: 12px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 28px; color: var(--ink);
+  }
+  a.dl-card:hover { border-color: var(--accent); color: var(--ink); }
+  .dl-card .icon { width: 28px; height: 28px; }
+  .dl-card .name { font-size: 17px; font-weight: 600; }
+  .dl-card .meta { font-size: 13px; color: var(--ink-faint); }
+  .dl-card .go { margin-top: auto; font-size: 13.5px; font-weight: 600; color: var(--accent); }
+
+  .req-box {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 26px 28px;
+  }
+  .req-box h3 { font-family: var(--sans); font-size: 16px; margin: 0; letter-spacing: 0; }
+  .req-box ul { margin: 12px 0 0; padding-left: 20px; font-size: 14.5px; line-height: 1.9; color: var(--ink-soft); }
+  .soon-note {
+    border: 1px solid var(--honey-line); border-radius: var(--radius);
+    background: var(--honey-bg); padding: 20px 24px;
+    font-size: 14px; line-height: 1.7; color: var(--ink-soft);
+  }
+  .soon-note strong { color: var(--honey-ink); }
+
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(256px, 1fr)); gap: 20px; margin-top: 36px; }
+  .step {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px 24px 26px;
+  }
+  .step .num { font-family: var(--serif); font-size: 30px; color: var(--accent); line-height: 1; }
+  .step h3 { font-family: var(--sans); font-size: 15.5px; margin: 12px 0 0; letter-spacing: 0; }
+  .step p { font-size: 13.5px; line-height: 1.65; color: var(--ink-muted); margin: 7px 0 0; }
+  .step code {
+    font-size: 12.5px; background: var(--paper-panel);
+    border: 1px solid var(--line); border-radius: 6px; padding: 2px 7px;
+  }
+</style>
+  <link rel="canonical" href="https://inkguide.uk/indir.html">
+  <meta name="description" content="inkGuide masaüstü uygulamasını ücretsiz indirin. Windows ve macOS. Üyelik yok, internet gerekmez.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkGuide">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:url" content="https://inkguide.uk/indir.html">
+  <meta property="og:title" content="İndir — inkGuide">
+  <meta property="og:description" content="inkGuide masaüstü uygulamasını ücretsiz indirin. Windows ve macOS. Üyelik yok, internet gerekmez.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#icerik">İçeriğe atla</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide ana sayfa">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Ana gezinme">
+      <a href="index.html#ozellikler">Özellikler</a>
+      <a href="gizlilik.html">Gizlilik</a>
+      <a href="destek.html">Destek</a>
+      <a href="indir.html" aria-current="page">İndir</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="#indirme">Hemen indir</a>
+    </div>
+  </div>
+</header>
+
+<main id="icerik">
+
+  <section class="wrap page-hero">
+    <span class="badge">Ücretsiz · açık kaynak deposundan</span>
+    <h1 class="h-hero" style="font-size:clamp(34px, 5vw, 52px)">inkGuide'ı indirin</h1>
+    <p class="lead">İndirin, açın, yazın. Hesap açılmaz, kayıt istenmez, internet yalnız indirirken gerekir. Kitabınız bilgisayarınızda büyür.</p>
+  </section>
+
+  <!-- ============ İNDİRME KARTLARI ============ -->
+  <section id="indirme" class="section-tinted">
+    <div class="wrap section">
+      <div style="display:flex; align-items:flex-end; gap:24px; flex-wrap:wrap">
+        <div style="width:76px; height:76px; border-radius:18px; background:var(--accent); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(40,38,33,.18); flex-shrink:0">
+          <svg viewBox="0 0 24 24" style="width:42px; height:42px; fill:none; stroke:#FBF8F1; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+        </div>
+        <div>
+          <h2 class="h-section">Bilgisayarınıza kurun</h2>
+          <p class="lead" style="margin:12px 0 0; font-size:15.5px; max-width:560px">Sürümler GitHub Releases üzerinden dağıtılır. Windows ve macOS'te aynı deneyim; internet olmadan da yazarsınız.</p>
+        </div>
+      </div>
+
+      <div class="dl-grid">
+        <a class="dl-card" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" style="stroke-width:1.5" aria-hidden="true"><path d="M3 5.5 11 4v7.5H3ZM12.5 3.8 21 2.5v9h-8.5ZM3 12.5h8V20L3 18.5ZM12.5 12.5H21v9l-8.5-1.3Z"/></svg>
+          <span class="name">Windows için indir</span>
+          <span class="meta">Windows 10 ve üstü</span>
+          <span class="go">GitHub Releases → son sürüm</span>
+        </a>
+        <a class="dl-card" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" style="stroke-width:1.5" aria-hidden="true"><path d="M12 7c-1.2-2.4-3.4-3-5-2-1.8 1.1-2.4 3.8-1.4 6.8.7 2.2 2.1 5.4 3.6 6.8 1 .9 1.9.2 2.8.2s1.8.7 2.8-.2c1.5-1.4 2.9-4.6 3.6-6.8 1-3-.4-5.7-2.2-6.8-1.6-1-3.8-.4-4.2 2Z"/><path d="M12 7c.2-1.6 1.2-3.3 3-3.8"/></svg>
+          <span class="name">macOS için indir</span>
+          <span class="meta">Apple Silicon · Intel</span>
+          <span class="go">GitHub Releases → son sürüm</span>
+        </a>
+      </div>
+
+      <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); margin-top:20px; align-items:stretch">
+        <div class="req-box">
+          <h3>Sistem gereksinimleri</h3>
+          <ul>
+            <li><strong>Node.js 18 veya üstü</strong> (şimdilik — aşağıdaki nota bakın)</li>
+            <li>Windows 10+ ya da macOS 12+</li>
+            <li>Modern bir tarayıcı (Chrome ya da Edge; dikte için gerekli)</li>
+            <li>~100 MB disk alanı; internet bağlantısı yalnız indirme için</li>
+          </ul>
+        </div>
+        <div class="soon-note">
+          <strong>Yakında: tek dosya .exe</strong><br>
+          Şu an inkGuide, Node.js üzerinde çalışan bir uygulama olarak dağıtılıyor: indirin, klasörü açın, <code style="background:#fff; border:1px solid var(--honey-line); border-radius:6px; padding:2px 7px; font-size:12.5px">YolArkadasi.bat</code> dosyasına çift tıklayın — gerisi kendiliğinden. Kurulumsuz, çift tıkla açılan tek dosyalık .exe paketi üzerinde çalışıyoruz; hazır olduğunda bu sayfadan inecek.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ İLK 3 ADIM ============ -->
+  <section>
+    <div class="wrap section">
+      <h2 class="h-section">Kurulumdan sonra ilk üç adım</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num" aria-hidden="true">01</div>
+          <h3>Başlatın ve kitabınızı adlandırın</h3>
+          <p><code>YolArkadasi.bat</code> ile uygulamayı açın; tarayıcıda çalışma alanı kendiliğinden belirir. Kitabınıza bir çalışma adı verin — sonradan değişir, mükemmel olması gerekmez.</p>
+        </div>
+        <div class="step">
+          <div class="num" aria-hidden="true">02</div>
+          <h3>İskeleti kabaca kurun</h3>
+          <p>Aklınızdaki kısımları ve bölümleri sol panele ekleyin. Üç beş başlık yeter; iskelet, yazdıkça kendini düzeltir. Sürükleyip yeniden sıralamak her zaman mümkün.</p>
+        </div>
+        <div class="step">
+          <div class="num" aria-hidden="true">03</div>
+          <h3>İlk notu bırakın</h3>
+          <p>Yazmaya değil, biriktirmeye başlayın: bir alıntı, bir fikir, sesli bir karalama. Notlar bölümlerin altında birikir; kitap, siz farkına varmadan görünmeye başlar.</p>
+        </div>
+      </div>
+      <div style="margin-top:34px" class="checks">
+        <span>Çevrimdışı çalışır</span><span>Dosyalar bilgisayarınızda</span><span>Her kayıtta otomatik yedek</span><span><a href="gizlilik.html">Verileriniz nerede durur?</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAPANIŞ ============ -->
+  <section class="section-tinted">
+    <div class="wrap section center" style="max-width:640px; margin:0 auto">
+      <h2 class="h-section">Takıldığınız yer olursa</h2>
+      <p class="lead" style="margin:14px 0 0; font-size:16px">Sorular ve öneriler için GitHub üzerinden yazabilirsiniz. İşinize yaradıysa <a href="destek.html">bir kahve ısmarlamayı</a> unutmayın — ama önce kitabınızı yazın.</p>
+      <div style="margin-top:28px">
+        <a class="btn btn-primary" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">GitHub Releases'e git</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Kitabınızın yol arkadaşı</span>
+    <nav aria-label="Altbilgi gezinmesi">
+      <a href="gizlilik.html">Verileriniz nerede durur?</a>
+      <a href="destek.html">Bir kahve ısmarla</a>
+      <a href="indir.html">İndir</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

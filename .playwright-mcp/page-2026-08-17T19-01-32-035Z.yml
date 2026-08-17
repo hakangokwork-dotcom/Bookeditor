@@ -1,0 +1,138 @@
+- generic [ref=e2]:
+  - complementary [ref=e3]:
+    - generic "inkGuide — Kitabınız bilgisayarınızdan çıkmaz" [ref=e4]: inkGuide
+    - link "Kitaplığım" [ref=e9] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=e14]:
+      - generic [ref=e15]: Problem
+      - generic [ref=e16]: Bir Kelimenin İçinde Yaşamak
+      - generic [ref=e17]: 4.806 / 60.000 kelime (%8)
+    - navigation [ref=e21]:
+      - generic [ref=e546] [cursor=pointer]: İlk Kitap Rehberi
+      - generic [ref=e550] [cursor=pointer]: Ön Sayfalar (Önsöz · Giriş)
+      - generic [ref=e554] [cursor=pointer]: Kaynaklar (5)
+      - generic [ref=e557] [cursor=pointer]: Karalama Defteri (3)
+      - generic [ref=e561] [cursor=pointer]: Ayarlar
+      - generic [ref=e566]:
+        - generic [ref=e567]: ▾
+        - generic [ref=e568]: "BÖLÜM I — Kelime: \"Problem\"in Arkeolojisi"
+      - generic [ref=e569] [cursor=pointer]:
+        - generic [ref=e571]: "Etimoloji: Öne Atılan Şey"
+        - generic [ref=e572]: "1966"
+      - generic [ref=e573] [cursor=pointer]:
+        - generic [ref=e575]: Wittgenstein ve Kelimenin Uzayı
+        - generic [ref=e576]: "1135"
+      - generic [ref=e577] [cursor=pointer]:
+        - generic [ref=e579]: Bilen Olmadan Problem Olmaz
+        - generic [ref=e580]: "1679"
+      - generic [ref=e581]:
+        - generic [ref=e582]: ▾
+        - generic [ref=e583]: "BÖLÜM II — Zihin: Problemi Gören Makine"
+      - generic [ref=e584] [cursor=pointer]: Sistem 1 ve Sistem 2
+      - generic [ref=e587] [cursor=pointer]: Yanlılıklar — Problemi Yanlış Görmek
+      - generic [ref=e590] [cursor=pointer]: Einstellung Etkisi ve Fonksiyonel Sabitlik
+      - generic [ref=e593] [cursor=pointer]: İç Görü Anı (Aha!)
+      - generic [ref=e596]:
+        - generic [ref=e597]: ▾
+        - generic [ref=e598]: "BÖLÜM III — Yöntem: İnsanlığın Problem Çözme Repertuarı"
+      - generic [ref=e599] [cursor=pointer]: Deneme-Yanılmadan Bilimsel Yönteme
+      - generic [ref=e602] [cursor=pointer]: Döngüler Ailesi — PDCA, DMAIC, A3
+      - generic [ref=e605] [cursor=pointer]: Problemin Tanımı Çözümün Yarısıdır
+      - generic [ref=e608] [cursor=pointer]: Yaratıcı Problem Çözme
+      - generic [ref=e611] [cursor=pointer]: Hız Meselesi
+      - generic [ref=e614]:
+        - generic [ref=e615]: ▾
+        - generic [ref=e616]: "BÖLÜM IV — Hayat: Yöntemsiz Problemler"
+      - generic [ref=e617] [cursor=pointer]: Bozulan Araba, Taşan Lavabo
+      - generic [ref=e620] [cursor=pointer]: İlişkisel Problemler — Çözülmeyen, Yönetilen
+      - generic [ref=e623] [cursor=pointer]: "Çocuklar: Problem Çözmeyi Öğrenen Zihin"
+      - generic [ref=e626] [cursor=pointer]: Problem Sahipliği
+      - generic [ref=e629]:
+        - generic [ref=e630]: ▾
+        - generic [ref=e631]: "BÖLÜM V — Sentez: Problemle Yaşamak"
+      - generic [ref=e632] [cursor=pointer]: Problem Bulmak Çözmekten Değerlidir
+      - generic [ref=e635] [cursor=pointer]: Problemsiz Hayat Diye Bir Şey Var mı?
+      - generic [ref=e638] [cursor=pointer]: Epilog — Okuyucunun Problemi
+    - generic [ref=e117]:
+      - button "Kısım" [ref=e118] [cursor=pointer]
+      - button "Versiyon" [ref=e122] [cursor=pointer]
+    - button "Kitaba Dönüştür" [ref=e128] [cursor=pointer]
+    - generic [ref=e134]:
+      - generic [ref=e135]: Versiyonlar
+      - generic [ref=e136]:
+        - generic [ref=e137]: 14.08.2026 10:43
+        - generic [ref=e138] [cursor=pointer]: geri yükle
+  - main [ref=e139]:
+    - generic [ref=e641]:
+      - heading "Ayarlar" [level=1] [ref=e642]
+      - paragraph [ref=e643]: Hesap yok, abonelik yok. inkGuide bilgisayarınızda çalışır; buradaki ayarlar yalnızca bu kurulumu etkiler. Değişiklikler otomatik kaydedilir.
+      - generic [ref=e644]:
+        - generic [ref=e645]:
+          - generic [ref=e646]: Kitap
+          - paragraph [ref=e647]: Kapakta, ilerleme çubuğunda ve dışa aktarmada kullanılır.
+          - generic [ref=e648]:
+            - generic [ref=e649]: Başlık
+            - textbox "Başlık" [ref=e650]:
+              - /placeholder: Kitabınızın adı
+              - text: Problem
+          - generic [ref=e651]:
+            - generic [ref=e652]: Alt başlık (isteğe bağlı)
+            - textbox "Alt başlık (isteğe bağlı)" [ref=e653]:
+              - /placeholder: Alt başlık
+              - text: Bir Kelimenin İçinde Yaşamak
+          - generic [ref=e654]:
+            - generic [ref=e655]: Yazar
+            - textbox "Yazar" [ref=e656]:
+              - /placeholder: Adınız Soyadınız
+              - text: Hakan Gök
+          - generic [ref=e657]:
+            - generic [ref=e658]: Hedef kelime sayısı
+            - spinbutton "Hedef kelime sayısı" [ref=e659]: "60000"
+        - generic [ref=e660]:
+          - generic [ref=e661]: Dil
+          - paragraph [ref=e662]: Arayüz seçtiğiniz dilde görünür; dikte, seçtiğiniz dilde konuşmanızı yazıya döker.
+          - generic [ref=e663]:
+            - generic [ref=e664]: Arayüz dili
+            - combobox "Arayüz dili" [ref=e665]:
+              - option "Türkçe" [selected]
+              - option "English"
+              - option "Español"
+              - option "中文"
+              - option "العربية"
+              - option "हिन्दी"
+              - option "Português"
+              - option "Français"
+              - option "Русский"
+              - option "Deutsch"
+            - generic [ref=e666]: Dil değişince arayüz yenilenir.
+          - generic [ref=e667]:
+            - generic [ref=e668]: Dikte dili
+            - combobox "Dikte dili" [ref=e669]:
+              - option "Türkçe" [selected]
+              - option "English"
+              - option "Español"
+              - option "中文"
+              - option "العربية"
+              - option "हिन्दी"
+              - option "Português"
+              - option "Français"
+              - option "Русский"
+              - option "Deutsch"
+            - generic [ref=e670]: Sağ paneldeki seçiciyle aynı ayardır.
+        - generic [ref=e671]:
+          - generic [ref=e672]: Veri konumu
+          - paragraph [ref=e673]: Kitaplarınız, notlarınız ve karalamalarınız bu bilgisayarda, uygulama klasörünün içinde düz dosya olarak durur. Hiçbir veri dışarı gönderilmez.
+          - generic [ref=e674]:
+            - generic [ref=e677]: data/
+            - generic [ref=e678]: kitap dosyaları (JSON)
+          - generic [ref=e679]:
+            - generic [ref=e682]: yedek/
+            - generic [ref=e683]: her kayıtta Word + Markdown yedeği
+          - generic [ref=e684]:
+            - generic [ref=e687]: versions/
+            - generic [ref=e688]: anlık görüntüler (geri yüklenebilir)
+        - generic [ref=e689]:
+          - generic [ref=e690]: Uygulama
+          - paragraph [ref=e691]: inkGuide ücretsizdir ve öyle kalacak; kilitli özellik ya da deneme süresi yoktur.
+          - button "Kurulumu yeniden göster" [ref=e692] [cursor=pointer]
+          - generic [ref=e693]: Sürüm 1.0.0 · yerel kurulum

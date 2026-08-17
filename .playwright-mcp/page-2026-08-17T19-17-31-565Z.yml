@@ -1,0 +1,153 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic "inkGuide — Kitabınız bilgisayarınızdan çıkmaz" [ref=e4]: inkGuide
+      - link "Kitaplığım" [ref=e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=e13]:
+        - generic [ref=e14]: Problem
+        - generic [ref=e15]: Bir Kelimenin İçinde Yaşamak
+        - generic [ref=e19]:
+          - generic [ref=e20]: 4.806 / 60.000 kelime
+          - generic [ref=e21]: "%8"
+      - navigation [ref=e22]:
+        - generic [ref=e23] [cursor=pointer]: İlk Kitap Rehberi
+        - generic [ref=e27] [cursor=pointer]: Ön Sayfalar (Önsöz · Giriş)
+        - generic [ref=e31] [cursor=pointer]: Kaynaklar (5)
+        - generic [ref=e34] [cursor=pointer]: Karalama Defteri (3)
+        - generic [ref=e38] [cursor=pointer]: Ayarlar
+        - generic [ref=e43]: "BÖLÜM I — Kelime: \"Problem\"in Arkeolojisi"
+        - generic [ref=e48] [cursor=pointer]:
+          - generic [ref=e50]: "Etimoloji: Öne Atılan Şey"
+          - generic [ref=e51]: "1.966"
+        - generic [ref=e52] [cursor=pointer]:
+          - generic [ref=e54]: Wittgenstein ve Kelimenin Uzayı
+          - generic [ref=e55]: "1.135"
+        - generic [ref=e56] [cursor=pointer]:
+          - generic [ref=e58]: Bilen Olmadan Problem Olmaz
+          - generic [ref=e59]: "1.679"
+        - generic [ref=e60]: "BÖLÜM II — Zihin: Problemi Gören Makine"
+        - generic [ref=e65] [cursor=pointer]: Sistem 1 ve Sistem 2
+        - generic [ref=e68] [cursor=pointer]: Yanlılıklar — Problemi Yanlış Görmek
+        - generic [ref=e71] [cursor=pointer]: Einstellung Etkisi ve Fonksiyonel Sabitlik
+        - generic [ref=e74] [cursor=pointer]: İç Görü Anı (Aha!)
+        - generic [ref=e77]: "BÖLÜM III — Yöntem: İnsanlığın Problem Çözme Repertuarı"
+        - generic [ref=e82] [cursor=pointer]: Deneme-Yanılmadan Bilimsel Yönteme
+        - generic [ref=e85] [cursor=pointer]: Döngüler Ailesi — PDCA, DMAIC, A3
+        - generic [ref=e88] [cursor=pointer]: Problemin Tanımı Çözümün Yarısıdır
+        - generic [ref=e91] [cursor=pointer]: Yaratıcı Problem Çözme
+        - generic [ref=e94] [cursor=pointer]: Hız Meselesi
+        - generic [ref=e97]: "BÖLÜM IV — Hayat: Yöntemsiz Problemler"
+        - generic [ref=e102] [cursor=pointer]: Bozulan Araba, Taşan Lavabo
+        - generic [ref=e105] [cursor=pointer]: İlişkisel Problemler — Çözülmeyen, Yönetilen
+        - generic [ref=e108] [cursor=pointer]: "Çocuklar: Problem Çözmeyi Öğrenen Zihin"
+        - generic [ref=e111] [cursor=pointer]: Problem Sahipliği
+        - generic [ref=e114]: "BÖLÜM V — Sentez: Problemle Yaşamak"
+        - generic [ref=e119] [cursor=pointer]: Problem Bulmak Çözmekten Değerlidir
+        - generic [ref=e122] [cursor=pointer]: Problemsiz Hayat Diye Bir Şey Var mı?
+        - generic [ref=e125] [cursor=pointer]: Epilog — Okuyucunun Problemi
+      - generic [ref=e128]:
+        - button "Kısım" [ref=e129] [cursor=pointer]
+        - button "Versiyon" [ref=e133] [cursor=pointer]
+      - button "Kitaba Dönüştür" [ref=e139] [cursor=pointer]
+      - generic [ref=e145]:
+        - generic [ref=e146]: Versiyonlar
+        - generic [ref=e147]:
+          - generic [ref=e148]: 14.08.2026 10:43
+          - generic [ref=e149] [cursor=pointer]: geri yükle
+    - main [ref=e150]:
+      - generic [ref=e151]:
+        - generic [ref=e152]: İlk kitabını yazanlar için
+        - heading "Rehber" [level=1] [ref=e153]
+        - paragraph [ref=e154]: Bu araç, notlarınızı bölümlere dönüştürüp kitabınıza doğru yürümeniz için tasarlandı. Soldan bir bölüm seçin, notlarınızı (NotebookLM çıktıları, sentezler, alıntılar) o bölüme ekleyin; hazır olduğunuzda taslağı yazın.
+        - heading "Önerilen çalışma akışı" [level=2] [ref=e155]
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - generic [ref=e158]: "1"
+            - paragraph [ref=e159]: Topla. NotebookLM'den ve okumalarınızdan çıkan her şeyi ilgili bölüme not olarak ekleyin. Düşünmeyin, biriktirin.
+          - generic [ref=e160]:
+            - generic [ref=e161]: "2"
+            - paragraph [ref=e162]: Sentezle. Notlar birikince "bu bölümün ana fikri ne?" sorusuna cevap veren sentez notları yazın. Şema, diyagram ve illüstrasyon fikirlerinizi görsel notu olarak kaydedin — kitap tasarımı aşamasında hazır bir görsel listeniz olur.
+          - generic [ref=e163]:
+            - generic [ref=e164]: "3"
+            - paragraph [ref=e165]: Yaz. Sentezlere bakarak taslağı yazın. Notlar sağ elinizin altında, taslak önünüzde. Dışarıdan metin getirirken Yapıştır satır kırıklarını ve kalıntıları temizler; Düzelt aynı temizliği seçili metne uygular. B / I / H / Liste / ❝ düğmeleri seçili metni biçimlendirir.
+          - generic [ref=e166]:
+            - generic [ref=e167]: "4"
+            - paragraph [ref=e168]: Dinlendir ve düzelt. Bölümü "bitti" işaretlemeden önce en az bir hafta bekletin, sonra yabancı gözüyle okuyun.
+        - generic [ref=e169]: Kararsız mısınız? Nereye ait olduğunu bilmediğiniz her şeyi Karalama Defteri'ne atın; hazır olunca notu "bölüme taşı" ile yerine gönderin.
+        - generic [ref=e170]: "🎤 Sesli not: Not alanlarının ve taslak araç çubuğunun yanındaki mikrofon düğmesine tıklayıp konuşun — söyledikleriniz yazıya dökülür; tekrar tıklayınca durur. (Konuşma tanıma tarayıcının servisiyle çalışır; Chrome/Edge gerekir ve ilk kullanımda mikrofon izni ister.)"
+        - heading "Sık karışan yazım kuralları (TDK)" [level=2] [ref=e171]
+        - generic [ref=e172]: "de / da: Bağlaç ise ayrı (\"ben de geldim\"), bulunma eki ise bitişik (\"evde\"). Test: çıkarınca cümle bozuluyorsa bitişiktir."
+        - generic [ref=e173]: "ki: Bağlaç ise ayrı (\"öyle ki\"), aitlik eki ise bitişik (\"seninki\", \"akşamki\"). İstisna kalıplar: \"sanki, oysaki, çünkü, hâlbuki, mademki, meğerki, belki\"."
+        - generic [ref=e174]: "Soru eki mı/mi: Her zaman ayrı yazılır: \"geldi mi?\", \"problem mi?\""
+        - generic [ref=e175]: "Birleşik fiiller: \"hissetmek, kaybetmek, reddetmek\" bitişik; \"fark etmek, terk etmek, söz etmek\" ayrı."
+        - generic [ref=e176]: "Sayılar: Metinde küçük sayılar yazıyla (\"üç yöntem\"), ölçüm ve istatistikler rakamla (\"%69\", \"55 dakika\")."
+        - generic [ref=e177]: "Noktalama: Virgülle bağlanan uzun cümleler yerine kısa cümleler kurun. Üç nokta üçtür, beş değil…"
+        - heading "Alıntı ve kaynak etiği" [level=2] [ref=e178]
+        - list [ref=e179]:
+          - listitem [ref=e180]: Birebir alıntı → tırnak içinde + kaynak + sayfa numarası. Kitapta 40 kelimeyi geçen alıntılar blok alıntı olur.
+          - listitem [ref=e181]: Fikir aktarımı (kendi cümlelerinizle) da kaynak ister — intihalin en yaygın türü "parafraz edip kaynak vermemektir".
+          - listitem [ref=e182]:
+            - text: Taslak içinde
+            - code [ref=e183]: "[[kaynak:kahneman2011]]"
+            - text: yazın; kitaba dönüştürünce otomatik olarak (Kahneman, 2011) olur ve Kaynakça'ya girer.
+          - listitem [ref=e184]: "İkincil alıntıdan kaçının: \"Kahneman'ın aktardığına göre Simon...\" yerine mümkünse asıl kaynağa gidin."
+          - listitem [ref=e185]: "Söylenmiş sözleri doğrulayın: Einstein'a atfedilen sözlerin çoğu Einstein'a ait değildir. (Kitabınız için harika bir yan hikâye!)"
+        - heading "Kitabın yapısı" [level=2] [ref=e186]
+        - generic [ref=e187]:
+          - generic [ref=e188]:
+            - generic [ref=e189]: Önsöz
+            - generic [ref=e190]: "Kitabın hikâyesi: neden ve kime yazdınız. Genelde en son yazılır."
+          - generic [ref=e191]:
+            - generic [ref=e192]: Giriş
+            - generic [ref=e193]: Vaat ve okuma haritası. Okuyucu iki sayfada "bu kitap bana ne verecek?" cevabını almalı.
+          - generic [ref=e194]:
+            - generic [ref=e195]: Bölümler
+            - generic [ref=e196]: Her bölüm tek bir soruya cevap versin; o soruyu sinopsis alanına yazın.
+          - generic [ref=e197]:
+            - generic [ref=e198]: Kaynakça
+            - generic [ref=e199]: Otomatik oluşur; siz kaynakları girip atıf işaretçilerini kullanın.
+        - heading "Kitaba dönüştürünce ne olur?" [level=2] [ref=e200]
+        - paragraph [ref=e201]: "Sol alttaki \"Kitaba Dönüştür\" düğmesi kitabınızı üç formatta üretir: Markdown (ham metin), HTML (okumalık/baskı önizleme) ve Word (.docx) — kapak, içindekiler, önsöz, giriş, bölümler ve APA formatında kaynakça ile. Word dosyasını açınca içindekileri güncellemeyi onaylayın (alanlar otomatik dolar). Dosya adları tarih + saat damgalıdır; her dönüştürme ayrı bir çıktı versiyonudur."
+        - heading "Versiyonlama ve güvenlik yedeği" [level=2] [ref=e202]
+        - paragraph [ref=e203]:
+          - text: "\"Versiyon\" düğmesi kitabın o anki halinin anlık görüntüsünü"
+          - code [ref=e204]: versions/
+          - text: klasörüne kaydeder. Büyük bir değişiklikten (bölüm silme, yeniden yapılandırma) önce bir versiyon alın; listeden tek tıkla geri yükleyebilirsiniz — geri yükleme öncesi mevcut hal de otomatik versiyonlanır, hiçbir şey kaybolmaz.
+        - paragraph [ref=e205]:
+          - text: "Emekler asla boşa gitmez: her kayıtta kitabınızın son hali"
+          - code [ref=e206]: yedek/kitap-son-hali.md
+          - text: ve
+          - code [ref=e207]: yedek/kitap-son-hali.docx
+          - text: dosyalarına da yazılır — notlarınız ve karalama defteriniz dahil. Bu uygulama bir gün hiç açılmasa bile, o Word dosyasını açıp kaldığınız yerden devam edebilirsiniz.
+        - generic [ref=e208]:
+          - button "Yazmaya dön" [ref=e209] [cursor=pointer]
+          - button "Kaynakları düzenle" [ref=e210] [cursor=pointer]
+  - generic [ref=e212]:
+    - generic [ref=e213]: inkGuide Kurulumu
+    - generic [ref=e218]:
+      - complementary [ref=e219]:
+        - generic [ref=e220]: inkGuide
+        - generic [ref=e226]:
+          - generic [ref=e227]: Hoş geldiniz
+          - generic [ref=e230]: Kitabınız
+          - generic [ref=e233]: Dil ve başlangıç
+        - generic [ref=e236]: İnternet gerekmez. Hesap açılmaz, kayıt istenmez.
+      - generic [ref=e237]:
+        - generic [ref=e238]:
+          - heading "Kitabınız bu bilgisayarda saklanır" [level=1] [ref=e239]
+          - paragraph [ref=e240]: inkGuide'a hoş geldiniz. Hesap açılmaz, kayıt istenmez, internet gerekmez. Yazdığınız her şey yalnızca sizin bilgisayarınızda, açık dosya biçimlerinde (JSON, Markdown, Word) durur.
+          - generic [ref=e241]:
+            - generic [ref=e244]: data/
+            - generic [ref=e245]: veri klasörü — uygulamanın yanında
+          - list [ref=e246]:
+            - listitem [ref=e247]:
+              - generic [ref=e250]: Her kayıtta yedek/ klasörüne Word ve Markdown yedeği yazılır.
+            - listitem [ref=e251]:
+              - generic [ref=e254]: "\"Versiyon\" düğmesiyle anlık görüntüler versions/ klasörüne kaydedilir."
+            - listitem [ref=e255]:
+              - generic [ref=e258]: Ücretsizdir; kilitli özellik ve deneme süresi yoktur.
+        - generic [ref=e259]:
+          - button "Geri" [disabled] [ref=e260]
+          - button "Atla" [ref=e261] [cursor=pointer]
+          - button "Devam" [ref=e262] [cursor=pointer]

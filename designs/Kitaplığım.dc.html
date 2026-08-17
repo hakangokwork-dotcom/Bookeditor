@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #FAF8F3; color: #26251F; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #55663F; text-decoration: none; }
+  a:hover { color: #3E4A2E; }
+  @keyframes ya-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh">
+  <header style="border-bottom: 1px solid #E4E0D6; background: rgba(250, 248, 243, .9); position: sticky; top: 0; z-index: 5">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 15px 40px; display: flex; align-items: center; gap: 26px">
+      <a href="Pazarlama.dc.html" style="display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: #26251F; text-decoration: none">
+        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"></path><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"></path></svg>
+        <span style="letter-spacing: -.015em"><span style="font-weight: 400">ink</span><span style="font-weight: 700">Guide</span></span>
+      </a>
+      <nav style="display: flex; gap: 20px; font-size: 14px">
+        <span style="color: #26251F; font-weight: 600; padding-bottom: 2px; border-bottom: 2px solid #55663F">Kitaplığım</span>
+        <a href="Rehber.dc.html" style="color: #6B6559; text-decoration: none">Rehber</a>
+        <a href="Ayarlar.dc.html" style="color: #6B6559; text-decoration: none">Ayarlar</a>
+      </nav>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 14px">
+        <button onClick="{{ onNew }}" style="padding: 9px 16px; border: 1px solid #55663F; border-radius: 9px; background: #55663F; color: #FFFFFF; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 7px">
+          <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M12 5v14M5 12h14"></path></svg> Yeni kitap
+        </button>
+        <a href="Ayarlar.dc.html" title="Ayarlar" style="width: 32px; height: 32px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; color: #4F4B42; display: inline-flex; align-items: center; justify-content: center; text-decoration: none"><svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"></path></svg></a>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width: 1180px; margin: 0 auto; padding: 44px 40px 90px">
+    <div style="display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap">
+      <div>
+        <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 36px; font-weight: 600; letter-spacing: -.02em">Kitaplığım</h1>
+        <p style="margin: 8px 0 0; font-size: 14.5px; color: #6B6559">Üç kitap projesi · bu hafta 3.240 kelime · 14 günlük seri</p>
+      </div>
+      <div style="margin-left: auto; display: flex; gap: 8px">
+        <span style="padding: 7px 14px; border: 1px solid #55663F; border-radius: 999px; background: #EDEFE4; color: #43522F; font-size: 13px; font-weight: 600; cursor: pointer">Tümü</span>
+        <span style="padding: 7px 14px; border: 1px solid #E4E0D6; border-radius: 999px; background: #FFFFFF; color: #6B6559; font-size: 13px; cursor: pointer">Yazılıyor</span>
+        <span style="padding: 7px 14px; border: 1px solid #E4E0D6; border-radius: 999px; background: #FFFFFF; color: #6B6559; font-size: 13px; cursor: pointer">Arşiv</span>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 20px; margin-top: 32px">
+      <a href="Çalışma Alanı.dc.html" style="display: block; border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; overflow: hidden; text-decoration: none; color: #26251F; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)" style-hover="border-color: #55663F">
+        <div style="height: 132px; background: #55663F; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; font-weight: 600; color: #FBF8F1; line-height: 1.2">Yavaş Şehirler</div>
+          <div style="font-size: 12px; color: rgba(251, 248, 241, .75); font-style: italic">Bir Coğrafyacının Notları</div>
+        </div>
+        <div style="padding: 16px 20px 18px">
+          <div style="height: 5px; border-radius: 3px; background: #E3E0D9; overflow: hidden"><div style="width: 42%; height: 100%; background: #55663F; border-radius: 3px"></div></div>
+          <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6E6859; margin-top: 7px; font-variant-numeric: tabular-nums"><span>25.400 / 60.000</span><span>%42</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 14px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #FBF2DE; color: #86682A; font-size: 11.5px; font-weight: 600"><span style="width: 6px; height: 6px; border-radius: 50%; background: #C98A2E"></span> Yazılıyor</span>
+            <span style="font-size: 11.5px; color: #6E6859; margin-left: auto">2 saat önce</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="Çalışma Alanı.dc.html" style="display: block; border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; overflow: hidden; text-decoration: none; color: #26251F; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)" style-hover="border-color: #55663F">
+        <div style="height: 132px; background: #8C5A3C; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; font-weight: 600; color: #FBF8F1; line-height: 1.2">Kayıp Tarifler Defteri</div>
+          <div style="font-size: 12px; color: rgba(251, 248, 241, .75); font-style: italic">Bir mutfağın sözlü tarihi</div>
+        </div>
+        <div style="padding: 16px 20px 18px">
+          <div style="height: 5px; border-radius: 3px; background: #E3E0D9; overflow: hidden"><div style="width: 12%; height: 100%; background: #55663F; border-radius: 3px"></div></div>
+          <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6E6859; margin-top: 7px; font-variant-numeric: tabular-nums"><span>4.800 / 40.000</span><span>%12</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 14px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #F2F0E9; color: #6B6559; font-size: 11.5px; font-weight: 600"><span style="width: 6px; height: 6px; border-radius: 50%; background: #CFCABF"></span> Taslak</span>
+            <span style="font-size: 11.5px; color: #6E6859; margin-left: auto">5 gün önce</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="Çalışma Alanı.dc.html" style="display: block; border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; overflow: hidden; text-decoration: none; color: #26251F; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)" style-hover="border-color: #55663F">
+        <div style="height: 132px; background: #3C5A6B; padding: 20px 22px; display: flex; flex-direction: column; justify-content: space-between">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; font-weight: 600; color: #FBF8F1; line-height: 1.2">Demiryolu Notları</div>
+          <div style="font-size: 12px; color: rgba(251, 248, 241, .75); font-style: italic">Anadolu'da hat ve kasaba</div>
+        </div>
+        <div style="padding: 16px 20px 18px">
+          <div style="height: 5px; border-radius: 3px; background: #E3E0D9; overflow: hidden"><div style="width: 96%; height: 100%; background: #7FB069; border-radius: 3px"></div></div>
+          <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6E6859; margin-top: 7px; font-variant-numeric: tabular-nums"><span>48.100 / 50.000</span><span>%96</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 14px">
+            <span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #EDEFE4; color: #43522F; font-size: 11.5px; font-weight: 600"><span style="width: 6px; height: 6px; border-radius: 50%; background: #7FB069"></span> Bitti</span>
+            <span style="font-size: 11.5px; color: #6E6859; margin-left: auto">3 hafta önce</span>
+          </div>
+        </div>
+      </a>
+
+      <div onClick="{{ onNew }}" style="border: 1px dashed #DCD8CD; border-radius: 14px; background: #FDFCF9; min-height: 246px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; cursor: pointer; color: #55663F" style-hover="background: #EDEFE4; border-color: #55663F">
+        <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M12 5v14M5 12h14"></path></svg>
+        <div style="font-size: 14px; font-weight: 600">Yeni kitap</div>
+        <div style="font-size: 12.5px; color: #6E6859">Üç adımda iskelet kurun</div>
+      </div>
+    </div>
+  </main>
+
+  <sc-if value="{{ wizardOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; inset: 0; background: rgba(38, 37, 31, .38); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 20">
+      <div style="width: 100%; max-width: 540px; border: 1px solid #E4E0D6; border-radius: 16px; background: #FFFFFF; box-shadow: 0 24px 70px rgba(40, 38, 33, .25); overflow: hidden; animation: ya-in .2s ease">
+        <div style="padding: 22px 26px 0; display: flex; align-items: center; gap: 12px">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 21px; font-weight: 600">Yeni kitap</div>
+          <div style="margin-left: auto; display: flex; gap: 5px">
+            <span style="{{ dot1 }}"></span><span style="{{ dot2 }}"></span><span style="{{ dot3 }}"></span>
+          </div>
+          <button onClick="{{ onClose }}" style="border: none; background: none; color: #6E6859; font-size: 16px; cursor: pointer; padding: 0 2px">✕</button>
+        </div>
+        <div style="padding: 8px 26px 4px; font-size: 12.5px; color: #6E6859">Adım {{ step }} / 3 — {{ stepLabel }}</div>
+
+        <div style="padding: 16px 26px 26px">
+          <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 14px">
+              <div>
+                <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Kitap adı</label>
+                <input value="{{ titleVal }}" onChange="{{ onTitle }}" placeholder="Örn. Yavaş Şehirler" style="width: 100%; padding: 10px 13px; border: 1px solid #E4E0D6; border-radius: 9px; font-family: inherit; font-size: 14px; box-sizing: border-box" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Alt başlık <span style="color: #6E6859; font-weight: 400">(isteğe bağlı)</span></label>
+                <input placeholder="Bir coğrafyacının notları" style="width: 100%; padding: 10px 13px; border: 1px solid #E4E0D6; border-radius: 9px; font-family: inherit; font-size: 14px; box-sizing: border-box" />
+              </div>
+              <div>
+                <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 8px">Kapak rengi</label>
+                <div style="display: flex; gap: 9px">
+                  <span style="width: 34px; height: 34px; border-radius: 8px; background: #55663F; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #55663F; cursor: pointer"></span>
+                  <span style="width: 34px; height: 34px; border-radius: 8px; background: #8C5A3C; cursor: pointer"></span>
+                  <span style="width: 34px; height: 34px; border-radius: 8px; background: #3C5A6B; cursor: pointer"></span>
+                  <span style="width: 34px; height: 34px; border-radius: 8px; background: #6E4B6B; cursor: pointer"></span>
+                  <span style="width: 34px; height: 34px; border-radius: 8px; background: #26251F; cursor: pointer"></span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 8px">Tür</label>
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 9px">
+                <div style="border: 1px solid #55663F; border-radius: 10px; background: #EDEFE4; padding: 13px 15px; cursor: pointer">
+                  <div style="font-size: 14px; font-weight: 600">Kurgu dışı</div>
+                  <div style="font-size: 12px; color: #6B6559; margin-top: 3px">Kısım + bölüm, kaynakça</div>
+                </div>
+                <div style="border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; padding: 13px 15px; cursor: pointer">
+                  <div style="font-size: 14px; font-weight: 600">Roman</div>
+                  <div style="font-size: 12px; color: #6B6559; margin-top: 3px">Sahne kartları, karakterler</div>
+                </div>
+                <div style="border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; padding: 13px 15px; cursor: pointer">
+                  <div style="font-size: 14px; font-weight: 600">Anı / deneme</div>
+                  <div style="font-size: 12px; color: #6B6559; margin-top: 3px">Serbest bölümler</div>
+                </div>
+                <div style="border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; padding: 13px 15px; cursor: pointer">
+                  <div style="font-size: 14px; font-weight: 600">Akademik</div>
+                  <div style="font-size: 12px; color: #6B6559; margin-top: 3px">APA, dipnot, tablo</div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div>
+                <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Hedef kelime sayısı</label>
+                <div style="display: flex; gap: 8px">
+                  <span style="padding: 8px 14px; border: 1px solid #E4E0D6; border-radius: 9px; font-size: 13.5px; cursor: pointer">30.000</span>
+                  <span style="padding: 8px 14px; border: 1px solid #55663F; border-radius: 9px; background: #EDEFE4; color: #43522F; font-size: 13.5px; font-weight: 600; cursor: pointer">60.000</span>
+                  <span style="padding: 8px 14px; border: 1px solid #E4E0D6; border-radius: 9px; font-size: 13.5px; cursor: pointer">90.000</span>
+                  <input placeholder="özel" style="width: 78px; padding: 8px 11px; border: 1px solid #E4E0D6; border-radius: 9px; font-family: inherit; font-size: 13.5px; box-sizing: border-box" />
+                </div>
+              </div>
+              <div>
+                <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Günlük hedef</label>
+                <div style="display: flex; align-items: center; gap: 12px">
+                  <input type="range" min="100" max="2000" step="50" defaultValue="500" style="flex: 1; accent-color: #55663F" />
+                  <span style="font-size: 13.5px; font-variant-numeric: tabular-nums; color: #6B6559">500 kelime/gün</span>
+                </div>
+                <div style="font-size: 12px; color: #6E6859; margin-top: 7px">Bu hızla tahmini bitiş: 4 ay (Aralık 2026)</div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display: flex; gap: 10px; padding: 16px 26px 22px; border-top: 1px solid #EFEBE1; background: #FDFCF9">
+          <button onClick="{{ onBack }}" style="padding: 10px 16px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; color: #26251F; font-family: inherit; font-size: 13.5px; cursor: pointer">{{ backLabel }}</button>
+          <a href="{{ nextHref }}" onClick="{{ onNext }}" style="margin-left: auto; padding: 10px 20px; border-radius: 9px; background: #55663F; color: #FFFFFF; font-size: 13.5px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center">{{ nextLabel }}</a>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  state = { wizardOpen: false, step: 1, title: '' };
+  componentDidMount() { document.documentElement.lang = 'tr'; }
+  renderVals() {
+    const s = this.state;
+    const dot = (on) => 'width: 7px; height: 7px; border-radius: 50%; background: ' + (on ? '#55663F' : '#DCD8CD');
+    const labels = { 1: 'Kitabın kimliği', 2: 'Tür ve iskelet', 3: 'Hedefler' };
+    return {
+      wizardOpen: s.wizardOpen,
+      step: s.step,
+      stepLabel: labels[s.step],
+      isStep1: s.step === 1, isStep2: s.step === 2, isStep3: s.step === 3,
+      dot1: dot(s.step >= 1), dot2: dot(s.step >= 2), dot3: dot(s.step >= 3),
+      titleVal: s.title,
+      onTitle: (e) => this.setState({ title: e.target.value }),
+      onNew: () => this.setState({ wizardOpen: true, step: 1 }),
+      onClose: () => this.setState({ wizardOpen: false }),
+      backLabel: s.step === 1 ? 'Vazgeç' : 'Geri',
+      nextLabel: s.step === 3 ? 'Kitabı oluştur' : 'Devam',
+      nextHref: s.step === 3 ? 'Çalışma Alanı.dc.html' : '#',
+      onBack: () => s.step === 1 ? this.setState({ wizardOpen: false }) : this.setState({ step: s.step - 1 }),
+      onNext: (e) => { if (s.step < 3) { e.preventDefault(); this.setState({ step: s.step + 1 }); } }
+    };
+  }
+}
+</script>
+</body>
+</html>

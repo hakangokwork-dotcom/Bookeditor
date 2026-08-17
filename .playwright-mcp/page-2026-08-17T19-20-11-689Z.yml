@@ -1,0 +1,233 @@
+- generic [ref=f1e2]:
+  - complementary [ref=f1e3]:
+    - generic "inkGuide — Kitabınız bilgisayarınızdan çıkmaz" [ref=f1e4]: inkGuide
+    - link "Kitaplığım" [ref=f1e9] [cursor=pointer]:
+      - /url: "#"
+    - generic [ref=f1e13]:
+      - generic [ref=f1e14]: Problem
+      - generic [ref=f1e15]: Bir Kelimenin İçinde Yaşamak
+      - generic [ref=f1e18]:
+        - generic [ref=f1e956]: 4.806 / 60.000 kelime
+        - generic [ref=f1e957]: "%8"
+    - navigation [ref=f1e21]:
+      - generic [ref=f1e958] [cursor=pointer]: İlk Kitap Rehberi
+      - generic [ref=f1e962] [cursor=pointer]: Ön Sayfalar (Önsöz · Giriş)
+      - generic [ref=f1e966] [cursor=pointer]: Kaynaklar (5)
+      - generic [ref=f1e969] [cursor=pointer]: Karalama Defteri (3)
+      - generic [ref=f1e973] [cursor=pointer]: Ayarlar
+      - generic [ref=f1e978]: "BÖLÜM I — Kelime: \"Problem\"in Arkeolojisi"
+      - generic [ref=f1e983] [cursor=pointer]:
+        - generic [ref=f1e985]: "Etimoloji: Öne Atılan Şey"
+        - generic [ref=f1e986]: "1.966"
+      - generic [ref=f1e987] [cursor=pointer]:
+        - generic [ref=f1e989]: Wittgenstein ve Kelimenin Uzayı
+        - generic [ref=f1e990]: "1.135"
+      - generic [ref=f1e991] [cursor=pointer]:
+        - generic [ref=f1e993]: Bilen Olmadan Problem Olmaz
+        - generic [ref=f1e994]: "1.679"
+      - generic [ref=f1e995]: "BÖLÜM II — Zihin: Problemi Gören Makine"
+      - generic [ref=f1e1000] [cursor=pointer]: Sistem 1 ve Sistem 2
+      - generic [ref=f1e1003] [cursor=pointer]: Yanlılıklar — Problemi Yanlış Görmek
+      - generic [ref=f1e1006] [cursor=pointer]: Einstellung Etkisi ve Fonksiyonel Sabitlik
+      - generic [ref=f1e1009] [cursor=pointer]: İç Görü Anı (Aha!)
+      - generic [ref=f1e1012]: "BÖLÜM III — Yöntem: İnsanlığın Problem Çözme Repertuarı"
+      - generic [ref=f1e1017] [cursor=pointer]: Deneme-Yanılmadan Bilimsel Yönteme
+      - generic [ref=f1e1020] [cursor=pointer]: Döngüler Ailesi — PDCA, DMAIC, A3
+      - generic [ref=f1e1023] [cursor=pointer]: Problemin Tanımı Çözümün Yarısıdır
+      - generic [ref=f1e1026] [cursor=pointer]: Yaratıcı Problem Çözme
+      - generic [ref=f1e1029] [cursor=pointer]: Hız Meselesi
+      - generic [ref=f1e1032]: "BÖLÜM IV — Hayat: Yöntemsiz Problemler"
+      - generic [ref=f1e1037] [cursor=pointer]: Bozulan Araba, Taşan Lavabo
+      - generic [ref=f1e1040] [cursor=pointer]: İlişkisel Problemler — Çözülmeyen, Yönetilen
+      - generic [ref=f1e1043] [cursor=pointer]: "Çocuklar: Problem Çözmeyi Öğrenen Zihin"
+      - generic [ref=f1e1046] [cursor=pointer]: Problem Sahipliği
+      - generic [ref=f1e1049]: "BÖLÜM V — Sentez: Problemle Yaşamak"
+      - generic [ref=f1e1054] [cursor=pointer]: Problem Bulmak Çözmekten Değerlidir
+      - generic [ref=f1e1057] [cursor=pointer]: Problemsiz Hayat Diye Bir Şey Var mı?
+      - generic [ref=f1e1060] [cursor=pointer]: Epilog — Okuyucunun Problemi
+    - generic [ref=f1e127]:
+      - button "Kısım" [ref=f1e128] [cursor=pointer]
+      - button "Versiyon" [ref=f1e132] [cursor=pointer]
+    - button "Kitaba Dönüştür" [ref=f1e138] [cursor=pointer]
+    - generic [ref=f1e144]:
+      - generic [ref=f1e145]: Versiyonlar
+      - generic [ref=f1e146]:
+        - generic [ref=f1e147]: 14.08.2026 10:43
+        - generic [ref=f1e148] [cursor=pointer]: geri yükle
+  - main [ref=f1e149]:
+    - generic [ref=f1e1063]:
+      - heading "Karalama Defteri" [level=1] [ref=f1e1064]
+      - paragraph [ref=f1e1068]: "Zihninizi boşaltın: karalamalarınıza başlık verin, kaydedin, dilediğinizde açıp devam edin. Nereye ait olduğunu bilmediğiniz notları da hazır olduğunuzda \"bölüme taşı\" ile yerine gönderirsiniz. Bu sayfa kitaba girmez ama yedeklere dahildir."
+      - generic [ref=f1e1069]: Karalamalarım (1)
+      - generic [ref=f1e1072]:
+        - generic [ref=f1e1073] [cursor=pointer]: Yeni Karalama
+        - generic [ref=f1e1077] [cursor=pointer]:
+          - button "✕" [ref=f1e1078]
+          - generic [ref=f1e1079]: İlk karalamalarım
+          - generic [ref=f1e1080]: Problem, bir öznenin önem verdiği mevcut bir durum ile beklediği, istediği veya açıklayabildiği durum arasında fark algılaması ve bu farkın ortadan kaldırılması, açıklanması ya da
+          - generic [ref=f1e1081]: 135 kelime · 14.08.2026
+      - generic [ref=f1e1082]:
+        - generic [ref=f1e1083]:
+          - text: Kararsız notlar (2)
+          - generic [ref=f1e1087]: — yerini sonra bulacaklar
+        - generic [ref=f1e1088]:
+          - combobox [ref=f1e1089]:
+            - option "Not" [selected]
+            - option "Sentez"
+            - option "Alıntı"
+            - option "Fikir"
+            - option "Görsel"
+          - textbox "Nereye koyacağınızı bilmediğiniz not… (Enter ile ekle)" [ref=f1e1090]
+          - button "Sesli not — konuşun, yazıya dökülsün; tekrar tıklayınca durur" [ref=f1e1091] [cursor=pointer]
+          - button "Ekle" [ref=f1e1096] [cursor=pointer]
+        - generic [ref=f1e1097]:
+          - generic [ref=f1e1098]:
+            - button "✕" [ref=f1e1099] [cursor=pointer]
+            - generic [ref=f1e1100]: Not
+            - generic "Düzenlemek için tıklayın" [ref=f1e1101]: Problem tanımı
+            - combobox "Bu notu bir bölüme taşı" [ref=f1e1105]:
+              - option "bölüme taşı…" [selected]
+              - 'option "Etimoloji: Öne Atılan Şey"'
+              - option "Wittgenstein ve Kelimenin Uzayı"
+              - option "Bilen Olmadan Problem Olmaz"
+              - option "Sistem 1 ve Sistem 2"
+              - option "Yanlılıklar — Problemi Yanlış Görmek"
+              - option "Einstellung Etkisi ve Fonksiyonel Sabitlik"
+              - option "İç Görü Anı (Aha!)"
+              - option "Deneme-Yanılmadan Bilimsel Yönteme"
+              - option "Döngüler Ailesi — PDCA, DMAIC, A3"
+              - option "Problemin Tanımı Çözümün Yarısıdır"
+              - option "Yaratıcı Problem Çözme"
+              - option "Hız Meselesi"
+              - option "Bozulan Araba, Taşan Lavabo"
+              - option "İlişkisel Problemler — Çözülmeyen, Yönetilen"
+              - 'option "Çocuklar: Problem Çözmeyi Öğrenen Zihin"'
+              - option "Problem Sahipliği"
+              - option "Problem Bulmak Çözmekten Değerlidir"
+              - option "Problemsiz Hayat Diye Bir Şey Var mı?"
+              - option "Epilog — Okuyucunun Problemi"
+          - generic [ref=f1e1106]:
+            - button "✕" [ref=f1e1107] [cursor=pointer]
+            - generic [ref=f1e1108]: Not
+            - generic "Düzenlemek için tıklayın" [ref=f1e1109]: Gİriş 1
+            - combobox "Bu notu bir bölüme taşı" [ref=f1e1113]:
+              - option "bölüme taşı…" [selected]
+              - 'option "Etimoloji: Öne Atılan Şey"'
+              - option "Wittgenstein ve Kelimenin Uzayı"
+              - option "Bilen Olmadan Problem Olmaz"
+              - option "Sistem 1 ve Sistem 2"
+              - option "Yanlılıklar — Problemi Yanlış Görmek"
+              - option "Einstellung Etkisi ve Fonksiyonel Sabitlik"
+              - option "İç Görü Anı (Aha!)"
+              - option "Deneme-Yanılmadan Bilimsel Yönteme"
+              - option "Döngüler Ailesi — PDCA, DMAIC, A3"
+              - option "Problemin Tanımı Çözümün Yarısıdır"
+              - option "Yaratıcı Problem Çözme"
+              - option "Hız Meselesi"
+              - option "Bozulan Araba, Taşan Lavabo"
+              - option "İlişkisel Problemler — Çözülmeyen, Yönetilen"
+              - 'option "Çocuklar: Problem Çözmeyi Öğrenen Zihin"'
+              - option "Problem Sahipliği"
+              - option "Problem Bulmak Çözmekten Değerlidir"
+              - option "Problemsiz Hayat Diye Bir Şey Var mı?"
+              - option "Epilog — Okuyucunun Problemi"
+  - complementary [ref=f1e210]:
+    - heading "Yol Arkadaşı" [level=3] [ref=f1e211]
+    - generic [ref=f1e216]:
+      - generic [ref=f1e217]: Günün İpucu
+      - generic [ref=f1e221]: Bir paragraf = bir fikir. Paragraf uzadıysa muhtemelen iki fikir anlatıyorsunuz.
+      - button "Başka ipucu →" [ref=f1e222] [cursor=pointer]
+    - generic [ref=f1e223]:
+      - generic [ref=f1e224]:
+        - text: Kararsız Notlar
+        - generic [ref=f1e228]: "2"
+      - generic [ref=f1e229]:
+        - combobox "Not türü" [ref=f1e230]:
+          - option "Not" [selected]
+          - option "Sentez"
+          - option "Alıntı"
+          - option "Fikir"
+          - option "Görsel"
+        - textbox "Hızlı not… (Enter)" [ref=f1e231]
+        - button "Sesli not — konuşun, yazıya dökülsün; tekrar tıklayınca durur" [ref=f1e232] [cursor=pointer]
+      - generic [ref=f1e237]:
+        - generic [ref=f1e238]:
+          - button "✕" [ref=f1e239] [cursor=pointer]
+          - generic "Düzenlemek için tıklayın" [ref=f1e240]: Problem tanımı
+          - combobox "Bölüme taşı" [ref=f1e241]:
+            - option "→ bölüme taşı…" [selected]
+            - 'option "Etimoloji: Öne Atılan Şey"'
+            - option "Wittgenstein ve Kelimenin Uzayı"
+            - option "Bilen Olmadan Problem Olmaz"
+            - option "Sistem 1 ve Sistem 2"
+            - option "Yanlılıklar — Problemi Yanlış Görmek"
+            - option "Einstellung Etkisi ve Fonksiyonel Sabitlik"
+            - option "İç Görü Anı (Aha!)"
+            - option "Deneme-Yanılmadan Bilimsel Yönteme"
+            - option "Döngüler Ailesi — PDCA, DMAIC, A3"
+            - option "Problemin Tanımı Çözümün Yarısıdır"
+            - option "Yaratıcı Problem Çözme"
+            - option "Hız Meselesi"
+            - option "Bozulan Araba, Taşan Lavabo"
+            - option "İlişkisel Problemler — Çözülmeyen, Yönetilen"
+            - 'option "Çocuklar: Problem Çözmeyi Öğrenen Zihin"'
+            - option "Problem Sahipliği"
+            - option "Problem Bulmak Çözmekten Değerlidir"
+            - option "Problemsiz Hayat Diye Bir Şey Var mı?"
+            - option "Epilog — Okuyucunun Problemi"
+        - generic [ref=f1e242]:
+          - button "✕" [ref=f1e243] [cursor=pointer]
+          - generic "Düzenlemek için tıklayın" [ref=f1e244]: Gİriş 1
+          - combobox "Bölüme taşı" [ref=f1e245]:
+            - option "→ bölüme taşı…" [selected]
+            - 'option "Etimoloji: Öne Atılan Şey"'
+            - option "Wittgenstein ve Kelimenin Uzayı"
+            - option "Bilen Olmadan Problem Olmaz"
+            - option "Sistem 1 ve Sistem 2"
+            - option "Yanlılıklar — Problemi Yanlış Görmek"
+            - option "Einstellung Etkisi ve Fonksiyonel Sabitlik"
+            - option "İç Görü Anı (Aha!)"
+            - option "Deneme-Yanılmadan Bilimsel Yönteme"
+            - option "Döngüler Ailesi — PDCA, DMAIC, A3"
+            - option "Problemin Tanımı Çözümün Yarısıdır"
+            - option "Yaratıcı Problem Çözme"
+            - option "Hız Meselesi"
+            - option "Bozulan Araba, Taşan Lavabo"
+            - option "İlişkisel Problemler — Çözülmeyen, Yönetilen"
+            - 'option "Çocuklar: Problem Çözmeyi Öğrenen Zihin"'
+            - option "Problem Sahipliği"
+            - option "Problem Bulmak Çözmekten Değerlidir"
+            - option "Problemsiz Hayat Diye Bir Şey Var mı?"
+            - option "Epilog — Okuyucunun Problemi"
+    - generic "Sesli not (dikte) hangi dilde konuşmanızı bekleyecek?" [ref=f1e246]:
+      - generic [ref=f1e250]: Dikte dili
+      - combobox [ref=f1e251]:
+        - option "Türkçe" [selected]
+        - option "English"
+        - option "Español"
+        - option "中文"
+        - option "العربية"
+        - option "हिन्दी"
+        - option "Português"
+        - option "Français"
+        - option "Русский"
+        - option "Deutsch"
+    - generic [ref=f1e252]:
+      - generic [ref=f1e253]:
+        - generic [ref=f1e254]: Toplam kelime
+        - generic [ref=f1e255]: "4.806"
+      - generic [ref=f1e256]:
+        - generic [ref=f1e257]: Bölümler
+        - generic [ref=f1e258]: "19"
+      - generic [ref=f1e259]:
+        - generic [ref=f1e260]: Bitti
+        - generic [ref=f1e261]: "0"
+      - generic [ref=f1e262]:
+        - generic [ref=f1e263]: Yazılıyor
+        - generic [ref=f1e264]: "0"
+      - generic [ref=f1e265]:
+        - generic [ref=f1e266]: Not & sentez
+        - generic [ref=f1e267]: "5"
+      - generic [ref=f1e268]:
+        - generic [ref=f1e269]: Kaynak
+        - generic [ref=f1e270]: "5"

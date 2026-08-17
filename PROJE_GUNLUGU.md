@@ -37,6 +37,8 @@ Araç geliştikçe fikir büyüdü: bu araç bir ürüne, sonra bir platforma d�
 | 15 | Sesli not + 10 dil | 🎤 Web Speech API dikte (3 noktada mikrofon); dikte dili seçici (10 dil); brief'e 10 dilli arayüz + RTL gereksinimi |
 | 16 | Tasarım geldi (Claude Design), uygulamaya geçildi | **Marka: inkGuide** (mürekkep damlası + pusula ibresi logosu). Tasarım sistemi çalışma alanına giydirildi: kağıt/mürekkep/zeytin paleti (paper #FAF8F3, accent #55663F), Source Serif 4 + Source Sans 3, yeni gölge/radius token'ları, odak halkaları, otomatik kayıt soluklaşması. Tasarım kaynağı: claude.ai/design projesi 49d77b91… (11 ekran: Pazarlama, Kitaplığım, Kurulum, Çalışma Alanı, Karalama, Kaynaklar, Kitaba Dönüştür, Rehber, Ayarlar, Mobil, Tasarım Sistemi) |
 
+**Alan adı kararı:** Resmi web adresi **https://inkguide.uk** (17.08.2026). Site, indirme bağlantıları ve iletişim bu alan adı üzerinden sunulacak.
+
 ## 3. Mevcut Mimari (MVP)
 
 ```
@@ -73,15 +75,17 @@ yedek/kitap-son-hali.md+.docx (her kayıtta, Word'de açılabilir, notlar+karala
 - ✅ MVP çalışıyor (proje sahibi aktif olarak kitabını bu araçla yazıyor — gerçek dogfooding)
 - ✅ Repo GitHub'da, kişisel içerik ve telifli materyal dışarıda
 - ✅ Tasarım Claude Design'da tamamlandı (marka: **inkGuide**); tasarım sistemi çalışma alanı arayüzüne uygulandı
-- 🔄 **ŞİMDİ: üretim aşaması** — kalan tasarım ekranlarının (Kitaplığım, Kurulum/onboarding, Pazarlama sitesi, Ayarlar, Mobil) hayata geçirilmesi
+- ✅ **Çok ajanlı üretim turu tamamlandı (17.08.2026):** pazarlama sitesi (public/site/: ana sayfa + gizlilik + destek + indir; inkguide.uk canonical/OG etiketleriyle) · çoklu kitap "Kitaplığım" (data/library.json, güvenli migrasyon, arşivleme) · Kurulum sihirbazı + Ayarlar · 10 dilli i18n (public/i18n.js, 231+ anahtar × 10 dil, Arapça RTL) · tasarım sadakat turu (Çalışma Alanı/Karalama/Kaynaklar/Rehber tasarıma çekildi)
+- ✅ **FAZ 1 TAMAM: indirilebilir program** — `npm run build:exe` → `dist/inkGuide.exe` (64 MB, kurulumsuz tek dosya; @yao-pkg/pkg, node22-win-x64). Paketli modda veri exe'nin YANINDA `data/` klasörüne yazılır; port doluysa sıradakini dener; açılışta tarayıcıyı kendisi açar
+- 🔄 **ŞİMDİ:** exe'nin GitHub Releases'a yüklenmesi + inkguide.uk yayını; ardından SONRAKİ İŞ: mobil
 
-## 6. Üretim Aşaması Yol Haritası (tasarım sonrası)
+## 6. Üretim Aşaması Yol Haritası (güncel öncelik sırası — 17.08.2026)
 
-1. **Tasarımı giydirme:** Gelen tasarım sistemini (token'lar, bileşenler) mevcut uygulamaya uygulamak — büyük ihtimalle frontend'i yeniden yazmak (framework kararı o gün verilecek; mevcut vanilla JS mantığı referans spesifikasyon olarak kullanılabilir)
-2. **i18n altyapısı:** 10 dilli string tablosu + dil seçici + RTL
-3. **Masaüstü paketleme:** kurulumsuz tek .exe (Electron veya Tauri; hızlı alternatif: pkg ile Node exe) — "İndir — ücretsiz" düğmesinin arkasındaki dosya
-4. **Web sitesi:** ana sayfa, gizlilik mimarisi, destek (kahve — Buy Me a Coffee / GitHub Sponsors / Papara), indirme sayfası
-5. **Sonrası:** çoklu kitap (Kitaplığım), onboarding, isteğe bağlı E2E şifreli senkron
+1. ✅ Tasarımı giydirme (tasarım sistemi çalışma alanına uygulandı)
+2. 🔄 Ajan hattında: pazarlama sitesi (public/site/), çoklu kitap (Kitaplığım), Kurulum + Ayarlar, 10 dilli i18n + RTL
+3. **FAZ 1 — İNDİRİLEBİLİR PROGRAM (öncelik):** kurulumsuz tek .exe (@yao-pkg/pkg ile Node paketleme; veri klasörü exe'nin yanında yazılabilir konuma alınacak) → GitHub Releases → inkguide.uk/indir bağlantısı. Bu faz bitmeden mobile geçilmeyecek.
+4. **SONRAKİ İŞ — MOBİL (unutulmayacak):** PWA "yakalama arkadaşı" (not + sesli not + karalama) → yerel ağ QR senkron (ücretsiz, sunucusuz) → ileride isteğe bağlı E2E şifreli bulut senkron (Pro). Detaylı yaklaşım karar günlüğünde ve tasarım projesindeki Mobil.dc.html'de.
+5. Sonrası: inkguide.uk yayına alma (Cloudflare Pages/Vercel), destek bağlantıları (kahve), E2E senkron
 
 ## 7. Bilinen Sınırlar / Teknik Notlar
 

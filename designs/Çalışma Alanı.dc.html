@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0; height: 100vh; overflow: hidden;
+    font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    --paper: #FAF8F3; --panel: #F2F0E9; --surface: #FFFFFF;
+    --border: #E4E0D6; --border-soft: #EFEBE1;
+    --ink: #26251F; --ink2: #6B6559; --muted: #6E6859;
+    --accent: #55663F; --accent-deep: #3E4A2E; --accent-soft: #EDEFE4; --on-accent: #FFFFFF;
+    --tip-bg: #FDF9EA; --tip-br: #E9DEBB; --tip-tx: #86682A;
+    --danger: #A8452F; --warn: #C98A2E; --hover: #E9E6DE;
+    --track: #E3E0D9;
+    --shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05);
+    background: var(--paper); color: var(--ink);
+  }
+  body[data-theme="dark"] {
+    --paper: #1C1A16; --panel: #221F1A; --surface: #2A2721;
+    --border: #3A362F; --border-soft: #332F28;
+    --ink: #EAE6DC; --ink2: #B8B2A4; --muted: #9A9384;
+    --accent: #A9BA8B; --accent-deep: #C0D0A2; --accent-soft: #2F3527; --on-accent: #1C1A16;
+    --tip-bg: #2B2718; --tip-br: #463F26; --tip-tx: #D9C78E;
+    --danger: #D9765C; --warn: #DFA84E; --hover: #302C25;
+    --track: #332F28;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 18px rgba(0, 0, 0, .22);
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-deep); text-decoration: underline; }
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-thumb { background: #DDD9D1; border-radius: 5px; }
+  body[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #3D3931; }
+  @keyframes ya-pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+  @keyframes ya-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="display: grid; grid-template-columns: {{ cols }}; height: 100vh; background: var(--paper); color: var(--ink)">
+
+  <sc-if value="{{ showPanels }}" hint-placeholder-val="{{ true }}">
+  <aside style="background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden">
+    <div style="padding: 20px 18px 16px; border-bottom: 1px solid var(--border-soft)">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); margin-bottom: 14px">
+        <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; fill: none; stroke: var(--accent); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"></path><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"></path></svg>
+        <span style="letter-spacing: -.015em"><span style="font-weight: 400">ink</span><span style="font-weight: 700">Guide</span></span>
+      </div>
+      <a href="Kitaplığım.dc.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); text-decoration: none; margin-bottom: 12px">
+        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+        Kitaplığım
+      </a>
+      <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; font-weight: 600; letter-spacing: -.01em; line-height: 1.15">Yavaş Şehirler</div>
+      <div style="font-size: 12.5px; color: var(--muted); font-style: italic; margin-top: 4px">Bir Coğrafyacının Notları</div>
+      <div style="margin-top: 16px">
+        <div style="height: 5px; border-radius: 3px; background: var(--track); overflow: hidden"><div style="width: {{ progressPct }}; height: 100%; background: var(--accent); border-radius: 3px; transition: width .4s ease"></div></div>
+        <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums">
+          <span>{{ totalWordsLabel }} / 60.000 kelime</span>
+          <span>{{ progressPct }}</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px; margin-top: 14px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface)">
+        <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: var(--warn); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M12 2s4 4.5 4 8a4 4 0 0 1-8 0c0-3.5 4-8 4-8Z"></path><path d="M8.5 14a5.5 5.5 0 0 0 7 0c1 2.5-.5 6-3.5 6s-4.5-3.5-3.5-6Z"></path></svg>
+        <span style="font-size: 12.5px; font-weight: 600">14 günlük seri</span>
+        <span style="margin-left: auto; font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums">bugün {{ todayWords }}/500</span>
+      </div>
+    </div>
+
+    <div style="flex: 1; overflow-y: auto; padding: 10px 8px">
+      <div style="display: flex; flex-direction: column; gap: 1px">
+        <a href="Rehber.dc.html" style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); text-decoration: none" style-hover="background: var(--hover)">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+          İlk Kitap Rehberi
+        </a>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); cursor: pointer" style-hover="background: var(--hover)">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6M16 13H8M16 17H8"></path></svg>
+          Ön Sayfalar (Önsöz · Giriş)
+        </div>
+        <a href="Kaynaklar.dc.html" style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); text-decoration: none" style-hover="background: var(--hover)">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+          Kaynaklar (9)
+        </a>
+        <a href="Karalama Defteri.dc.html" style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: var(--ink); text-decoration: none" style-hover="background: var(--hover)">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+          Karalama Defteri (4)
+        </a>
+      </div>
+
+      <div style="border-top: 1px solid var(--border); margin: 12px 10px"></div>
+
+      <sc-for list="{{ tree }}" as="part" hint-placeholder-count="3">
+        <div style="margin-top: 12px">
+          <div style="display: flex; align-items: center; gap: 6px; padding: 6px 10px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2)">
+            <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="m6 9 6 6 6-6"></path></svg>
+            {{ part.title }}
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 1px">
+            <sc-for list="{{ part.chapters }}" as="ch" hint-placeholder-count="3">
+              <div onClick="{{ ch.onSelect }}" style="{{ ch.rowStyle }}">
+                <span style="{{ ch.dotStyle }}"></span>
+                <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ ch.title }}</span>
+                <span style="font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums">{{ ch.words }}</span>
+                <span onClick="{{ ch.onUp }}" title="Yukarı taşı" style="width: 18px; height: 18px; border: 1px solid var(--border); border-radius: 5px; background: var(--surface); color: var(--muted); display: inline-flex; align-items: center; justify-content: center; cursor: grab" style-hover="color: var(--accent); border-color: var(--accent)">
+                  <svg viewBox="0 0 24 24" style="width: 10px; height: 10px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round"><path d="m18 15-6-6-6 6"></path></svg>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="padding: 12px 14px 6px; border-top: 1px solid var(--border-soft); display: flex; gap: 8px">
+      <button style="flex: 1; padding: 9px 8px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px" style-hover="background: var(--hover)">
+        <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 5v14M5 12h14"></path></svg> Kısım
+      </button>
+      <button onClick="{{ onVersion }}" style="flex: 1; padding: 9px 8px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 9px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px" style-hover="background: var(--hover)">
+        <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 8v4l3 2"></path><circle cx="12" cy="12" r="9"></circle></svg> Versiyon
+      </button>
+    </div>
+    <div style="padding: 8px 14px 14px">
+      <a href="Kitaba Dönüştür.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-size: 13.5px; font-weight: 600; text-decoration: none" style-hover="background: var(--accent-deep); text-decoration: none">
+        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"></path></svg>
+        Kitaba Dönüştür
+      </a>
+      <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 16px 0 6px">Versiyonlar</div>
+      <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted)">
+        <span>17.08.2026 09:12</span>
+        <span style="color: var(--accent); cursor: pointer">geri yükle</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); margin-top: 3px">
+        <span>14.08.2026 10:43</span>
+        <span style="color: var(--accent); cursor: pointer">geri yükle</span>
+      </div>
+    </div>
+  </aside>
+  </sc-if>
+
+  <main style="overflow-y: auto; background: var(--paper)">
+    <div style="{{ editorPad }}">
+      <div style="{{ colStyle }}">
+        <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); letter-spacing: .02em">
+          <span>{{ partLabel }}</span>
+          <span style="margin-left: auto; display: inline-flex; gap: 6px">
+            <button onClick="{{ onToggleFocus }}" title="Odak modu (⌘⇧F)" style="width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer" style-hover="color: var(--accent); border-color: var(--accent)">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button>
+            <button onClick="{{ onZen }}" title="Sade mod — bomboş sayfa (⌘⇧Z)" style="height: 30px; padding: 0 11px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); display: inline-flex; align-items: center; gap: 6px; font-family: inherit; font-size: 12px; cursor: pointer" style-hover="color: var(--accent); border-color: var(--accent)">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 5h16M4 12h10M4 19h6"></path></svg> Sade
+            </button>
+            <button onClick="{{ onToggleTheme }}" title="Karanlık mod" style="width: 30px; height: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); display: inline-flex; align-items: center; justify-content: center; cursor: pointer" style-hover="color: var(--accent); border-color: var(--accent)">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path></svg>
+            </button>
+          </span>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: 14px; margin-top: 6px">
+          <div contentEditable="true" spellCheck="false" style="flex: 1; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; outline: none; padding: 2px 0">{{ chapterTitle }}</div>
+          <select value="{{ status }}" onChange="{{ onStatus }}" style="padding: 7px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-size: 12px; font-family: inherit">
+            <option value="taslak">Taslak</option>
+            <option value="yaziliyor">Yazılıyor</option>
+            <option value="bitti">Bitti</option>
+          </select>
+        </div>
+
+        <sc-if value="{{ showPanels }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 26px 0 8px; display: flex; align-items: center; gap: 6px">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path><path d="M14 2v6h6"></path></svg>
+            Sinopsis — bu bölüm hangi soruya cevap veriyor?
+          </div>
+          <textarea style="width: 100%; min-height: 58px; padding: 12px 14px; font-size: 13px; line-height: 1.55; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); color: var(--ink2); font-family: inherit; resize: vertical; box-sizing: border-box">Bir kent, sakinlerinin gün içinde yürüyerek ulaşabildiği yer kadar büyüktür. Ölçek tartışmasını yürüme mesafesi üzerinden kurmak.</textarea>
+        </sc-if>
+
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 24px 0 8px; display: flex; align-items: center; gap: 6px">
+          <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+          Taslak
+        </div>
+
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px">
+          <button onClick="{{ onWrite }}" style="{{ writeBtnStyle }}">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg> Yaz
+          </button>
+          <button onClick="{{ onPreview }}" style="{{ previewBtnStyle }}">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> Önizle
+          </button>
+          <span style="width: 1px; height: 18px; background: var(--border)"></span>
+          <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; font-weight: 700; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer" style-hover="background: var(--hover)">B</button>
+          <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; font-style: italic; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer" style-hover="background: var(--hover)">I</button>
+          <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer" style-hover="background: var(--hover)">H</button>
+          <button style="padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer" style-hover="background: var(--hover)">• Liste</button>
+          <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer" style-hover="background: var(--hover)">❝</button>
+          <span style="width: 1px; height: 18px; background: var(--border)"></span>
+          <button onClick="{{ onPaste }}" style="padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px" style-hover="background: var(--hover)">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg> Yapıştır
+          </button>
+          <button onClick="{{ onFix }}" style="padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px" style-hover="background: var(--hover)">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3l1.9 5.8 5.8 1.9-5.8 1.9L12 18.4l-1.9-5.8-5.8-1.9 5.8-1.9Z"></path></svg> Düzelt
+          </button>
+          <button onClick="{{ onEditorPass }}" style="padding: 6px 11px; font-size: 12px; font-weight: 600; border: 1px solid #E0D5B8; border-radius: 8px; background: var(--tip-bg); color: var(--tip-tx); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="m3 21 9.6-9.6"></path><path d="M15.5 3.5 16.5 6l2.5 1-2.5 1-1 2.5-1-2.5L12 7l2.5-1Z"></path></svg> Editör
+          </button>
+          <button style="padding: 6px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px" style-hover="background: var(--hover)">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-15-6.7L3 13"></path></svg> Geri Al
+          </button>
+          <span style="margin-left: auto; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums">{{ draftWords }} kelime</span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px">
+          <select style="padding: 6px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); font-size: 12px; font-family: inherit">
+            <option>— atıf ekle —</option>
+            <option>bilgin2019</option>
+            <option>tanpinar1946</option>
+            <option>sennett2018</option>
+          </select>
+          <span style="font-size: 11.5px; color: var(--muted)">Taslakta [[kaynak:tanpinar1946]] yazın; kitapta (Tanpınar, 1946) olur.</span>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ zen }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 26px; opacity: .45">
+            <span style="font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums">{{ draftWords }} kelime · {{ zenSession }}</span>
+            <button onClick="{{ onZenExit }}" style="margin-left: auto; padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px; background: transparent; color: var(--muted); font-family: inherit; font-size: 12px; cursor: pointer" style-hover="color: var(--accent); border-color: var(--accent)">Sade moddan çık · Esc</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ writeMode }}" hint-placeholder-val="{{ true }}">
+          <textarea defaultValue="{{ draftText }}" onChange="{{ onDraftChange }}" spellCheck="false" style="{{ draftStyle }}"></textarea>
+        </sc-if>
+        <sc-if value="{{ previewMode }}" hint-placeholder-val="{{ false }}">
+          <div style="min-height: 420px; padding: 30px 38px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.78">
+            <sc-for list="{{ paragraphs }}" as="p" hint-placeholder-count="4">
+              <p style="margin: 0 0 1em; text-align: justify; hyphens: auto; -webkit-hyphens: auto">{{ p }}</p>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ showPanels }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 32px">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px">
+            <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"></path><path d="M15 3v6h6"></path></svg>
+            Notlar &amp; sentezler ({{ noteCount }}) <span style="text-transform: none; font-weight: 400; letter-spacing: 0">— kitaba girmez, size çalışır</span>
+          </div>
+          <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px">
+            <select value="{{ newNoteType }}" onChange="{{ onNoteType }}" style="padding: 8px 11px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit">
+              <option value="not">Not</option>
+              <option value="sentez">Sentez</option>
+              <option value="alinti">Alıntı</option>
+              <option value="fikir">Fikir</option>
+              <option value="gorsel">Görsel</option>
+            </select>
+            <input value="{{ newNoteText }}" onChange="{{ onNoteInput }}" onKeyDown="{{ onNoteKey }}" placeholder="Okuma notu, sentez, görsel fikri… (Enter ile ekle)" style="flex: 1; min-width: 220px; padding: 8px 11px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit" />
+            <select style="padding: 8px 11px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); font-family: inherit">
+              <option>kaynak yok</option>
+              <option>tanpinar1946</option>
+            </select>
+            <input placeholder="sayfa" style="width: 68px; padding: 8px 11px; font-size: 12.5px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink); font-family: inherit" />
+            <button onClick="{{ onAddNote }}" style="padding: 8px 16px; font-size: 12.5px; font-weight: 600; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: var(--on-accent); font-family: inherit; cursor: pointer">Ekle</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(228px, 1fr)); gap: 12px">
+            <sc-for list="{{ notes }}" as="n" hint-placeholder-count="3">
+              <div style="{{ n.cardStyle }}">
+                <button onClick="{{ n.onDelete }}" style="position: absolute; top: 7px; right: 8px; border: none; background: none; color: var(--muted); font-size: 13px; line-height: 1; cursor: pointer; opacity: .5">✕</button>
+                <div style="display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted)">
+                  <span style="{{ n.dotStyle }}"></span>{{ n.typeLabel }}
+                </div>
+                <div style="font-size: 13px; line-height: 1.5; margin-top: 7px; white-space: pre-wrap">{{ n.text }}</div>
+                <div style="font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px">{{ n.source }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ notesEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="border: 1px dashed var(--border); border-radius: 12px; padding: 28px; text-align: center; color: var(--muted); font-size: 13px; line-height: 1.6">Henüz not yok. Okuduklarınızı ve sentezlerinizi buraya biriktirin.</div>
+          </sc-if>
+        </div>
+        </sc-if>
+      </div>
+    </div>
+  </main>
+
+  <sc-if value="{{ showPanels }}" hint-placeholder-val="{{ true }}">
+  <aside style="background: var(--panel); border-left: 1px solid var(--border); padding: 20px 18px; overflow-y: auto">
+    <div style="display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 600; margin-bottom: 14px">
+      <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+      Yol arkadaşı
+    </div>
+
+    <div style="background: var(--tip-bg); border: 1px solid var(--tip-br); border-radius: 12px; padding: 14px; box-shadow: var(--shadow)">
+      <div style="display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--tip-tx)">
+        <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3l1.9 5.8 5.8 1.9-5.8 1.9L12 18.4l-1.9-5.8-5.8-1.9 5.8-1.9Z"></path></svg>
+        Günün ipucu
+      </div>
+      <div style="font-size: 13px; line-height: 1.6; margin-top: 8px">{{ tip }}</div>
+      <button onClick="{{ onNextTip }}" style="margin-top: 10px; border: none; background: none; color: var(--accent); font-size: 12px; font-family: inherit; cursor: pointer; padding: 0">Başka ipucu →</button>
+    </div>
+
+    <div style="margin-top: 18px">
+      <div style="display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink2); margin-bottom: 9px">
+        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+        Kararsız Notlar
+        <span style="background: var(--accent-soft); color: var(--accent); border-radius: 10px; padding: 1px 8px; font-size: 10px">{{ trayCount }}</span>
+      </div>
+      <div style="display: flex; gap: 6px; margin-bottom: 9px">
+        <select style="padding: 6px 6px; font-size: 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--ink); font-family: inherit">
+          <option>Not</option><option>Sentez</option><option>Alıntı</option><option>Fikir</option><option>Görsel</option>
+        </select>
+        <input value="{{ trayText }}" onChange="{{ onTrayInput }}" onKeyDown="{{ onTrayKey }}" placeholder="Hızlı not… (Enter)" style="flex: 1; min-width: 0; padding: 7px 9px; font-size: 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--surface); color: var(--ink); font-family: inherit" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 7px">
+        <sc-for list="{{ tray }}" as="t" hint-placeholder-count="2">
+          <div style="{{ t.cardStyle }}">
+            <button onClick="{{ t.onDelete }}" style="position: absolute; top: 5px; right: 6px; border: none; background: none; color: var(--muted); font-size: 11px; line-height: 1; cursor: pointer; opacity: .55">✕</button>
+            <div style="font-size: 12px; line-height: 1.45">{{ t.text }}</div>
+            <select value="" onChange="{{ t.onMove }}" style="margin-top: 7px; width: 100%; font-size: 11px; padding: 4px 5px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--muted); font-family: inherit">
+              <option value="">→ bölüme taşı…</option>
+              <option value="Pazar Sabahı">Pazar Sabahı</option>
+              <option value="Yürüme Mesafesi">Yürüme Mesafesi</option>
+              <option value="Meydanın Grameri">Meydanın Grameri</option>
+              <option value="Çan Sesi ve Vardiya">Çan Sesi ve Vardiya</option>
+            </select>
+          </div>
+        </sc-for>
+        <sc-if value="{{ trayEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="font-size: 11.5px; color: var(--muted); font-style: italic; padding: 6px 2px">Aklınıza düşeni buraya bırakın; yerini sonra bulur.</div>
+        </sc-if>
+      </div>
+    </div>
+
+    <div style="margin-top: 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 12px 14px; box-shadow: var(--shadow)">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted)">Yazma seansı</div>
+        <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-variant-numeric: tabular-nums">{{ timerLabel }}</div>
+      </div>
+      <div style="display: flex; gap: 7px; margin-top: 10px">
+        <button onClick="{{ onTimer }}" style="flex: 1; padding: 7px; font-size: 12px; font-weight: 600; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: var(--on-accent); font-family: inherit; cursor: pointer">{{ timerBtn }}</button>
+        <button onClick="{{ onTimerReset }}" style="padding: 7px 11px; font-size: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink2); font-family: inherit; cursor: pointer">Sıfırla</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 12px 14px; box-shadow: var(--shadow)">
+      <div style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px">Son 7 gün</div>
+      <div style="display: flex; align-items: flex-end; gap: 6px; height: 54px">
+        <div style="flex: 1; height: 38%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 62%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 24%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 78%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 46%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 90%; background: var(--accent-soft); border-radius: 3px 3px 0 0"></div>
+        <div style="flex: 1; height: 58%; background: var(--accent); border-radius: 3px 3px 0 0"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 6px">
+        <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Bug</span>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); padding: 10px 14px; font-size: 12.5px; box-shadow: var(--shadow)">
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-soft)"><span>Toplam kelime</span><b style="font-variant-numeric: tabular-nums">{{ totalWordsLabel }}</b></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-soft)"><span>Bölümler</span><b style="font-variant-numeric: tabular-nums">8</b></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-soft)"><span>Bitti</span><b style="font-variant-numeric: tabular-nums">2</b></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed var(--border-soft)"><span>Yazılıyor</span><b style="font-variant-numeric: tabular-nums">2</b></div>
+      <div style="display: flex; justify-content: space-between; padding: 6px 0"><span>Not &amp; sentez</span><b style="font-variant-numeric: tabular-nums">{{ noteCount }}</b></div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 11.5px; color: var(--muted)">
+      <span style="{{ saveDotStyle }}"></span>{{ saveLabel }}
+    </div>
+  </aside>
+  </sc-if>
+</div>
+
+<sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+  <div style="position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; padding: 11px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--ink); font-size: 13px; box-shadow: 0 8px 30px rgba(40, 38, 33, .18); animation: ya-in .2s ease">
+    <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+    {{ toast }}
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 900}}">
+const TIPS = [
+  'Bir paragraf = bir fikir. Paragraf uzadıysa muhtemelen iki fikir anlatıyorsunuz.',
+  'Bölümü bitiremeden bırakmayın — cümlenin ortasında bırakın. Yarın nereden başlayacağınızı bilmek, boş sayfa korkusunu yener.',
+  'Alıntı yaparken kaynağı anında kaydedin. "Sonra bulurum" dediğiniz kaynak asla bulunamaz.',
+  'Yazarken düzeltmeyin. Yazma ve düzeltme farklı zihinsel modlardır.',
+  'Sesli okuyun. Kulağınıza takılan cümle, okuyucuya da takılır.'
+];
+
+const TYPE_COLORS = { not: '#6D9EC9', sentez: '#7FB069', alinti: '#C98B6D', fikir: '#B08CC9', gorsel: '#4FA3A5' };
+const TYPE_LABELS = { not: 'Not', sentez: 'Sentez', alinti: 'Alıntı', fikir: 'Fikir', gorsel: 'Görsel' };
+
+const DRAFT = [
+  'Bir kentin büyüklüğünü haritadaki sınırları değil, sakinlerinin sabah kalkıp akşam dönene kadar yürüyerek örebildiği ağ belirler. Fırın, okul, pazar, muhtarlık ve iki komşu kapısı; bu beş durak arasındaki mesafe toplamı, o yerin gerçek ölçeğidir.',
+  'Yürüme mesafesi bir konfor tercihi değildir. Bir yerin hafızası, insanların birbirine kaza eseri rastlama sıklığıyla birlikte büyür. Otomobil ölçeğine geçen bir ilçede rastlaşma ortadan kalkmaz; randevuya dönüşür. Randevu ise hatırlamayı değil, planlamayı örgütler.',
+  'Aynı nüfusa sahip iki ilçeyi karşılaştırdığımızda fark, kişi başına düşen metrekarede değil, günde kaç eşiği geçtiğimizde ortaya çıkıyor. Eşik, kapı demek; kapı, karşılaşma demek.',
+  'Bu yüzden ölçek sorusunu "kaç kişi yaşıyor" diye sormak yetmez. Doğru soru şudur: bir sakin, günlük hayatını sürdürmek için kaç kez bir aracın içine girmek zorunda kalıyor?'
+];
+
+class Component extends DCLogic {
+  state = {
+    chapter: 'Yürüme Mesafesi',
+    status: 'yaziliyor',
+    preview: false,
+    focus: false,
+    zen: false,
+    dark: false,
+    tipIndex: 0,
+    newNoteType: 'not',
+    newNoteText: '',
+    trayText: '',
+    saving: false,
+    toast: '',
+    seconds: 1512,
+    running: false,
+    notes: [
+      { id: 'n1', type: 'sentez', text: 'Bu bölümün ana fikri: yavaşlık bir hız tercihi değil, ölçek tercihidir.', source: '' },
+      { id: 'n2', type: 'alinti', text: '“Kent, hızının izin verdiği kadar hatırlar.”', source: '— Tanpınar, 1946, s. 112' },
+      { id: 'n3', type: 'gorsel', text: 'Şema: nüfus / yürüme mesafesi ilişkisi — üç ilçe karşılaştırması.', source: '' },
+      { id: 'n4', type: 'not', text: 'Cittaslow nüfus eşiği 50 bin — kaynağı doğrula.', source: '' }
+    ],
+    tray: [
+      { id: 't1', type: 'fikir', text: 'Pazar kurulan bir sabahın saat saat anlatımı — hangi bölüme?' },
+      { id: 't2', type: 'not', text: 'Vardiya düdüğü ile çan sesi arasındaki geçiş: 1950 sonrası' }
+    ]
+  };
+
+  componentDidMount() {
+    document.documentElement.lang = 'tr';
+    this.tick = setInterval(() => {
+      if (this.state.running) this.setState(s => ({ seconds: s.seconds + 1 }));
+    }, 1000);
+    this.onKeyDown = (e) => {
+      if (e.key === 'Escape' && this.state.zen) this.setState({ zen: false, focus: false });
+      const k = (e.key || '').toLowerCase();
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && k === 'z') { e.preventDefault(); this.enterZen(); }
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && k === 'f') { e.preventDefault(); this.setState(s => ({ focus: !s.focus, zen: false })); }
+    };
+    document.addEventListener('keydown', this.onKeyDown);
+  }
+
+  enterZen() {
+    this.setState({ zen: true, focus: true, preview: false, running: true });
+  }
+  componentWillUnmount() {
+    clearInterval(this.tick); clearTimeout(this._t); clearTimeout(this._s);
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  flash(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ toast: '' }), 2600);
+  }
+
+  save() {
+    this.setState({ saving: true });
+    clearTimeout(this._s);
+    this._s = setTimeout(() => this.setState({ saving: false }), 900);
+  }
+
+  setTheme(dark) {
+    document.body.setAttribute('data-theme', dark ? 'dark' : 'light');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const chapters = [
+      { part: 'Kısım I — Ölçek', items: [['Pazar Sabahı', '2.410', 'bitti'], ['Yürüme Mesafesi', '1.980', 'yaziliyor'], ['Meydanın Grameri', '3.120', 'bitti']] },
+      { part: 'Kısım II — Zaman', items: [['Çan Sesi ve Vardiya', '1.640', 'yaziliyor'], ['Beklemenin Mimarisi', '0', 'taslak'], ['Mevsimlik Kent', '0', 'taslak']] },
+      { part: 'Kısım III — Direnç', items: [['Trafik Ne Zaman Kader Oldu', '0', 'taslak'], ['Küçük Ölçek Ekonomisi', '0', 'taslak']] }
+    ];
+    const dotFor = (st) => {
+      const c = st === 'bitti' ? '#7FB069' : st === 'yaziliyor' ? '#C98A2E' : '#CFCABF';
+      return 'width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; background: ' + c;
+    };
+    const tree = chapters.map(g => ({
+      title: g.part,
+      chapters: g.items.map(([title, words, st]) => ({
+        title, words,
+        rowStyle: 'display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 22px; border-radius: 8px; font-size: 13px; cursor: pointer; user-select: none; transition: background .12s; '
+          + (s.chapter === title ? 'background: var(--accent-soft); color: var(--accent); font-weight: 600' : 'color: var(--ink)'),
+        dotStyle: dotFor(st),
+        onSelect: () => this.setState({ chapter: title, status: st, preview: false }),
+        onUp: (e) => { e.stopPropagation(); this.flash('“' + title + '” bir sıra yukarı taşındı'); }
+      }))
+    }));
+
+    const toolBtn = (active) => 'padding: 6px 13px; font-size: 12px; border-radius: 8px; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; border: 1px solid '
+      + (active ? 'var(--accent)' : 'var(--border)') + '; background: ' + (active ? 'var(--accent)' : 'var(--surface)') + '; color: ' + (active ? 'var(--on-accent)' : 'var(--ink)');
+
+    const draftStyle = 'width: 100%; box-sizing: border-box; font-family: \'Source Serif 4\', Georgia, serif; color: var(--ink); resize: none; outline: none; border-radius: 12px; '
+      + (s.zen
+        ? 'min-height: 78vh; padding: 0; border: none; background: transparent; box-shadow: none; font-size: 19px; line-height: 1.95'
+        : s.focus
+          ? 'min-height: 560px; padding: 40px 8px; border: none; background: transparent; box-shadow: none; font-size: 17px; line-height: 1.78'
+          : 'min-height: 420px; padding: 28px 32px; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow); font-size: 17px; line-height: 1.78');
+
+    const mm = String(Math.floor(s.seconds / 60)).padStart(2, '0');
+    const ss = String(s.seconds % 60).padStart(2, '0');
+
+    return {
+      cols: s.focus ? '1fr' : '288px 1fr 268px',
+      showPanels: !s.focus,
+      showChrome: !s.zen,
+      zen: s.zen,
+      zenSession: mm + ':' + ss,
+      colStyle: s.zen ? 'max-width: 640px; margin: 0 auto' : 'max-width: 780px; margin: 0 auto',
+      editorPad: s.zen ? 'padding: 8vh 48px 20vh' : (s.focus ? 'padding: 72px 48px 120px' : 'padding: 36px 44px 80px'),
+      onZen: () => this.enterZen(),
+      onZenExit: () => this.setState({ zen: false, focus: false }),
+      tree,
+      progressPct: '%42',
+      totalWordsLabel: '25.400',
+      todayWords: '640',
+      partLabel: 'Kısım I — Ölçek',
+      chapterTitle: s.chapter,
+      status: s.status,
+      onStatus: (e) => { this.setState({ status: e.target.value }); this.save(); },
+      draftWords: '1.980',
+      writeBtnStyle: toolBtn(!s.preview),
+      previewBtnStyle: toolBtn(s.preview),
+      onWrite: () => this.setState({ preview: false }),
+      onPreview: () => this.setState({ preview: true }),
+      onPaste: () => this.flash('Pano metni temizlenerek eklendi'),
+      onFix: () => this.flash('Satır kırıkları ve [12] kalıntıları temizlendi'),
+      onEditorPass: () => this.flash('Editör düzeltmesi uygulandı — 6 paragraf düzenlendi'),
+      writeMode: !s.preview,
+      previewMode: s.preview,
+      draftStyle,
+      draftText: DRAFT.join('\n\n'),
+      paragraphs: DRAFT,
+      onDraftChange: () => this.save(),
+      tip: TIPS[s.tipIndex % TIPS.length],
+      onNextTip: () => this.setState(st => ({ tipIndex: st.tipIndex + 1 })),
+      noteCount: s.notes.length,
+      notesEmpty: s.notes.length === 0,
+      notes: s.notes.map(n => ({
+        text: n.text,
+        source: n.source,
+        typeLabel: TYPE_LABELS[n.type],
+        cardStyle: 'position: relative; border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; box-shadow: var(--shadow); background: '
+          + (n.type === 'gorsel' ? 'color-mix(in srgb, #4FA3A5 8%, var(--surface))' : 'var(--surface)'),
+        dotStyle: 'width: 7px; height: 7px; border-radius: 50%; background: ' + TYPE_COLORS[n.type],
+        onDelete: () => { this.setState(st => ({ notes: st.notes.filter(x => x.id !== n.id) })); this.save(); }
+      })),
+      newNoteType: s.newNoteType,
+      onNoteType: (e) => this.setState({ newNoteType: e.target.value }),
+      newNoteText: s.newNoteText,
+      onNoteInput: (e) => this.setState({ newNoteText: e.target.value }),
+      onNoteKey: (e) => { if (e.key === 'Enter') this.addNote(); },
+      onAddNote: () => this.addNote(),
+      trayCount: s.tray.length,
+      trayEmpty: s.tray.length === 0,
+      tray: s.tray.map(t => ({
+        text: t.text,
+        cardStyle: 'position: relative; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid ' + TYPE_COLORS[t.type] + '; border-radius: 8px; padding: 9px 22px 9px 11px; box-shadow: var(--shadow)',
+        onDelete: () => this.setState(st => ({ tray: st.tray.filter(x => x.id !== t.id) })),
+        onMove: (e) => {
+          if (!e.target.value) return;
+          const target = e.target.value;
+          this.setState(st => ({
+            tray: st.tray.filter(x => x.id !== t.id),
+            notes: target === st.chapter ? [{ id: 'm' + Date.now(), type: t.type, text: t.text, source: '' }].concat(st.notes) : st.notes
+          }));
+          this.flash('Not “' + target + '” bölümüne taşındı');
+          this.save();
+        }
+      })),
+      trayText: s.trayText,
+      onTrayInput: (e) => this.setState({ trayText: e.target.value }),
+      onTrayKey: (e) => {
+        if (e.key !== 'Enter' || !e.target.value.trim()) return;
+        const text = e.target.value.trim();
+        this.setState(st => ({ tray: [{ id: 'k' + Date.now(), type: 'not', text }].concat(st.tray), trayText: '' }));
+        this.save();
+      },
+      timerLabel: mm + ':' + ss,
+      timerBtn: s.running ? 'Duraklat' : 'Başlat',
+      onTimer: () => this.setState(st => ({ running: !st.running })),
+      onTimerReset: () => this.setState({ seconds: 0, running: false }),
+      onVersion: () => this.flash('Versiyon kaydedildi — 17.08.2026 14:29'),
+      onToggleFocus: () => this.setState(st => ({ focus: !st.focus })),
+      onToggleTheme: () => { const d = !this.state.dark; this.setState({ dark: d }); this.setTheme(d); },
+      saveLabel: s.saving ? 'kaydediliyor…' : 'Kaydedildi 14:29:07',
+      saveDotStyle: 'width: 6px; height: 6px; border-radius: 50%; background: var(--accent); ' + (s.saving ? 'animation: ya-pulse 1.2s ease-in-out infinite' : ''),
+      toast: s.toast
+    };
+  }
+
+  addNote() {
+    const text = this.state.newNoteText.trim();
+    if (!text) return;
+    this.setState(st => ({ notes: [{ id: 'a' + Date.now(), type: st.newNoteType, text, source: '' }].concat(st.notes), newNoteText: '' }));
+    this.save();
+  }
+}
+</script>
+</body>
+</html>

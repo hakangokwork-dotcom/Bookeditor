@@ -1,0 +1,139 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - generic "inkGuide — Kitabınız bilgisayarınızdan çıkmaz" [ref=e4]: inkGuide
+      - link "Kitaplığım" [active] [ref=e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=e14]:
+        - generic [ref=e15]: Problem
+        - generic [ref=e16]: Bir Kelimenin İçinde Yaşamak
+        - generic [ref=e17]: 4.806 / 60.000 kelime (%8)
+      - navigation [ref=e21]:
+        - generic [ref=e415] [cursor=pointer]: İlk Kitap Rehberi
+        - generic [ref=e419] [cursor=pointer]: Ön Sayfalar (Önsöz · Giriş)
+        - generic [ref=e423] [cursor=pointer]: Kaynaklar (5)
+        - generic [ref=e426] [cursor=pointer]: Karalama Defteri (3)
+        - generic [ref=e430] [cursor=pointer]: Ayarlar
+        - generic [ref=e435]:
+          - generic [ref=e436]: ▾
+          - generic [ref=e437]: "BÖLÜM I — Kelime: \"Problem\"in Arkeolojisi"
+        - generic [ref=e438] [cursor=pointer]:
+          - generic [ref=e440]: "Etimoloji: Öne Atılan Şey"
+          - generic [ref=e441]: "1966"
+        - generic [ref=e442] [cursor=pointer]:
+          - generic [ref=e444]: Wittgenstein ve Kelimenin Uzayı
+          - generic [ref=e445]: "1135"
+        - generic [ref=e446] [cursor=pointer]:
+          - generic [ref=e448]: Bilen Olmadan Problem Olmaz
+          - generic [ref=e449]: "1679"
+        - generic [ref=e450]:
+          - generic [ref=e451]: ▾
+          - generic [ref=e452]: "BÖLÜM II — Zihin: Problemi Gören Makine"
+        - generic [ref=e453] [cursor=pointer]: Sistem 1 ve Sistem 2
+        - generic [ref=e456] [cursor=pointer]: Yanlılıklar — Problemi Yanlış Görmek
+        - generic [ref=e459] [cursor=pointer]: Einstellung Etkisi ve Fonksiyonel Sabitlik
+        - generic [ref=e462] [cursor=pointer]: İç Görü Anı (Aha!)
+        - generic [ref=e465]:
+          - generic [ref=e466]: ▾
+          - generic [ref=e467]: "BÖLÜM III — Yöntem: İnsanlığın Problem Çözme Repertuarı"
+        - generic [ref=e468] [cursor=pointer]: Deneme-Yanılmadan Bilimsel Yönteme
+        - generic [ref=e471] [cursor=pointer]: Döngüler Ailesi — PDCA, DMAIC, A3
+        - generic [ref=e474] [cursor=pointer]: Problemin Tanımı Çözümün Yarısıdır
+        - generic [ref=e477] [cursor=pointer]: Yaratıcı Problem Çözme
+        - generic [ref=e480] [cursor=pointer]: Hız Meselesi
+        - generic [ref=e483]:
+          - generic [ref=e484]: ▾
+          - generic [ref=e485]: "BÖLÜM IV — Hayat: Yöntemsiz Problemler"
+        - generic [ref=e486] [cursor=pointer]: Bozulan Araba, Taşan Lavabo
+        - generic [ref=e489] [cursor=pointer]: İlişkisel Problemler — Çözülmeyen, Yönetilen
+        - generic [ref=e492] [cursor=pointer]: "Çocuklar: Problem Çözmeyi Öğrenen Zihin"
+        - generic [ref=e495] [cursor=pointer]: Problem Sahipliği
+        - generic [ref=e498]:
+          - generic [ref=e499]: ▾
+          - generic [ref=e500]: "BÖLÜM V — Sentez: Problemle Yaşamak"
+        - generic [ref=e501] [cursor=pointer]: Problem Bulmak Çözmekten Değerlidir
+        - generic [ref=e504] [cursor=pointer]: Problemsiz Hayat Diye Bir Şey Var mı?
+        - generic [ref=e507] [cursor=pointer]: Epilog — Okuyucunun Problemi
+      - generic [ref=e117]:
+        - button "Kısım" [ref=e118] [cursor=pointer]
+        - button "Versiyon" [ref=e122] [cursor=pointer]
+      - button "Kitaba Dönüştür" [ref=e128] [cursor=pointer]
+      - generic [ref=e134]:
+        - generic [ref=e135]: Versiyonlar
+        - generic [ref=e136]:
+          - generic [ref=e137]: 14.08.2026 10:43
+          - generic [ref=e138] [cursor=pointer]: geri yükle
+    - main [ref=e139]:
+      - generic [ref=e140]:
+        - heading "🧭 İlk Kitabını Yazanlar İçin Rehber" [level=2] [ref=e141]
+        - paragraph [ref=e142]: Bu araç, notlarınızı bölümlere dönüştürüp kitabınıza doğru yürümeniz için tasarlandı. Soldan bir bölüm seçin, notlarınızı (NotebookLM çıktıları, sentezler, alıntılar) o bölüme ekleyin; hazır olduğunuzda taslağı yazın.
+        - heading "📋 Önerilen Çalışma Akışı" [level=2] [ref=e143]
+        - list [ref=e144]:
+          - listitem [ref=e145]: "1. Topla: NotebookLM'den ve okumalarınızdan çıkan her şeyi ilgili bölüme not olarak ekleyin. Düşünmeyin, biriktirin."
+          - listitem [ref=e146]: "2. Sentezle: Notlar birikince \"bu bölümün ana fikri ne?\" sorusuna cevap veren sentez notları yazın. Aklınıza gelen şema, diyagram ve illüstrasyon fikirlerini 🎨 görsel notu olarak kaydedin — kitap tasarımı aşamasında hazır bir görsel listeniz olur."
+          - listitem [ref=e147]: "3. Yaz: Sentezlere bakarak taslağı yazın. Notlar sağ elinizin altında, taslak önünüzde. Dışarıdan metin getirirken Yapıştır düğmesi satır kırıklarını ve kalıntıları temizler; Düzelt aynı temizliği seçili metne uygular. Araç çubuğundaki B / I / H / Liste / ❝ düğmeleri seçili metni biçimlendirir."
+          - listitem [ref=e148]: Kararsız mısınız? Nereye ait olduğunu bilmediğiniz her şeyi Karalama Defteri'ne atın; hazır olunca notu "bölüme taşı" ile yerine gönderin.
+          - listitem [ref=e149]: "🎤 Sesli not: Not alanlarının ve taslak araç çubuğunun yanındaki mikrofon düğmesine tıklayıp Türkçe konuşun — söyledikleriniz yazıya dökülür; tekrar tıklayınca durur. Elleriniz doluyken ya da yürürken aklınıza gelen cümleyi kaçırmayın. (Konuşma tanıma tarayıcının servisiyle çalışır; Chrome/Edge gerekir ve ilk kullanımda mikrofon izni ister.)"
+          - listitem [ref=e150]: "4. Dinlendir & düzelt: Bölümü \"bitti\" işaretlemeden önce en az bir hafta bekletin."
+        - heading "✍️ Sık Karışan Yazım Kuralları (TDK)" [level=2] [ref=e151]
+        - generic [ref=e152]: "de / da: Bağlaç ise ayrı (\"ben de geldim\"), bulunma eki ise bitişik (\"evde\"). Test: çıkarınca cümle bozuluyorsa bitişiktir."
+        - generic [ref=e153]: "ki: Bağlaç ise ayrı (\"öyle ki\"), aitlik eki ise bitişik (\"seninki\", \"akşamki\"). İstisna kalıplar: \"sanki, oysaki, çünkü, hâlbuki, mademki, meğerki, belki\"."
+        - generic [ref=e154]: "Soru eki mı/mi: Her zaman ayrı yazılır: \"geldi mi?\", \"problem mi?\""
+        - generic [ref=e155]: "Birleşik fiiller: \"hissetmek, kaybetmek, reddetmek\" bitişik; \"fark etmek, terk etmek, söz etmek\" ayrı."
+        - generic [ref=e156]: "Sayılar: Metinde küçük sayılar yazıyla (\"üç yöntem\"), ölçüm ve istatistikler rakamla (\"%69\", \"55 dakika\")."
+        - generic [ref=e157]: "Noktalama: Virgülle bağlanan uzun cümleler yerine kısa cümleler kurun. Üç nokta üçtür, beş değil…"
+        - heading "📚 Alıntı ve Kaynak Etiği" [level=2] [ref=e158]
+        - list [ref=e159]:
+          - listitem [ref=e160]: Birebir alıntı → tırnak içinde + kaynak + sayfa numarası. Kitapta 40 kelimeyi geçen alıntılar blok alıntı olur.
+          - listitem [ref=e161]: Fikir aktarımı (kendi cümlelerinizle) da kaynak ister — intihalin en yaygın türü "parafraz edip kaynak vermemektir".
+          - listitem [ref=e162]:
+            - text: Taslak içinde
+            - code [ref=e163]: "[[kaynak:kahneman2011]]"
+            - text: yazın; kitaba dönüştürünce otomatik olarak (Kahneman, 2011) olur ve Kaynakça'ya girer.
+          - listitem [ref=e164]: "İkincil alıntıdan kaçının: \"Kahneman'ın aktardığına göre Simon...\" yerine mümkünse asıl kaynağa gidin."
+          - listitem [ref=e165]: "Söylenmiş sözleri doğrulayın: Einstein'a atfedilen sözlerin çoğu Einstein'a ait değildir. (Kitabınız için harika bir yan hikâye!)"
+        - heading "🏗️ Kitabın Yapısı" [level=2] [ref=e166]
+        - list [ref=e167]:
+          - listitem [ref=e168]: "Önsöz: Kitabın hikâyesi — neden yazdınız, kime yazdınız. (Genelde en son yazılır.)"
+          - listitem [ref=e169]: "Giriş: Kitabın vaadi ve okuma haritası. Okuyucu 2 sayfada \"bu kitap bana ne verecek?\" sorusunun cevabını almalı."
+          - listitem [ref=e170]: "Bölümler: Her bölüm tek bir soruya cevap versin. Sinopsis alanına o soruyu yazın."
+          - listitem [ref=e171]: "Kaynakça: Otomatik oluşur — siz sadece kaynakları girin ve atıf işaretçilerini kullanın."
+        - heading "🚀 Kitaba Dönüştürünce Ne Olur?" [level=2] [ref=e172]
+        - paragraph [ref=e173]: "Sol alttaki \"Kitaba Dönüştür\" düğmesi kitabınızı üç formatta üretir: Markdown (ham metin), HTML (okumalık/baskı önizleme) ve Word (.docx) — kapak, içindekiler, önsöz, giriş, bölümler ve APA formatında kaynakça ile. Word dosyasını açınca içindekileri güncellemeyi onaylayın (alanlar otomatik dolar). Dosya adları tarih + saat damgalıdır; her dönüştürme ayrı bir çıktı versiyonudur."
+        - heading "🕐 Versiyonlama & Güvenlik Yedeği" [level=2] [ref=e174]
+        - paragraph [ref=e175]:
+          - text: "\"Versiyon\" düğmesi kitabın o anki halinin anlık görüntüsünü"
+          - code [ref=e176]: versions/
+          - text: klasörüne kaydeder. Büyük bir değişiklikten (bölüm silme, yeniden yapılandırma) önce bir versiyon alın; listeden tek tıkla geri yükleyebilirsiniz — geri yükleme öncesi mevcut hal de otomatik versiyonlanır, hiçbir şey kaybolmaz.
+        - paragraph [ref=e177]:
+          - text: "Emekler asla boşa gitmez: her kayıtta kitabınızın son hali"
+          - code [ref=e178]: yedek/kitap-son-hali.md
+          - text: ve
+          - code [ref=e179]: yedek/kitap-son-hali.docx
+          - text: dosyalarına da yazılır — notlarınız ve karalama defteriniz dahil. Bu uygulama bir gün hiç açılmasa bile, o Word dosyasını açıp kaldığınız yerden devam edebilirsiniz.
+  - generic [ref=e510]:
+    - banner [ref=e511]:
+      - generic [ref=e512]:
+        - generic [ref=e513]: inkGuide
+        - generic [ref=e518]: Kitaplığım
+        - button "← Kitaba dön" [ref=e519] [cursor=pointer]
+        - button "Yeni kitap" [ref=e520] [cursor=pointer]
+    - main [ref=e523]:
+      - heading "Kitaplığım" [level=1] [ref=e524]
+      - paragraph [ref=e525]: 1 kitap projesi · toplam 4.806 kelime
+      - generic [ref=e526]:
+        - generic "Problem kitabını aç" [ref=e527] [cursor=pointer]:
+          - generic [ref=e528]:
+            - generic: P
+            - generic [ref=e529]: Problem
+            - generic [ref=e530]: Bir Kelimenin İçinde Yaşamak
+          - generic [ref=e531]:
+            - generic [ref=e534]:
+              - generic [ref=e535]: 4.806 / 60.000
+              - generic [ref=e536]: "%8"
+            - generic [ref=e537]:
+              - generic [ref=e538]: Yazılıyor
+              - generic [ref=e540]: az önce
+        - generic [ref=e541] [cursor=pointer]:
+          - generic [ref=e544]: Yeni kitap
+          - generic [ref=e545]: Ad ve hedefle hemen başlayın

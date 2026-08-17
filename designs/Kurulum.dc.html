@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #EFEDE6; color: #26251F; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #55663F; text-decoration: none; }
+  a:hover { color: #3E4A2E; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 48px 24px">
+  <div style="width: 100%; max-width: 760px; border: 1px solid #DCD8CD; border-radius: 14px; background: #FAF8F3; box-shadow: 0 28px 70px rgba(40, 38, 33, .2); overflow: hidden">
+    <div style="display: flex; align-items: center; gap: 9px; padding: 11px 16px; border-bottom: 1px solid #E4E0D6; background: #F2F0E9">
+      <span style="width: 11px; height: 11px; border-radius: 50%; background: #DDD8CD"></span>
+      <span style="width: 11px; height: 11px; border-radius: 50%; background: #DDD8CD"></span>
+      <span style="width: 11px; height: 11px; border-radius: 50%; background: #DDD8CD"></span>
+      <span style="margin-left: 10px; font-size: 12px; color: #6E6859">inkGuide Kurulumu — {{ osLabel }}</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 236px 1fr">
+      <div style="background: #55663F; padding: 32px 26px; display: flex; flex-direction: column; gap: 26px">
+        <div style="display: flex; align-items: center; gap: 11px">
+          <div style="width: 44px; height: 44px; border-radius: 11px; background: rgba(251, 248, 241, .12); display: flex; align-items: center; justify-content: center">
+            <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: #FBF8F1; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"></path><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"></path></svg>
+          </div>
+          <span style="font-size: 19px; color: #FBF8F1; letter-spacing: -.015em"><span style="font-weight: 400">ink</span><span style="font-weight: 700">Guide</span></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <sc-for list="{{ steps }}" as="st" hint-placeholder-count="4">
+            <div style="{{ st.style }}">
+              <span style="{{ st.dot }}"></span>
+              <span>{{ st.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="margin-top: auto; font-size: 11.5px; line-height: 1.6; color: rgba(251, 248, 241, .6)">Kurulum 68 MB · internet gerekmez. Hesap açılmaz, kayıt istenmez.</div>
+      </div>
+
+      <div style="padding: 34px 36px 28px; display: flex; flex-direction: column; min-height: 430px">
+        <sc-if value="{{ isLang }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 27px; font-weight: 600; letter-spacing: -.02em">Choose your language</h1>
+            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: #4F4B42">inkGuide's original language is English. Pick the interface language for this installation — you can change it any time in Settings.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 22px">
+              <sc-for list="{{ langs }}" as="l" hint-placeholder-count="6">
+                <div onClick="{{ l.onSelect }}" style="{{ l.style }}">
+                  <span style="font-size: 14px; font-weight: 600">{{ l.name }}</span>
+                  <span style="font-size: 12px; color: #6E6859">{{ l.native }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <div style="font-size: 12.5px; color: #6E6859; margin-top: 16px">Diğer diller topluluk çevirileriyle gelir; katkı vermek isterseniz Ayarlar → Destek.</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isFolder }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 27px; font-weight: 600; letter-spacing: -.02em">Kitaplarınız nerede duracak?</h1>
+            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: #4F4B42">Bütün metinler bu klasörde düz dosya olarak durur. Bulut sürücünüzün içine koyarsanız cihazlar arası eşitleme kendiliğinden olur.</p>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 22px; padding: 12px 14px; border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; font-size: 13.5px">
+              <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; flex-shrink: 0; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"></path></svg>
+              <span style="flex: 1">~/Belgeler/inkGuide</span>
+              <span style="color: #55663F; font-weight: 600; cursor: pointer">Gözat…</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 13px; margin-top: 20px">
+              <label style="display: flex; align-items: center; gap: 11px; font-size: 14px; cursor: pointer"><input type="checkbox" defaultChecked="true" style="accent-color: #55663F; width: 16px; height: 16px" /> Her kayıtta Word yedeği de yaz</label>
+              <label style="display: flex; align-items: center; gap: 11px; font-size: 14px; cursor: pointer"><input type="checkbox" defaultChecked="true" style="accent-color: #55663F; width: 16px; height: 16px" /> Masaüstüne kısayol ekle</label>
+              <label style="display: flex; align-items: center; gap: 11px; font-size: 14px; cursor: pointer; color: #4F4B42"><input type="checkbox" style="accent-color: #55663F; width: 16px; height: 16px" /> Bilgisayar açılışında başlat</label>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isInstalling }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 27px; font-weight: 600; letter-spacing: -.02em">Kuruluyor</h1>
+            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: #4F4B42">{{ installNote }}</p>
+            <div style="height: 7px; border-radius: 4px; background: #E3E0D9; overflow: hidden; margin-top: 26px"><div style="{{ barStyle }}"></div></div>
+            <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6E6859; margin-top: 8px; font-variant-numeric: tabular-nums"><span>{{ pctLabel }}</span><span>68 MB</span></div>
+            <div style="margin-top: 26px; border: 1px solid #E0D5B8; border-radius: 12px; background: #FDF9EA; padding: 15px 17px">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #86682A">Bu arada</div>
+              <div style="font-size: 13.5px; line-height: 1.6; margin-top: 7px">Her gün küçük bir hedef koyun: 300 kelime bile yılda bir kitap eder. Süreklilik, ilhamdan güçlüdür.</div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="width: 46px; height: 46px; border-radius: 50%; background: #EDEFE4; display: flex; align-items: center; justify-content: center">
+              <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #43522F; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round"><path d="M20 6 9 17l-5-5"></path></svg>
+            </div>
+            <h1 style="margin: 16px 0 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 27px; font-weight: 600; letter-spacing: -.02em">Hazır</h1>
+            <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.65; color: #4F4B42">inkGuide kuruldu. İlk kitabınızı oluşturabilir ya da rehberi okuyup işe koyulabilirsiniz. Ücretsiz; isterseniz sonra bir kahve ısmarlarsınız.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 22px">
+              <div style="display: flex; align-items: center; gap: 11px; padding: 13px 15px; border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; font-size: 13.5px">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+                Arayüz dili: {{ chosenLang }} · Ayarlar'dan değiştirilebilir
+              </div>
+              <div style="display: flex; align-items: center; gap: 11px; padding: 13px 15px; border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; font-size: 13.5px">
+                <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"></path></svg>
+                Veri klasörü: ~/Belgeler/inkGuide
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="display: flex; align-items: center; gap: 10px; margin-top: auto; padding-top: 24px">
+          <button onClick="{{ onBack }}" style="{{ backStyle }}">Geri</button>
+          <a href="{{ nextHref }}" onClick="{{ onNext }}" style="{{ nextStyle }}">{{ nextLabel }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1100, &quot;height&quot;: 720}}">
+const LANGS = [
+  ['en', 'English', 'default'],
+  ['tr', 'Turkish', 'Türkçe'],
+  ['de', 'German', 'Deutsch'],
+  ['fr', 'French', 'Français'],
+  ['es', 'Spanish', 'Español'],
+  ['it', 'Italian', 'Italiano']
+];
+
+class Component extends DCLogic {
+  state = { step: 0, lang: 'en', pct: 0 };
+  componentDidMount() { document.documentElement.lang = 'tr'; }
+  componentWillUnmount() { clearInterval(this._p); }
+
+  install() {
+    this.setState({ step: 2, pct: 0 });
+    clearInterval(this._p);
+    this._p = setInterval(() => {
+      const next = this.state.pct + 7;
+      if (next >= 100) { clearInterval(this._p); this.setState({ pct: 100, step: 3 }); }
+      else this.setState({ pct: next });
+    }, 160);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const labels = ['Dil', 'Klasör ve seçenekler', 'Kurulum', 'Bitti'];
+    const chosen = LANGS.find(l => l[0] === s.lang) || LANGS[0];
+    return {
+      osLabel: 'macOS · Windows',
+      steps: labels.map((label, i) => ({
+        label,
+        style: 'display: flex; align-items: center; gap: 10px; font-size: 13px; color: ' + (i === s.step ? '#FBF8F1' : 'rgba(251, 248, 241, .55)') + (i === s.step ? '; font-weight: 600' : ''),
+        dot: 'width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: ' + (i < s.step ? '#A9BA8B' : i === s.step ? '#FBF8F1' : 'rgba(251, 248, 241, .3)')
+      })),
+      isLang: s.step === 0,
+      isFolder: s.step === 1,
+      isInstalling: s.step === 2,
+      isDone: s.step === 3,
+      langs: LANGS.map(([code, name, native]) => ({
+        name, native,
+        style: 'display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: 10px; cursor: pointer; background: '
+          + (s.lang === code ? '#EDEFE4' : '#FFFFFF') + '; border: 1px solid ' + (s.lang === code ? '#55663F' : '#E4E0D6'),
+        onSelect: () => this.setState({ lang: code })
+      })),
+      installNote: s.pct < 45 ? 'Dosyalar açılıyor…' : (s.pct < 85 ? 'Yazı tipleri ve dil paketleri yerleştiriliyor…' : 'Son rötuşlar…'),
+      barStyle: 'width: ' + s.pct + '%; height: 100%; background: #55663F; border-radius: 4px; transition: width .16s linear',
+      pctLabel: '%' + s.pct,
+      chosenLang: chosen[2] === 'default' ? 'English' : chosen[2],
+      backStyle: 'padding: 11px 18px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; color: #4F4B42; font-family: inherit; font-size: 13.5px; cursor: pointer'
+        + (s.step === 0 || s.step === 2 ? '; opacity: .45' : ''),
+      onBack: () => { if (s.step === 1) this.setState({ step: 0 }); if (s.step === 3) this.setState({ step: 1 }); },
+      nextLabel: s.step === 0 ? 'Continue' : (s.step === 1 ? 'Kur' : (s.step === 2 ? 'Kuruluyor…' : 'inkGuide\'ı aç')),
+      nextHref: s.step === 3 ? 'Kitaplığım.dc.html' : '#',
+      nextStyle: 'margin-left: auto; padding: 11px 22px; border-radius: 9px; background: #55663F; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; cursor: pointer'
+        + (s.step === 2 ? '; opacity: .7' : ''),
+      onNext: (e) => {
+        if (s.step === 3) return;
+        e.preventDefault();
+        if (s.step === 0) this.setState({ step: 1 });
+        else if (s.step === 1) this.install();
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

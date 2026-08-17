@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #EFEDE6; color: #26251F; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #55663F; text-decoration: none; }
+  a:hover { color: #3E4A2E; }
+</style>
+</helmet>
+
+<div style="padding: 56px 48px 90px">
+  <div style="max-width: 1180px; margin: 0 auto">
+    <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 34px; font-weight: 600; letter-spacing: -.02em">Mobil — tek panel + alt sekme</h1>
+    <p style="margin: 10px 0 0; font-size: 15px; line-height: 1.65; color: #4F4B42; max-width: 620px">Mobilde üç panel sırayla gösterilir: alt sekme çubuğu iskelet, metin, arkadaş ve hesap arasında geçiş yapar. Dokunma hedefleri 44 px altına düşmez.</p>
+
+    <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 42px">
+
+      <div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6E6859; margin-bottom: 12px">Ekran 4 — Çalışma alanı</div>
+        <div style="width: 390px; height: 800px; border: 10px solid #26251F; border-radius: 44px; background: #FAF8F3; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 38, 33, .22); display: flex; flex-direction: column; position: relative">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 6px; font-size: 12.5px; font-weight: 600">
+            <span>09:41</span>
+            <span style="display: flex; gap: 5px; align-items: center">
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #26251F; stroke-width: 2; stroke-linecap: round"><path d="M2 20h4M9 20V12M15 20V7M21 20V3"></path></svg>
+              <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: none; stroke: #26251F; stroke-width: 2; stroke-linecap: round"><rect x="2" y="7" width="18" height="10" rx="2"></rect><path d="M22 11v2"></path></svg>
+            </span>
+          </div>
+
+          <div style="padding: 8px 18px 12px; border-bottom: 1px solid #EFEBE1; display: flex; align-items: center; gap: 12px">
+            <span style="width: 32px; height: 32px; border-radius: 8px; background: #F2F0E9; display: inline-flex; align-items: center; justify-content: center; color: #6B6559">
+              <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg>
+            </span>
+            <span style="flex: 1; min-width: 0">
+              <span style="display: block; font-size: 14.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Yürüme Mesafesi</span>
+              <span style="display: block; font-size: 11.5px; color: #6E6859">Kısım I · 1.980 kelime</span>
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 5px; padding: 4px 10px; border-radius: 999px; background: #FBF2DE; color: #86682A; font-size: 11px; font-weight: 600"><span style="width: 6px; height: 6px; border-radius: 50%; background: #C98A2E"></span>Yazılıyor</span>
+          </div>
+
+          <div style="display: flex; gap: 6px; padding: 10px 18px; overflow-x: auto; border-bottom: 1px solid #EFEBE1">
+            <span style="padding: 8px 14px; border-radius: 8px; background: #55663F; color: #FFFFFF; font-size: 12.5px; white-space: nowrap">Yaz</span>
+            <span style="padding: 8px 14px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-size: 12.5px; white-space: nowrap">Önizle</span>
+            <span style="padding: 8px 12px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-size: 12.5px; font-weight: 700">B</span>
+            <span style="padding: 8px 12px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-size: 12.5px; font-style: italic">I</span>
+            <span style="padding: 8px 14px; border: 1px solid #E0D5B8; border-radius: 8px; background: #F4EFE3; color: #7A6A3A; font-size: 12.5px; white-space: nowrap">Editör</span>
+          </div>
+
+          <div style="flex: 1; overflow-y: auto; padding: 18px 20px">
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.8; text-align: justify; hyphens: auto; color: #26251F">Bir kentin büyüklüğünü haritadaki sınırları değil, sakinlerinin sabah kalkıp akşam dönene kadar yürüyerek örebildiği ağ belirler. Fırın, okul, pazar, muhtarlık ve iki komşu kapısı; bu beş durak arasındaki mesafe toplamı, o yerin gerçek ölçeğidir.</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 16px; line-height: 1.8; text-align: justify; hyphens: auto; margin-top: 14px; color: #26251F">Yürüme mesafesi bir konfor tercihi değildir. Bir yerin hafızası, insanların birbirine kaza eseri rastlama sıklığıyla birlikte büyür.</div>
+            <div style="display: flex; align-items: center; gap: 7px; margin-top: 20px; font-size: 11.5px; color: #6E6859"><span style="width: 6px; height: 6px; border-radius: 50%; background: #55663F"></span> Kaydedildi 09:40</div>
+          </div>
+
+          <div style="position: absolute; right: 18px; bottom: 92px; width: 52px; height: 52px; border-radius: 50%; background: #55663F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(40, 38, 33, .3)">
+            <svg viewBox="0 0 24 24" style="width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M12 5v14M5 12h14"></path></svg>
+          </div>
+
+          <div style="border-top: 1px solid #E4E0D6; background: #F7F5F0; padding: 8px 10px 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+              İskelet
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55663F; font-size: 10.5px; font-weight: 600">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+              Metin
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px; position: relative">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+              Arkadaş
+              <span style="position: absolute; top: 2px; right: 18px; width: 15px; height: 15px; border-radius: 50%; background: #55663F; color: #FFFFFF; font-size: 9px; display: flex; align-items: center; justify-content: center">2</span>
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2 2 2 0 1 1-2.8-2.8A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9 2 2 0 1 1 2.8-2.8A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2 2 2 0 1 1 2.8 2.8A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"></path></svg>
+              Ayarlar
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6E6859; margin-bottom: 12px">Ekran 4 — Arkadaş sekmesi</div>
+        <div style="width: 390px; height: 800px; border: 10px solid #26251F; border-radius: 44px; background: #F2F0E9; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 38, 33, .22); display: flex; flex-direction: column">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 10px; font-size: 12.5px; font-weight: 600"><span>09:41</span><span style="color: #6E6859">inkGuide</span></div>
+          <div style="flex: 1; overflow-y: auto; padding: 8px 18px 18px">
+            <div style="background: #FDF9EA; border: 1px solid #E9DEBB; border-radius: 12px; padding: 15px">
+              <div style="font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #86682A">Günün ipucu</div>
+              <div style="font-size: 14px; line-height: 1.6; margin-top: 8px">Bir paragraf = bir fikir. Paragraf uzadıysa muhtemelen iki fikir anlatıyorsunuz.</div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 7px; margin: 20px 0 10px; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6B6559">
+              Kararsız notlar <span style="background: #EDEFE4; color: #43522F; border-radius: 10px; padding: 2px 8px; font-size: 10px">2</span>
+            </div>
+            <input placeholder="Hızlı not… (Enter)" style="width: 100%; padding: 12px 13px; font-size: 13.5px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; box-sizing: border-box" />
+            <div style="background: #FFFFFF; border: 1px solid #E4E0D6; border-left: 3px solid #B08CC9; border-radius: 9px; padding: 12px 13px; margin-top: 10px">
+              <div style="font-size: 13px; line-height: 1.5">Pazar kurulan bir sabahın saat saat anlatımı — hangi bölüme?</div>
+              <select style="margin-top: 10px; width: 100%; min-height: 40px; font-size: 12.5px; padding: 8px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; color: #6B6559; font-family: inherit"><option>→ bölüme taşı…</option><option>Pazar Sabahı</option></select>
+            </div>
+            <div style="background: #FFFFFF; border: 1px solid #E4E0D6; border-left: 3px solid #6D9EC9; border-radius: 9px; padding: 12px 13px; margin-top: 10px">
+              <div style="font-size: 13px; line-height: 1.5">Vardiya düdüğü ile çan sesi arasındaki geçiş: 1950 sonrası</div>
+              <select style="margin-top: 10px; width: 100%; min-height: 40px; font-size: 12.5px; padding: 8px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; color: #6B6559; font-family: inherit"><option>→ bölüme taşı…</option><option>Çan Sesi ve Vardiya</option></select>
+            </div>
+
+            <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; padding: 14px 16px; margin-top: 18px">
+              <div style="display: flex; align-items: baseline; justify-content: space-between">
+                <div style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6E6859">Yazma seansı</div>
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-variant-numeric: tabular-nums">25:12</div>
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 12px">
+                <div style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 9px; background: #55663F; color: #FFFFFF; font-size: 13.5px; font-weight: 600">Duraklat</div>
+                <div style="min-height: 44px; display: flex; align-items: center; justify-content: center; padding: 0 16px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13.5px; color: #6B6559">Sıfırla</div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; padding: 12px 16px; margin-top: 14px; font-size: 13.5px">
+              <div style="display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed #EFEBE1"><span>Toplam kelime</span><b style="font-variant-numeric: tabular-nums">25.400</b></div>
+              <div style="display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed #EFEBE1"><span>Bugün</span><b style="font-variant-numeric: tabular-nums">640</b></div>
+              <div style="display: flex; justify-content: space-between; padding: 7px 0"><span>Seri</span><b style="font-variant-numeric: tabular-nums">14 gün</b></div>
+            </div>
+          </div>
+          <div style="border-top: 1px solid #E4E0D6; background: #F7F5F0; padding: 8px 10px 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+              İskelet
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+              Metin
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55663F; font-size: 10.5px; font-weight: 600">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+              Arkadaş
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2 2 2 0 1 1-2.8-2.8A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9 2 2 0 1 1 2.8-2.8A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2 2 2 0 1 1 2.8 2.8A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"></path></svg>
+              Ayarlar
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6E6859; margin-bottom: 12px">Mobil — ayarlar &amp; destek</div>
+        <div style="width: 390px; height: 800px; border: 10px solid #26251F; border-radius: 44px; background: #FAF8F3; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 38, 33, .22); display: flex; flex-direction: column">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 10px; font-size: 12.5px; font-weight: 600"><span>09:41</span><span style="color: #6E6859">Ayarlar</span></div>
+          <div style="flex: 1; overflow-y: auto; padding: 8px 18px 18px">
+            <div style="display: flex; align-items: center; gap: 14px; padding: 4px 0 18px">
+              <div style="width: 54px; height: 54px; border-radius: 13px; background: #55663F; display: flex; align-items: center; justify-content: center">
+                <svg viewBox="0 0 24 24" style="width: 30px; height: 30px; fill: none; stroke: #FBF8F1; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"></path><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"></path></svg>
+              </div>
+              <div>
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; font-weight: 600">inkGuide 1.4</div>
+                <div style="font-size: 12.5px; color: #6B6559; margin-top: 2px">Hesap yok · veriler cihazda</div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #55663F; border-radius: 12px; background: #FFFFFF; padding: 18px">
+              <span style="padding: 4px 11px; border-radius: 999px; background: #EDEFE4; color: #43522F; font-size: 11.5px; font-weight: 600">Ücretsiz</span>
+              <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 24px; font-weight: 600; margin-top: 12px">Hesap gerekmez</div>
+              <div style="font-size: 13px; line-height: 1.6; color: #6B6559; margin-top: 6px">Sınırsız kitap, bütün çıktı formatları, versiyon geçmişi. Kayıt yok, fatura yok.</div>
+            </div>
+
+            <div style="border: 1px solid #E0D5B8; border-radius: 12px; background: #FDF9EA; padding: 18px; margin-top: 14px">
+              <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: #86682A; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><path d="M5 2v2M9 2v2M13 2v2"></path></svg>
+              <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 19px; font-weight: 600; margin-top: 10px">Bana bir kahve ısmarla</div>
+              <div style="font-size: 13px; line-height: 1.6; color: #4F4B42; margin-top: 6px">İsteğe bağlı; hiçbir özelliği açmaz.</div>
+              <div style="display: flex; gap: 8px; margin-top: 14px">
+                <div style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #E0D5B8; border-radius: 9px; background: #FFFFFF; font-size: 14px; font-weight: 600">₺30</div>
+                <div style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #86682A; border-radius: 9px; background: #FFFFFF; font-size: 14px; font-weight: 600">₺75</div>
+                <div style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #E0D5B8; border-radius: 9px; background: #FFFFFF; font-size: 14px; font-weight: 600">₺150</div>
+              </div>
+              <div style="min-height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: #86682A; color: #FFFFFF; font-size: 14.5px; font-weight: 600; margin-top: 12px">₺75 destek ol</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px">
+              <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; padding: 14px 16px">
+                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6E6859">Toplam</div>
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums">78.300</div>
+              </div>
+              <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; padding: 14px 16px">
+                <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6E6859">Seri</div>
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums">14 gün</div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; margin-top: 14px; overflow: hidden">
+              <div style="min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #EFEBE1; font-size: 14px">Arayüz dili <span style="margin-left: auto; color: #6E6859">English ›</span></div>
+              <div style="min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #EFEBE1; font-size: 14px">Yazma tercihleri <span style="margin-left: auto; color: #6E6859">›</span></div>
+              <div style="min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #EFEBE1; font-size: 14px">Karanlık mod <span style="margin-left: auto; width: 38px; height: 22px; border-radius: 999px; background: #DCD8CD; position: relative"><span style="position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span></div>
+              <div style="min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 16px; border-bottom: 1px solid #EFEBE1; font-size: 14px">Verilerimi indir <span style="margin-left: auto; color: #6E6859">›</span></div>
+              <div style="min-height: 50px; display: flex; align-items: center; gap: 12px; padding: 0 16px; font-size: 14px">Veri klasörü <span style="margin-left: auto; color: #6E6859">iCloud ›</span></div>
+            </div>
+          </div>
+          <div style="border-top: 1px solid #E4E0D6; background: #F7F5F0; padding: 8px 10px 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+              İskelet
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+              Metin
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+              Arkadaş
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55663F; font-size: 10.5px; font-weight: 600">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2 2 2 0 1 1-2.8-2.8A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9 2 2 0 1 1 2.8-2.8A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2 2 2 0 1 1 2.8 2.8A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"></path></svg>
+              Ayarlar
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6E6859; margin-bottom: 12px">Mobil — sesli karalama</div>
+        <div style="width: 390px; height: 800px; border: 10px solid #26251F; border-radius: 44px; background: #FAF8F3; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 38, 33, .22); display: flex; flex-direction: column">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 10px; font-size: 12.5px; font-weight: 600"><span>09:41</span><span style="color: #6E6859">Karalama</span></div>
+          <div style="flex: 1; overflow-y: auto; padding: 8px 18px 18px">
+            <div style="border: 1px solid #E8CFC6; border-radius: 14px; background: #FBF3F0; padding: 18px">
+              <div style="display: flex; align-items: center; gap: 12px">
+                <div style="width: 52px; height: 52px; border-radius: 50%; background: #A8452F; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+                  <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"></path></svg>
+                </div>
+                <div style="flex: 1">
+                  <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; font-weight: 600">Kaydediliyor…</div>
+                  <div style="font-size: 12.5px; color: #4F4B42; margin-top: 3px">Türkçe · canlı yazıya dökme</div>
+                </div>
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; font-variant-numeric: tabular-nums; color: #4F4B42">01:12</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 3px; height: 40px; margin-top: 16px">
+                <div style="flex: 1; height: 30%; border-radius: 2px; background: #55663F; opacity: .5"></div>
+                <div style="flex: 1; height: 62%; border-radius: 2px; background: #55663F; opacity: .7"></div>
+                <div style="flex: 1; height: 44%; border-radius: 2px; background: #55663F; opacity: .6"></div>
+                <div style="flex: 1; height: 86%; border-radius: 2px; background: #55663F; opacity: .85"></div>
+                <div style="flex: 1; height: 55%; border-radius: 2px; background: #55663F; opacity: .65"></div>
+                <div style="flex: 1; height: 96%; border-radius: 2px; background: #55663F; opacity: .9"></div>
+                <div style="flex: 1; height: 38%; border-radius: 2px; background: #55663F; opacity: .55"></div>
+                <div style="flex: 1; height: 70%; border-radius: 2px; background: #55663F; opacity: .75"></div>
+                <div style="flex: 1; height: 48%; border-radius: 2px; background: #55663F; opacity: .6"></div>
+                <div style="flex: 1; height: 80%; border-radius: 2px; background: #55663F; opacity: .8"></div>
+                <div style="flex: 1; height: 34%; border-radius: 2px; background: #55663F; opacity: .5"></div>
+                <div style="flex: 1; height: 66%; border-radius: 2px; background: #55663F; opacity: .72"></div>
+                <div style="flex: 1; height: 52%; border-radius: 2px; background: #55663F; opacity: .62"></div>
+                <div style="flex: 1; height: 90%; border-radius: 2px; background: #55663F; opacity: .88"></div>
+                <div style="flex: 1; height: 42%; border-radius: 2px; background: #55663F; opacity: .58"></div>
+              </div>
+              <div style="display: flex; gap: 9px; margin-top: 14px">
+                <div style="flex: 1; min-height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 10px; background: #55663F; color: #FFFFFF; font-size: 14px; font-weight: 600">Bitir ve çözümle</div>
+                <div style="min-height: 46px; display: flex; align-items: center; justify-content: center; padding: 0 18px; border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; color: #A8452F; font-size: 14px">İptal</div>
+              </div>
+            </div>
+
+            <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; padding: 15px 16px; margin-top: 16px">
+              <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">Çözümlenen metin · 01:12 · 34 kelime</div>
+              <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.75; margin-top: 10px; color: #26251F">Meydan bölümünü pazar sabahıyla açmak daha iyi olabilir. Tezgahlar kurulurken meydan bir kez daha kuruluyor gibi; aynı taşlar, farklı bir düzen.</div>
+              <div style="display: flex; gap: 8px; margin-top: 14px">
+                <div style="min-height: 44px; display: flex; align-items: center; padding: 0 14px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13.5px; color: #4F4B42">Fikir ▾</div>
+                <div style="flex: 1; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 9px; background: #55663F; color: #FFFFFF; font-size: 13.5px; font-weight: 600">Nota dönüştür</div>
+              </div>
+              <div style="min-height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13.5px; margin-top: 8px">Yeni karalama yap</div>
+            </div>
+
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #6E6859; margin: 22px 0 10px">Son ses notları</div>
+            <div style="border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; overflow: hidden">
+              <div style="min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 10px 15px; border-bottom: 1px solid #EFEBE1">
+                <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; fill: none; stroke: #55663F; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8v8M9 5v14M13 9v6M17 7v10M21 11v2"></path></svg>
+                <div style="flex: 1; min-width: 0"><div style="font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Fırıncıyla konuşma özeti</div><div style="font-size: 11.5px; color: #6E6859">dün · 02:40 · nota çevrildi</div></div>
+              </div>
+              <div style="min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 10px 15px">
+                <svg viewBox="0 0 24 24" style="width: 17px; height: 17px; fill: none; stroke: #55663F; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 8v8M9 5v14M13 9v6M17 7v10M21 11v2"></path></svg>
+                <div style="flex: 1; min-width: 0"><div style="font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Kısım III için sıralama fikri</div><div style="font-size: 11.5px; color: #6E6859">2 gün önce · 00:48</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="border-top: 1px solid #E4E0D6; background: #F7F5F0; padding: 8px 10px 22px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+              İskelet
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path></svg>
+              Metin
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #55663F; font-size: 10.5px; font-weight: 600">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg>
+              Arkadaş
+            </div>
+            <div style="min-height: 48px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: #6B6559; font-size: 10.5px">
+              <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2 2 2 0 1 1-2.8-2.8A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9 2 2 0 1 1 2.8-2.8A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2 2 2 0 1 1 2.8 2.8A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"></path></svg>
+              Ayarlar
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #6E6859; margin-bottom: 12px">Mobil — sade yazma</div>
+        <div style="width: 390px; height: 800px; border: 10px solid #26251F; border-radius: 44px; background: #FAF8F3; overflow: hidden; box-shadow: 0 24px 60px rgba(40, 38, 33, .22); display: flex; flex-direction: column">
+          <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 22px 10px; font-size: 12.5px; color: #A9A498"><span>09:41</span><span>1.980 kelime · 25:12</span></div>
+          <div style="flex: 1; overflow-y: auto; padding: 30px 26px">
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; line-height: 1.95; color: #26251F; text-align: justify; hyphens: auto">Bir kentin büyüklüğünü haritadaki sınırları değil, sakinlerinin sabah kalkıp akşam dönene kadar yürüyerek örebildiği ağ belirler.</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; line-height: 1.95; color: #26251F; text-align: justify; hyphens: auto; margin-top: 18px">Yürüme mesafesi bir konfor tercihi değildir. Bir yerin hafızası, insanların birbirine kaza eseri rastlama sıklığıyla birlikte büyür.</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 17.5px; line-height: 1.95; color: #26251F; margin-top: 18px">Otomobil ölçeğine geçen bir ilçede rastlaşma ortadan kalkmaz;<span style="border-left: 2px solid #55663F; margin-left: 2px"></span></div>
+          </div>
+          <div style="padding: 14px 26px 30px; display: flex; align-items: center; gap: 14px">
+            <span style="font-size: 12px; color: #B5B0A4">Sade mod</span>
+            <span style="margin-left: auto; padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 999px; background: #FFFFFF; font-size: 12.5px; color: #6B6559">Çık</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 44px; display: flex; gap: 10px; flex-wrap: wrap">
+      <a href="Çalışma Alanı.dc.html" style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13px; color: #26251F; text-decoration: none">Masaüstü çalışma alanı</a>
+      <a href="Ayarlar.dc.html" style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13px; color: #26251F; text-decoration: none">Ayarlar &amp; destek</a>
+      <a href="Kurulum.dc.html" style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13px; color: #26251F; text-decoration: none">Kurulum</a>
+      <a href="Tasarım Sistemi.dc.html" style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-size: 13px; color: #26251F; text-decoration: none">Tasarım sistemi</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() { document.documentElement.lang = 'tr'; }
+}
+</script>
+</body>
+</html>

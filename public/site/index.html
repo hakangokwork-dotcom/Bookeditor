@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>inkGuide — Kitabınızın yol arkadaşı</title>
+<meta name="description" content="inkGuide: notlarınızı bölümlere, bölümleri kitaba dönüştüren local-first yazı masası. Ücretsiz; kitabınız bilgisayarınızdan çıkmaz.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* --- Ana sayfaya özel --- */
+  .hero {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr));
+    gap: 64px; align-items: center;
+    padding-top: 92px; padding-bottom: 76px;
+  }
+  .hero .sub { margin: 22px 0 0; max-width: 470px; }
+  .hero .cta-row { display: flex; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+
+  /* Mini stüdyo penceresi (tasarımdaki üç panelli önizleme) */
+  .studio {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--white); box-shadow: var(--shadow-float); overflow: hidden;
+  }
+  .studio-titlebar {
+    display: flex; align-items: center; gap: 7px; padding: 11px 14px;
+    border-bottom: 1px solid var(--line-soft); background: #F7F5F0;
+  }
+  .studio-titlebar .dot { width: 9px; height: 9px; border-radius: 50%; background: #DDD8CD; }
+  .studio-titlebar .title { margin-left: 10px; font-size: 11.5px; color: var(--ink-faint); }
+  .studio-body { display: grid; grid-template-columns: 108px 1fr 92px; min-height: 340px; }
+  .studio-left { background: var(--paper-panel); border-right: 1px solid var(--line-soft); padding: 14px 10px; display: flex; flex-direction: column; gap: 7px; }
+  .studio-right { background: var(--paper-panel); border-left: 1px solid var(--line-soft); padding: 14px 9px; display: flex; flex-direction: column; gap: 8px; }
+  .studio-main { padding: 18px 20px; }
+  .p-track { height: 5px; border-radius: 3px; background: #E3E0D9; }
+  .p-fill { width: 42%; height: 100%; background: var(--accent); border-radius: 3px; }
+  .part-label { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-top: 8px; }
+  .chap { display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--ink-muted); }
+  .chap .st { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .chap.active { padding: 4px 5px; margin: 0 -5px; border-radius: 5px; background: var(--accent-wash); color: var(--accent-deep); font-weight: 600; }
+  .studio-main .chapter-title { font-family: var(--serif); font-size: 17px; font-weight: 600; }
+  .tab-row { display: flex; gap: 5px; margin-top: 12px; }
+  .tab { padding: 3px 8px; border-radius: 6px; font-size: 9.5px; }
+  .tab-on { background: var(--accent); color: #fff; }
+  .tab-off { border: 1px solid var(--line); color: var(--ink-muted); }
+  .tab-editor { border: 1px solid var(--honey-line); background: #F4EFE3; color: #7A6A3A; }
+  .draft-sample { margin-top: 14px; font-family: var(--serif); font-size: 11.5px; line-height: 1.85; color: #3B3833; }
+  .note-row { display: flex; gap: 7px; margin-top: 14px; }
+  .note-mini { flex: 1; border: 1px solid var(--line); border-radius: 7px; padding: 7px 9px; font-size: 9.5px; color: var(--ink-soft); line-height: 1.4; }
+  .note-mini .st { display: inline-block; width: 5px; height: 5px; border-radius: 50%; margin-right: 4px; }
+  .side-card { background: var(--white); border: 1px solid var(--line); border-radius: 7px; padding: 7px; font-size: 9px; color: var(--ink-muted); line-height: 1.45; }
+  .side-tip { background: var(--honey-bg); border-color: #E9DEBB; }
+  .side-note { border-left: 2px solid #B08CC9; border-radius: 6px; padding: 6px; }
+
+  /* Gönül rahatlığı — kahve satırı */
+  .coffee-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(216px, 1fr)); gap: 16px; margin-top: 34px; }
+  .coffee-card {
+    display: flex; flex-direction: column; gap: 8px;
+    border: 1px solid var(--honey-line); border-radius: var(--radius);
+    background: var(--honey-bg); padding: 22px 24px; color: var(--ink);
+  }
+  .coffee-card:hover { border-color: var(--honey-ink); color: var(--ink); }
+  .coffee-card .emo { font-size: 24px; line-height: 1; }
+  .coffee-card .name { font-weight: 600; font-size: 15.5px; }
+  .coffee-card .desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; }
+  .coffee-card .go { margin-top: auto; font-size: 12.5px; font-weight: 600; color: var(--honey-ink); }
+
+  /* Koyu bölüm kartı */
+  .calm-card {
+    border: 1px solid var(--dark-line); border-radius: var(--radius);
+    background: var(--dark-card); padding: 34px 40px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .35);
+  }
+  .calm-card h3 { font-size: 22px; margin: 0; color: #EAE6DC; }
+  .calm-card p { font-family: var(--serif); font-size: 14.5px; line-height: 1.85; color: #C4BEB0; margin: 16px 0 0; text-align: justify; hyphens: auto; }
+  .calm-card .saved { display: flex; align-items: center; gap: 8px; margin-top: 22px; font-size: 11.5px; color: #9A9384; }
+  .calm-card .saved .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); }
+
+  /* Kapanış CTA */
+  .final-cta { text-align: center; max-width: 640px; margin: 0 auto; }
+
+  @media (max-width: 720px) {
+    .hero { padding-top: 48px; padding-bottom: 48px; gap: 40px; }
+    .studio-body { grid-template-columns: 88px 1fr; }
+    .studio-right { display: none; }
+  }
+</style>
+  <link rel="canonical" href="https://inkguide.uk/">
+  <meta name="description" content="Local-first kitap yazma stüdyosu. Kitabınız bilgisayarınızdan çıkmaz: notlar, sentezler, kaynaklar, sesli not ve tek tıkla Word çıktısı. Ücretsiz.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="inkGuide">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:url" content="https://inkguide.uk/">
+  <meta property="og:title" content="inkGuide — Kitabınızın Yol Arkadaşı">
+  <meta property="og:description" content="Local-first kitap yazma stüdyosu. Kitabınız bilgisayarınızdan çıkmaz: notlar, sentezler, kaynaklar, sesli not ve tek tıkla Word çıktısı. Ücretsiz.">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+<a class="skip-link" href="#icerik">İçeriğe atla</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide ana sayfa">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Ana gezinme">
+      <a href="#ozellikler">Özellikler</a>
+      <a href="gizlilik.html">Gizlilik</a>
+      <a href="destek.html">Destek</a>
+      <a href="indir.html">İndir</a>
+    </nav>
+    <div class="header-cta">
+      <a class="btn btn-primary btn-sm" href="indir.html">İndir — ücretsiz</a>
+    </div>
+  </div>
+</header>
+
+<main id="icerik">
+
+  <!-- ============ HERO ============ -->
+  <section class="wrap hero">
+    <div>
+      <span class="badge">Ücretsiz · hesap gerekmez · verileriniz sizde kalır</span>
+      <h1 class="h-hero">Kitabınızın<br>yol arkadaşı.</h1>
+      <p class="lead sub">Notlarınızı bölümlere, bölümleri kitaba dönüştüren sakin bir yazı masası. Solda iskelet, ortada metin, sağda size eşlik eden bir arkadaş. <strong>Kitabınız bilgisayarınızdan çıkmaz.</strong></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="indir.html">İndir — ücretsiz</a>
+        <a class="btn btn-secondary" href="gizlilik.html">Verileriniz nerede durur?</a>
+      </div>
+      <div class="checks" style="margin-top:34px">
+        <span>Hesap yok</span><span>Kayıt yok</span><span>Zorunlu internet yok</span>
+      </div>
+    </div>
+
+    <!-- Üç panelli stüdyo önizlemesi (dekoratif) -->
+    <div class="studio" role="img" aria-label="inkGuide çalışma alanı önizlemesi: solda bölüm iskeleti, ortada taslak metni, sağda not tepsisi">
+      <div class="studio-titlebar" aria-hidden="true">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span class="title">Yavaş Şehirler — Yürüme Mesafesi</span>
+      </div>
+      <div class="studio-body" aria-hidden="true">
+        <div class="studio-left">
+          <div class="p-track"><div class="p-fill"></div></div>
+          <div class="part-label">Kısım I</div>
+          <div class="chap"><span class="st" style="background:#7FB069"></span> Pazar Sabahı</div>
+          <div class="chap active"><span class="st" style="background:#C98A2E"></span> Yürüme Mesafesi</div>
+          <div class="chap"><span class="st" style="background:#7FB069"></span> Meydanın Grameri</div>
+          <div class="part-label">Kısım II</div>
+          <div class="chap"><span class="st" style="background:#CFCABF"></span> Çan Sesi</div>
+        </div>
+        <div class="studio-main">
+          <div class="chapter-title">Yürüme Mesafesi</div>
+          <div class="tab-row">
+            <span class="tab tab-on">Yaz</span>
+            <span class="tab tab-off">Önizle</span>
+            <span class="tab tab-editor">✨ Editör</span>
+          </div>
+          <div class="draft-sample">Bir kentin büyüklüğünü haritadaki sınırları değil, sakinlerinin sabah kalkıp akşam dönene kadar yürüyerek örebildiği ağ belirler. Fırın, okul, pazar, muhtarlık ve iki komşu kapısı; bu beş durak arasındaki mesafe toplamı, o yerin gerçek ölçeğidir.</div>
+          <div class="note-row">
+            <div class="note-mini"><span class="st" style="background:#7FB069"></span>Yavaşlık bir ölçek tercihidir</div>
+            <div class="note-mini"><span class="st" style="background:#C98B6D"></span>“Kent, hızının izin verdiği kadar hatırlar.”</div>
+          </div>
+        </div>
+        <div class="studio-right">
+          <div class="side-card side-tip">Bir paragraf = bir fikir.</div>
+          <div class="side-card side-note">Pazar sabahı anlatımı</div>
+          <div class="side-card" style="margin-top:auto">✓ Kaydedildi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ÖZELLİKLER ============ -->
+  <section id="ozellikler" class="section-tinted">
+    <div class="wrap section">
+      <h2 class="h-section">Yazarken yanınızda olanlar</h2>
+      <div class="grid grid-features">
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>
+          <h3>Üç panelli stüdyo</h3>
+          <p>Solda kitap iskeleti, ortada taslak, sağda notlar ve ipuçları. Kısımlar ve bölümler durum rozetleriyle, kelime hedefine ilerlemeyle birlikte tek bakışta.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 3l1.9 5.8 5.8 1.9-5.8 1.9L12 18.4l-1.9-5.8-5.8-1.9 5.8-1.9Z"/></svg>
+          <h3>Editör düzeltmesi</h3>
+          <p>Tek tıkla ara başlık, madde listesi, blok alıntı ve akıllı tırnak düzeni. Dışarıdan gelen metin temizlenerek yapışır; Geri Al her zaman elinizin altında.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg>
+          <h3>Sesli not</h3>
+          <p>Defter açmadan söyleyin: ses metne dönüşür, düzeltip tek tuşla nota ya da karalamaya çevirirsiniz. Dikte 10 dilde çalışır.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+          <h3>Karalama defteri</h3>
+          <p>Nereye ait olduğunu bilmediğiniz her şey için serbest alan. Başlıklı karalamalar, kararsız notlar; hazır olunca tek hamlede bölüme taşınır.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M9 7h7M9 11h5"/></svg>
+          <h3>Kaynak ve atıf</h3>
+          <p>Taslakta kısa işaretçi yazın; kitapta (Tanpınar, 1946) olur ve APA kaynakçası kendiliğinden oluşur. Kaynaklarınız kitapla aynı dosyada yaşar.</p>
+        </div>
+        <div class="card">
+          <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+          <h3>Word çıktısı</h3>
+          <p>Kapak, içindekiler ve kaynakçasıyla Word, HTML ve Markdown çıktısı bir tık ötede. İki yana yaslı, hecelenmiş, kitap standardında sayfa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SÜKÛNET (koyu bölüm) ============ -->
+  <section class="section-dark">
+    <div class="wrap section" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(380px,100%),1fr)); gap:56px; align-items:center">
+      <div>
+        <div class="eyebrow">Sükûnet ayarı</div>
+        <h2 class="h-section" style="margin-top:14px; color:#FBF8F1">Sizi yazmaya çağıran bir masa</h2>
+        <p style="font-size:15.5px; line-height:1.75; color:var(--dark-text-soft); margin:16px 0 0; max-width:420px">Kağıt sıcaklığında zemin, okuma alanlarında serif, tek vurgu rengi. Bildirim yok, rozet yağmuru yok; yalnız siz ve metniniz.</p>
+      </div>
+      <div class="calm-card">
+        <h3>Yürüme Mesafesi</h3>
+        <p>Aynı nüfusa sahip iki ilçeyi karşılaştırdığımızda fark, kişi başına düşen metrekarede değil, günde kaç eşiği geçtiğimizde ortaya çıkıyor. Eşik, kapı demek; kapı, karşılaşma demek.</p>
+        <div class="saved"><span class="dot"></span> Kaydedildi 23:41</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GÖNÜL RAHATLIĞI ============ -->
+  <section id="gonul-rahatligi">
+    <div class="wrap section">
+      <div class="center" style="max-width:620px; margin:0 auto">
+        <h2 class="h-section">Gönül Rahatlığı</h2>
+        <p class="lead" style="margin:14px 0 0; font-size:16px">inkGuide ücretsiz. Bütün özellikler herkese açık; sınır yok, deneme süresi yok, kilitli düğme yok. İşinize yaradıysa ve gönlünüzden koparsa, bir kahve ısmarlayabilirsiniz — zorunlu değil, hiçbir şeyi açıp kapatmaz.</p>
+      </div>
+      <div class="coffee-row">
+        <a class="coffee-card" href="destek.html">
+          <span class="emo" aria-hidden="true">☕</span>
+          <span class="name">Bir kahve</span>
+          <span class="desc">“Eline sağlık” demenin en kısa yolu.</span>
+          <span class="go">Destek ol →</span>
+        </a>
+        <a class="coffee-card" href="destek.html">
+          <span class="emo" aria-hidden="true">☕☕☕</span>
+          <span class="name">Bir kitap</span>
+          <span class="desc">Bir kitaplık emeğe bir kitap fiyatı.</span>
+          <span class="go">Destek ol →</span>
+        </a>
+        <a class="coffee-card" href="destek.html">
+          <span class="emo" aria-hidden="true">💛</span>
+          <span class="name">Destekçi</span>
+          <span class="desc">Projenin yarınına gönülden ortak olun.</span>
+          <span class="go">Destek ol →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAPANIŞ CTA ============ -->
+  <section class="section-tinted">
+    <div class="wrap section final-cta">
+      <h2 class="h-section">Bugün ilk paragrafı yazın</h2>
+      <p class="lead" style="margin:14px 0 0; font-size:16px">İndirin, açın, yazmaya başlayın. Hesap açılmaz, kayıt istenmez; kitabınız bilgisayarınızda büyür.</p>
+      <div style="margin-top:28px">
+        <a class="btn btn-primary" href="indir.html">İndir — ücretsiz</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Kitabınızın yol arkadaşı</span>
+    <nav aria-label="Altbilgi gezinmesi">
+      <a href="gizlilik.html">Verileriniz nerede durur?</a>
+      <a href="destek.html">Bir kahve ısmarla</a>
+      <a href="indir.html">İndir</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -13,6 +13,9 @@ yedek/
 # Kişisel araştırma kütüphanesi (telifli materyal — repoya girmez)
 Resources/
 
+# Derleme çıktısı (.exe GitHub Releases'a yüklenir, repoya girmez)
+dist/
+
 # Günlükler ve geçici dosyalar
 *.log
 

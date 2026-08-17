@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #FAF8F3; color: #26251F; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #55663F; text-decoration: none; }
+  a:hover { color: #3E4A2E; }
+</style>
+</helmet>
+
+<div style="min-height: 100vh">
+  <header style="border-bottom: 1px solid #E4E0D6; background: #FAF8F3">
+    <div style="max-width: 1020px; margin: 0 auto; padding: 15px 40px; display: flex; align-items: center; gap: 26px">
+      <a href="Pazarlama.dc.html" style="display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; color: #26251F; text-decoration: none">
+        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"></path><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"></path></svg>
+        <span style="letter-spacing: -.015em"><span style="font-weight: 400">ink</span><span style="font-weight: 700">Guide</span></span>
+      </a>
+      <nav style="display: flex; gap: 20px; font-size: 14px">
+        <a href="Kitaplığım.dc.html" style="color: #6B6559; text-decoration: none">Kitaplığım</a>
+        <a href="Rehber.dc.html" style="color: #6B6559; text-decoration: none">Rehber</a>
+        <span style="color: #26251F; font-weight: 600; padding-bottom: 2px; border-bottom: 2px solid #55663F">Ayarlar</span>
+      </nav>
+      <div style="margin-left: auto; font-size: 12.5px; color: #6E6859">Sürüm 1.4 · yerel kurulum</div>
+    </div>
+  </header>
+
+  <main style="max-width: 1020px; margin: 0 auto; padding: 44px 40px 90px">
+    <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 34px; font-weight: 600; letter-spacing: -.02em">Ayarlar</h1>
+    <p style="margin: 10px 0 0; font-size: 14.5px; color: #4F4B42; max-width: 620px">Hesap yok, abonelik yok. inkGuide bilgisayarınızda çalışır; buradaki ayarlar da yalnızca bu kurulumu etkiler.</p>
+
+    <div style="display: flex; gap: 8px; margin-top: 28px; border-bottom: 1px solid #E4E0D6">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+        <div onClick="{{ t.onSelect }}" style="{{ t.style }}">{{ t.label }}</div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ true }}">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 20px; margin-top: 26px; align-items: start">
+        <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)">
+          <div style="font-size: 15.5px; font-weight: 600">Yazma</div>
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 18px">
+            <label style="display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer">
+              <span style="width: 38px; height: 22px; border-radius: 999px; background: #55663F; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: 19px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span>
+              Sade moda ⌘⇧Z ile geç
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer">
+              <span style="width: 38px; height: 22px; border-radius: 999px; background: #55663F; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: 19px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span>
+              Yazarken cümleyi ortada tut (daktilo kaydırma)
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer; color: #4F4B42">
+              <span style="width: 38px; height: 22px; border-radius: 999px; background: #DCD8CD; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span>
+              İmla uyarılarını göster
+            </label>
+            <div style="display: flex; align-items: center; gap: 14px; font-size: 14px">
+              <span style="min-width: 150px">Günlük kelime hedefi</span>
+              <input type="range" min="100" max="2000" step="50" defaultValue="500" style="flex: 1; accent-color: #55663F" />
+              <span style="font-variant-numeric: tabular-nums; color: #4F4B42">500</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; font-size: 14px">
+              <span style="min-width: 150px">Gövde yazı boyu</span>
+              <select style="flex: 1; padding: 9px 11px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13.5px"><option>17 px (varsayılan)</option><option>18 px</option><option>19 px</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)">
+          <div style="font-size: 15.5px; font-weight: 600">Dil</div>
+          <p style="font-size: 13.5px; line-height: 1.65; color: #4F4B42; margin: 8px 0 16px">Arayüz dili kurulumda seçilir, buradan her zaman değiştirilebilir. Kitabınızın dili ayrıdır; heceleme ve tırnak kuralları ona göre uygulanır.</p>
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Arayüz dili</label>
+              <select value="{{ uiLang }}" onChange="{{ onUiLang }}" style="width: 100%; padding: 10px 13px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 14px; box-sizing: border-box">
+                <option value="en">English (varsayılan)</option>
+                <option value="tr">Türkçe</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+              </select>
+            </div>
+            <div>
+              <label style="display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px">Kitap dili (heceleme ve tırnaklar)</label>
+              <select style="width: 100%; padding: 10px 13px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 14px; box-sizing: border-box">
+                <option>Türkçe — “ ” · otomatik heceleme</option>
+                <option>English — “ ” · hyphenation</option>
+                <option>Deutsch — „ “ · Trennung</option>
+              </select>
+            </div>
+            <div style="font-size: 12.5px; color: #6E6859">Değişiklik uygulandığında arayüz yeniden yüklenir; metinleriniz etkilenmez.</div>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)">
+          <div style="font-size: 15.5px; font-weight: 600">Veri klasörü</div>
+          <p style="font-size: 13.5px; line-height: 1.65; color: #4F4B42; margin: 8px 0 14px">Kitaplarınız, notlarınız ve karalamalarınız burada durur. Klasörü bulut sürücünüze koyarsanız cihazlar arası eşitleme kendiliğinden olur.</p>
+          <div style="display: flex; align-items: center; gap: 10px; padding: 11px 13px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FDFCF9; font-size: 13px; color: #4F4B42">
+            <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; flex-shrink: 0; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"></path></svg>
+            <span style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">~/Belgeler/inkGuide</span>
+            <span style="color: #55663F; cursor: pointer; font-weight: 600">değiştir</span>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap">
+            <button style="padding: 10px 16px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13.5px; cursor: pointer">Klasörü aç</button>
+            <button onClick="{{ onBackup }}" style="padding: 10px 16px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13.5px; cursor: pointer">Şimdi yedekle</button>
+            <span style="align-self: center; font-size: 12.5px; color: #6E6859">{{ backupLabel }}</span>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)">
+          <div style="font-size: 15.5px; font-weight: 600">Görünüm ve güncelleme</div>
+          <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 18px">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14px">
+              <span style="min-width: 110px">Tema</span>
+              <div style="display: flex; gap: 6px">
+                <sc-for list="{{ themes }}" as="th" hint-placeholder-count="3">
+                  <div onClick="{{ th.onSelect }}" style="{{ th.style }}">{{ th.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <label style="display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer">
+              <span style="width: 38px; height: 22px; border-radius: 999px; background: #55663F; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: 19px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span>
+              Güncellemeleri otomatik indir
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-size: 14px; cursor: pointer; color: #4F4B42">
+              <span style="width: 38px; height: 22px; border-radius: 999px; background: #DCD8CD; position: relative; flex-shrink: 0"><span style="position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF"></span></span>
+              Anonim kullanım istatistiği gönder
+            </label>
+            <div style="font-size: 12.5px; color: #6E6859">Sürüm 1.4 · en son 17.08.2026'da denetlendi</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSupport }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top: 26px; display: flex; flex-direction: column; gap: 20px">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px">
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 20px 22px">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">Toplam kelime</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; margin-top: 8px; font-variant-numeric: tabular-nums">78.300</div>
+          </div>
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 20px 22px">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">Bu hafta</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; margin-top: 8px; font-variant-numeric: tabular-nums">3.240</div>
+          </div>
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 20px 22px">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">Seri</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; margin-top: 8px; font-variant-numeric: tabular-nums">14 gün</div>
+          </div>
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 20px 22px">
+            <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">Kitap</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; margin-top: 8px; font-variant-numeric: tabular-nums">3</div>
+          </div>
+        </div>
+
+        <div style="border: 1px solid #E0D5B8; border-radius: 14px; background: #FDF9EA; padding: 30px 32px">
+          <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; fill: none; stroke: #86682A; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"></path><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path><path d="M5 2v2M9 2v2M13 2v2"></path></svg>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 26px; font-weight: 600; margin-top: 12px">Bana bir kahve ısmarla</div>
+          <p style="font-size: 14.5px; line-height: 1.7; color: #4F4B42; margin: 10px 0 0; max-width: 560px">inkGuide ücretsiz ve öyle kalacak; amacı yazmaya başlamak isteyenlere yardım etmek. İşinize yaradıysa geliştirmeyi destekleyebilirsiniz — tek seferlik, iptal edilecek bir şey yok, hiçbir özelliği açmaz.</p>
+          <div style="display: flex; gap: 9px; margin-top: 22px; flex-wrap: wrap">
+            <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="3">
+              <div onClick="{{ a.onSelect }}" style="{{ a.style }}">{{ a.label }}</div>
+            </sc-for>
+            <input placeholder="₺ diğer" style="width: 96px; padding: 9px 12px; border: 1px solid #E0D5B8; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 14px; box-sizing: border-box" />
+          </div>
+          <button onClick="{{ onDonate }}" style="margin-top: 20px; padding: 13px 26px; border: none; border-radius: 10px; background: #86682A; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{ donateLabel }}</button>
+          <div style="font-size: 12.5px; color: #8A7A52; margin-top: 12px">{{ donateHint }}</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px">
+            <div style="font-size: 15.5px; font-weight: 600">Destek geçmişi</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #EFEBE1; font-size: 13.5px; margin-top: 8px">
+              <span>12.06.2026 · Kahve</span><span style="font-variant-numeric: tabular-nums">₺75</span><span style="color: #55663F; cursor: pointer">makbuz</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; font-size: 13.5px">
+              <span>03.05.2026 · Kahve</span><span style="font-variant-numeric: tabular-nums">₺30</span><span style="color: #55663F; cursor: pointer">makbuz</span>
+            </div>
+          </div>
+          <div style="border: 1px solid #E4E0D6; border-radius: 14px; background: #FFFFFF; padding: 24px 26px">
+            <div style="font-size: 15.5px; font-weight: 600">Başka türlü destek</div>
+            <div style="display: flex; flex-direction: column; gap: 11px; margin-top: 14px; font-size: 13.5px; line-height: 1.6; color: #4F4B42">
+              <div>Hata bildirin ya da özellik önerin.</div>
+              <div>Arayüzü kendi dilinize çevirmeye yardım edin.</div>
+              <div>Yazan bir arkadaşınıza inkGuide'ı anlatın.</div>
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap">
+              <button style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13px; cursor: pointer">Geri bildirim gönder</button>
+              <button style="padding: 9px 15px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; font-family: inherit; font-size: 13px; cursor: pointer">Çeviriye katkı ver</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1280, &quot;height&quot;: 900}}">
+class Component extends DCLogic {
+  state = { tab: 'settings', amount: 75, thanked: false, uiLang: 'en', theme: 'auto', backed: false };
+  componentDidMount() { document.documentElement.lang = 'tr'; }
+
+  renderVals() {
+    const s = this.state;
+    const tabs = [['settings', 'Ayarlar'], ['support', 'Destek']];
+    const themes = [['light', 'Kağıt'], ['dark', 'Koyu'], ['auto', 'Sistem']];
+    return {
+      tabs: tabs.map(([key, label]) => ({
+        label,
+        style: 'padding: 11px 16px; font-size: 14px; cursor: pointer; margin-bottom: -1px; border-bottom: 2px solid '
+          + (s.tab === key ? '#55663F; color: #26251F; font-weight: 600' : 'transparent; color: #6B6559'),
+        onSelect: () => this.setState({ tab: key })
+      })),
+      isSettings: s.tab === 'settings',
+      isSupport: s.tab === 'support',
+      uiLang: s.uiLang,
+      onUiLang: (e) => this.setState({ uiLang: e.target.value }),
+      themes: themes.map(([key, label]) => ({
+        label,
+        style: 'padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; border: 1px solid '
+          + (s.theme === key ? '#55663F; background: #EDEFE4; color: #43522F; font-weight: 600' : '#E4E0D6; background: #FFFFFF; color: #4F4B42'),
+        onSelect: () => this.setState({ theme: key })
+      })),
+      onBackup: () => this.setState({ backed: true }),
+      backupLabel: s.backed ? '✓ Yedeklendi 14:52' : 'En son yedek: bugün 09:12',
+      amounts: [30, 75, 150].map(v => ({
+        label: '₺' + v,
+        style: 'padding: 10px 20px; border-radius: 9px; background: #FFFFFF; font-size: 14.5px; font-weight: 600; cursor: pointer; border: 1px solid ' + (s.amount === v ? '#86682A' : '#E0D5B8'),
+        onSelect: () => this.setState({ amount: v, thanked: false })
+      })),
+      donateLabel: s.thanked ? 'Teşekkürler!' : '₺' + s.amount + ' destek ol',
+      donateHint: s.thanked ? 'Kahve alındı — iyi yazılar. Makbuz e-postanıza gönderildi.' : 'Tek seferlik ödeme. Kart bilgileri saklanmaz, hesap açılmaz.',
+      onDonate: () => this.setState({ thanked: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

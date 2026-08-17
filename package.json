@@ -3,12 +3,24 @@
   "version": "1.0.0",
   "description": "Kitap yazma yol arkadaşı — notlar, sentezler, kaynaklar ve kitaba dönüştürme",
   "main": "server.js",
+  "bin": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:exe": "pkg . --targets node22-win-x64 --output dist/inkGuide.exe"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*",
+      "data/book.sample.json",
+      "node_modules/marked/marked.min.js"
+    ]
   },
   "dependencies": {
     "docx": "^8.5.0",
     "express": "^4.19.2",
     "marked": "^12.0.2"
+  },
+  "devDependencies": {
+    "@yao-pkg/pkg": "^6.22.0"
   }
 }

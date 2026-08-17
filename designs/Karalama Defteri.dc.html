@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; height: 100vh; overflow: hidden; background: #FAF8F3; color: #26251F; font-family: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #55663F; text-decoration: none; }
+  a:hover { color: #3E4A2E; }
+  ::-webkit-scrollbar { width: 9px; }
+  ::-webkit-scrollbar-thumb { background: #DDD9D1; border-radius: 5px; }
+  @keyframes ya-spin { to { transform: rotate(360deg); } }
+  @keyframes ya-mic { 0%, 100% { box-shadow: 0 0 0 0 rgba(168, 69, 47, .35); } 50% { box-shadow: 0 0 0 10px rgba(168, 69, 47, 0); } }
+</style>
+</helmet>
+
+<div style="display: grid; grid-template-columns: 288px 1fr; height: 100vh">
+  <aside style="background: #F2F0E9; border-right: 1px solid #E4E0D6; display: flex; flex-direction: column; overflow: hidden">
+    <div style="padding: 20px 18px 16px; border-bottom: 1px solid #EFEBE1">
+      <a href="Kitaplığım.dc.html" style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #6E6859; text-decoration: none; margin-bottom: 12px">
+        <svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg> Kitaplığım
+      </a>
+      <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 23px; font-weight: 600; letter-spacing: -.01em">Yavaş Şehirler</div>
+      <div style="font-size: 12.5px; color: #6E6859; font-style: italic; margin-top: 4px">Bir Coğrafyacının Notları</div>
+      <div style="margin-top: 16px; height: 5px; border-radius: 3px; background: #E3E0D9; overflow: hidden"><div style="width: 42%; height: 100%; background: #55663F; border-radius: 3px"></div></div>
+      <div style="font-size: 11px; color: #6E6859; margin-top: 6px; font-variant-numeric: tabular-nums">25.400 / 60.000 kelime (%42)</div>
+    </div>
+    <div style="flex: 1; overflow-y: auto; padding: 10px 8px">
+      <div style="display: flex; flex-direction: column; gap: 1px">
+        <a href="Rehber.dc.html" style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: #26251F; text-decoration: none" style-hover="background: #E9E6DE">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: #55663F; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"></polygon></svg> İlk Kitap Rehberi
+        </a>
+        <a href="Kaynaklar.dc.html" style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; color: #26251F; text-decoration: none" style-hover="background: #E9E6DE">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: #55663F; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg> Kaynaklar (9)
+        </a>
+        <div style="display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 8px; font-size: 13px; background: #EDEFE4; color: #43522F; font-weight: 600">
+          <svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg> Karalama Defteri (4)
+        </div>
+      </div>
+      <div style="border-top: 1px solid #E4E0D6; margin: 12px 10px"></div>
+      <div style="padding: 6px 10px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: #6B6559">Kısım I — Ölçek</div>
+      <a href="Çalışma Alanı.dc.html" style="display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 22px; border-radius: 8px; font-size: 13px; color: #26251F; text-decoration: none" style-hover="background: #E9E6DE"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FB069"></span> Pazar Sabahı</a>
+      <a href="Çalışma Alanı.dc.html" style="display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 22px; border-radius: 8px; font-size: 13px; color: #26251F; text-decoration: none" style-hover="background: #E9E6DE"><span style="width: 7px; height: 7px; border-radius: 50%; background: #C98A2E"></span> Yürüme Mesafesi</a>
+      <a href="Çalışma Alanı.dc.html" style="display: flex; align-items: center; gap: 8px; padding: 7px 10px 7px 22px; border-radius: 8px; font-size: 13px; color: #26251F; text-decoration: none" style-hover="background: #E9E6DE"><span style="width: 7px; height: 7px; border-radius: 50%; background: #7FB069"></span> Meydanın Grameri</a>
+    </div>
+    <div style="padding: 12px 14px 18px">
+      <a href="Kitaba Dönüştür.dc.html" style="display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 10px; background: #55663F; color: #FFFFFF; font-size: 13.5px; font-weight: 600; text-decoration: none">
+        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2Z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7Z"></path></svg> Kitaba Dönüştür
+      </a>
+    </div>
+  </aside>
+
+  <main style="overflow-y: auto; padding: 36px 44px 90px">
+    <div style="max-width: 900px; margin: 0 auto">
+      <sc-if value="{{ listView }}" hint-placeholder-val="{{ true }}">
+        <div>
+          <h1 style="margin: 0; font-family: 'Source Serif 4', Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -.02em; display: flex; align-items: center; gap: 11px">
+            <svg viewBox="0 0 24 24" style="width: 24px; height: 24px; fill: none; stroke: #55663F; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path><path d="m15 5 4 4"></path></svg>
+            Karalama Defteri
+          </h1>
+          <p style="font-size: 14px; line-height: 1.7; color: #6B6559; margin: 10px 0 0; max-width: 620px">Zihninizi boşaltın: karalamalarınıza başlık verin, dilediğinizde açıp devam edin. Nereye ait olduğunu bilmediğiniz notları hazır olduğunuzda “bölüme taşı” ile yerine gönderin. Bu sayfa kitaba girmez, yedeklere dahildir.</p>
+
+          <div style="{{ voiceCardStyle }}">
+            <div style="display: flex; align-items: center; gap: 14px">
+              <button onClick="{{ onMic }}" style="{{ micStyle }}">
+                <svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"></path></svg>
+              </button>
+              <div style="flex: 1; min-width: 0">
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 18px; font-weight: 600">{{ voiceTitle }}</div>
+                <div style="font-size: 13px; line-height: 1.55; color: #4F4B42; margin-top: 4px">{{ voiceHint }}</div>
+              </div>
+              <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 22px; font-variant-numeric: tabular-nums; color: #4F4B42">{{ voiceClock }}</div>
+            </div>
+
+            <sc-if value="{{ recording }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: center; gap: 3px; height: 44px; margin-top: 16px">
+                <sc-for list="{{ bars }}" as="b" hint-placeholder-count="40">
+                  <div style="{{ b.style }}"></div>
+                </sc-for>
+              </div>
+              <div style="display: flex; gap: 9px; margin-top: 14px">
+                <button onClick="{{ onStop }}" style="padding: 9px 16px; border: 1px solid #55663F; border-radius: 9px; background: #55663F; color: #FFFFFF; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Bitir ve çözümle</button>
+                <button onClick="{{ onCancel }}" style="padding: 9px 16px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FFFFFF; color: #A8452F; font-family: inherit; font-size: 13px; cursor: pointer">İptal</button>
+                <span style="margin-left: auto; font-size: 12px; color: #6E6859; align-self: center">Konuşurken yazıya dökülüyor · Türkçe</span>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ transcribing }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; align-items: center; gap: 10px; margin-top: 16px; font-size: 13px; color: #4F4B42">
+                <span style="width: 14px; height: 14px; border: 2px solid #DCD8CD; border-top-color: #55663F; border-radius: 50%; animation: ya-spin .7s linear infinite; display: inline-block"></span>
+                Ses metne dönüştürülüyor…
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ hasTranscript }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 16px; border: 1px solid #E4E0D6; border-radius: 10px; background: #FFFFFF; padding: 14px 16px">
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859">
+                  Çözümlenen metin <span style="font-weight: 400; letter-spacing: 0; text-transform: none">· {{ transcriptMeta }}</span>
+                </div>
+                <textarea defaultValue="{{ transcript }}" onChange="{{ onTranscriptEdit }}" style="width: 100%; min-height: 96px; margin-top: 9px; padding: 11px 13px; border: 1px solid #E4E0D6; border-radius: 9px; background: #FDFCF9; font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; line-height: 1.7; color: #26251F; resize: vertical; box-sizing: border-box; outline: none"></textarea>
+                <div style="display: flex; gap: 9px; flex-wrap: wrap; margin-top: 12px">
+                  <select value="{{ voiceNoteType }}" onChange="{{ onVoiceType }}" style="padding: 9px 11px; font-size: 12.5px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit">
+                    <option value="not">Not</option><option value="sentez">Sentez</option><option value="alinti">Alıntı</option><option value="fikir">Fikir</option><option value="gorsel">Görsel</option>
+                  </select>
+                  <button onClick="{{ onToNote }}" style="padding: 9px 16px; font-size: 12.5px; font-weight: 600; border: 1px solid #55663F; border-radius: 8px; background: #55663F; color: #FFFFFF; font-family: inherit; cursor: pointer">Nota dönüştür</button>
+                  <button onClick="{{ onToPad }}" style="padding: 9px 16px; font-size: 12.5px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; color: #26251F; font-family: inherit; cursor: pointer">Yeni karalama yap</button>
+                  <button onClick="{{ onDiscard }}" style="padding: 9px 14px; font-size: 12.5px; border: 1px solid transparent; border-radius: 8px; background: transparent; color: #A8452F; font-family: inherit; cursor: pointer">Sil</button>
+                  <span style="margin-left: auto; align-self: center; font-size: 12px; color: #6E6859">Ses kaydı da saklanır</span>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859; margin: 30px 0 12px">Karalamalarım ({{ padCount }})</div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 14px">
+            <div onClick="{{ onNewPad }}" style="border: 1px dashed #DCD8CD; border-radius: 12px; background: transparent; min-height: 132px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #55663F; font-size: 13.5px; font-weight: 600; cursor: pointer" style-hover="background: #EDEFE4; border-color: #55663F">
+              <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round"><path d="M12 5v14M5 12h14"></path></svg> Yeni Karalama
+            </div>
+            <sc-for list="{{ pads }}" as="p" hint-placeholder-count="4">
+              <div onClick="{{ p.onOpen }}" style="position: relative; background: #FFFFFF; border: 1px solid #E4E0D6; border-radius: 12px; padding: 15px 17px; min-height: 132px; display: flex; flex-direction: column; cursor: pointer; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)" style-hover="border-color: #55663F">
+                <div style="font-family: 'Source Serif 4', Georgia, serif; font-size: 15px; font-weight: 600; padding-right: 18px">{{ p.title }}</div>
+                <div style="font-size: 12.5px; color: #6B6559; line-height: 1.55; margin-top: 7px; flex: 1; overflow: hidden">{{ p.preview }}</div>
+                <div style="font-size: 11px; color: #6E6859; margin-top: 10px">{{ p.meta }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859; margin: 36px 0 12px">Kararsız notlar ({{ noteCount }}) <span style="text-transform: none; font-weight: 400; letter-spacing: 0">— yerini sonra bulacaklar</span></div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px">
+            <select value="{{ newType }}" onChange="{{ onType }}" style="padding: 9px 11px; font-size: 12.5px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit">
+              <option value="not">Not</option><option value="sentez">Sentez</option><option value="alinti">Alıntı</option><option value="fikir">Fikir</option><option value="gorsel">Görsel</option>
+            </select>
+            <input value="{{ newText }}" onChange="{{ onText }}" onKeyDown="{{ onKey }}" placeholder="Nereye koyacağınızı bilmediğiniz not… (Enter ile ekle)" style="flex: 1; min-width: 240px; padding: 9px 12px; font-size: 12.5px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit" />
+            <button onClick="{{ onAdd }}" style="padding: 9px 18px; font-size: 12.5px; font-weight: 600; border: 1px solid #55663F; border-radius: 8px; background: #55663F; color: #FFFFFF; font-family: inherit; cursor: pointer">Ekle</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 12px">
+            <sc-for list="{{ notes }}" as="n" hint-placeholder-count="3">
+              <div style="{{ n.cardStyle }}">
+                <button onClick="{{ n.onDelete }}" style="position: absolute; top: 7px; right: 8px; border: none; background: none; color: #C9C4B8; font-size: 13px; cursor: pointer">✕</button>
+                <div style="display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: #6E6859"><span style="{{ n.dotStyle }}"></span>{{ n.typeLabel }}</div>
+                <div style="font-size: 13px; line-height: 1.5; margin-top: 7px">{{ n.text }}</div>
+                <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; color: #6E6859">
+                  <svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+                  <select value="" onChange="{{ n.onMove }}" style="flex: 1; font-size: 11px; padding: 4px 6px; border: 1px solid #E4E0D6; border-radius: 6px; background: #FFFFFF; color: #6E6859; font-family: inherit">
+                    <option value="">bölüme taşı…</option>
+                    <option value="Pazar Sabahı">Pazar Sabahı</option>
+                    <option value="Yürüme Mesafesi">Yürüme Mesafesi</option>
+                    <option value="Meydanın Grameri">Meydanın Grameri</option>
+                    <option value="Çan Sesi ve Vardiya">Çan Sesi ve Vardiya</option>
+                  </select>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ padView }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <button onClick="{{ onBack }}" style="border: none; background: none; color: #55663F; font-size: 13px; font-family: inherit; cursor: pointer; padding: 0; margin-bottom: 16px">← Karalama Defteri'ne dön</button>
+          <input value="{{ openTitle }}" onChange="{{ onTitleChange }}" placeholder="Karalamaya bir başlık verin…" style="width: 100%; border: none; background: transparent; font-family: 'Source Serif 4', Georgia, serif; font-size: 30px; font-weight: 600; letter-spacing: -.02em; color: #26251F; padding: 2px 0; outline: none; box-sizing: border-box" />
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 18px 0 10px">
+            <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; font-weight: 700; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit; cursor: pointer">B</button>
+            <button style="min-width: 32px; padding: 6px 11px; font-size: 12px; font-style: italic; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit; cursor: pointer">I</button>
+            <button style="padding: 6px 11px; font-size: 12px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit; cursor: pointer">• Liste</button>
+            <button style="padding: 6px 11px; font-size: 12px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; font-family: inherit; cursor: pointer">Yapıştır</button>
+            <span style="margin-left: auto; font-size: 12px; color: #6E6859; font-variant-numeric: tabular-nums">{{ openWords }} kelime</span>
+          </div>
+          <textarea defaultValue="{{ openText }}" placeholder="Aklınıza gelen her şey: cümle denemeleri, sorular, yapı fikirleri, bağlantılar… Otomatik kaydedilir." style="width: 100%; min-height: 440px; padding: 28px 32px; font-family: 'Source Serif 4', Georgia, serif; font-size: 16.5px; line-height: 1.8; border: 1px solid #E4E0D6; border-radius: 12px; background: #FFFFFF; color: #26251F; resize: vertical; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05); box-sizing: border-box; outline: none"></textarea>
+          <div style="display: flex; align-items: center; gap: 14px; margin-top: 14px">
+            <button style="padding: 7px 13px; font-size: 11.5px; border: 1px solid #E4E0D6; border-radius: 8px; background: #FFFFFF; color: #A8452F; font-family: inherit; cursor: pointer">bu karalamayı sil</button>
+            <span style="font-size: 11.5px; color: #6E6859">✓ Kaydedildi 14:31:02</span>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;: {&quot;width&quot;: 1440, &quot;height&quot;: 900}}">
+const TYPE_COLORS = { not: '#6D9EC9', sentez: '#7FB069', alinti: '#C98B6D', fikir: '#B08CC9', gorsel: '#4FA3A5' };
+const TYPE_LABELS = { not: 'Not', sentez: 'Sentez', alinti: 'Alıntı', fikir: 'Fikir', gorsel: 'Görsel' };
+
+const SAMPLE_TRANSCRIPT = 'Meydan bölümünü pazar sabahıyla açmak daha iyi olabilir. Tezgahlar kurulurken meydan bir kez daha kuruluyor gibi; aynı taşlar, farklı bir düzen. Bunu yürüme mesafesi bölümünün sonuna köprü olarak koyabilirim.';
+
+class Component extends DCLogic {
+  state = {
+    open: null,
+    newType: 'not',
+    newText: '',
+    voice: 'idle',
+    seconds: 0,
+    level: 0,
+    voiceNoteType: 'fikir',
+    transcript: '',
+    pads: [
+      { id: 'k1', title: 'Giriş için üç açılış denemesi', text: 'Birinci deneme: pazar sabahı, saat yedi. Tezgahlar henüz kurulmamış, kasalar kaldırımda bekliyor.\n\nİkinci deneme: haritayla başlamak — ilçenin 1955 ve 2020 sınırlarını üst üste koymak.\n\nÜçüncü deneme: bir soruyla açmak. Evinizden çıkıp kaç kapı geçerek ekmek alıyorsunuz?', words: 214, date: '17.08.2026' },
+      { id: 'k2', title: 'Röportaj soruları — fırıncı Hüseyin', text: 'Kaç yıldır aynı yerde? Müşterilerin kaçını adıyla tanıyor? Hangi yıl araba trafiği arttı? Un nereden geliyordu, şimdi nereden geliyor?', words: 96, date: '16.08.2026' },
+      { id: 'k3', title: 'Adsız karalama', text: 'Ölçek — hız — hafıza üçlüsü aynı bölümde mi durmalı, yoksa hafıza son kısma mı?', words: 41, date: '15.08.2026' },
+      { id: 'k4', title: 'Kesilen paragraflar (atmadan sakla)', text: 'Meydanın grameri bölümünden çıkardığım uzun betimleme buraya. Belki sonsöze girer.', words: 168, date: '12.08.2026' }
+    ],
+    notes: [
+      { id: 'n1', type: 'fikir', text: 'Pazar kurulan bir sabahın saat saat anlatımı — hangi bölüme?' },
+      { id: 'n2', type: 'not', text: 'Vardiya düdüğü ile çan sesi arasındaki geçiş: 1950 sonrası' },
+      { id: 'n3', type: 'alinti', text: '“Yürümek, kenti okumanın tek yavaş yoludur.”' },
+      { id: 'n4', type: 'gorsel', text: 'İki harita üst üste: 1955 ve 2020 yerleşim sınırı' }
+    ]
+  };
+
+  componentDidMount() { document.documentElement.lang = 'tr'; }
+  componentWillUnmount() { clearInterval(this._rec); clearTimeout(this._tr); }
+
+  startRec() {
+    this.setState({ voice: 'rec', seconds: 0, transcript: '' });
+    clearInterval(this._rec);
+    this._rec = setInterval(() => this.setState(st => ({ seconds: st.seconds + 1, level: st.level + 1 })), 1000);
+  }
+
+  stopRec() {
+    clearInterval(this._rec);
+    this.setState({ voice: 'transcribing' });
+    this._tr = setTimeout(() => this.setState({
+      voice: 'done',
+      transcript: SAMPLE_TRANSCRIPT
+    }), 1500);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const openPad = s.pads.find(p => p.id === s.open);
+    const rec = s.voice === 'rec';
+    const mm = String(Math.floor(s.seconds / 60)).padStart(2, '0');
+    const ss = String(s.seconds % 60).padStart(2, '0');
+    const bars = [];
+    for (let i = 0; i < 44; i++) {
+      const h = 14 + Math.round(30 * Math.abs(Math.sin((i + s.level * 3) * 0.55)) * (0.45 + 0.55 * Math.abs(Math.cos((i + s.level) * 0.21))));
+      bars.push({ style: 'flex: 1; border-radius: 2px; background: #55663F; opacity: ' + (0.35 + (h / 44) * 0.6) + '; height: ' + h + 'px' });
+    }
+    return {
+      voiceCardStyle: 'margin-top: 26px; border-radius: 14px; padding: 20px 22px; background: ' + (rec ? '#FBF3F0' : '#FFFFFF')
+        + '; border: 1px solid ' + (rec ? '#E8CFC6' : '#E4E0D6') + '; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05)',
+      micStyle: 'width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; font-family: inherit; border: 1px solid '
+        + (rec ? '#A8452F' : '#55663F') + '; background: ' + (rec ? '#A8452F' : '#55663F') + '; color: #FFFFFF'
+        + (rec ? '; animation: ya-mic 1.4s ease-out infinite' : ''),
+      voiceTitle: rec ? 'Kaydediliyor…' : (s.voice === 'transcribing' ? 'Çözümleniyor' : 'Sesli karalama'),
+      voiceHint: rec
+        ? 'Cümleyi bitirdiğinizde durdurun; metin düzenlenebilir olarak gelir.'
+        : (s.voice === 'done' ? 'Metni düzeltip nota ya da karalamaya dönüştürün.' : 'Aklınıza geleni söyleyin — yürürken, arabada, defter açmadan. Ses metne dönüşür, siz düzeltirsiniz.'),
+      voiceClock: (s.voice === 'idle' ? '00:00' : mm + ':' + ss),
+      recording: rec,
+      transcribing: s.voice === 'transcribing',
+      hasTranscript: s.voice === 'done',
+      bars,
+      transcript: s.transcript,
+      transcriptMeta: mm + ':' + ss + ' · ' + (s.transcript ? s.transcript.trim().split(/\s+/).length : 0) + ' kelime',
+      voiceNoteType: s.voiceNoteType,
+      onVoiceType: (e) => this.setState({ voiceNoteType: e.target.value }),
+      onTranscriptEdit: (e) => this.setState({ transcript: e.target.value }),
+      onMic: () => { if (rec) this.stopRec(); else this.startRec(); },
+      onStop: () => this.stopRec(),
+      onCancel: () => { clearInterval(this._rec); this.setState({ voice: 'idle', seconds: 0, transcript: '' }); },
+      onDiscard: () => this.setState({ voice: 'idle', seconds: 0, transcript: '' }),
+      onToNote: () => this.setState(st => ({
+        notes: [{ id: 'v' + Date.now(), type: st.voiceNoteType, text: st.transcript }].concat(st.notes),
+        voice: 'idle', seconds: 0, transcript: ''
+      })),
+      onToPad: () => {
+        const pad = { id: 'k' + Date.now(), title: 'Sesli karalama', text: this.state.transcript, words: this.state.transcript.trim().split(/\s+/).length, date: '17.08.2026' };
+        this.setState(st => ({ pads: [pad].concat(st.pads), open: pad.id, voice: 'idle', seconds: 0, transcript: '' }));
+      },
+      listView: !openPad,
+      padView: !!openPad,
+      padCount: s.pads.length,
+      noteCount: s.notes.length,
+      pads: s.pads.map(p => ({
+        title: p.title || 'Adsız karalama',
+        preview: p.text.slice(0, 130),
+        meta: p.words + ' kelime · ' + p.date,
+        onOpen: () => this.setState({ open: p.id })
+      })),
+      notes: s.notes.map(n => ({
+        text: n.text,
+        typeLabel: TYPE_LABELS[n.type],
+        cardStyle: 'position: relative; border: 1px solid #E4E0D6; border-radius: 10px; padding: 13px 15px; box-shadow: 0 1px 2px rgba(40, 38, 33, .05), 0 4px 14px rgba(40, 38, 33, .05); background: ' + (n.type === 'gorsel' ? '#F4FAFA' : '#FFFFFF'),
+        dotStyle: 'width: 7px; height: 7px; border-radius: 50%; background: ' + TYPE_COLORS[n.type],
+        onDelete: () => this.setState(st => ({ notes: st.notes.filter(x => x.id !== n.id) })),
+        onMove: (e) => { if (e.target.value) this.setState(st => ({ notes: st.notes.filter(x => x.id !== n.id) })); }
+      })),
+      newType: s.newType,
+      newText: s.newText,
+      onType: (e) => this.setState({ newType: e.target.value }),
+      onText: (e) => this.setState({ newText: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') this.add(); },
+      onAdd: () => this.add(),
+      onNewPad: () => {
+        const pad = { id: 'k' + Date.now(), title: '', text: '', words: 0, date: '17.08.2026' };
+        this.setState(st => ({ pads: [pad].concat(st.pads), open: pad.id }));
+      },
+      onBack: () => this.setState({ open: null }),
+      openTitle: openPad ? openPad.title : '',
+      openText: openPad ? openPad.text : '',
+      openWords: openPad ? openPad.words : 0,
+      onTitleChange: (e) => {
+        const v = e.target.value;
+        this.setState(st => ({ pads: st.pads.map(p => p.id === st.open ? Object.assign({}, p, { title: v }) : p) }));
+      }
+    };
+  }
+
+  add() {
+    const text = this.state.newText.trim();
+    if (!text) return;
+    this.setState(st => ({ notes: [{ id: 'a' + Date.now(), type: st.newType, text }].concat(st.notes), newText: '' }));
+  }
+}
+</script>
+</body>
+</html>
