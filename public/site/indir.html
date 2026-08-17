@@ -101,38 +101,38 @@
         </div>
         <div>
           <h2 class="h-section">Bilgisayarınıza kurun</h2>
-          <p class="lead" style="margin:12px 0 0; font-size:15.5px; max-width:560px">Sürümler GitHub Releases üzerinden dağıtılır. Windows ve macOS'te aynı deneyim; internet olmadan da yazarsınız.</p>
+          <p class="lead" style="margin:12px 0 0; font-size:15.5px; max-width:560px">Tek dosya, kurulum yok: indirin, çift tıklayın, yazın. İnternet olmadan da çalışır; macOS sürümü yolda.</p>
         </div>
       </div>
 
       <div class="dl-grid">
-        <a class="dl-card" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">
+        <a class="dl-card" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases/latest/download/inkGuide.exe" rel="noopener">
           <svg viewBox="0 0 24 24" class="stroke-icon icon" style="stroke-width:1.5" aria-hidden="true"><path d="M3 5.5 11 4v7.5H3ZM12.5 3.8 21 2.5v9h-8.5ZM3 12.5h8V20L3 18.5ZM12.5 12.5H21v9l-8.5-1.3Z"/></svg>
           <span class="name">Windows için indir</span>
-          <span class="meta">Windows 10 ve üstü</span>
-          <span class="go">GitHub Releases → son sürüm</span>
+          <span class="meta">inkGuide.exe · v1.0.0 · 64 MB · kurulumsuz tek dosya · Windows 10+</span>
+          <span class="go">İndirme hemen başlar ↓</span>
         </a>
-        <a class="dl-card" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">
+        <div class="dl-card" style="opacity:.75">
           <svg viewBox="0 0 24 24" class="stroke-icon icon" style="stroke-width:1.5" aria-hidden="true"><path d="M12 7c-1.2-2.4-3.4-3-5-2-1.8 1.1-2.4 3.8-1.4 6.8.7 2.2 2.1 5.4 3.6 6.8 1 .9 1.9.2 2.8.2s1.8.7 2.8-.2c1.5-1.4 2.9-4.6 3.6-6.8 1-3-.4-5.7-2.2-6.8-1.6-1-3.8-.4-4.2 2Z"/><path d="M12 7c.2-1.6 1.2-3.3 3-3.8"/></svg>
-          <span class="name">macOS için indir</span>
+          <span class="name">macOS — yakında</span>
           <span class="meta">Apple Silicon · Intel</span>
-          <span class="go">GitHub Releases → son sürüm</span>
-        </a>
+          <span class="go" style="color:var(--ink-faint)">Hazır olduğunda <a href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">Releases</a>'ta</span>
+        </div>
       </div>
 
       <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); margin-top:20px; align-items:stretch">
         <div class="req-box">
           <h3>Sistem gereksinimleri</h3>
           <ul>
-            <li><strong>Node.js 18 veya üstü</strong> (şimdilik — aşağıdaki nota bakın)</li>
-            <li>Windows 10+ ya da macOS 12+</li>
-            <li>Modern bir tarayıcı (Chrome ya da Edge; dikte için gerekli)</li>
-            <li>~100 MB disk alanı; internet bağlantısı yalnız indirme için</li>
+            <li>Windows 10 veya üstü — <strong>kurulum ve ek yazılım gerektirmez</strong></li>
+            <li>Modern bir tarayıcı (Chrome ya da Edge; sesli not için gerekli)</li>
+            <li>~150 MB disk alanı; internet bağlantısı yalnız indirme için</li>
+            <li>Verileriniz exe'nin yanındaki <code>data/</code> klasöründe durur — taşırsanız birlikte taşınır</li>
           </ul>
         </div>
         <div class="soon-note">
-          <strong>Yakında: tek dosya .exe</strong><br>
-          Şu an inkGuide, Node.js üzerinde çalışan bir uygulama olarak dağıtılıyor: indirin, klasörü açın, <code style="background:#fff; border:1px solid var(--honey-line); border-radius:6px; padding:2px 7px; font-size:12.5px">YolArkadasi.bat</code> dosyasına çift tıklayın — gerisi kendiliğinden. Kurulumsuz, çift tıkla açılan tek dosyalık .exe paketi üzerinde çalışıyoruz; hazır olduğunda bu sayfadan inecek.
+          <strong>İlk açılışta Windows uyarısı görebilirsiniz.</strong><br>
+          inkGuide yeni yayınlanmış, imzasız bir uygulama olduğu için Windows SmartScreen mavi bir uyarı gösterebilir. <strong>"Ek bilgi" → "Yine de çalıştır"</strong> deyin — uygulama açık kaynaklıdır, kodunun tamamı <a href="https://github.com/hakangokwork-dotcom/Bookeditor" rel="noopener">GitHub'da</a> incelenebilir ve bilgisayarınızdan hiçbir veri göndermez. Tercih ederseniz kaynak koddan da çalıştırabilirsiniz (repo'daki YolArkadasi.bat).
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@
         <div class="step">
           <div class="num" aria-hidden="true">01</div>
           <h3>Başlatın ve kitabınızı adlandırın</h3>
-          <p><code>YolArkadasi.bat</code> ile uygulamayı açın; tarayıcıda çalışma alanı kendiliğinden belirir. Kitabınıza bir çalışma adı verin — sonradan değişir, mükemmel olması gerekmez.</p>
+          <p><code>inkGuide.exe</code>'ye çift tıklayın; tarayıcıda çalışma alanı kendiliğinden belirir. Karşılama sihirbazında kitabınıza bir çalışma adı verin — sonradan değişir, mükemmel olması gerekmez.</p>
         </div>
         <div class="step">
           <div class="num" aria-hidden="true">02</div>
@@ -170,8 +170,9 @@
     <div class="wrap section center" style="max-width:640px; margin:0 auto">
       <h2 class="h-section">Takıldığınız yer olursa</h2>
       <p class="lead" style="margin:14px 0 0; font-size:16px">Sorular ve öneriler için GitHub üzerinden yazabilirsiniz. İşinize yaradıysa <a href="destek.html">bir kahve ısmarlamayı</a> unutmayın — ama önce kitabınızı yazın.</p>
-      <div style="margin-top:28px">
-        <a class="btn btn-primary" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">GitHub Releases'e git</a>
+      <div style="margin-top:28px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+        <a class="btn btn-primary" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases/latest/download/inkGuide.exe" rel="noopener">İndir — inkGuide.exe</a>
+        <a class="btn btn-secondary" href="https://github.com/hakangokwork-dotcom/Bookeditor/releases" rel="noopener">Tüm sürümler</a>
       </div>
     </div>
   </section>
