@@ -458,9 +458,14 @@ function bindDraftTools() {
 
 /* ---------------- Kaydetme ---------------- */
 
+let saveDimTimer = null;
+
 function scheduleSave() {
-  $('#saveIndicator').textContent = 'Kaydediliyor…';
+  const si = $('#saveIndicator');
+  si.classList.remove('dim');
+  si.textContent = 'Kaydediliyor…';
   clearTimeout(saveTimer);
+  clearTimeout(saveDimTimer);
   saveTimer = setTimeout(async () => {
     try {
       await fetch('/api/book', {
@@ -468,9 +473,10 @@ function scheduleSave() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(book)
       });
-      $('#saveIndicator').textContent = '✓ Kaydedildi ' + new Date().toLocaleTimeString('tr-TR');
+      si.textContent = '✓ Kaydedildi ' + new Date().toLocaleTimeString('tr-TR');
+      saveDimTimer = setTimeout(() => si.classList.add('dim'), 4000);
     } catch {
-      $('#saveIndicator').textContent = '⚠ Kaydedilemedi — sunucu çalışıyor mu?';
+      si.textContent = '⚠ Kaydedilemedi — sunucu çalışıyor mu?';
     }
     renderSidebar();
     renderStats();

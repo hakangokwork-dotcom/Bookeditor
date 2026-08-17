@@ -35,6 +35,7 @@ Araç geliştikçe fikir büyüdü: bu araç bir ürüne, sonra bir platforma d�
 | 13 | Fiyat: ücretsiz + gönlünden ne koparsa | **Karar: pay-what-you-want ("bir kahve ısmarla")** — zorunlu rakam/kilit/deneme yok; karanlık desen yasak |
 | 14 | Brief'i bu modele göre güncelle | DESIGN_BRIEF.md baştan yazıldı: SaaS/üyelik çıktı; güven odaklı site (gizlilik mimarisi, destek, indirme) + masaüstü ekranları |
 | 15 | Sesli not + 10 dil | 🎤 Web Speech API dikte (3 noktada mikrofon); dikte dili seçici (10 dil); brief'e 10 dilli arayüz + RTL gereksinimi |
+| 16 | Tasarım geldi (Claude Design), uygulamaya geçildi | **Marka: inkGuide** (mürekkep damlası + pusula ibresi logosu). Tasarım sistemi çalışma alanına giydirildi: kağıt/mürekkep/zeytin paleti (paper #FAF8F3, accent #55663F), Source Serif 4 + Source Sans 3, yeni gölge/radius token'ları, odak halkaları, otomatik kayıt soluklaşması. Tasarım kaynağı: claude.ai/design projesi 49d77b91… (11 ekran: Pazarlama, Kitaplığım, Kurulum, Çalışma Alanı, Karalama, Kaynaklar, Kitaba Dönüştür, Rehber, Ayarlar, Mobil, Tasarım Sistemi) |
 
 ## 3. Mevcut Mimari (MVP)
 
@@ -71,8 +72,8 @@ yedek/kitap-son-hali.md+.docx (her kayıtta, Word'de açılabilir, notlar+karala
 
 - ✅ MVP çalışıyor (proje sahibi aktif olarak kitabını bu araçla yazıyor — gerçek dogfooding)
 - ✅ Repo GitHub'da, kişisel içerik ve telifli materyal dışarıda
-- 🔄 **ŞİMDİ: DESIGN_BRIEF.md ClaudeDesign'a verildi — tasarım bekleniyor**
-- ⏭️ **TASARIM GELİNCE: üretim aşaması başlayacak** (aşağıdaki yol haritası)
+- ✅ Tasarım Claude Design'da tamamlandı (marka: **inkGuide**); tasarım sistemi çalışma alanı arayüzüne uygulandı
+- 🔄 **ŞİMDİ: üretim aşaması** — kalan tasarım ekranlarının (Kitaplığım, Kurulum/onboarding, Pazarlama sitesi, Ayarlar, Mobil) hayata geçirilmesi
 
 ## 6. Üretim Aşaması Yol Haritası (tasarım sonrası)
 
