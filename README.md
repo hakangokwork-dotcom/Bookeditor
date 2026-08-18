@@ -6,7 +6,7 @@ Scrivener'dan ilham alan, **tamamen yerel çalışan** yazma/not/sentez aracı. 
 
 ## Başlatma
 
-**En kolayı:** `YolArkadasi.bat` dosyasına çift tıklayın — sunucu başlar ve tarayıcı otomatik açılır. Pencereyi kapatınca uygulama durur (yazdıklarınız zaten anlık kaydedilir).
+**En kolayı:** [inkguide.uk](https://inkguide.uk)'dan tek dosya `inkGuide.exe`'yi indirin — kurulumsuz, çift tıklayın yeter. Kaynak koddan çalıştırmak için `inkGuide.bat` dosyasına çift tıklayın — sunucu başlar ve tarayıcı otomatik açılır. Pencereyi kapatınca uygulama durur (yazdıklarınız zaten anlık kaydedilir).
 
 Alternatif olarak terminalden:
 

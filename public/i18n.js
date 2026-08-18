@@ -2746,9 +2746,10 @@ I18N.de = {
 
 /* ---------------- Seçili dil + t() yardımcıları ---------------- */
 
+/* Varsayılan dil İngilizce (global ürün); kullanıcı Kurulum'da veya Ayarlar'dan değiştirir */
 const I18N_LANG = (() => {
-  const l = localStorage.getItem('uiLang') || 'tr';
-  return I18N[l] ? l : 'tr';
+  const l = localStorage.getItem('uiLang') || 'en';
+  return I18N[l] ? l : 'en';
 })();
 
 /* t(anahtar, {param: değer}) — seçili dil → en → tr sırasıyla arar */

@@ -1,7 +1,7 @@
 {
-  "name": "yol-arkadasi",
+  "name": "inkguide",
   "version": "1.0.0",
-  "description": "Kitap yazma yol arkadaşı — notlar, sentezler, kaynaklar ve kitaba dönüştürme",
+  "description": "inkGuide — your book's companion: notes, syntheses, sources and one-click book export. Local-first.",
   "main": "server.js",
   "bin": "server.js",
   "scripts": {
