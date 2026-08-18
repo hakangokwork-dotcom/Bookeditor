@@ -184,7 +184,9 @@ app.get('/api/library', (req, res) => {
 // Yeni kitap: şablondan oluşturulur, data/books/<id>.json'a yazılır
 app.post('/api/library', (req, res) => {
   try {
-    const { title, subtitle, targetWords, color } = req.body || {};
+    // partTitle / chapterTitle isteğe bağlı: yeni kitabın iskeleti arayüz dilinde
+    // açılsın diye istemci gönderir; gönderilmezse şablondaki adlar aynen kalır.
+    const { title, subtitle, targetWords, color, partTitle, chapterTitle } = req.body || {};
     if (!title || !String(title).trim()) throw new Error('Kitap adı gerekli');
     const lib = readLibrary();
     const base = slugify(title);
@@ -196,6 +198,12 @@ app.post('/api/library', (req, res) => {
     book.meta.subtitle = String(subtitle || '').trim();
     const tw = parseInt(targetWords, 10);
     if (tw > 0) book.meta.targetWords = tw;
+    if (partTitle && String(partTitle).trim() && book.parts && book.parts[0]) {
+      book.parts[0].title = String(partTitle).trim();
+    }
+    if (chapterTitle && String(chapterTitle).trim() && book.parts && book.parts[0] && book.parts[0].chapters && book.parts[0].chapters[0]) {
+      book.parts[0].chapters[0].title = String(chapterTitle).trim();
+    }
     const file = 'books/' + id + '.json';
     const abs = path.join(DATA_DIR, file);
     if (fs.existsSync(abs)) throw new Error('Bu isimde bir kitap dosyası zaten var');

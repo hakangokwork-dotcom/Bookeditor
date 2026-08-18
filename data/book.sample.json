@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "Kitabım",
+    "title": "My Book",
     "subtitle": "",
     "author": "",
-    "language": "tr",
+    "language": "en",
     "targetWords": 60000
   },
   "frontmatter": {
@@ -14,11 +14,11 @@
   "parts": [
     {
       "id": "p1",
-      "title": "BÖLÜM I",
+      "title": "PART I",
       "chapters": [
         {
           "id": "c1",
-          "title": "İlk Bölüm",
+          "title": "First Chapter",
           "status": "taslak",
           "synopsis": "",
           "draft": "",

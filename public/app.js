@@ -70,176 +70,38 @@ function ic(name) {
   return `<svg viewBox="0 0 24 24">${ICONS[name] || ''}</svg>`;
 }
 
-/* ---------------- İpuçları ----------------
-   Yazma ipuçları tr + en olarak tutulur; diğer arayüz dillerinde İngilizce gösterilir
-   (kapsam dışı karar: uzun içerikler yalnızca tr/en). */
+/* ---------------- Rehber + ipuçları paketi ----------------
+   Rehber HTML'i ve günün ipuçları public/guide/<dil>.json dosyalarından gelir:
+   { "guideHtml": "...", "tips": ["...", ...] } — dosya-başına-dil (paralel çeviri
+   ve bakım için tek dosyada 10 dil tutulmaz). Aktif dilin dosyası yoksa/bozuksa
+   en.json'a düşülür; o da yoksa küçük bir "yükleniyor" yer tutucusu gösterilir. */
 
-const TIPS_I18N = {};
+let guidePack = null; // { guideHtml: string, tips: string[] }
 
-TIPS_I18N.tr = [
-  'İlk taslak mükemmel olmak zorunda değil. Hemingway: "Bütün ilk taslaklar kötüdür." Önce yaz, sonra düzelt.',
-  'Her gün küçük bir hedef koyun: 300 kelime bile yılda bir kitap eder. Süreklilik, ilhamdan güçlüdür.',
-  'Bölümü bitiremeden bırakmayın — cümlenin ortasında bırakın. Yarın nereden başlayacağınızı bilmek, boş sayfa korkusunu yener.',
-  'Alıntı yaparken kaynağı ANINDA kaydedin. "Sonra bulurum" dediğiniz kaynak asla bulunamaz.',
-  'Yazarken düzeltmeyin. Yazma ve düzeltme farklı zihinsel modlardır; ikisini aynı anda yapmak ikisini de yavaşlatır.',
-  '"de/da" bağlacı ayrı yazılır: "ben de geldim". Bulunma eki "-de/-da" bitişik: "evde kaldım". Emin değilseniz: cümleden çıkarınca anlam bozuluyorsa bitişiktir.',
-  '"ki" bağlacı ayrı yazılır: "öyle ki", "diyorlar ki". Aitlik eki "-ki" bitişiktir: "benimki", "sabahki".',
-  'Uzun cümleleri bölün. Bir cümle bir fikir taşısın. Okuyucu nefes alsın.',
-  'Her bölümün sinopsisini önce yazın — bölümün "vaadi" netleşir, yazarken pusulanız olur.',
-  'Pasif cümlelerden kaçının. "Problem tanımlandı" yerine "Ekip problemi tanımladı" daha canlıdır.',
-  'Okuyucunuza bir kişi gibi yazın: tek bir hayali okuyucu seçin ve ona anlatın.',
-  'Bölüm biterken bir sonraki bölüme köprü kurun — okuyucunun "bir bölüm daha" demesini sağlayan budur.',
-  'Sayılar: metin içinde küçük sayılar yazıyla ("beş yöntem"), istatistikler rakamla ("%69") yazılır.',
-  'İlk kitapta kapsamı daraltın: her şeyi anlatan kitap, hiçbir şeyi anlatamaz. Tezinize hizmet etmeyen bölümü çıkarın.',
-  'Sesli okuyun. Kulağınıza takılan cümle, okuyucuya da takılır.',
-  'Yabancı terimleri ilk geçtiği yerde Türkçesiyle birlikte verin: "kuluçka etkisi (incubation)".',
-  'Araştırma tuzağına dikkat: araştırmak yazmak gibi hissettirir ama değildir. Zamanınızın çoğu yazmaya gitsin.',
-  'Bir paragraf = bir fikir. Paragraf uzadıysa muhtemelen iki fikir anlatıyorsunuz.',
-  'Kitabın sesi sizsiniz: MBB deneyiminizden gerçek sahneler anlatın. Okuyucu yöntemi unutur, hikâyeyi hatırlar.',
-  'Noktalama: "vb." ve "vs." kısaltmalarından sonra nokta gelir; cümle sonundaysa ikinci nokta konmaz.',
-  'Bitti demeden önce dinlendirin: taslağı en az bir hafta bekletip yabancı gözüyle okuyun.',
-  'Geri bildirim alın ama herkesin her dediğini yapmayın. Sorun teşhisi doğru, önerilen çözüm çoğu zaman yanlıştır.'
-];
+async function fetchGuidePack(lang) {
+  const res = await fetch('guide/' + encodeURIComponent(lang) + '.json');
+  if (!res.ok) throw new Error('rehber paketi okunamadı: ' + lang);
+  const data = await res.json();
+  if (!data || typeof data.guideHtml !== 'string' || !Array.isArray(data.tips) || data.tips.length === 0) {
+    throw new Error('rehber paketi geçersiz: ' + lang);
+  }
+  return data;
+}
 
-TIPS_I18N.en = [
-  'Your first draft does not have to be perfect. Hemingway: "The first draft of anything is bad." Write first, polish later.',
-  'Set a small daily goal: even 300 words a day makes a book in a year. Consistency beats inspiration.',
-  'Do not stop at the end of a chapter — stop mid-sentence. Knowing where to pick up tomorrow defeats the blank page.',
-  'Record the source the MOMENT you quote it. The source you plan to "find later" is never found.',
-  'Do not edit while writing. Writing and editing are different mental modes; doing both at once slows both down.',
-  'Watch its/it\'s: "its" is possessive, "it\'s" means "it is". If you can say "it is", use the apostrophe.',
-  'Watch affect/effect: "affect" is usually the verb, "effect" the noun ("the change affected us", "it had an effect").',
-  'Break up long sentences. One sentence should carry one idea. Let the reader breathe.',
-  'Write each chapter\'s synopsis first — the chapter\'s "promise" becomes clear and guides you while writing.',
-  'Avoid passive voice. "The problem was defined" is weaker than "The team defined the problem."',
-  'Write to one person: pick a single imaginary reader and tell them the story.',
-  'End each chapter with a bridge to the next — that is what makes readers say "one more chapter".',
-  'Numbers: spell out small numbers in prose ("five methods"), use digits for statistics ("69%").',
-  'Narrow the scope of your first book: a book that explains everything explains nothing. Cut chapters that do not serve your thesis.',
-  'Read your text aloud. A sentence that trips your tongue will trip your reader too.',
-  'Introduce foreign or technical terms with a plain-language explanation the first time they appear.',
-  'Beware the research trap: researching feels like writing, but it is not. Spend most of your time writing.',
-  'One paragraph = one idea. If a paragraph runs long, it probably carries two ideas.',
-  'The voice of the book is you: tell real scenes from your own experience. Readers forget methods, they remember stories.',
-  'Punctuation: an ellipsis has three dots, not five…',
-  'Before calling it done, let it rest: put the draft away for at least a week and reread it with fresh eyes.',
-  'Ask for feedback but do not obey every note. The diagnosis is usually right; the proposed fix is usually wrong.'
-];
+async function loadGuidePack() {
+  try {
+    guidePack = await fetchGuidePack(I18N_LANG);
+  } catch {
+    try { guidePack = await fetchGuidePack('en'); } catch { guidePack = null; }
+  }
+  // İçerik geldiğinde açık görünümleri tazele
+  if (book) {
+    renderTip();
+    if (sel.type === 'guide') renderEditor();
+  }
+}
 
-const TIPS = TIPS_I18N[I18N_LANG === 'tr' ? 'tr' : 'en'];
 
-/* ---------------- Rehber içeriği ----------------
-   Rehber tr + en olarak tutulur; diğer arayüz dillerinde İngilizce gösterilir. */
-
-const GUIDE_HTML_TR = `
-<div class="editor-inner guide">
-  <div class="guide-kicker">İlk kitabını yazanlar için</div>
-  <h1>Rehber</h1>
-  <p class="guide-lead">Bu araç, notlarınızı bölümlere dönüştürüp kitabınıza doğru yürümeniz için tasarlandı. Soldan bir bölüm seçin, notlarınızı (NotebookLM çıktıları, sentezler, alıntılar) o bölüme ekleyin; hazır olduğunuzda taslağı yazın.</p>
-
-  <h2>Önerilen çalışma akışı</h2>
-  <div class="guide-steps">
-    <div class="guide-step"><div class="guide-num">1</div><p><b>Topla.</b> NotebookLM'den ve okumalarınızdan çıkan her şeyi ilgili bölüme <i>not</i> olarak ekleyin. Düşünmeyin, biriktirin.</p></div>
-    <div class="guide-step"><div class="guide-num">2</div><p><b>Sentezle.</b> Notlar birikince "bu bölümün ana fikri ne?" sorusuna cevap veren <i>sentez</i> notları yazın. Şema, diyagram ve illüstrasyon fikirlerinizi <i>görsel</i> notu olarak kaydedin — kitap tasarımı aşamasında hazır bir görsel listeniz olur.</p></div>
-    <div class="guide-step"><div class="guide-num">3</div><p><b>Yaz.</b> Sentezlere bakarak taslağı yazın. Notlar sağ elinizin altında, taslak önünüzde. Dışarıdan metin getirirken <b>Yapıştır</b> satır kırıklarını ve kalıntıları temizler; <b>Düzelt</b> aynı temizliği seçili metne uygular. <b>B / I / H / Liste / ❝</b> düğmeleri seçili metni biçimlendirir.</p></div>
-    <div class="guide-step"><div class="guide-num">4</div><p><b>Dinlendir ve düzelt.</b> Bölümü "bitti" işaretlemeden önce en az bir hafta bekletin, sonra yabancı gözüyle okuyun.</p></div>
-  </div>
-  <div class="guide-tipbox"><b>Kararsız mısınız?</b> Nereye ait olduğunu bilmediğiniz her şeyi <b>Karalama Defteri</b>'ne atın; hazır olunca notu "bölüme taşı" ile yerine gönderin.</div>
-  <div class="guide-tipbox"><b>🎤 Sesli not:</b> Not alanlarının ve taslak araç çubuğunun yanındaki mikrofon düğmesine tıklayıp konuşun — söyledikleriniz yazıya dökülür; tekrar tıklayınca durur. <i>(Konuşma tanıma tarayıcının servisiyle çalışır; Chrome/Edge gerekir ve ilk kullanımda mikrofon izni ister.)</i></div>
-
-  <h2>Sık karışan yazım kuralları (TDK)</h2>
-  <div class="kural"><b>de / da:</b> Bağlaç ise ayrı ("ben de geldim"), bulunma eki ise bitişik ("evde"). Test: çıkarınca cümle bozuluyorsa bitişiktir.</div>
-  <div class="kural"><b>ki:</b> Bağlaç ise ayrı ("öyle ki"), aitlik eki ise bitişik ("seninki", "akşamki"). İstisna kalıplar: "sanki, oysaki, çünkü, hâlbuki, mademki, meğerki, belki".</div>
-  <div class="kural"><b>Soru eki mı/mi:</b> Her zaman ayrı yazılır: "geldi mi?", "problem mi?"</div>
-  <div class="kural"><b>Birleşik fiiller:</b> "hissetmek, kaybetmek, reddetmek" bitişik; "fark etmek, terk etmek, söz etmek" ayrı.</div>
-  <div class="kural"><b>Sayılar:</b> Metinde küçük sayılar yazıyla ("üç yöntem"), ölçüm ve istatistikler rakamla ("%69", "55 dakika").</div>
-  <div class="kural"><b>Noktalama:</b> Virgülle bağlanan uzun cümleler yerine kısa cümleler kurun. Üç nokta üçtür, beş değil…</div>
-
-  <h2>Alıntı ve kaynak etiği</h2>
-  <ul>
-    <li>Birebir alıntı → tırnak içinde + kaynak + sayfa numarası. Kitapta 40 kelimeyi geçen alıntılar blok alıntı olur.</li>
-    <li>Fikir aktarımı (kendi cümlelerinizle) da kaynak ister — intihalin en yaygın türü "parafraz edip kaynak vermemektir".</li>
-    <li>Taslak içinde <code>[[kaynak:kahneman2011]]</code> yazın; kitaba dönüştürünce otomatik olarak <b>(Kahneman, 2011)</b> olur ve Kaynakça'ya girer.</li>
-    <li>İkincil alıntıdan kaçının: "Kahneman'ın aktardığına göre Simon..." yerine mümkünse asıl kaynağa gidin.</li>
-    <li>Söylenmiş sözleri doğrulayın: Einstein'a atfedilen sözlerin çoğu Einstein'a ait değildir. (Kitabınız için harika bir yan hikâye!)</li>
-  </ul>
-
-  <h2>Kitabın yapısı</h2>
-  <div class="guide-cards">
-    <div class="guide-card"><div class="t">Önsöz</div><div class="d">Kitabın hikâyesi: neden ve kime yazdınız. Genelde en son yazılır.</div></div>
-    <div class="guide-card"><div class="t">Giriş</div><div class="d">Vaat ve okuma haritası. Okuyucu iki sayfada "bu kitap bana ne verecek?" cevabını almalı.</div></div>
-    <div class="guide-card"><div class="t">Bölümler</div><div class="d">Her bölüm tek bir soruya cevap versin; o soruyu sinopsis alanına yazın.</div></div>
-    <div class="guide-card"><div class="t">Kaynakça</div><div class="d">Otomatik oluşur; siz kaynakları girip atıf işaretçilerini kullanın.</div></div>
-  </div>
-
-  <h2>Kitaba dönüştürünce ne olur?</h2>
-  <p>Sol alttaki <b>"Kitaba Dönüştür"</b> düğmesi kitabınızı üç formatta üretir: <b>Markdown</b> (ham metin), <b>HTML</b> (okumalık/baskı önizleme) ve <b>Word (.docx)</b> — kapak, içindekiler, önsöz, giriş, bölümler ve APA formatında kaynakça ile. Word dosyasını açınca içindekileri güncellemeyi onaylayın (alanlar otomatik dolar). Dosya adları tarih + saat damgalıdır; her dönüştürme ayrı bir çıktı versiyonudur.</p>
-
-  <h2>Versiyonlama ve güvenlik yedeği</h2>
-  <p><b>"Versiyon"</b> düğmesi kitabın o anki halinin anlık görüntüsünü <code>versions/</code> klasörüne kaydeder. Büyük bir değişiklikten (bölüm silme, yeniden yapılandırma) önce bir versiyon alın; listeden tek tıkla <b>geri yükleyebilirsiniz</b> — geri yükleme öncesi mevcut hal de otomatik versiyonlanır, hiçbir şey kaybolmaz.</p>
-  <p><b>Emekler asla boşa gitmez:</b> her kayıtta kitabınızın son hali <code>yedek/kitap-son-hali.md</code> ve <code>yedek/kitap-son-hali.docx</code> dosyalarına da yazılır — notlarınız ve karalama defteriniz dahil. Bu uygulama bir gün hiç açılmasa bile, o Word dosyasını açıp kaldığınız yerden devam edebilirsiniz.</p>
-
-  <div class="guide-cta">
-    <button class="cta-primary" id="guideWrite">Yazmaya dön</button>
-    <button class="cta-secondary" id="guideSources">Kaynakları düzenle</button>
-  </div>
-</div>`;
-
-const GUIDE_HTML_EN = `
-<div class="editor-inner guide">
-  <div class="guide-kicker">For first-time book writers</div>
-  <h1>Guide</h1>
-  <p class="guide-lead">This tool is designed to turn your notes into chapters and walk you toward your book. Pick a chapter on the left, add your notes (NotebookLM outputs, syntheses, quotes) to it; when you are ready, write the draft.</p>
-
-  <h2>Suggested workflow</h2>
-  <div class="guide-steps">
-    <div class="guide-step"><div class="guide-num">1</div><p><b>Collect.</b> Add everything that comes out of NotebookLM and your readings to the relevant chapter as a <i>note</i>. Don't think, accumulate.</p></div>
-    <div class="guide-step"><div class="guide-num">2</div><p><b>Synthesize.</b> Once notes pile up, write <i>synthesis</i> notes answering "what is the main idea of this chapter?". Save diagram and illustration ideas as <i>visual</i> notes — you will have a ready visual list at book-design time.</p></div>
-    <div class="guide-step"><div class="guide-num">3</div><p><b>Write.</b> Write the draft with your syntheses in view. When bringing text from outside, the <b>Paste</b> button cleans line breaks and residue; <b>Clean up</b> applies the same cleanup to the selection. The <b>B / I / H / List / ❝</b> toolbar buttons format the selected text.</p></div>
-    <div class="guide-step"><div class="guide-num">4</div><p><b>Rest and revise.</b> Let a chapter rest for at least a week before marking it "done", then reread it with fresh eyes.</p></div>
-  </div>
-  <div class="guide-tipbox"><b>Undecided?</b> Throw anything that has no home yet into the <b>Scratchpad</b>; when it is ready, send it home with "move to chapter".</div>
-  <div class="guide-tipbox"><b>🎤 Voice notes:</b> Click the microphone button next to note fields and the draft toolbar and speak — your words become text; click again to stop. <i>(Speech recognition uses the browser's service; Chrome/Edge required, microphone permission asked on first use.)</i></div>
-
-  <h2>Common style pitfalls</h2>
-  <div class="kural"><b>its / it's:</b> "its" is possessive ("the book lost its cover"); "it's" is short for "it is". Test: if "it is" fits, use the apostrophe.</div>
-  <div class="kural"><b>affect / effect:</b> "affect" is usually a verb ("it affected sales"), "effect" a noun ("a side effect").</div>
-  <div class="kural"><b>Question sentences:</b> keep one question per sentence; long chained questions exhaust the reader.</div>
-  <div class="kural"><b>Compound verbs & phrasal verbs:</b> keep them consistent; do not mix "set up / setup" as verb and noun.</div>
-  <div class="kural"><b>Numbers:</b> spell out small numbers in prose ("three methods"), use digits for measurements and statistics ("69%", "55 minutes").</div>
-  <div class="kural"><b>Punctuation:</b> prefer short sentences over long comma-chained ones. An ellipsis has three dots, not five…</div>
-
-  <h2>Quoting & source ethics</h2>
-  <ul>
-    <li>Verbatim quote → in quotation marks + source + page number. Quotes longer than 40 words become block quotes in the book.</li>
-    <li>Paraphrasing (in your own words) also needs a source — the most common form of plagiarism is "paraphrasing without citing".</li>
-    <li>Write <code>[[kaynak:kahneman2011]]</code> in the draft; when the book is built it automatically becomes <b>(Kahneman, 2011)</b> and enters the Bibliography.</li>
-    <li>Avoid secondary quoting: instead of "According to Kahneman, Simon said…", go to the original source when possible.</li>
-    <li>Verify famous sayings: most quotes attributed to Einstein are not Einstein's. (A great side story for your book!)</li>
-  </ul>
-
-  <h2>The structure of the book</h2>
-  <div class="guide-cards">
-    <div class="guide-card"><div class="t">Preface</div><div class="d">The story of the book: why and for whom you wrote it. Usually written last.</div></div>
-    <div class="guide-card"><div class="t">Introduction</div><div class="d">The promise and a reading map. Within two pages the reader should know "what will this book give me?".</div></div>
-    <div class="guide-card"><div class="t">Chapters</div><div class="d">Each chapter should answer a single question; write that question in the synopsis field.</div></div>
-    <div class="guide-card"><div class="t">Bibliography</div><div class="d">Generated automatically — you just enter sources and use citation markers.</div></div>
-  </div>
-
-  <h2>What happens when you build the book?</h2>
-  <p>The <b>"Build the Book"</b> button at the bottom left produces your book in three formats: <b>Markdown</b> (raw text), <b>HTML</b> (reading/print preview) and <b>Word (.docx)</b> — with cover, table of contents, preface, introduction, chapters and an APA bibliography. When you open the Word file, confirm updating the table of contents (fields fill automatically). File names carry a date + time stamp; every build is a separate output version.</p>
-
-  <h2>Snapshots & safety backup</h2>
-  <p>The <b>"Snapshot"</b> button saves the current state of the book into the <code>versions/</code> folder. Take a snapshot before any big change (deleting a chapter, restructuring); you can <b>restore</b> from the list with one click — the current state is also snapshotted automatically before restoring, nothing is ever lost.</p>
-  <p><b>Your work is never wasted:</b> on every save the latest state of your book is also written to <code>yedek/kitap-son-hali.md</code> and <code>yedek/kitap-son-hali.docx</code> — including your notes and scratchpad. Even if this app never opens again one day, you can open that Word file and continue where you left off.</p>
-
-  <div class="guide-cta">
-    <button class="cta-primary" id="guideWrite">Back to writing</button>
-    <button class="cta-secondary" id="guideSources">Manage sources</button>
-  </div>
-</div>`;
-
-const GUIDE_HTML = I18N_LANG === 'tr' ? GUIDE_HTML_TR : GUIDE_HTML_EN;
 
 /* ---------------- Yardımcılar ---------------- */
 
@@ -312,7 +174,10 @@ const UI_LANGS = [
   ['ru', 'Русский'],
   ['de', 'Deutsch']
 ];
-let uiLang = localStorage.getItem('uiLang') || 'tr';
+/* Etkin arayüz dili i18n.js'in çözdüğü dildir (varsayılan en) — seçiciler ve
+   sihirbaz bununla başlar; eskiden 'tr' varsayımı sihirbaz sonunda dili istemeden
+   Türkçe'ye çeviriyordu. */
+let uiLang = I18N_LANG;
 
 // Uygulama sürümü (package.json ile eşleşir)
 const APP_VERSION = '1.0.0';
@@ -752,7 +617,10 @@ function select(type, id = null) {
 function renderEditor() {
   const ed = $('#editor');
   if (sel.type === 'guide') {
-    ed.innerHTML = GUIDE_HTML;
+    // Rehber paketi henüz yüklenmediyse küçük bir yer tutucu; paket gelince loadGuidePack yeniden çizer
+    ed.innerHTML = guidePack
+      ? guidePack.guideHtml
+      : `<div class="editor-inner guide"><p class="guide-lead">${esc(t('lib.loading'))}</p></div>`;
     // Rehber sonu eylem düğmeleri (tasarım: "Yazmaya dön" + "Kaynakları düzenle")
     const gw = $('#guideWrite');
     if (gw) gw.onclick = () => {
@@ -1417,7 +1285,11 @@ function moveChapter(part, ch, dir) {
 /* ---------------- Sağ panel ---------------- */
 
 function renderTip() {
-  $('#tipText').textContent = TIPS[tipIndex % TIPS.length];
+  const el = $('#tipText');
+  if (!el) return;
+  // Paket yüklenene kadar kart boş kalmasın: küçük yükleniyor durumu
+  if (!guidePack || !guidePack.tips.length) { el.textContent = t('lib.loading'); return; }
+  el.textContent = guidePack.tips[tipIndex % guidePack.tips.length];
 }
 
 function renderStats() {
@@ -1849,7 +1721,15 @@ function openNewBookForm() {
       const res = await fetch('/api/library', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, subtitle: $('#nbSubtitle').value.trim(), targetWords: target, color })
+        body: JSON.stringify({
+          title,
+          subtitle: $('#nbSubtitle').value.trim(),
+          targetWords: target,
+          color,
+          // Yeni kitap iskeleti aktif arayüz dilinde açılsın (sunucu şablonu Türkçe kalabilir)
+          partTitle: t('sample.partTitle'),
+          chapterTitle: t('sample.chapterTitle')
+        })
       });
       const data = await res.json();
       if (!data.ok) throw new Error(data.error);
@@ -2015,6 +1895,31 @@ function closeOnboarding() {
   $('#onboardHost').innerHTML = '';
 }
 
+/* Kitap hâlâ el değmemişse (0 kelime, tek kısım + tek bölüm, adlar bilinen
+   varsayılanlardan biri) kitap/kısım/bölüm adlarını verilen dile çevirir.
+   Kullanıcının yazdığı hiçbir şeye dokunulmaz. */
+function localizeUntouchedSkeleton(lang) {
+  if (!book || !book.parts || !book.meta) return false;
+  if (totalWords() !== 0) return false;
+  if (book.parts.length !== 1 || (book.parts[0].chapters || []).length !== 1) return false;
+  // Bilinen varsayılan adlar: tarihsel şablon değerleri + tüm dillerin sample.* değerleri
+  const known = new Set(['BÖLÜM I', 'İlk Bölüm', 'Kitabım', 'PART I', 'First Chapter', 'My Book']);
+  for (const code of Object.keys(I18N)) {
+    for (const k of ['sample.bookTitle', 'sample.partTitle', 'sample.chapterTitle']) {
+      if (I18N[code][k]) known.add(I18N[code][k]);
+    }
+  }
+  const dict = I18N[lang] || I18N.en;
+  const tt = (k) => dict[k] || I18N.en[k] || I18N.tr[k];
+  const part = book.parts[0];
+  const ch = part.chapters[0];
+  let changed = false;
+  if (known.has((book.meta.title || '').trim())) { book.meta.title = tt('sample.bookTitle'); changed = true; }
+  if (known.has((part.title || '').trim())) { part.title = tt('sample.partTitle'); changed = true; }
+  if (known.has((ch.title || '').trim())) { ch.title = tt('sample.chapterTitle'); changed = true; }
+  return changed;
+}
+
 function finishOnboarding() {
   const v = onb.values;
   // Dil tercihleri
@@ -2030,6 +1935,10 @@ function finishOnboarding() {
     if (v.title.trim()) book.meta.title = v.title.trim();
     if (v.author.trim()) book.meta.author = v.author.trim();
     if (v.target > 0) book.meta.targetWords = v.target;
+    // El değmemiş iskelet varsa adlar seçilen arayüz diline çevrilir.
+    // (Sihirbazdan SONRA çalışır: alan ön-dolu varsayılanla gelirse de çevrilsin;
+    // kullanıcının yazdığı gerçek adlar bilinen-varsayılan kümesinde olmadığından dokunulmaz.)
+    localizeUntouchedSkeleton(v.uiLang);
     scheduleSave();
     renderSidebar();
   }
@@ -2210,6 +2119,8 @@ async function openBook(id) {
 }
 
 async function init() {
+  // Rehber + ipucu paketi arka planda yüklenir (bitince açık görünümleri tazeler)
+  loadGuidePack();
   // Statik düğmeler (bir kez bağlanır)
   $('#tipNext').onclick = () => { tipIndex++; renderTip(); };
   // "Kitaba Dönüştür": doğrudan export yerine tam ekran dönüştürme sayfası
