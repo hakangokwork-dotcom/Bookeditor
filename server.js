@@ -372,7 +372,10 @@ app.post('/api/version/restore', (req, res) => {
    açılırsa çakışmasın); paketli sürümde tarayıcıyı otomatik aç. */
 function openBrowser(url) {
   try {
-    require('child_process').exec(`start "" "${url}"`);
+    const cmd = process.platform === 'darwin' ? `open "${url}"`
+      : process.platform === 'win32' ? `start "" "${url}"`
+      : `xdg-open "${url}"`;
+    require('child_process').exec(cmd);
   } catch { /* tarayıcı açılamazsa kullanıcı adresi elle girer */ }
 }
 

@@ -1,0 +1,61 @@
+name: macOS derlemesi
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Yüklenecek release etiketi'
+        required: true
+        default: 'v1.0.0'
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Bağımlılıkları kur
+        run: npm ci --no-audit --no-fund
+
+      - name: pkg ile derle (Apple Silicon + Intel)
+        run: |
+          npx pkg . --targets node22-macos-arm64 --output dist/inkGuide-macos-arm64
+          npx pkg . --targets node22-macos-x64   --output dist/inkGuide-macos-intel
+
+      - name: Ad-hoc imzala (Gatekeeper "killed" sorununa karşı)
+        run: |
+          codesign --force -s - dist/inkGuide-macos-arm64
+          codesign --force -s - dist/inkGuide-macos-intel
+          codesign -dv dist/inkGuide-macos-arm64
+
+      - name: Duman testi (sunucu ayağa kalkıyor mu)
+        run: |
+          chmod +x dist/inkGuide-macos-arm64
+          PORT=4599 NO_BROWSER=1 ./dist/inkGuide-macos-arm64 &
+          SERVER_PID=$!
+          sleep 4
+          curl -sf http://localhost:4599/api/library > /dev/null
+          curl -sf http://localhost:4599/ > /dev/null
+          kill $SERVER_PID
+          echo "Duman testi gecti"
+
+      - name: Arşivle (çalıştırma izni korunarak)
+        run: |
+          cd dist
+          tar -czf inkGuide-macos-arm64.tar.gz inkGuide-macos-arm64
+          tar -czf inkGuide-macos-intel.tar.gz inkGuide-macos-intel
+
+      - name: Release'e yükle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ github.event.inputs.tag || github.event.release.tag_name }}"
+          gh release upload "$TAG" dist/inkGuide-macos-arm64.tar.gz dist/inkGuide-macos-intel.tar.gz --clobber
