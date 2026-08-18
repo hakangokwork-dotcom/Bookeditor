@@ -79,7 +79,8 @@ yedek/kitap-son-hali.md+.docx (her kayıtta, Word'de açılabilir, notlar+karala
 - ✅ **FAZ 1 TAMAM: indirilebilir program** — `npm run build:exe` → `dist/inkGuide.exe` (64 MB, kurulumsuz tek dosya; @yao-pkg/pkg, node22-win-x64). Paketli modda veri exe'nin YANINDA `data/` klasörüne yazılır; port doluysa sıradakini dener; açılışta tarayıcıyı kendisi açar
 - ✅ **inkGuide.exe v1.0.0 GitHub Releases'ta** (odak modu + karanlık mod + Kitaba Dönüştür tam ekranı dahil son sürüm)
 - ✅ **Site yayında:** GitHub Pages Actions ile otomatik dağıtım (push'ta), özel alan adı inkguide.uk tanımlı — kullanıcının alan adı kayıt firmasında DNS A kayıtlarını (185.199.108/109/110/111.153) + www CNAME (hakangokwork-dotcom.github.io) girmesi bekleniyor
-- 🔄 **SONRAKİ İŞ: mobil** (ayrı oturumda başlatıldı — PWA yakalama + QR senkron)
+- ✅ **Global ürün turu (18.08.2026):** Site 10 dilde ve varsayılan İngilizce yayında (site-src/ şablon + tools/build-site.mjs üretici; kök=EN, /tr…/de klasörleri, dil seçici, hreflang, sitemap/robots, eski URL stub'ları). Uygulama varsayılan dili İngilizce; inkGuide.bat (İng.); evrensel yazarlık rehberi + 24 günün ipucu **10 dilde** (public/guide/<dil>.json, en fallback; TDK bölümü yalnız TR rehberde); yeni kitap iskeleti aktif dilde ("PART I / First Chapter" vb.); indirme sayfası doğrudan exe indiriyor (releases/latest/download). Release exe güncel.
+- 🔄 **SONRAKİ İŞ: mobil** (ayrı oturumda v1 hazırlandı — birleştirme + saha testi bekliyor) · Shopier destek linki bekleniyor
 
 ## 6. Üretim Aşaması Yol Haritası (güncel öncelik sırası — 17.08.2026)
 
