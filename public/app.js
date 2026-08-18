@@ -185,7 +185,8 @@ function esc(s) {
 }
 
 function resolveCitationsClient(text) {
-  return text.replace(/\[\[kaynak:([^\]]+)\]\]/g, (m, id) => {
+  // [[source:id]] evrensel; [[kaynak:id]] Türkçe eşanlamlı (geriye uyumlu)
+  return text.replace(/\[\[(?:kaynak|source):([^\]]+)\]\]/g, (m, id) => {
     const src = book.sources.find(s => s.id === id.trim());
     if (!src) return `(kaynak?: ${id})`;
     const names = src.author.split('&').map(x => x.trim().split(',')[0]).join(' & ');
@@ -716,12 +717,14 @@ function renderFront(ed) {
   $('#fmTesekkur').oninput = e => { f.tesekkur = e.target.value; scheduleSave(); };
 }
 
-/* Kaynağın kaç bölümde kullanıldığını sayar ([[kaynak:id]] işaretçileri) */
+/* Kaynağın kaç bölümde kullanıldığını sayar ([[kaynak:id]] veya [[source:id]]) */
 function sourceUsage(id) {
-  const marker = '[[kaynak:' + id + ']]';
+  const m1 = '[[kaynak:' + id + ']]';
+  const m2 = '[[source:' + id + ']]';
   let n = 0;
   for (const p of book.parts) for (const c of p.chapters) {
-    if ((c.draft || '').includes(marker)) n++;
+    const d = c.draft || '';
+    if (d.includes(m1) || d.includes(m2)) n++;
   }
   return n;
 }
@@ -1260,7 +1263,8 @@ function renderChapter(ed) {
   const citeSel = $('#citeSelect');
   if (citeSel) citeSel.onchange = () => {
     if (!citeSel.value || previewMode) { citeSel.value = ''; return; }
-    const marker = `[[kaynak:${citeSel.value}]]`;
+    // Arayüz dili Türkçeyse Türkçe işaretçi, değilse evrensel İngilizce işaretçi
+    const marker = `[[${I18N_LANG === 'tr' ? 'kaynak' : 'source'}:${citeSel.value}]]`;
     const ta = $('#draftText');
     const pos = ta.selectionStart;
     ch.draft = ta.value.slice(0, pos) + marker + ta.value.slice(ta.selectionEnd);
