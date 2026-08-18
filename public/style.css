@@ -908,3 +908,10 @@ body.focus-mode .editor { padding: 64px 48px 120px; }
   position: fixed; bottom: 14px; right: 18px;
   font-size: 11px; color: var(--muted); opacity: .45; user-select: none;
 }
+
+/* Türetilmiş bölüm durumları: boş soluk, yazılıyor kehribar, bitti yeşil tonlu */
+.status-bos { background: transparent; border: 1.5px solid #CFCABF; }
+[data-theme="dark"] .status-bos { border-color: #4A463D; }
+.tree-item.chapter.st-bos .chapter-label { color: var(--muted); opacity: .8; }
+.tree-item.chapter.st-bitti .chapter-label { color: var(--accent-deep); font-weight: 500; }
+[data-theme="dark"] .tree-item.chapter.st-bitti .chapter-label { color: var(--accent); }

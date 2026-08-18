@@ -620,9 +620,12 @@ function renderSidebar() {
       () => {}));
     for (const ch of part.chapters) {
       const wc = wordCount(ch.draft);
+      // Görsel durum türetilir: bitti (elle) > yazılıyor (kelime var) > boş
+      const derived = ch.status === 'bitti' ? 'bitti' : (wc > 0 ? 'yazılıyor' : 'bos');
       const item = mkItem(
-        'chapter' + (sel.type === 'chapter' && sel.id === ch.id ? ' selected' : ''),
-        `<span class="status-dot status-${ch.status}"></span>
+        'chapter st-' + (derived === 'yazılıyor' ? 'yaziliyor' : derived) +
+          (sel.type === 'chapter' && sel.id === ch.id ? ' selected' : ''),
+        `<span class="status-dot status-${derived}"></span>
          <span class="chapter-label">${esc(ch.title)}</span>
          ${wc ? `<span class="chapter-words">${wc.toLocaleString(I18N_LOCALE)}</span>` : ''}
          <span class="row-arrows">
@@ -1167,9 +1170,9 @@ function renderChapter(ed) {
     <div style="font-size:12px;color:var(--muted);letter-spacing:.02em;margin-bottom:6px">${esc(part.title)}</div>
     <div class="chapter-header">
       <input class="chapter-title-input" id="chTitle" value="${esc(ch.title)}">
+      <!-- Tek elle verilen karar: bitti mi, değil mi? "Yazılıyor" kelime sayısından türetilir -->
       <select class="status-select" id="chStatus">
-        <option value="taslak" ${ch.status === 'taslak' ? 'selected' : ''}>${esc(t('status.taslak'))}</option>
-        <option value="yazılıyor" ${ch.status === 'yazılıyor' ? 'selected' : ''}>${esc(t('status.yaziliyor'))}</option>
+        <option value="taslak" ${ch.status !== 'bitti' ? 'selected' : ''}>${esc(t('status.taslak'))}</option>
         <option value="bitti" ${ch.status === 'bitti' ? 'selected' : ''}>${esc(t('status.bitti'))}</option>
       </select>
     </div>
@@ -1349,7 +1352,7 @@ function renderTip() {
 function renderStats() {
   const chapters = book.parts.flatMap(p => p.chapters);
   const done = chapters.filter(c => c.status === 'bitti').length;
-  const writing = chapters.filter(c => c.status === 'yazılıyor').length;
+  const writing = chapters.filter(c => c.status !== 'bitti' && wordCount(c.draft) > 0).length;
   const notes = chapters.reduce((a, c) => a + c.notes.length, 0) + book.scratch.notes.length;
   $('#stats').innerHTML = `
     <div class="stat-row"><span>${esc(t('stats.words'))}</span><b>${totalWords().toLocaleString(I18N_LOCALE)}</b></div>
