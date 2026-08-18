@@ -895,12 +895,15 @@ body.focus-mode .editor { padding: 64px 48px 120px; }
   background: var(--bg); display: flex; justify-content: center;
 }
 #zenOverlay textarea {
-  width: min(680px, 92vw); height: 100%;
+  width: min(880px, 94vw); height: 100%;
   border: none; background: transparent; resize: none; outline: none;
-  padding: 12vh 0 35vh;
-  font-family: var(--font-serif); font-size: 19px; line-height: 1.9;
+  padding: 10vh 0 35vh;
+  font-family: var(--font-serif); font-size: 20px; line-height: 1.85;
   color: var(--text); text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+  /* Kaydırma çubuğu sade modda görünmez — kaydırma tekerlek/dokunmayla sürer */
+  scrollbar-width: none;
 }
+#zenOverlay textarea::-webkit-scrollbar { display: none; }
 .zen-hint {
   position: fixed; bottom: 14px; right: 18px;
   font-size: 11px; color: var(--muted); opacity: .45; user-select: none;
