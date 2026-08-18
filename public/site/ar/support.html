@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>اشترِ لنا قهوة — inkGuide</title>
+<meta name="description" content="inkGuide مجاني. إن أثبت نفعه، يمكنك دعمه طوعًا: قهوة، أو كتاب، أو أن تصبح راعيًا. لا ميزة تُقفل أبدًا.">
+<link rel="canonical" href="https://inkguide.uk/ar/support.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/support.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/support.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/support.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/support.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/support.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/support.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/support.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/support.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/support.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/support.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/support.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:url" content="https://inkguide.uk/ar/support.html">
+<meta property="og:title" content="اشترِ لنا قهوة — inkGuide">
+<meta property="og:description" content="inkGuide مجاني. إن أثبت نفعه، يمكنك دعمه طوعًا: قهوة، أو كتاب، أو أن تصبح راعيًا. لا ميزة تُقفل أبدًا.">
+<meta name="twitter:card" content="summary">
+
+<style>
+  /* --- Destek sayfasına özel --- */
+  .page-hero { padding-top: 76px; padding-bottom: 48px; max-width: 720px; }
+  .page-hero p { margin: 18px 0 0; }
+
+  .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(256px, 1fr)); gap: 20px; margin-top: 36px; align-items: stretch; }
+  .tier {
+    display: flex; flex-direction: column; gap: 10px;
+    border: 1px solid var(--honey-line); border-radius: var(--radius-lg);
+    background: var(--honey-bg); padding: 30px 32px;
+  }
+  .tier.highlight { border-color: var(--honey-ink); box-shadow: var(--shadow-card); }
+  .tier .emo { font-size: 30px; line-height: 1; }
+  .tier h2 { font-size: 22px; margin: 6px 0 0; }
+  .tier .amount { font-family: var(--serif); font-size: 30px; font-weight: 600; color: var(--honey-ink); }
+  .tier p { font-size: 14px; line-height: 1.7; color: var(--ink-muted); margin: 0; }
+  .tier .btn { margin-top: auto; }
+
+  .free-tier {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--white); padding: 30px 32px; margin-top: 20px;
+    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  }
+  .free-tier .txt { flex: 1; min-width: 260px; }
+  .free-tier h2 { font-size: 22px; margin: 0; }
+  .free-tier p { font-size: 14.5px; line-height: 1.7; color: var(--ink-muted); margin: 8px 0 0; }
+  .free-amount { display: flex; align-items: center; gap: 10px; }
+  .free-amount input {
+    width: 120px; padding: 12px 14px; font-family: var(--sans); font-size: 16px;
+    border: 1px solid var(--line); border-radius: var(--radius-btn);
+    background: var(--paper); color: var(--ink);
+  }
+  .free-amount .tl { font-weight: 600; font-size: 18px; color: var(--ink-muted); }
+
+  .thanks-note {
+    max-width: 680px; margin: 0 auto; text-align: center;
+    font-family: var(--serif); font-size: clamp(19px, 3vw, 24px); line-height: 1.6; letter-spacing: -.01em;
+  }
+  .thanks-note .who { display: block; font-family: var(--sans); font-size: 13.5px; color: var(--ink-faint); margin-top: 18px; }
+
+  .what-note { font-size: 13px; color: var(--ink-faint); margin-top: 26px; max-width: 640px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="الصفحة الرئيسية لـ inkGuide">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="التنقل الرئيسي">
+      <a href="index.html#features">المزايا</a>
+      <a href="privacy.html">الخصوصية</a>
+      <a href="support.html" aria-current="page">الدعم</a>
+      <a href="download.html">التنزيل</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="اللغة" onchange="if(this.value)location.href=this.value">
+        <option value="/support.html">English</option>
+        <option value="/tr/support.html">Türkçe</option>
+        <option value="/es/support.html">Español</option>
+        <option value="/zh/support.html">中文</option>
+        <option value="/ar/support.html" selected>العربية</option>
+        <option value="/hi/support.html">हिन्दी</option>
+        <option value="/pt/support.html">Português</option>
+        <option value="/fr/support.html">Français</option>
+        <option value="/ru/support.html">Русский</option>
+        <option value="/de/support.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">نزِّله — مجانًا</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <section class="wrap page-hero">
+    <span class="badge">اختياري تمامًا</span>
+    <h1 class="h-hero" style="font-size:clamp(34px, 5vw, 52px)">اشترِ لنا قهوة</h1>
+    <p class="lead">قبل كل شيء: <strong>شكرًا لك.</strong> إن كنت قد نزّلت inkGuide وتبذل جهدك في كتابك، فقد تحقق فعلًا سببُ وجود هذا المشروع. التطبيق مجاني وسيبقى مجانيًا؛ وما يأتي هنا ليس إلا طريقةً لقول «أحسنتم». إنه لا يفتح ميزةً ولا يغلق أخرى.</p>
+  </section>
+
+  <!-- ============ DESTEK SEÇENEKLERİ ============ -->
+  <section class="section-tinted">
+    <div class="wrap section">
+      <h2 class="h-section">بما يطيب لك</h2>
+      <div class="tier-grid">
+        <!-- TODO: Buy Me a Coffee / GitHub Sponsors linki -->
+        <div class="tier">
+          <span class="emo" aria-hidden="true">☕</span>
+          <h2>قهوة</h2>
+          <span class="amount">$5</span>
+          <p>فنجان واحد؛ إشارةُ «واصِل» قصيرةٌ لكنها غالية.</p>
+          <a class="btn btn-coffee" href="#" aria-disabled="true">اشترِ قهوة</a>
+        </div>
+        <!-- TODO: Buy Me a Coffee / GitHub Sponsors linki -->
+        <div class="tier highlight">
+          <span class="emo" aria-hidden="true">☕☕☕</span>
+          <h2>كتاب</h2>
+          <span class="amount">$15</span>
+          <p>ثمن كتابٍ واحد — الدعم الأنسب لأداةٍ تكتب بها كتابك.</p>
+          <a class="btn btn-coffee" href="#" aria-disabled="true">اشترِ كتابًا</a>
+        </div>
+        <!-- TODO: Buy Me a Coffee / GitHub Sponsors linki -->
+        <div class="tier">
+          <span class="emo" aria-hidden="true">💛</span>
+          <h2>راعٍ</h2>
+          <span class="amount">$30</span>
+          <p>خذ نصيبًا صادقًا في غدِ المشروع؛ واسمك (إن شئت) في صفحة الشكر.</p>
+          <a class="btn btn-coffee" href="#" aria-disabled="true">كن راعيًا</a>
+        </div>
+      </div>
+
+      <!-- Serbest tutar -->
+      <div class="free-tier">
+        <div class="txt">
+          <h2>أو بما يحلو لك</h2>
+          <p>إن لم يناسبك أي من الأرقام، فاكتب رقمك أنت. حتى دولاران لهما قيمتهما؛ فالمهم هو اللفتة لا المبلغ.</p>
+        </div>
+        <div class="free-amount">
+          <span class="tl" aria-hidden="true">$</span>
+          <label class="sr-only" for="free-amount-input">مبلغ دعم مخصّص، بالدولار</label>
+          <input id="free-amount-input" type="number" min="1" placeholder="10" inputmode="numeric">
+          <!-- TODO: Buy Me a Coffee / GitHub Sponsors linki -->
+          <a class="btn btn-coffee" href="#" aria-disabled="true">إرسال</a>
+        </div>
+      </div>
+
+      <p class="what-note">روابط الدفع ستكون جاهزة قريبًا جدًا. دعمك لا يذهب إلى خوادم (فليس لدينا أي خادم!) — بل إلى وقت التطوير والميزات الجديدة: تعرّف على الكلام يعمل على الجهاز نفسه، ورفيق تدوين للهاتف، والمزيد من اللغات.</p>
+    </div>
+  </section>
+
+  <!-- ============ TEŞEKKÜR ============ -->
+  <section>
+    <div class="wrap section">
+      <blockquote class="thanks-note">
+        «inkGuide عملُ حبٍّ يقوم به شخص واحد. كل قهوةٍ تدفع ثمن سطر برمجةٍ كُتب بعد منتصف الليل؛ وكل كتابٍ ثمن ميزةٍ جديدة. شكرًا على دعمك — والأهم من ذلك، شكرًا لأنك تكتب كتابك.»
+        <span class="who">— الشخص وراء inkGuide</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ KAPANIŞ ============ -->
+  <section class="section-tinted">
+    <div class="wrap section center" style="max-width:640px; margin:0 auto">
+      <h2 class="h-section">اكتب كتابك أولًا</h2>
+      <p class="lead" style="margin:14px 0 0; font-size:16px">أجمل دعمٍ هو أن تثبت الأداة نفعها. نزِّلها وجرّبها؛ فالقهوة تستطيع الانتظار.</p>
+      <div style="margin-top:28px">
+        <a class="btn btn-primary" href="download.html">نزِّله — مجانًا</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>رفيق كتابك</span>
+    <nav aria-label="تنقل التذييل">
+      <a href="privacy.html">أين تعيش بياناتك؟</a>
+      <a href="support.html">اشترِ لنا قهوة</a>
+      <a href="download.html">التنزيل</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="اللغة"><a href="/support.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/support.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/support.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/support.html" lang="zh" hreflang="zh">中文</a>
+    <span class="cur" lang="ar">العربية</span>
+    <a href="/hi/support.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/support.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/support.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/support.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/support.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+
+</body>
+</html>

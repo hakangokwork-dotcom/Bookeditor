@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>Wo wohnen deine Daten? — inkGuide</title>
+<meta name="description" content="Wo wohnen deine Daten? inkGuide ist local-first: Dein Buch bleibt auf deiner eigenen Festplatte, in offenen Formaten (JSON, Markdown, Word). Deine Daten werden nie als Geisel genommen.">
+<link rel="canonical" href="https://inkguide.uk/de/privacy.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/privacy.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/privacy.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/privacy.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/privacy.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/privacy.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/privacy.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/privacy.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/privacy.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/de/privacy.html">
+<meta property="og:title" content="Datenschutz-Architektur — inkGuide">
+<meta property="og:description" content="Wo wohnen deine Daten? inkGuide ist local-first: Dein Buch bleibt auf deiner eigenen Festplatte, in offenen Formaten (JSON, Markdown, Word). Deine Daten werden nie als Geisel genommen.">
+<meta name="twitter:card" content="summary">
+
+<style>
+  /* --- Gizlilik sayfasına özel --- */
+  .page-hero { padding-top: 76px; padding-bottom: 56px; max-width: 720px; }
+  .page-hero p { margin: 18px 0 0; }
+
+  .principle {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 26px 28px;
+  }
+  .principle h3 { font-family: var(--sans); font-size: 16.5px; margin: 0; letter-spacing: 0; display: flex; align-items: center; gap: 10px; }
+  .principle p { font-size: 14.5px; line-height: 1.7; color: var(--ink-muted); margin: 10px 0 0; }
+  .principle .icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* Disk şeması */
+  .disk-diagram {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--white); padding: 32px; overflow-x: auto;
+  }
+  .disk-flow {
+    display: flex; align-items: stretch; gap: 0; justify-content: center;
+    flex-wrap: wrap; row-gap: 20px;
+  }
+  .disk-node {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px;
+    background: var(--paper); min-width: 168px; text-align: center;
+  }
+  .disk-node.accent { border-color: var(--accent-wash-line); background: var(--accent-wash); }
+  .disk-node .t { font-weight: 600; font-size: 14.5px; }
+  .disk-node .d { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; }
+  .disk-node code {
+    font-size: 12px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+  .disk-arrow {
+    align-self: center; padding: 0 14px; color: var(--accent);
+    font-size: 20px; line-height: 1; flex-shrink: 0;
+  }
+  .disk-outputs { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .disk-file {
+    display: flex; align-items: center; gap: 9px;
+    border: 1px solid var(--line); border-radius: 9px; background: var(--paper);
+    padding: 9px 13px; font-size: 13px;
+  }
+  .disk-file .icon { width: 15px; height: 15px; flex-shrink: 0; }
+  .disk-file code { background: none; border: none; padding: 0; font-size: 12.5px; }
+  .disk-caption { text-align: center; font-size: 13px; color: var(--ink-faint); margin-top: 22px; }
+
+  /* Dürüstlük kutusu (dikte) */
+  .honest-box {
+    border: 1px solid var(--honey-line); border-radius: var(--radius);
+    background: var(--honey-bg); padding: 26px 28px;
+  }
+  .honest-box .eyebrow { color: var(--honey-ink); }
+  .honest-box h2 { margin: 10px 0 0; font-size: 22px; }
+  .honest-box p { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); margin: 12px 0 0; }
+
+  .qa { max-width: 720px; }
+  .qa h3 { font-size: 19px; margin: 34px 0 0; }
+  .qa p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Zum Inhalt springen</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide Startseite">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Hauptnavigation">
+      <a href="index.html#features">Funktionen</a>
+      <a href="privacy.html" aria-current="page">Datenschutz</a>
+      <a href="support.html">Unterstützen</a>
+      <a href="download.html">Download</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="Sprache" onchange="if(this.value)location.href=this.value">
+        <option value="/privacy.html">English</option>
+        <option value="/tr/privacy.html">Türkçe</option>
+        <option value="/es/privacy.html">Español</option>
+        <option value="/zh/privacy.html">中文</option>
+        <option value="/ar/privacy.html">العربية</option>
+        <option value="/hi/privacy.html">हिन्दी</option>
+        <option value="/pt/privacy.html">Português</option>
+        <option value="/fr/privacy.html">Français</option>
+        <option value="/ru/privacy.html">Русский</option>
+        <option value="/de/privacy.html" selected>Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">Download — kostenlos</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <section class="wrap page-hero">
+    <span class="badge">Local-First-Architektur</span>
+    <h1 class="h-hero" style="font-size:clamp(34px, 5vw, 52px)">Wo wohnen deine Daten?</h1>
+    <p class="lead">Die kurze Antwort: <strong>auf deinem Computer.</strong> inkGuide ist kein Webdienst, sondern ein Programm, das auf deinem eigenen Rechner läuft. Dein Buch wird nie auf einen Server hochgeladen — es gibt schlicht keinen Server. Kein Konto zu eröffnen; wir kennen nicht einmal deine E-Mail-Adresse.</p>
+  </section>
+
+  <!-- ============ DİSK ŞEMASI ============ -->
+  <section class="section-tinted">
+    <div class="wrap section">
+      <h2 class="h-section">Das Leben deines Buchs auf der Festplatte</h2>
+      <p class="lead" style="margin:12px 0 34px; font-size:15.5px; max-width:680px">Alles liegt in schlichten Dateien, die du jederzeit öffnen und ansehen kannst. Keine private Datenbank, kein verschlüsseltes Schloss, kein geschlossenes Format.</p>
+
+      <div class="disk-diagram">
+        <div class="disk-flow">
+          <div class="disk-node accent">
+            <svg viewBox="0 0 24 24" class="stroke-icon" style="width:26px;height:26px" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span class="t">Dein Computer</span>
+            <span class="d">Hier läuft inkGuide,<br>ohne Internet</span>
+          </div>
+          <span class="disk-arrow" aria-hidden="true">→</span>
+          <div class="disk-node">
+            <svg viewBox="0 0 24 24" class="stroke-icon" style="width:26px;height:26px" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+            <span class="t">Datenordner</span>
+            <span class="d"><code>data/book.json</code><br>eine lesbare Datei</span>
+          </div>
+          <span class="disk-arrow" aria-hidden="true">→</span>
+          <div class="disk-outputs">
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+              <span><code>book.docx</code> — öffnet sich in Word</span>
+            </div>
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+              <span><code>book.md</code> — Klartext-Sicherung</span>
+            </div>
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+              <span><code>versions/</code> — Schnappschüsse</span>
+            </div>
+          </div>
+        </div>
+        <p class="disk-caption">Bei jedem Speichern eine automatische Sicherung; bei jedem Export eine Datei mit Zeitstempel. Alles auf deiner Festplatte, alles deins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ İLKELER ============ -->
+  <section>
+    <div class="wrap section">
+      <h2 class="h-section">Deine Daten werden nie als Geisel genommen</h2>
+      <p class="lead" style="margin:12px 0 0; font-size:15.5px; max-width:680px">Manche Apps sperren deinen Text in ihr eigenes Format, ihre eigene Cloud; willst du gehen, ringst du mit Export-Bildschirmen. inkGuide folgt dem umgekehrten Prinzip:</p>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(276px, 1fr)); margin-top:34px">
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg> Offene Formate</h3>
+          <p>JSON, Markdown und Word. Alle drei öffnen sich auf jedem Computer, mit oder ohne inkGuide. Lösch die App morgen, und dein Buch bleibt lesbar.</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Kein Konto, kein Passwort</h3>
+          <p>Es gibt keinen Anmeldebildschirm, weil es keinen Server gibt, bei dem man sich anmelden könnte. Wir kennen dich nicht, wir verfolgen dich nicht; auch die Website verwendet keine Analyse-Cookies.</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg> Sicherungen über Sicherungen</h3>
+          <p>Bei jedem Speichern eine .bak-Datei und eine Word-Sicherheitskopie; optionale Schnappschüsse bringen dich zu jedem beliebigen Moment zurück. Nichts verschwindet still und leise.</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 3v13M12 16l-4-4M12 16l4-4"/><path d="M4 21h16"/></svg> Nimm jederzeit alles mit</h3>
+          <p>Der Export ist kein „Premium-Feature“, sondern das Herz der App. Das vollständige Buch — mit Umschlag, Inhaltsverzeichnis und Literaturverzeichnis — ist immer nur einen Klick entfernt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DÜRÜST NOT: DİKTE ============ -->
+  <section class="section-tinted">
+    <div class="wrap section" style="max-width:820px">
+      <div class="honest-box">
+        <div class="eyebrow">Eine ehrliche Anmerkung</div>
+        <h2>Die eine Ausnahme: Spracherfassung (Diktat)</h2>
+        <p>Die Sprachnotiz-Funktion nutzt die eingebaute Spracherkennung deines Browsers (Chrome oder Edge). Während sie läuft, <strong>wird deine Stimme an den Server des Browser-Herstellers geschickt, um in Text verwandelt zu werden</strong> — das ist die Infrastruktur des Browsers, nicht unsere; inkGuide greift auf diese Aufnahme nie zu und speichert sie nicht.</p>
+        <p>Das ist die einzige Ausnahme von unserem Local-First-Versprechen, und sie ist völlig freiwillig: Wenn du das Mikrofon nie anrührst, verlassen keine Daten deinen Computer. Langfristig prüfen wir ein Sprachmodell, das vollständig auf deinem Gerät läuft.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KISA SORULAR ============ -->
+  <section>
+    <div class="wrap section qa">
+      <h2 class="h-section">Drei häufige Fragen</h2>
+      <h3>Wird mein Entwurf an euch geschickt?</h3>
+      <p>Nein. Nichts von dem, was du schreibst — kein Text, keine Notiz, keine Quelle — wird je über das Internet verschickt. Die App speichert über einen kleinen lokalen Server auf deinem Computer, und dieser Server ist nur von deinem Computer aus erreichbar.</p>
+      <h3>Und wenn ich eine Cloud-Sicherung möchte?</h3>
+      <p>Leg deinen Datenordner einfach in einen Sync-Ordner wie Google Drive, OneDrive oder Dropbox — als schlichte Dateien synchronisiert er sich reibungslos. Die Wahl liegt bei dir; inkGuide verbindet sich nie in deinem Namen mit irgendeiner Cloud.</p>
+      <h3>Wenn es kostenlos ist — wo ist der Haken?</h3>
+      <p>Es gibt keinen. inkGuide ist das Herzensprojekt einer einzelnen Person; wenn es sich bewährt hat, kannst du uns <a href="support.html">einen Kaffee spendieren</a>, das ist alles. Deine Daten sind in keinem Modell das „Produkt“.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Der Begleiter für dein Buch</span>
+    <nav aria-label="Fußzeilen-Navigation">
+      <a href="privacy.html">Wo wohnen deine Daten?</a>
+      <a href="support.html">Spendier uns einen Kaffee</a>
+      <a href="download.html">Download</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="Sprache"><a href="/privacy.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/privacy.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/privacy.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/privacy.html" lang="zh" hreflang="zh">中文</a>
+    <a href="/ar/privacy.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/privacy.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/privacy.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/privacy.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/privacy.html" lang="ru" hreflang="ru">Русский</a>
+    <span class="cur" lang="de">Deutsch</span></div>
+</footer>
+
+
+</body>
+</html>

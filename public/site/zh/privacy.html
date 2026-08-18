@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>你的数据存放在哪里？ — inkGuide</title>
+<meta name="description" content="你的数据存放在哪里？inkGuide 是本地优先（local-first）的：你的书稿以开放格式（JSON、Markdown、Word）保存在你自己的硬盘上。你的数据永远不会被挟持。">
+<link rel="canonical" href="https://inkguide.uk/zh/privacy.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/privacy.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/privacy.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/privacy.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/privacy.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/privacy.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/privacy.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/privacy.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/privacy.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/privacy.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/privacy.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:url" content="https://inkguide.uk/zh/privacy.html">
+<meta property="og:title" content="隐私架构 — inkGuide">
+<meta property="og:description" content="你的数据存放在哪里？inkGuide 是本地优先（local-first）的：你的书稿以开放格式（JSON、Markdown、Word）保存在你自己的硬盘上。你的数据永远不会被挟持。">
+<meta name="twitter:card" content="summary">
+
+<style>
+  /* --- Gizlilik sayfasına özel --- */
+  .page-hero { padding-top: 76px; padding-bottom: 56px; max-width: 720px; }
+  .page-hero p { margin: 18px 0 0; }
+
+  .principle {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 26px 28px;
+  }
+  .principle h3 { font-family: var(--sans); font-size: 16.5px; margin: 0; letter-spacing: 0; display: flex; align-items: center; gap: 10px; }
+  .principle p { font-size: 14.5px; line-height: 1.7; color: var(--ink-muted); margin: 10px 0 0; }
+  .principle .icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+  /* Disk şeması */
+  .disk-diagram {
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    background: var(--white); padding: 32px; overflow-x: auto;
+  }
+  .disk-flow {
+    display: flex; align-items: stretch; gap: 0; justify-content: center;
+    flex-wrap: wrap; row-gap: 20px;
+  }
+  .disk-node {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px;
+    background: var(--paper); min-width: 168px; text-align: center;
+  }
+  .disk-node.accent { border-color: var(--accent-wash-line); background: var(--accent-wash); }
+  .disk-node .t { font-weight: 600; font-size: 14.5px; }
+  .disk-node .d { font-size: 12.5px; color: var(--ink-muted); line-height: 1.5; }
+  .disk-node code {
+    font-size: 12px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+  .disk-arrow {
+    align-self: center; padding: 0 14px; color: var(--accent);
+    font-size: 20px; line-height: 1; flex-shrink: 0;
+  }
+  .disk-outputs { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .disk-file {
+    display: flex; align-items: center; gap: 9px;
+    border: 1px solid var(--line); border-radius: 9px; background: var(--paper);
+    padding: 9px 13px; font-size: 13px;
+  }
+  .disk-file .icon { width: 15px; height: 15px; flex-shrink: 0; }
+  .disk-file code { background: none; border: none; padding: 0; font-size: 12.5px; }
+  .disk-caption { text-align: center; font-size: 13px; color: var(--ink-faint); margin-top: 22px; }
+
+  /* Dürüstlük kutusu (dikte) */
+  .honest-box {
+    border: 1px solid var(--honey-line); border-radius: var(--radius);
+    background: var(--honey-bg); padding: 26px 28px;
+  }
+  .honest-box .eyebrow { color: var(--honey-ink); }
+  .honest-box h2 { margin: 10px 0 0; font-size: 22px; }
+  .honest-box p { font-size: 14.5px; line-height: 1.75; color: var(--ink-soft); margin: 12px 0 0; }
+
+  .qa { max-width: 720px; }
+  .qa h3 { font-size: 19px; margin: 34px 0 0; }
+  .qa p { font-size: 15px; line-height: 1.75; color: var(--ink-soft); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">跳转到正文</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide 首页">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="index.html#features">功能</a>
+      <a href="privacy.html" aria-current="page">隐私</a>
+      <a href="support.html">支持</a>
+      <a href="download.html">下载</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="语言" onchange="if(this.value)location.href=this.value">
+        <option value="/privacy.html">English</option>
+        <option value="/tr/privacy.html">Türkçe</option>
+        <option value="/es/privacy.html">Español</option>
+        <option value="/zh/privacy.html" selected>中文</option>
+        <option value="/ar/privacy.html">العربية</option>
+        <option value="/hi/privacy.html">हिन्दी</option>
+        <option value="/pt/privacy.html">Português</option>
+        <option value="/fr/privacy.html">Français</option>
+        <option value="/ru/privacy.html">Русский</option>
+        <option value="/de/privacy.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">免费下载</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <section class="wrap page-hero">
+    <span class="badge">本地优先架构</span>
+    <h1 class="h-hero" style="font-size:clamp(34px, 5vw, 52px)">你的数据存放在哪里？</h1>
+    <p class="lead">简短的回答：<strong>在你的电脑上。</strong>inkGuide 不是网络服务，而是一款在你自己机器上运行的程序。你的书稿永远不会被上传到服务器，因为根本没有服务器。不用开设账号；我们甚至不知道你的电子邮箱。</p>
+  </section>
+
+  <!-- ============ DİSK ŞEMASI ============ -->
+  <section class="section-tinted">
+    <div class="wrap section">
+      <h2 class="h-section">你的书在硬盘上的样子</h2>
+      <p class="lead" style="margin:12px 0 34px; font-size:15.5px; max-width:680px">一切都存放在你随时可以打开查看的普通文件里。没有私有数据库，没有加密的锁，没有封闭格式。</p>
+
+      <div class="disk-diagram">
+        <div class="disk-flow">
+          <div class="disk-node accent">
+            <svg viewBox="0 0 24 24" class="stroke-icon" style="width:26px;height:26px" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <span class="t">你的电脑</span>
+            <span class="d">inkGuide 在这里运行，<br>无需联网</span>
+          </div>
+          <span class="disk-arrow" aria-hidden="true">→</span>
+          <div class="disk-node">
+            <svg viewBox="0 0 24 24" class="stroke-icon" style="width:26px;height:26px" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>
+            <span class="t">数据文件夹</span>
+            <span class="d"><code>data/book.json</code><br>一个人人可读的文件</span>
+          </div>
+          <span class="disk-arrow" aria-hidden="true">→</span>
+          <div class="disk-outputs">
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+              <span><code>book.docx</code> — 可用 Word 打开</span>
+            </div>
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+              <span><code>book.md</code> — 纯文本备份</span>
+            </div>
+            <div class="disk-file">
+              <svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+              <span><code>versions/</code> — 版本快照</span>
+            </div>
+          </div>
+        </div>
+        <p class="disk-caption">每次保存自动备份一次；每次导出生成一个带时间戳的文件。全部都在你的硬盘上，全部属于你。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ İLKELER ============ -->
+  <section>
+    <div class="wrap section">
+      <h2 class="h-section">你的数据永远不会被挟持</h2>
+      <p class="lead" style="margin:12px 0 0; font-size:15.5px; max-width:680px">有些应用把你的文字锁进它们自己的格式、自己的云端；等你想离开时，还得跟导出页面缠斗一番。inkGuide 的原则恰恰相反：</p>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(276px, 1fr)); margin-top:34px">
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg> 开放格式</h3>
+          <p>JSON、Markdown 和 Word。这三种格式在任何电脑上都能打开，装不装 inkGuide 都一样。哪怕明天就删掉这个应用，你的书依然可读。</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 没有账号，没有密码</h3>
+          <p>没有注册页面，因为根本没有可供注册的服务器。我们不认识你，也不追踪你；这个网站同样不使用任何分析 Cookie。</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg> 备份之上还有备份</h3>
+          <p>每次保存都会生成 .bak 文件和一份 Word 安全副本；可选的快照功能让你能回到任何一个想回去的时刻。没有什么会悄悄消失。</p>
+        </div>
+        <div class="principle">
+          <h3><svg viewBox="0 0 24 24" class="stroke-icon icon" aria-hidden="true"><path d="M12 3v13M12 16l-4-4M12 16l4-4"/><path d="M4 21h16"/></svg> 随时带走一切</h3>
+          <p>导出不是什么“高级功能”，而是这款应用的核心。完整的书稿——封面、目录、参考文献——永远只需一次点击。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DÜRÜST NOT: DİKTE ============ -->
+  <section class="section-tinted">
+    <div class="wrap section" style="max-width:820px">
+      <div class="honest-box">
+        <div class="eyebrow">一句坦诚的话</div>
+        <h2>唯一的例外：语音速记（听写）</h2>
+        <p>语音笔记功能使用的是浏览器（Chrome 或 Edge）内置的语音识别服务。在它运行期间，<strong>你的语音会被发送到浏览器厂商的服务器转换为文字</strong>——那是浏览器的基础设施，不是我们的；inkGuide 从不访问、也从不存储这些音频。</p>
+        <p>这是我们“本地优先”承诺的唯一例外，而且完全是可选的：只要你不碰麦克风，就没有任何数据离开你的电脑。长远来看，我们正在评估一个完全在你设备上运行的语音模型。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KISA SORULAR ============ -->
+  <section>
+    <div class="wrap section qa">
+      <h2 class="h-section">三个常见问题</h2>
+      <h3>我的草稿会被发送给你们吗？</h3>
+      <p>不会。你写下的任何东西——文字、笔记或文献——都不会经由互联网发送。应用只把内容保存到运行在你电脑上的一个小型本地服务，而这个服务只有你的电脑自己能访问。</p>
+      <h3>如果我想要云端备份呢？</h3>
+      <p>只需把数据文件夹放进 Google Drive、OneDrive 或 Dropbox 之类的同步文件夹——因为都是普通文件，同步毫无障碍。选择权在你手里；inkGuide 从不替你连接任何云端。</p>
+      <h3>既然免费，那“套路”在哪里？</h3>
+      <p>没有套路。inkGuide 是一个人用心浇灌的作品；如果它帮到了你，可以<a href="support.html">请我们喝杯咖啡</a>，仅此而已。在任何商业模式里，你的数据都不是那个“产品”。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>你的写书伙伴</span>
+    <nav aria-label="页脚导航">
+      <a href="privacy.html">你的数据存放在哪里？</a>
+      <a href="support.html">请我们喝杯咖啡</a>
+      <a href="download.html">下载</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="语言"><a href="/privacy.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/privacy.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/privacy.html" lang="es" hreflang="es">Español</a>
+    <span class="cur" lang="zh">中文</span>
+    <a href="/ar/privacy.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/privacy.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/privacy.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/privacy.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/privacy.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/privacy.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+
+</body>
+</html>
