@@ -14,7 +14,6 @@
   "footer_privacy": "你的数据存放在哪里？",
   "footer_support": "请我们喝杯咖啡",
   "footer_download": "下载",
-
   "home_title": "inkGuide — 你的写书伙伴",
   "home_meta_desc": "一款本地优先（local-first）的写书工作室。你的书稿永远不会离开你的电脑：笔记、综合整理、参考文献、语音速记，一键导出 Word。完全免费。",
   "home_og_title": "inkGuide — 你的写书伙伴",
@@ -72,7 +71,6 @@
   "home_coffee_go": "去支持 →",
   "home_final_h2": "今天就写下第一段",
   "home_final_lead": "下载、打开、动笔。不用创建账号，不用注册任何东西；你的书就在你自己的电脑上慢慢生长。",
-
   "privacy_title": "你的数据存放在哪里？ — inkGuide",
   "privacy_meta_desc": "你的数据存放在哪里？inkGuide 是本地优先（local-first）的：你的书稿以开放格式（JSON、Markdown、Word）保存在你自己的硬盘上。你的数据永远不会被挟持。",
   "privacy_og_title": "隐私架构 — inkGuide",
@@ -110,7 +108,6 @@
   "privacy_qa2_p": "只需把数据文件夹放进 Google Drive、OneDrive 或 Dropbox 之类的同步文件夹——因为都是普通文件，同步毫无障碍。选择权在你手里；inkGuide 从不替你连接任何云端。",
   "privacy_qa3_h": "既然免费，那“套路”在哪里？",
   "privacy_qa3_p": "没有套路。inkGuide 是一个人用心浇灌的作品；如果它帮到了你，可以<a href=\"support.html\">请我们喝杯咖啡</a>，仅此而已。在任何商业模式里，你的数据都不是那个“产品”。",
-
   "support_title": "请我们喝杯咖啡 — inkGuide",
   "support_meta_desc": "inkGuide 完全免费。如果它帮到了你，欢迎自愿支持：一杯咖啡、一本书，或成为赞助人。任何功能都不会被锁定。",
   "support_og_title": "请我们喝杯咖啡 — inkGuide",
@@ -141,7 +138,6 @@
   "support_quote_who": "— inkGuide 背后的那个人",
   "support_close_h2": "先把你的书写出来",
   "support_close_lead": "最好的支持，是这件工具真的派上了用场。下载它，试试看；咖啡可以再等等。",
-
   "dl_title": "下载 — inkGuide",
   "dl_meta_desc": "免费下载 inkGuide 桌面应用。Windows 版现已推出，macOS 版即将到来。无需账号，无需联网。",
   "dl_og_title": "下载 — inkGuide",
@@ -153,9 +149,9 @@
   "dl_win_name": "下载 Windows 版",
   "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 MB · 单个便携文件 · Windows 10 及以上",
   "dl_win_go": "下载将立即开始 ↓",
-  "dl_mac_name": "macOS — 即将推出",
-  "dl_mac_meta": "Apple Silicon · Intel",
-  "dl_mac_go": "准备就绪后会发布在 <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor/releases\" rel=\"noopener\">Releases</a> 页面",
+  "dl_mac_name": "下载 macOS 版",
+  "dl_mac_meta": "macOS 12+ · 约 24 MB · 解压后双击",
+  "dl_mac_go": "首次打开：右键 → 打开（未签名应用提示）",
   "dl_req_h3": "系统要求",
   "dl_req1": "Windows 10 或更高版本——<strong>无需安装程序，无需额外软件</strong>",
   "dl_req2": "一款现代浏览器（Chrome 或 Edge；语音速记需要）",

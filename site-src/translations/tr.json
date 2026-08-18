@@ -14,7 +14,6 @@
   "footer_privacy": "Verileriniz nerede durur?",
   "footer_support": "Bir kahve ısmarla",
   "footer_download": "İndir",
-
   "home_title": "inkGuide — Kitabınızın yol arkadaşı",
   "home_meta_desc": "Local-first kitap yazma stüdyosu. Kitabınız bilgisayarınızdan çıkmaz: notlar, sentezler, kaynaklar, sesli not ve tek tıkla Word çıktısı. Ücretsiz.",
   "home_og_title": "inkGuide — Kitabınızın Yol Arkadaşı",
@@ -72,7 +71,6 @@
   "home_coffee_go": "Destek ol →",
   "home_final_h2": "Bugün ilk paragrafı yazın",
   "home_final_lead": "İndirin, açın, yazmaya başlayın. Hesap açılmaz, kayıt istenmez; kitabınız bilgisayarınızda büyür.",
-
   "privacy_title": "Verileriniz nerede durur? — inkGuide",
   "privacy_meta_desc": "Verileriniz nerede durur? inkGuide local-first çalışır: kitabınız kendi diskinizde, açık formatta (JSON, Markdown, Word). Veri rehin tutulmaz.",
   "privacy_og_title": "Gizlilik Mimarisi — inkGuide",
@@ -110,7 +108,6 @@
   "privacy_qa2_p": "Veri klasörünüzü Google Drive, OneDrive ya da Dropbox gibi bir eşitleme klasörünün içine koymanız yeterli — düz dosyalar olduğu için sorunsuz eşitlenir. Karar sizindir; inkGuide sizin adınıza hiçbir buluta bağlanmaz.",
   "privacy_qa3_h": "Ücretsizse, karşılığı ne?",
   "privacy_qa3_p": "Karşılığı yok. inkGuide tek kişilik bir uğraş; işinize yaradıysa <a href=\"support.html\">bir kahve ısmarlayabilirsiniz</a>, o kadar. Verileriniz hiçbir modelde \"ürün\" değildir.",
-
   "support_title": "Bir kahve ısmarla — inkGuide",
   "support_meta_desc": "inkGuide ücretsizdir. İşinize yaradıysa gönüllü destek olabilirsiniz: bir kahve, bir kitap ya da destekçi olun. Hiçbir özellik kilitli değildir.",
   "support_og_title": "Bir Kahve Ismarla — inkGuide",
@@ -141,7 +138,6 @@
   "support_quote_who": "— inkGuide'ı geliştiren kişi",
   "support_close_h2": "Önce kitabınızı yazın",
   "support_close_lead": "En güzel destek, aracın işe yaraması. İndirin, deneyin; kahve sonra da ısmarlanır.",
-
   "dl_title": "İndir — inkGuide",
   "dl_meta_desc": "inkGuide masaüstü uygulamasını ücretsiz indirin. Windows ve macOS. Üyelik yok, internet gerekmez.",
   "dl_og_title": "İndir — inkGuide",
@@ -153,9 +149,9 @@
   "dl_win_name": "Windows için indir",
   "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 MB · kurulumsuz tek dosya · Windows 10+",
   "dl_win_go": "İndirme hemen başlar ↓",
-  "dl_mac_name": "macOS — yakında",
-  "dl_mac_meta": "Apple Silicon · Intel",
-  "dl_mac_go": "Hazır olduğunda <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor/releases\" rel=\"noopener\">Releases</a>'ta",
+  "dl_mac_name": "macOS için indir",
+  "dl_mac_meta": "macOS 12+ · ~24 MB · arşivi açıp çift tıklayın",
+  "dl_mac_go": "İlk açılışta: sağ tık → Aç (imzasız uygulama uyarısı)",
   "dl_req_h3": "Sistem gereksinimleri",
   "dl_req1": "Windows 10 veya üstü — <strong>kurulum ve ek yazılım gerektirmez</strong>",
   "dl_req2": "Modern bir tarayıcı (Chrome ya da Edge; sesli not için gerekli)",

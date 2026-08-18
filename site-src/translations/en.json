@@ -14,7 +14,6 @@
   "footer_privacy": "Where does your data live?",
   "footer_support": "Buy us a coffee",
   "footer_download": "Download",
-
   "home_title": "inkGuide — Your Book's Companion",
   "home_meta_desc": "A local-first book-writing studio. Your book never leaves your computer: notes, syntheses, sources, voice capture and one-click Word export. Free.",
   "home_og_title": "inkGuide — Your Book's Companion",
@@ -72,7 +71,6 @@
   "home_coffee_go": "Support →",
   "home_final_h2": "Write the first paragraph today",
   "home_final_lead": "Download, open, start writing. No account to create, nothing to sign up for; your book grows on your own computer.",
-
   "privacy_title": "Where does your data live? — inkGuide",
   "privacy_meta_desc": "Where does your data live? inkGuide is local-first: your book stays on your own disk, in open formats (JSON, Markdown, Word). Your data is never held hostage.",
   "privacy_og_title": "Privacy Architecture — inkGuide",
@@ -110,7 +108,6 @@
   "privacy_qa2_p": "Simply place your data folder inside a sync folder such as Google Drive, OneDrive or Dropbox — being plain files, it syncs without a hitch. The choice is yours; inkGuide never connects to any cloud on your behalf.",
   "privacy_qa3_h": "If it's free, what's the catch?",
   "privacy_qa3_p": "There is none. inkGuide is a one-person labour of love; if it earns its keep you can <a href=\"support.html\">buy us a coffee</a>, and that's all. Your data is not the \"product\" in any model.",
-
   "support_title": "Buy us a coffee — inkGuide",
   "support_meta_desc": "inkGuide is free. If it earned its keep, you can support it voluntarily: a coffee, a book, or become a patron. No feature is ever locked.",
   "support_og_title": "Buy Us a Coffee — inkGuide",
@@ -141,7 +138,6 @@
   "support_quote_who": "— the person behind inkGuide",
   "support_close_h2": "Write your book first",
   "support_close_lead": "The finest support is the tool proving useful. Download it, try it; the coffee can wait.",
-
   "dl_title": "Download — inkGuide",
   "dl_meta_desc": "Download the inkGuide desktop app for free. Windows now, macOS soon. No account, no internet required.",
   "dl_og_title": "Download — inkGuide",
@@ -153,9 +149,9 @@
   "dl_win_name": "Download for Windows",
   "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 MB · single portable file · Windows 10+",
   "dl_win_go": "Download starts right away ↓",
-  "dl_mac_name": "macOS — coming soon",
-  "dl_mac_meta": "Apple Silicon · Intel",
-  "dl_mac_go": "When it's ready, it will be on <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor/releases\" rel=\"noopener\">Releases</a>",
+  "dl_mac_name": "Download for macOS",
+  "dl_mac_meta": "macOS 12+ · ~24 MB · unzip and double-click",
+  "dl_mac_go": "First launch: right-click → Open (unsigned app notice)",
   "dl_req_h3": "System requirements",
   "dl_req1": "Windows 10 or later — <strong>no installer, no extra software</strong>",
   "dl_req2": "A modern browser (Chrome or Edge; needed for voice capture)",

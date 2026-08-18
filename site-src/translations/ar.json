@@ -14,7 +14,6 @@
   "footer_privacy": "أين تعيش بياناتك؟",
   "footer_support": "اشترِ لنا قهوة",
   "footer_download": "التنزيل",
-
   "home_title": "inkGuide — رفيق كتابك",
   "home_meta_desc": "استوديو لكتابة الكتب يعمل محليًا أولًا. كتابك لا يغادر حاسوبك أبدًا: ملاحظات، وخلاصات، ومصادر، وتدوين صوتي، وتصدير إلى Word بنقرة واحدة. مجاني.",
   "home_og_title": "inkGuide — رفيق كتابك",
@@ -72,7 +71,6 @@
   "home_coffee_go": "ادعمنا ←",
   "home_final_h2": "اكتب الفقرة الأولى اليوم",
   "home_final_lead": "نزِّل، افتح، وابدأ الكتابة. لا حساب تنشئه ولا تسجيل تُتمّه؛ كتابك ينمو على حاسوبك أنت.",
-
   "privacy_title": "أين تعيش بياناتك؟ — inkGuide",
   "privacy_meta_desc": "أين تعيش بياناتك؟ inkGuide يعمل محليًا أولًا: يبقى كتابك على قرصك أنت، بصيغ مفتوحة (JSON وMarkdown وWord). بياناتك لن تُحتجز رهينة أبدًا.",
   "privacy_og_title": "بنية الخصوصية — inkGuide",
@@ -110,7 +108,6 @@
   "privacy_qa2_p": "ما عليك سوى وضع مجلد بياناتك داخل مجلد مزامنة مثل Google Drive أو OneDrive أو Dropbox — ولأنها ملفات عادية، تتزامن بلا أي عناء. الخيار خيارك؛ وinkGuide لا يتصل بأي سحابة نيابةً عنك أبدًا.",
   "privacy_qa3_h": "إن كان مجانيًا، فأين الخدعة؟",
   "privacy_qa3_p": "لا خدعة. inkGuide عملُ حبٍّ يقوم به شخص واحد؛ فإن أثبت نفعه يمكنك أن <a href=\"support.html\">تشتري لنا قهوة</a>، وهذا كل شيء. بياناتك ليست «المنتَج» في أي معادلة.",
-
   "support_title": "اشترِ لنا قهوة — inkGuide",
   "support_meta_desc": "inkGuide مجاني. إن أثبت نفعه، يمكنك دعمه طوعًا: قهوة، أو كتاب، أو أن تصبح راعيًا. لا ميزة تُقفل أبدًا.",
   "support_og_title": "اشترِ لنا قهوة — inkGuide",
@@ -141,7 +138,6 @@
   "support_quote_who": "— الشخص وراء inkGuide",
   "support_close_h2": "اكتب كتابك أولًا",
   "support_close_lead": "أجمل دعمٍ هو أن تثبت الأداة نفعها. نزِّلها وجرّبها؛ فالقهوة تستطيع الانتظار.",
-
   "dl_title": "التنزيل — inkGuide",
   "dl_meta_desc": "نزِّل تطبيق inkGuide لسطح المكتب مجانًا. Windows الآن، وmacOS قريبًا. بلا حساب، وبلا حاجة إلى الإنترنت.",
   "dl_og_title": "التنزيل — inkGuide",
@@ -153,9 +149,9 @@
   "dl_win_name": "نزِّل لنظام Windows",
   "dl_win_meta": "inkGuide.exe · الإصدار 1.0.0 · 64 ميغابايت · ملف محمول واحد · Windows 10 وأحدث",
   "dl_win_go": "يبدأ التنزيل فورًا ↓",
-  "dl_mac_name": "macOS — قريبًا",
-  "dl_mac_meta": "Apple Silicon · Intel",
-  "dl_mac_go": "حين يجهز ستجده في <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor/releases\" rel=\"noopener\">صفحة الإصدارات</a>",
+  "dl_mac_name": "تنزيل لنظام macOS",
+  "dl_mac_meta": "macOS 12+‏ · ~24 MB · فكّ الضغط ثم انقر نقرًا مزدوجًا",
+  "dl_mac_go": "عند أول تشغيل: انقر بزر الفأرة الأيمن ← فتح (تنبيه تطبيق غير موقّع)",
   "dl_req_h3": "متطلبات النظام",
   "dl_req1": "Windows 10 أو أحدث — <strong>بلا مثبّت وبلا برامج إضافية</strong>",
   "dl_req2": "متصفح حديث (Chrome أو Edge؛ لازم للتدوين الصوتي)",

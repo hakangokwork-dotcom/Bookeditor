@@ -27,3 +27,6 @@ dist/
 # Sistem
 .DS_Store
 Thumbs.db
+
+# Proje kokundeki calistirilabilir kopya (release'ten gelir)
+inkGuide.exe

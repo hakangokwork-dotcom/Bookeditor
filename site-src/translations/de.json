@@ -14,7 +14,6 @@
   "footer_privacy": "Wo wohnen deine Daten?",
   "footer_support": "Spendier uns einen Kaffee",
   "footer_download": "Download",
-
   "home_title": "inkGuide — Der Begleiter für dein Buch",
   "home_meta_desc": "Ein Local-First-Schreibstudio für dein Buch. Dein Buch verlässt nie deinen Computer: Notizen, Synthesen, Quellen, Spracherfassung und Word-Export mit einem Klick. Kostenlos.",
   "home_og_title": "inkGuide — Der Begleiter für dein Buch",
@@ -72,7 +71,6 @@
   "home_coffee_go": "Unterstützen →",
   "home_final_h2": "Schreib den ersten Absatz noch heute",
   "home_final_lead": "Herunterladen, öffnen, losschreiben. Kein Konto anlegen, nirgendwo registrieren; dein Buch wächst auf deinem eigenen Computer.",
-
   "privacy_title": "Wo wohnen deine Daten? — inkGuide",
   "privacy_meta_desc": "Wo wohnen deine Daten? inkGuide ist local-first: Dein Buch bleibt auf deiner eigenen Festplatte, in offenen Formaten (JSON, Markdown, Word). Deine Daten werden nie als Geisel genommen.",
   "privacy_og_title": "Datenschutz-Architektur — inkGuide",
@@ -110,7 +108,6 @@
   "privacy_qa2_p": "Leg deinen Datenordner einfach in einen Sync-Ordner wie Google Drive, OneDrive oder Dropbox — als schlichte Dateien synchronisiert er sich reibungslos. Die Wahl liegt bei dir; inkGuide verbindet sich nie in deinem Namen mit irgendeiner Cloud.",
   "privacy_qa3_h": "Wenn es kostenlos ist — wo ist der Haken?",
   "privacy_qa3_p": "Es gibt keinen. inkGuide ist das Herzensprojekt einer einzelnen Person; wenn es sich bewährt hat, kannst du uns <a href=\"support.html\">einen Kaffee spendieren</a>, das ist alles. Deine Daten sind in keinem Modell das „Produkt“.",
-
   "support_title": "Spendier uns einen Kaffee — inkGuide",
   "support_meta_desc": "inkGuide ist kostenlos. Wenn es sich bewährt hat, kannst du es freiwillig unterstützen: ein Kaffee, ein Buch oder eine Mäzenschaft. Keine Funktion ist je gesperrt.",
   "support_og_title": "Spendier uns einen Kaffee — inkGuide",
@@ -141,7 +138,6 @@
   "support_quote_who": "— der Mensch hinter inkGuide",
   "support_close_h2": "Schreib zuerst dein Buch",
   "support_close_lead": "Die schönste Unterstützung ist ein Werkzeug, das sich als nützlich erweist. Lade es herunter, probier es aus; der Kaffee kann warten.",
-
   "dl_title": "Download — inkGuide",
   "dl_meta_desc": "Lade die inkGuide-Desktop-App kostenlos herunter. Windows jetzt, macOS bald. Kein Konto, kein Internet nötig.",
   "dl_og_title": "Download — inkGuide",
@@ -153,9 +149,9 @@
   "dl_win_name": "Für Windows herunterladen",
   "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 MB · eine einzige portable Datei · Windows 10+",
   "dl_win_go": "Der Download beginnt sofort ↓",
-  "dl_mac_name": "macOS — bald verfügbar",
-  "dl_mac_meta": "Apple Silicon · Intel",
-  "dl_mac_go": "Sobald sie fertig ist, findest du sie unter <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor/releases\" rel=\"noopener\">Releases</a>",
+  "dl_mac_name": "Für macOS herunterladen",
+  "dl_mac_meta": "macOS 12+ · ~24 MB · entpacken und doppelklicken",
+  "dl_mac_go": "Erster Start: Rechtsklick → Öffnen (unsignierte App)",
   "dl_req_h3": "Systemvoraussetzungen",
   "dl_req1": "Windows 10 oder neuer — <strong>kein Installationsprogramm, keine Zusatzsoftware</strong>",
   "dl_req2": "Ein moderner Browser (Chrome oder Edge; nötig für die Spracherfassung)",
