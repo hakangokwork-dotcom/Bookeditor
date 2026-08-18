@@ -2,6 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { exportBook, buildMarkdown, buildDocx, buildNotesAppendix } = require('./lib/export');
+const mobil = require('./lib/mobil');
+const QRCode = require('qrcode');
 
 const app = express();
 const PORT = process.env.PORT || 4321;
@@ -116,9 +118,35 @@ async function writeBackups(book, bookId, forceDocx = false) {
 }
 
 app.use(express.json({ limit: '20mb' }));
+
+/* Ağ güvenliği: kitap verisine dokunan tüm API'ler YALNIZCA bu bilgisayardan
+   (localhost) erişilebilir. Yerel ağdaki telefon yalnızca /mobil sayfasını ve
+   şifreli /api/mobile/sync ucunu görür — Wi-Fi'deki başka bir cihaz kitabı okuyamaz.
+   Kural sonradan eklenecek /api uçlarını da otomatik kapsar (/api/exports, /api/library…). */
+function isLocalReq(req) {
+  const a = req.socket.remoteAddress || '';
+  return a === '127.0.0.1' || a === '::1' || a === '::ffff:127.0.0.1';
+}
+app.use('/api', (req, res, next) => {
+  if (req.path === '/mobile/sync' || isLocalReq(req)) return next();
+  res.status(403).json({ error: 'Bu uç yalnızca inkGuide çalıştıran bilgisayardan erişilebilir' });
+});
+// Dışa aktarılan kitap dosyaları da kitap verisidir — yalnızca localhost indirir
+app.use('/exports', (req, res, next) => {
+  if (isLocalReq(req)) return next();
+  res.status(403).json({ error: 'Bu uç yalnızca inkGuide çalıştıran bilgisayardan erişilebilir' });
+});
+
 app.use(express.static(path.join(ASSET_DIR, 'public')));
 app.use('/vendor/marked.min.js', (req, res) =>
   res.sendFile(path.join(ASSET_DIR, 'node_modules', 'marked', 'marked.min.js'))
+);
+// Telefon tarafı şifreleme: LAN http sayfalarında crypto.subtle olmadığı için saf JS
+app.use('/vendor/aes.js', (req, res) =>
+  res.sendFile(path.join(ASSET_DIR, 'node_modules', 'aes-js', 'index.js'))
+);
+app.use('/vendor/sha256.min.js', (req, res) =>
+  res.sendFile(path.join(ASSET_DIR, 'node_modules', 'js-sha256', 'build', 'sha256.min.js'))
 );
 app.use('/exports', express.static(EXPORT_DIR));
 
@@ -368,6 +396,108 @@ app.post('/api/version/restore', (req, res) => {
   }
 });
 
+/* ---- Mobil "yakalama arkadaşı": eşleşme + şifreli senkron + gelen kutusu ---- */
+
+let activePort = Number(PORT); // startServer gerçekte bağlanınca günceller
+
+// Eşleşme bilgisi + QR (yalnızca localhost — sır QR içinde, ağdan asla verilmez)
+app.get('/api/mobile/pair-info', async (req, res) => {
+  try {
+    const pairing = mobil.loadPairing(DATA_DIR);
+    const ips = mobil.lanAddresses();
+    const ip = ips.includes(req.query.ip) ? req.query.ip : ips[0] || null;
+    if (!ip) return res.json({ ips: [], url: null, qrSvg: null, devices: [] });
+    const url = `http://${ip}:${activePort}/mobil/#e=${pairing.secret}`;
+    const qrSvg = await QRCode.toString(url, { type: 'svg', margin: 1, width: 220, color: { dark: '#26251F', light: '#FFFFFF' } });
+    const devices = Object.entries(pairing.devices || {}).map(([id, d]) => ({ id, name: d.name, lastSync: d.lastSync }));
+    res.json({ ips, ip, port: activePort, url, qrSvg, devices, createdAt: pairing.createdAt });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+// Bağlantıyı yenile: yeni sır üret (tüm telefonların yeniden QR okutması gerekir)
+app.post('/api/mobile/repair', (req, res) => {
+  try {
+    mobil.regeneratePairing(DATA_DIR);
+    res.json({ ok: true });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+/* Telefondan şifreli senkron. Gövde: {v,iv,ct,mac} zarfı.
+   İçerik: {deviceId, deviceName, bookId, ops:[{id,kind,type,title,text,createdAt}]}
+   Yakalamalar gelen kutusuna eklenir (kitaba DEĞİL — masaüstü birleştirir),
+   cevapta bölüm listesi + kararsız notların özeti döner ki telefon kitabı görebilsin. */
+app.post('/api/mobile/sync', (req, res) => {
+  try {
+    const pairing = mobil.loadPairing(DATA_DIR);
+    const msg = mobil.open(pairing, req.body);
+    if (!msg || !msg.deviceId) {
+      return res.status(401).json({ error: 'Eşleşme doğrulanamadı — telefonda QR kodu yeniden okutun' });
+    }
+    const lib = readLibrary();
+    const entry = lib.books.find(b => b.id === String(msg.bookId || 'default')) || lib.books.find(b => b.id === 'default') || lib.books[0];
+    const ack = mobil.inboxAdd(DATA_DIR, entry.id, Array.isArray(msg.ops) ? msg.ops : [], msg.deviceName);
+
+    // Cihaz kaydı (masaüstünde "eşleşmiş telefonlar" listesi için)
+    pairing.devices = pairing.devices || {};
+    pairing.devices[String(msg.deviceId).slice(0, 40)] = {
+      name: String(msg.deviceName || 'Telefon').slice(0, 60),
+      lastSync: new Date().toISOString()
+    };
+    mobil.savePairing(DATA_DIR, pairing);
+
+    // Telefonun göreceği kitap özeti (salt-okunur görünüm)
+    let kitap = null;
+    try {
+      const book = readBook(entry);
+      kitap = {
+        id: entry.id,
+        title: (book.meta && book.meta.title) || 'Kitap',
+        books: lib.books.map(b => {
+          try { return { id: b.id, title: JSON.parse(fs.readFileSync(dataFileFor(b), 'utf8')).meta.title || b.id }; }
+          catch { return { id: b.id, title: b.id }; }
+        }),
+        chapters: (book.parts || []).flatMap(p => (p.chapters || []).map(c => ({ id: c.id, title: c.title, part: p.title }))),
+        scratchNotes: ((book.scratch && book.scratch.notes) || []).slice(0, 30).map(n => ({ id: n.id, type: n.type, text: String(n.text || '').slice(0, 500) })),
+        totalWords: countBookWords(book)
+      };
+    } catch { /* kitap okunamasa da yakalama kaybolmaz */ }
+
+    res.json(mobil.seal(pairing, {
+      ok: true,
+      ack,
+      bekleyen: mobil.inboxList(DATA_DIR, entry.id).length,
+      kitap,
+      serverTime: new Date().toISOString()
+    }));
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+// Masaüstü: telefon gelen kutusunu oku / işlenenleri onayla (yalnızca localhost)
+app.get('/api/mobile/inbox', (req, res) => {
+  try {
+    const entry = resolveEntry(req);
+    res.json({ items: mobil.inboxList(DATA_DIR, entry.id) });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+app.post('/api/mobile/inbox/ack', (req, res) => {
+  try {
+    const entry = resolveEntry(req);
+    const ids = Array.isArray(req.body.ids) ? req.body.ids : [];
+    res.json({ ok: true, removed: mobil.inboxAck(DATA_DIR, entry.id, ids) });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
 /* Başlatma: port doluysa sıradaki portları dene (paketli sürümde ikinci kopya
    açılırsa çakışmasın); paketli sürümde tarayıcıyı otomatik aç. */
 function openBrowser(url) {
@@ -381,6 +511,7 @@ function openBrowser(url) {
 
 function startServer(port, attemptsLeft) {
   const server = app.listen(port, () => {
+    activePort = port;
     const url = `http://localhost:${port}`;
     console.log(`inkGuide çalışıyor: ${url}`);
     console.log(`Verileriniz: ${DATA_DIR}`);

@@ -111,6 +111,7 @@ const ICONS = {
   mic: '<path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><path d="M12 18v4M8 22h8"/>',
   gear: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
   folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 19h2"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
   focus: '<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/>',
   zen: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/>',
@@ -2127,6 +2128,159 @@ function renderOnboarding() {
   }
 }
 
+/* ---------------- Telefon: eşleştirme + gelen kutusu ----------------
+   Telefon yakalamaları sunucuda ayrı bir gelen kutusunda bekler (kitaba doğrudan
+   yazılmaz ki masaüstünün "tüm kitabı kaydet" modeli onları ezemesin). Burası
+   12 sn'de bir bakar; gelenleri kitabın GÜNCEL haline birleştirir, kaydeder,
+   onaylar (ack) ve birleştirme öncesini otomatik versiyonlar — çakışma v1:
+   son yazan kazanır + otomatik versiyon. */
+
+let phoneToastTimer = null;
+
+function phoneToast(msg) {
+  let el = $('#appToast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'appToast';
+    el.className = 'app-toast';
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(phoneToastTimer);
+  phoneToastTimer = setTimeout(() => el.classList.remove('show'), 4000);
+}
+
+async function showPhoneModal() {
+  const host = $('#phoneHost');
+  host.innerHTML = `
+  <div class="lib-modal-backdrop" id="phoneBack">
+    <div class="lib-modal phone-modal">
+      <div class="lib-modal-head"><span class="t">${ic('phone')} ${esc(t('phone.title'))}</span><button class="lib-modal-close" id="phoneClose" title="${esc(t('close'))}">✕</button></div>
+      <div class="phone-body" id="phoneBody"><div class="phone-loading">${esc(t('phone.loading'))}</div></div>
+    </div>
+  </div>`;
+  const close = () => { host.innerHTML = ''; };
+  $('#phoneClose').onclick = close;
+  $('#phoneBack').onclick = (e) => { if (e.target.id === 'phoneBack') close(); };
+  await renderPhoneBody();
+}
+
+async function renderPhoneBody(ip) {
+  const body = $('#phoneBody');
+  if (!body) return;
+  let info = null;
+  try {
+    const res = await fetch('/api/mobile/pair-info' + (ip ? '?ip=' + encodeURIComponent(ip) : ''));
+    info = await res.json();
+  } catch { /* sunucu ucu yoksa aşağıda uyarı gösterilir */ }
+
+  if (!info || !info.url) {
+    body.innerHTML = `<p class="phone-warn">${esc(t('phone.noNetwork'))}</p>`;
+    return;
+  }
+
+  const devices = (info.devices || []).filter(d => d.lastSync);
+  body.innerHTML = `
+    <div class="phone-cols">
+      <div class="phone-qr">${info.qrSvg}</div>
+      <div class="phone-steps">
+        <p class="phone-intro">${esc(t('phone.intro'))}</p>
+        <ol>
+          <li>${esc(t('phone.step1'))}</li>
+          <li>${esc(t('phone.step2'))}</li>
+          <li>${esc(t('phone.step3'))}</li>
+        </ol>
+        <div class="phone-url">${esc(t('phone.urlLabel'))}: <code>${esc(info.url.split('#')[0])}</code></div>
+        ${info.ips.length > 1 ? `
+        <div class="phone-ip-row">
+          <label>${esc(t('phone.ipLabel'))}</label>
+          <select id="phoneIpSel">${info.ips.map(i => `<option value="${esc(i)}"${i === info.ip ? ' selected' : ''}>${esc(i)}</option>`).join('')}</select>
+        </div>` : ''}
+      </div>
+    </div>
+    <div class="phone-foot">
+      <div class="phone-devices">
+        <b>${esc(t('phone.devices'))}:</b>
+        ${devices.length
+          ? devices.map(d => `${esc(d.name)} <span class="dim">(${esc(t('phone.lastSync'))} ${esc(new Date(d.lastSync).toLocaleString(I18N_LOCALE))})</span>`).join(' · ')
+          : `<span class="dim">${esc(t('phone.noDevices'))}</span>`}
+      </div>
+      <button class="phone-renew" id="phoneRenew">${esc(t('phone.renew'))}</button>
+    </div>
+    <p class="phone-privacy">${esc(t('phone.privacy'))}</p>`;
+
+  const ipSel = $('#phoneIpSel');
+  if (ipSel) ipSel.onchange = () => renderPhoneBody(ipSel.value);
+  $('#phoneRenew').onclick = async () => {
+    if (!confirm(t('phone.renewConfirm'))) return;
+    await fetch('/api/mobile/repair', { method: 'POST' });
+    renderPhoneBody();
+  };
+}
+
+/* Gelen kutusu izleyicisi */
+
+let inboxBusy = false;
+
+async function checkPhoneInbox() {
+  if (!book || inboxBusy || $('#libraryView') && !$('#libraryView').hidden) return;
+  inboxBusy = true;
+  try {
+    const res = await fetch(apiUrl('/api/mobile/inbox'));
+    if (!res.ok) return;
+    const { items } = await res.json();
+    if (!items || !items.length) return;
+
+    // Çakışma v1: birleştirme öncesi otomatik versiyon (son yazan kazanır ama iz kalır)
+    try { await fetch(apiUrl('/api/version'), { method: 'POST' }); } catch { /* versiyon alınamasa da birleştir */ }
+
+    let notes = 0, pads = 0;
+    for (const it of items) {
+      if (it.kind === 'karalama') {
+        book.scratch.pads.unshift({
+          id: uid('k'),
+          title: it.title || t('phone.padTitle', { time: new Date(it.createdAt).toLocaleDateString(I18N_LOCALE) }),
+          text: it.text,
+          updated: Date.now()
+        });
+        pads++;
+      } else {
+        book.scratch.notes.unshift({ id: uid('n'), type: it.type || 'not', text: it.text, sourceId: null, page: '' });
+        notes++;
+      }
+    }
+
+    // Kitabın güncel halini hemen kaydet; başarılıysa gelen kutusunu onayla
+    const put = await fetch(apiUrl('/api/book'), {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(book)
+    });
+    if (!put.ok) throw new Error('kayıt başarısız');
+    await fetch(apiUrl('/api/mobile/inbox/ack'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids: items.map(i => i.id) })
+    });
+
+    phoneToast(t('phone.arrived', { n: notes + pads }));
+    renderScratchTray();
+    renderSidebar();
+    renderStats();
+    if (sel.type === 'scratch') renderEditor();
+    loadVersions();
+  } catch { /* sunucuya ulaşılamadıysa sonraki turda denenir */
+  } finally {
+    inboxBusy = false;
+  }
+}
+
+function startPhoneInboxWatch() {
+  checkPhoneInbox();
+  setInterval(checkPhoneInbox, 12000);
+}
+
 /* ---------------- Başlat ---------------- */
 
 // Eski veri yapılarından güvenli (ekleyici) geçişler
@@ -2183,6 +2337,7 @@ async function init() {
   // "Kitaba Dönüştür": doğrudan export yerine tam ekran dönüştürme sayfası
   $('#exportBtn').onclick = () => select('convert');
   $('#versionBtn').onclick = saveVersion;
+  $('#phoneBtn').onclick = showPhoneModal;
   $('#libraryLink').onclick = (e) => { e.preventDefault(); showLibrary(); };
 
   const langSel = $('#dicteLangSel');
@@ -2216,6 +2371,9 @@ async function init() {
 
   // İlk açılış: kurulum sihirbazı (bir kez gösterilir, Ayarlar'dan yeniden açılabilir)
   if (!localStorage.getItem('onboarded')) showOnboarding();
+
+  // Telefondan gelen yakalamaları izlemeye başla
+  startPhoneInboxWatch();
 }
 
 init();

@@ -12,13 +12,18 @@
     "assets": [
       "public/**/*",
       "data/book.sample.json",
-      "node_modules/marked/marked.min.js"
+      "node_modules/marked/marked.min.js",
+      "node_modules/aes-js/index.js",
+      "node_modules/js-sha256/build/sha256.min.js"
     ]
   },
   "dependencies": {
+    "aes-js": "^3.1.2",
     "docx": "^8.5.0",
     "express": "^4.19.2",
-    "marked": "^12.0.2"
+    "js-sha256": "^1.0.0",
+    "marked": "^12.0.2",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "@yao-pkg/pkg": "^6.22.0"

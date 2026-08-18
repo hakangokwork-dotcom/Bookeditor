@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>inkGuide — Yakalama Arkadaşı</title>
+  <meta name="theme-color" content="#FAF8F3">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="ikon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="ikon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mobil.css">
+</head>
+<body>
+  <!-- Üst durum çubuğu: marka + senkron durumu -->
+  <header class="topbar">
+    <span class="brand">
+      <svg viewBox="0 0 24 24"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      ink<b>Guide</b>
+    </span>
+    <button class="sync-chip" id="syncChip"></button>
+  </header>
+
+  <!-- Eşleşme yoksa gösterilen karşılama -->
+  <section class="view" id="viewPair" hidden>
+    <div class="pair-hero">
+      <div class="pair-logo">
+        <svg viewBox="0 0 24 24"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      </div>
+      <h1 data-i18n="mobil.pairTitle">Telefonunuzu eşleştirin</h1>
+      <p data-i18n="mobil.pairIntro">Bu sayfa, bilgisayarınızdaki inkGuide'ın yakalama arkadaşıdır: aklınıza gelen notları, sesli düşünceleri ve karalamaları yakalar; aynı Wi-Fi'ye dönünce şifreli olarak kitabınıza gönderir.</p>
+      <ol class="pair-steps">
+        <li data-i18n="mobil.pairStep1">Bilgisayarda inkGuide'ı açın</li>
+        <li data-i18n="mobil.pairStep2">Sol alttaki 📱 Telefon düğmesine tıklayın</li>
+        <li data-i18n="mobil.pairStep3">Çıkan QR kodu telefonunuzun kamerasıyla okutun</li>
+      </ol>
+      <p class="pair-note" data-i18n="mobil.privacy">Notlarınız yalnızca kendi Wi-Fi ağınız üzerinden, uçtan uca şifreli olarak bilgisayarınıza gider. Bulut yok, hesap yok.</p>
+    </div>
+  </section>
+
+  <!-- Sekme 1: Notlar (hızlı not + kararsız notlar) -->
+  <section class="view" id="viewNotes" hidden>
+    <div class="tip-card" id="tipCard">
+      <div class="tip-label" data-i18n="mobil.tipLabel">Günün ipucu</div>
+      <div class="tip-text" id="tipText"></div>
+    </div>
+
+    <div class="section-head">
+      <span data-i18n="mobil.notesHeader">Kararsız notlar</span>
+      <span class="count-pill" id="noteCount">0</span>
+    </div>
+
+    <div class="quick-row">
+      <input id="quickNote" data-i18n-ph="mobil.quickPh" placeholder="Hızlı not… (Enter)" autocomplete="off">
+      <button class="mini-btn" id="quickAdd" aria-label="Ekle">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+      </button>
+    </div>
+
+    <div id="noteList"></div>
+  </section>
+
+  <!-- Sekme 2: Karalama (sesli + yazılı) -->
+  <section class="view" id="viewScratch" hidden>
+    <!-- Kayıt kartı (tasarımdaki "sesli karalama") -->
+    <div class="rec-card" id="recCard">
+      <div class="rec-row">
+        <button class="rec-btn" id="recBtn" aria-label="Kayıt">
+          <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg>
+        </button>
+        <div class="rec-info">
+          <div class="rec-title" id="recTitle" data-i18n="mobil.record">Sesli karalama</div>
+          <div class="rec-sub" id="recSub"></div>
+        </div>
+        <div class="rec-time" id="recTime"></div>
+      </div>
+      <div class="rec-wave" id="recWave" hidden></div>
+      <div class="rec-hint" id="recHint" hidden></div>
+    </div>
+
+    <!-- Çözümlenen / yazılan metin -->
+    <div class="card">
+      <div class="card-label" data-i18n="mobil.resolvedText">Çözümlenen metin</div>
+      <input id="padTitle" class="pad-title-input" data-i18n-ph="mobil.padTitlePh" placeholder="Karalama başlığı (isteğe bağlı)" autocomplete="off">
+      <textarea id="scratchText" data-i18n-ph="mobil.textPh" placeholder="Buraya yazın ya da klavyenizin 🎤 tuşuyla dikte edin…"></textarea>
+      <div class="btn-row">
+        <select id="noteType" class="type-sel">
+          <option value="not">Not</option>
+          <option value="fikir">Fikir</option>
+          <option value="sentez">Sentez</option>
+          <option value="alinti">Alıntı</option>
+        </select>
+        <button class="primary" id="toNoteBtn" data-i18n="mobil.toNote">Nota dönüştür</button>
+      </div>
+      <button class="ghost wide" id="toPadBtn" data-i18n="mobil.newPad">Karalama yap</button>
+    </div>
+
+    <div class="section-head"><span data-i18n="mobil.recent">Son yakalamalar</span></div>
+    <div id="recentList" class="card list-card"></div>
+  </section>
+
+  <!-- Sekme 3: Ayarlar -->
+  <section class="view" id="viewSettings" hidden>
+    <div class="settings-hero">
+      <div class="pair-logo small">
+        <svg viewBox="0 0 24 24"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      </div>
+      <div>
+        <div class="hero-title">inkGuide</div>
+        <div class="hero-sub" data-i18n="mobil.noAccount">Hesap yok · veriler cihazda</div>
+      </div>
+    </div>
+
+    <div class="card" id="pairStatusCard">
+      <div class="card-label" data-i18n="mobil.pairState">Eşleşme</div>
+      <div class="pair-status" id="pairStatus"></div>
+      <button class="ghost wide" id="syncNowBtn" data-i18n="mobil.syncNow">Şimdi eşitle</button>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label" data-i18n="mobil.totalWords">Toplam kelime</div>
+        <div class="stat-num" id="statWords">—</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label" data-i18n="mobil.pendingShort">Bekleyen</div>
+        <div class="stat-num" id="statPending">0</div>
+      </div>
+    </div>
+
+    <div class="card settings-list">
+      <label class="settings-row">
+        <span data-i18n="mobil.settingsBook">Kitap</span>
+        <select id="bookSel"></select>
+      </label>
+      <label class="settings-row">
+        <span data-i18n="mobil.settingsDevice">Cihaz adı</span>
+        <input id="deviceName" autocomplete="off">
+      </label>
+      <label class="settings-row">
+        <span data-i18n="mobil.settingsLang">Arayüz dili</span>
+        <select id="langSel"></select>
+      </label>
+      <label class="settings-row">
+        <span data-i18n="mobil.dicteLang">Dikte dili</span>
+        <select id="dicteSel"></select>
+      </label>
+    </div>
+
+    <p class="privacy-note" data-i18n="mobil.privacy">Notlarınız yalnızca kendi Wi-Fi ağınız üzerinden, uçtan uca şifreli olarak bilgisayarınıza gider. Bulut yok, hesap yok.</p>
+  </section>
+
+  <!-- Alt sekme çubuğu -->
+  <nav class="tabbar" id="tabbar">
+    <button data-tab="notes" class="tab active">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>
+      <span data-i18n="mobil.tabNotes">Notlar</span>
+      <em class="badge" id="tabBadge" hidden></em>
+    </button>
+    <button data-tab="scratch" class="tab">
+      <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+      <span data-i18n="mobil.tabScratch">Karalama</span>
+    </button>
+    <button data-tab="settings" class="tab">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9 2 2 0 1 1-2.8 2.8 1.7 1.7 0 0 0-2.9 1.2 2 2 0 1 1-4 0 1.7 1.7 0 0 0-2.9-1.2 2 2 0 1 1-2.8-2.8A1.7 1.7 0 0 0 3 15a2 2 0 1 1 0-4 1.7 1.7 0 0 0 1.2-2.9 2 2 0 1 1 2.8-2.8A1.7 1.7 0 0 0 10 4a2 2 0 1 1 4 0 1.7 1.7 0 0 0 2.9 1.2 2 2 0 1 1 2.8 2.8A1.7 1.7 0 0 0 21 11a2 2 0 1 1 0 4Z"/></svg>
+      <span data-i18n="mobil.tabSettings">Ayarlar</span>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="/vendor/aes.js"></script>
+  <script src="/vendor/sha256.min.js"></script>
+  <script src="/i18n.js"></script>
+  <script src="kripto.js"></script>
+  <script src="mobil.js"></script>
+</body>
+</html>

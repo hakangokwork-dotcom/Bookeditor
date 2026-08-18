@@ -915,3 +915,39 @@ body.focus-mode .editor { padding: 64px 48px 120px; }
 .tree-item.chapter.st-bos .chapter-label { color: var(--muted); opacity: .8; }
 .tree-item.chapter.st-bitti .chapter-label { color: var(--accent-deep); font-weight: 500; }
 [data-theme="dark"] .tree-item.chapter.st-bitti .chapter-label { color: var(--accent); }
+
+/* ---------------- Telefon eşleştirme modalı + uygulama bildirimi ---------------- */
+
+.phone-modal { max-width: 640px; width: min(640px, 92vw); }
+.phone-body { padding: 18px 26px 22px; }
+.phone-loading, .phone-warn { color: var(--muted); font-size: 13.5px; padding: 20px 0; }
+.phone-cols { display: flex; gap: 22px; align-items: flex-start; }
+/* QR zemini her temada beyaz kalır — kamera kontrastı için */
+.phone-qr { flex-shrink: 0; width: 200px; border: 1px solid var(--border); border-radius: 12px; padding: 10px; background: #FFFFFF; }
+.phone-qr svg { display: block; width: 100%; height: auto; }
+/* Global ikon kuralı (svg { stroke-width:1.7; round }) QR modüllerini bozar — QR için sıfırla */
+.phone-qr svg path { stroke-width: 1; stroke-linecap: butt; stroke-linejoin: miter; }
+.phone-steps { flex: 1; min-width: 0; font-size: 13.5px; }
+.phone-intro { margin: 0 0 10px; line-height: 1.6; color: var(--text); }
+.phone-steps ol { margin: 0; padding-left: 20px; line-height: 1.9; }
+.phone-url { margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+.phone-url code { background: var(--sidebar-bg); border: 1px solid var(--border); border-radius: 6px; padding: 2px 7px; font-size: 12px; }
+.phone-ip-row { margin-top: 10px; display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.phone-ip-row select { border: 1px solid var(--border); border-radius: 7px; padding: 5px 8px; font-family: inherit; font-size: 12.5px; background: var(--panel-bg); color: var(--text); }
+.phone-foot { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+.phone-devices { flex: 1; font-size: 12.5px; line-height: 1.6; }
+.phone-devices .dim { color: var(--muted); }
+.phone-renew { border: 1px solid var(--border); background: var(--panel-bg); color: var(--muted); border-radius: 8px; padding: 8px 13px; font-family: inherit; font-size: 12.5px; cursor: pointer; }
+.phone-renew:hover { color: var(--text); border-color: var(--muted); }
+.phone-privacy { margin: 14px 0 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+[dir="rtl"] .phone-steps ol { padding-left: 0; padding-right: 20px; }
+
+.app-toast {
+  position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 16px); z-index: 60;
+  max-width: 70vw; padding: 11px 20px; border-radius: 10px;
+  background: var(--text); color: var(--bg); font-size: 13.5px;
+  box-shadow: 0 8px 22px rgba(40, 38, 33, .3);
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
+}
+.app-toast.show { opacity: 1; transform: translate(-50%, 0); }

@@ -1,0 +1,14 @@
+{
+  "name": "inkGuide — Yakalama Arkadaşı",
+  "short_name": "inkGuide",
+  "description": "Not, sesli not ve karalama yakalar; aynı Wi-Fi'deki inkGuide'a şifreli gönderir.",
+  "start_url": "/mobil/",
+  "scope": "/mobil/",
+  "display": "standalone",
+  "background_color": "#FAF8F3",
+  "theme_color": "#FAF8F3",
+  "icons": [
+    { "src": "ikon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "ikon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

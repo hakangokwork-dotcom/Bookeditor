@@ -7,6 +7,11 @@ data/book.json.bak
 data/library.json
 data/books/
 
+# Mobil eşleşme sırrı ve telefon yakalamaları — asla repoya girmez
+data/mobil-eslesme.json
+data/telefon-gelen.json
+data/telefon-gelen-arsiv.json
+
 # Test artıkları
 .playwright-mcp/
 
