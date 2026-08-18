@@ -888,3 +888,20 @@ body.focus-mode .editor { padding: 64px 48px 120px; }
 [data-theme="dark"] .onb-window { border-color: #3A362F; }
 [data-theme="dark"] .onb-tb-dot { background: #3A362F; }
 [data-theme="dark"] .onb-side { background: #3E4A2E; }
+
+/* Sade (zen) mod — gerçek tam ekran, yalnız metin */
+#zenOverlay {
+  position: fixed; inset: 0; z-index: 1000;
+  background: var(--bg); display: flex; justify-content: center;
+}
+#zenOverlay textarea {
+  width: min(680px, 92vw); height: 100%;
+  border: none; background: transparent; resize: none; outline: none;
+  padding: 12vh 0 35vh;
+  font-family: var(--font-serif); font-size: 19px; line-height: 1.9;
+  color: var(--text); text-align: justify; hyphens: auto; -webkit-hyphens: auto;
+}
+.zen-hint {
+  position: fixed; bottom: 14px; right: 18px;
+  font-size: 11px; color: var(--muted); opacity: .45; user-select: none;
+}

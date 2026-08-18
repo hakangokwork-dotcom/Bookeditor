@@ -35,6 +35,56 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) toggleFocusMode(false);
 });
 
+/* ---------------- Sade (zen) mod ----------------
+   Odak modunun bir adım ötesi: gerçek tam ekran, yalnız metin.
+   Araç çubuğu yok, sayaç yok, panel yok — kağıt ve siz. Çıkış: Esc. */
+let zenActive = false;
+
+function enterZen() {
+  const ta = $('#draftText');
+  if (!ta || !draftBinding || zenActive) return;
+  zenActive = true;
+
+  const overlay = document.createElement('div');
+  overlay.id = 'zenOverlay';
+  overlay.innerHTML = `
+    <textarea id="zenText" spellcheck="false"></textarea>
+    <div class="zen-hint">Esc</div>`;
+  document.body.appendChild(overlay);
+
+  const zt = overlay.querySelector('#zenText');
+  zt.value = ta.value;
+  const pos = ta.selectionStart || zt.value.length;
+  zt.oninput = () => {
+    draftBinding.set(zt.value);
+    ta.value = zt.value;
+    scheduleSave();
+  };
+  overlay.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { e.stopPropagation(); exitZen(); }
+  });
+  zt.focus();
+  zt.setSelectionRange(pos, pos);
+
+  // Gerçek tam ekran (tarayıcı izin vermezse kaplama yine tüm pencereyi örter)
+  document.documentElement.requestFullscreen?.().catch(() => {});
+  document.addEventListener('fullscreenchange', zenFsWatch);
+}
+
+function zenFsWatch() {
+  if (!document.fullscreenElement && zenActive) exitZen();
+}
+
+function exitZen() {
+  if (!zenActive) return;
+  zenActive = false;
+  document.removeEventListener('fullscreenchange', zenFsWatch);
+  const o = document.getElementById('zenOverlay');
+  if (o) o.remove();
+  if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+  renderEditor(); // sayaç ve önizleme tazelensin
+}
+
 // API adresine aktif kitap kimliğini ekler (?bookId=…) — sunucu verilmezse "default" varsayar
 const apiUrl = (p) => p + (p.includes('?') ? '&' : '?') + 'bookId=' + encodeURIComponent(bookId);
 
@@ -63,6 +113,7 @@ const ICONS = {
   folder: '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
   focus: '<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  zen: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/>',
   book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'
 };
 
@@ -428,7 +479,8 @@ function draftToolsHtml() {
     <button id="editorPassBtn" class="editor-btn" title="${esc(t('tool.editorTip'))}">${ic('wand')} ${esc(t('tool.editor'))}</button>
     <button id="editorUndoBtn" title="${esc(t('tool.undoTip'))}">${ic('undo')} ${esc(t('tool.undo'))}</button>
     <button id="draftMic" class="mic" title="${esc(t('tool.micTip'))}">${ic('mic')}</button>
-    <button id="focusBtn" class="${document.body.classList.contains('focus-mode') ? 'active' : ''}" title="${esc(t('tool.focusTip'))}">${ic('focus')}</button>`;
+    <button id="focusBtn" class="${document.body.classList.contains('focus-mode') ? 'active' : ''}" title="${esc(t('tool.focusTip'))}">${ic('focus')}</button>
+    <button id="zenBtn" title="${esc(t('tool.zenTip'))}">${ic('zen')}</button>`;
 }
 
 function bindDraftTools() {
@@ -469,6 +521,8 @@ function bindDraftTools() {
   if (dm) dm.onclick = () => toggleDictation(dm, (t) => insertAtCursor(t));
   const fb = $('#focusBtn');
   if (fb) fb.onclick = () => toggleFocusMode();
+  const zb = $('#zenBtn');
+  if (zb) zb.onclick = () => enterZen();
 }
 
 /* ---------------- Kaydetme ---------------- */
