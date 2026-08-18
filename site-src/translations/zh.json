@@ -133,7 +133,7 @@
   "support_free_label": "自定义支持金额（美元）",
   "support_free_placeholder": "10",
   "support_free_btn": "送出",
-  "support_what_note": "付款链接很快就会开通。你的支持不会用来支付服务器费用（我们根本没有服务器！），而是投入开发时间和新功能：设备端语音识别、移动端速记伴侣、更多语言。",
+  "support_what_note": "付款通过 Shopier 以银行卡处理（金额以土耳其里拉计）。您的支持不用于服务器开销（我们没有服务器！），而是投入开发时间和新功能：本地语音识别、移动速记伙伴、更多语言。",
   "support_quote": "“inkGuide 是一个人用心浇灌的作品。每一杯咖啡，都化作深夜写下的一行代码；每一本书，都化作一个新功能。感谢你的支持——更感谢你在写自己的书。”",
   "support_quote_who": "— inkGuide 背后的那个人",
   "support_close_h2": "先把你的书写出来",

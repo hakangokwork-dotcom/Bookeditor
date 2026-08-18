@@ -133,7 +133,7 @@
   "support_free_label": "Custom support amount, in dollars",
   "support_free_placeholder": "10",
   "support_free_btn": "Send",
-  "support_what_note": "Payment links will be live very soon. Your support doesn't pay for servers (we have none!) — it goes into development time and new features: on-device speech recognition, a mobile capture companion, more languages.",
+  "support_what_note": "Payments are processed by card via Shopier (amounts in Turkish lira). Your support doesn’t pay for servers (we have none!) — it goes into development time and new features: on-device speech recognition, a mobile capture companion, more languages.",
   "support_quote": "“inkGuide is a one-person labour of love. Every coffee pays for a line of code written past midnight; every book, for a new feature. Thank you for your support — and, more importantly, for writing your book.”",
   "support_quote_who": "— the person behind inkGuide",
   "support_close_h2": "Write your book first",

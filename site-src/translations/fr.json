@@ -133,7 +133,7 @@
   "support_free_label": "Montant libre du soutien, en dollars",
   "support_free_placeholder": "10",
   "support_free_btn": "Envoyer",
-  "support_what_note": "Les liens de paiement seront bientôt en ligne. Votre soutien ne paie pas de serveurs (nous n'en avons pas !) — il finance du temps de développement et de nouvelles fonctionnalités : reconnaissance vocale sur l'appareil, un compagnon mobile de prise de notes, davantage de langues.",
+  "support_what_note": "Les paiements sont traités par carte via Shopier (montants en livres turques). Votre soutien ne paie pas de serveurs (nous n’en avons pas !) : il finance le temps de développement et de nouvelles fonctionnalités — reconnaissance vocale locale, compagnon mobile de capture, plus de langues.",
   "support_quote": "« inkGuide est le travail passionné d'une seule personne. Chaque café paie une ligne de code écrite après minuit ; chaque livre, une nouvelle fonctionnalité. Merci pour votre soutien — et, plus encore, d'écrire votre livre. »",
   "support_quote_who": "— la personne derrière inkGuide",
   "support_close_h2": "Écrivez d'abord votre livre",
