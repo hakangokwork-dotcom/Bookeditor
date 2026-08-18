@@ -51,7 +51,7 @@ body {
 
 svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; vertical-align: -2px; }
 
-.app { display: grid; grid-template-columns: 288px 1fr 268px; height: 100vh; }
+.app { display: grid; grid-template-columns: 288px 1fr 268px 48px; height: 100vh; }
 
 /* ---------- Sol panel ---------- */
 .sidebar {
@@ -418,7 +418,7 @@ textarea.note-edit:focus { outline: none; }
 @keyframes save-pulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
 
 @media (max-width: 1100px) {
-  .app { grid-template-columns: 250px 1fr; }
+  .app { grid-template-columns: 250px 1fr 48px; }
   .companion { display: none; }
   .editor { padding: 28px 24px; }
 }
@@ -781,14 +781,14 @@ textarea.note-edit:focus { outline: none; }
    Sol + sağ paneller gizlenir, yazı alanı ortalanır (220ms geçiş, oturumluk). */
 
 .app { transition: grid-template-columns .22s ease; }
-.sidebar, .companion { min-width: 0; transition: opacity .22s ease; }
-body.focus-mode .app { grid-template-columns: 0px 1fr 0px; }
-body.focus-mode .sidebar, body.focus-mode .companion {
+.sidebar, .companion, .rail { min-width: 0; transition: opacity .22s ease; }
+body.focus-mode .app { grid-template-columns: 0px 1fr 0px 0px; }
+body.focus-mode .rail, body.focus-mode .sidebar, body.focus-mode .companion {
   opacity: 0; pointer-events: none; overflow: hidden;
   border-left: none; border-right: none; padding: 0;
 }
 body.focus-mode .editor { padding: 64px 48px 120px; }
-@media (max-width: 1100px) { body.focus-mode .app { grid-template-columns: 0px 1fr; } }
+@media (max-width: 1100px) { body.focus-mode .app { grid-template-columns: 0px 1fr 0px; } }
 
 /* ==================== Karanlık mod ====================
    Sıcak koyu palet — kaynak: Tasarım Sistemi (paper-dark #1C1A16, panel-dark #262319,
@@ -951,3 +951,47 @@ body.focus-mode .editor { padding: 64px 48px 120px; }
   opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
 }
 .app-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- Araç rayı (Varyant A): en sağda ince dikey şerit ---------- */
+.rail {
+  background: var(--sidebar-bg); border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center;
+  padding: 10px 0 12px; gap: 4px;
+}
+.rail .ric {
+  width: 34px; height: 34px; border: none; background: transparent;
+  border-radius: 9px; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); cursor: pointer; transition: background .12s, color .12s;
+}
+.rail .ric svg { width: 17px; height: 17px; }
+.rail .ric:hover { background: var(--border-soft); color: var(--text); }
+.rail .ric.on { background: var(--accent-soft); color: var(--accent-deep); }
+.rail .ric:focus-visible { outline: none; box-shadow: var(--ring); }
+.rail-sep { width: 22px; border-top: 1px solid var(--border); margin: 6px 0; }
+.rail-grow { flex: 1; }
+.rail .rail-cta { background: var(--accent); color: #fff; width: 36px; height: 36px; border-radius: 10px; }
+.rail .rail-cta:hover { background: var(--accent-deep); color: #fff; }
+.rail .rail-cta.on { background: var(--accent-deep); color: #fff; }
+[data-theme="dark"] .rail .rail-cta { color: #1C1A16; }
+
+/* Ağacın sonundaki sessiz "+ Kısım" satırı */
+.tree-item.add-part { color: var(--muted); font-size: 12px; margin-top: 10px; border: 1px dashed var(--border); border-radius: 8px; justify-content: center; padding: 6px; }
+.tree-item.add-part:hover { color: var(--accent-deep); border-color: var(--accent); background: var(--accent-soft); }
+.tree-item.add-part svg { width: 12px; height: 12px; }
+
+/* Versiyonlar penceresi (mini modal) */
+.mini-overlay { position: fixed; inset: 0; z-index: 900; background: rgba(38, 37, 31, .35); display: flex; align-items: center; justify-content: center; }
+.mini-modal {
+  background: var(--panel-bg); border: 1px solid var(--border); border-radius: 14px;
+  box-shadow: var(--shadow-lg); width: min(400px, 92vw); padding: 18px 20px 20px;
+}
+.mini-head { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-serif); font-size: 18px; font-weight: 600; margin-bottom: 14px; }
+.mini-close { border: none; background: none; cursor: pointer; color: var(--muted); font-size: 14px; padding: 4px; }
+.mini-close:hover { color: var(--danger); }
+.btn-take-version {
+  width: 100%; padding: 10px; border: 1px solid var(--accent); border-radius: 9px;
+  background: var(--accent); color: #fff; font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+  margin-bottom: 12px;
+}
+.btn-take-version:hover { background: var(--accent-deep); }
+.mini-modal .versions-box { max-height: 240px; padding: 0; }

@@ -600,17 +600,7 @@ function renderSidebar() {
     return el;
   };
 
-  tree.appendChild(mkItem('special' + (sel.type === 'guide' ? ' selected' : ''), ic('compass') + ' ' + esc(t('tree.guide')), () => select('guide')));
-  tree.appendChild(mkItem('special' + (sel.type === 'front' ? ' selected' : ''), ic('file') + ' ' + esc(t('tree.front')), () => select('front')));
-  tree.appendChild(mkItem('special' + (sel.type === 'sources' ? ' selected' : ''), ic('library') + ` ${esc(t('tree.sources'))} (${book.sources.length})`, () => select('sources')));
-  const scratchCount = (book.scratch.notes.length || 0) + ((book.scratch.pads || []).length);
-  tree.appendChild(mkItem('special' + (sel.type === 'scratch' ? ' selected' : ''), ic('scribble') + ` ${esc(t('tree.scratch'))}${scratchCount ? ` (${scratchCount})` : ''}`, () => select('scratch')));
-  tree.appendChild(mkItem('special' + (sel.type === 'settings' ? ' selected' : ''), ic('gear') + ' ' + esc(t('tree.settings')), () => select('settings')));
-
-  const sep = document.createElement('div');
-  sep.className = 'tree-sep';
-  tree.appendChild(sep);
-
+  // Varyant A: sol panel yalnızca kitaba ait — özel sayfalar ve araçlar sağdaki rayda
   for (const part of book.parts) {
     tree.appendChild(mkItem('part-title',
       `<span class="caret">${ic('down')}</span> <span class="chapter-label">${esc(part.title)}</span>
@@ -638,6 +628,9 @@ function renderSidebar() {
       tree.appendChild(item);
     }
   }
+
+  // Ağacın sonunda sessiz "+ Kısım" satırı
+  tree.appendChild(mkItem('add-part', ic('plus') + ' ' + esc(t('btn.addPart')), addPart));
 
   tree.querySelectorAll('[data-cmv]').forEach(btn => {
     btn.onclick = (e) => {
@@ -672,7 +665,16 @@ function select(type, id = null) {
 
 /* ---------------- Orta panel ---------------- */
 
+// Raydaki aktif görünüm vurgusu
+function updateRail() {
+  const map = { guide: 'guideRail', front: 'frontRail', sources: 'sourcesRail', scratch: 'scratchRail', settings: 'settingsRail', convert: 'exportBtn' };
+  document.querySelectorAll('.rail .ric').forEach(b => b.classList.remove('on'));
+  const id = map[sel.type];
+  if (id) { const b = document.getElementById(id); if (b) b.classList.add('on'); }
+}
+
 function renderEditor() {
+  updateRail();
   const ed = $('#editor');
   if (sel.type === 'guide') {
     // Rehber paketi henüz yüklenmediyse küçük bir yer tutucu; paket gelince loadGuidePack yeniden çizer
@@ -1534,8 +1536,37 @@ function versionLabel(f) {
   return `${m[3]}.${m[2]}.${m[1]} ${m[4]}:${m[5]}${m[6] ? t('ver.pre') : ''}`;
 }
 
+function addPart() {
+  const title = prompt(t('part.newPrompt'));
+  if (!title) return;
+  book.parts.push({ id: uid('p'), title, chapters: [] });
+  scheduleSave();
+  renderSidebar();
+}
+
+/* Versiyonlar penceresi: rail'deki saat ikonuna tıklayınca açılır */
+function openVersionsPanel() {
+  const host = $('#versionHost');
+  host.innerHTML = `
+    <div class="mini-overlay" id="verOverlay">
+      <div class="mini-modal">
+        <div class="mini-head">
+          <span>${esc(t('btn.version'))}</span>
+          <button class="mini-close" id="verClose">✕</button>
+        </div>
+        <button class="btn-take-version" id="verTake">${esc(t('btn.versionTip'))}</button>
+        <div class="versions-box" id="versionsBox"></div>
+      </div>
+    </div>`;
+  $('#verClose').onclick = () => { host.innerHTML = ''; };
+  $('#verOverlay').onclick = (e) => { if (e.target.id === 'verOverlay') host.innerHTML = ''; };
+  $('#verTake').onclick = saveVersion;
+  loadVersions();
+}
+
 function renderVersions(versions) {
   const box = $('#versionsBox');
+  if (!box) return; // pencere kapalıyken sessizce geç
   if (!versions.length) { box.innerHTML = ''; return; }
   box.innerHTML =
     `<div class="v-title">${esc(t('ver.title'))}</div>` +
@@ -2336,9 +2367,15 @@ async function init() {
   $('#tipNext').onclick = () => { tipIndex++; renderTip(); };
   // "Kitaba Dönüştür": doğrudan export yerine tam ekran dönüştürme sayfası
   $('#exportBtn').onclick = () => select('convert');
-  $('#versionBtn').onclick = saveVersion;
+  $('#versionBtn').onclick = openVersionsPanel;
   $('#phoneBtn').onclick = showPhoneModal;
   $('#libraryLink').onclick = (e) => { e.preventDefault(); showLibrary(); };
+  // Araç rayı gezinmesi
+  $('#guideRail').onclick = () => select('guide');
+  $('#frontRail').onclick = () => select('front');
+  $('#sourcesRail').onclick = () => select('sources');
+  $('#scratchRail').onclick = () => select('scratch');
+  $('#settingsRail').onclick = () => select('settings');
 
   const langSel = $('#dicteLangSel');
   langSel.innerHTML = DICTE_LANGS.map(([code, name]) =>
@@ -2347,13 +2384,7 @@ async function init() {
     dicteLang = langSel.value;
     localStorage.setItem('dicteLang', dicteLang);
   };
-  $('#addPartBtn').onclick = () => {
-    const title = prompt(t('part.newPrompt'));
-    if (!title) return;
-    book.parts.push({ id: uid('p'), title, chapters: [] });
-    scheduleSave();
-    renderSidebar();
-  };
+  // (+ Kısım artık ağacın sonunda — addPart fonksiyonu renderSidebar'dan çağrılır)
 
   // Kitaplığı oku: birden fazla kitap varsa Kitaplığım ekranı, tek kitap varsa doğrudan o kitap
   let books = null;
