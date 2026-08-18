@@ -172,5 +172,9 @@
   "dl_close_h2": "Si te atascas",
   "dl_close_lead": "Para preguntas y sugerencias, escríbenos en GitHub. Si te ha resultado útil, no olvides <a href=\"support.html\">invitarnos a un café</a> — pero primero escribe tu libro.",
   "dl_close_btn_exe": "Descargar — inkGuide.exe",
-  "dl_close_btn_all": "Todas las versiones"
+  "dl_close_btn_all": "Todas las versiones",
+  "home_fb_h2": "Tu voz da forma a inkGuide",
+  "home_fb_p": "Cuéntanos qué funciona, qué no, y qué le falta a tu mesa de escritura. Cada función nació de la necesidad de un escritor: la próxima puede ser la tuya.",
+  "home_fb_btn": "Comparte opiniones e ideas →",
+  "home_fb_note": "Aquí se publicarán voces de escritores reales; nunca testimonios inventados."
 }
