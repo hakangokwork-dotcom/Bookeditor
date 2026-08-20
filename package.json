@@ -6,7 +6,9 @@
   "bin": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build:exe": "pkg . --targets node22-win-x64 --output dist/inkGuide.exe"
+    "build:exe": "pkg . --targets node22-win-x64 --output dist/inkGuide.exe",
+    "build:site": "node tools/build-site.mjs",
+    "stats": "node tools/download-stats.mjs"
   },
   "pkg": {
     "assets": [

@@ -21,6 +21,29 @@ const SRC = path.join(ROOT, 'site-src');
 const OUT = path.join(ROOT, 'public', 'site');
 const SITE = 'https://inkguide.uk';
 
+// ---- Ölçüm ayarları ----
+// GoatCounter kodu. https://www.goatcounter.com/signup ile <kod>.goatcounter.com
+// hesabını açtıktan sonra buraya yaz. BOŞ BIRAKILIRSA siteye hiçbir script eklenmez.
+// Çerez kullanmaz, kişisel veri saklamaz — gizlilik sayfasındaki söz bozulmaz.
+const GOATCOUNTER = 'inkguide';
+
+// Arama motoru doğrulaması.
+// TERCİH EDİLEN YÖNTEM DNS TXT KAYDIDIR (bkz. docs/olcum-kurulumu.md):
+// bu script her çalıştığında public/site/ tamamen silinir, oraya bırakılan
+// google1234.html doğrulama dosyası ilk build'de yok olur ve doğrulama düşer.
+// Aşağısı yalnızca DNS'e erişilemeyen durumlar için kaçış kapısıdır.
+const SEARCH_VERIFY = { google: '', bing: '' };
+
+// GoatCounter script etiketi (kod boşsa hiç üretilmez)
+const ANALYTICS = GOATCOUNTER
+  ? `\n<script data-goatcounter="https://${GOATCOUNTER}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>`
+  : '';
+
+const VERIFY_META = [
+  SEARCH_VERIFY.google ? `<meta name="google-site-verification" content="${SEARCH_VERIFY.google}">` : '',
+  SEARCH_VERIFY.bing ? `<meta name="msvalidate.01" content="${SEARCH_VERIFY.bing}">` : '',
+].filter(Boolean).join('\n');
+
 // ---- Dil listesi (sıra = dil seçicideki sıra) ----
 const LANGS = [
   { code: 'en', name: 'English',  locale: 'en_US', rtl: false, root: true },
@@ -157,6 +180,8 @@ for (const lang of built) {
       cur_download: page.slug === 'download' ? ' aria-current="page"' : '',
       header_cta_href: page.slug === 'download' ? '#downloads' : 'download.html',
       header_cta_label: page.slug === 'download' ? d.header_cta_download : d.header_cta,
+      analytics: ANALYTICS,
+      verify_meta: VERIFY_META,
       head: PARTIALS.head,
       meta: PARTIALS.meta,
       header: PARTIALS.header,
@@ -235,15 +260,28 @@ if (broken.length) {
 }
 
 // ---- sitemap.xml + robots.txt ----
+// lastmod = sayfayı üreten kaynakların en yeni değişiklik tarihi — build tarihi DEĞİL.
+// (Her build'de değişen bir lastmod arama motorunda güven kaybettirir: tarama sıklığı düşer.)
+const mtimeOf = (f) => fs.statSync(f).mtime.getTime();
+const SHARED_MTIME = Math.max(
+  ...['head', 'meta', 'header', 'footer'].map((n) => mtimeOf(path.join(SRC, 'partials', `${n}.html`))),
+  mtimeOf(path.join(SRC, 'site.css'))
+);
+const isoDay = (ms) => new Date(ms).toISOString().slice(0, 10);
+
 const urls = [];
 for (const lang of built) {
   const base = lang.root ? `${SITE}/` : `${SITE}/${lang.code}/`;
+  const langMtime = mtimeOf(path.join(SRC, 'translations', `${lang.code}.json`));
   for (const pg of PAGES) {
-    urls.push(pg.slug === 'index' ? base : `${base}${pg.file}`);
+    urls.push({
+      loc: pg.slug === 'index' ? base : `${base}${pg.file}`,
+      lastmod: isoDay(Math.max(SHARED_MTIME, langMtime, mtimeOf(path.join(SRC, 'templates', pg.file)))),
+    });
   }
 }
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  urls.map((u) => `  <url><loc>${u}</loc></url>`).join('\n') + '\n</urlset>\n';
+  urls.map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod></url>`).join('\n') + '\n</urlset>\n';
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap, 'utf8');
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`, 'utf8');
 
