@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>İlk kitabını yazanlar için rehber — inkGuide</title>
+<meta name="description" content="Notları bölümlere çevirmenin yolu: önerilen çalışma düzeni, açık yazmanın el emeği, alıntı ve kaynak etiği, bir kitabın yapısı. Ücretsiz, üyeliksiz.">
+<link rel="canonical" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/tr/guide.html">
+<meta property="og:title" content="İlk kitabını yazanlar için rehber">
+<meta property="og:description" content="Notları bölümlere çevirmenin yolu: önerilen çalışma düzeni, açık yazmanın el emeği, alıntı ve kaynak etiği, bir kitabın yapısı. Ücretsiz, üyeliksiz.">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="inkGuide logosu ve yanında üç panelli yazı stüdyosu: bölüm iskeleti, taslak ve notlar yan yana.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="inkGuide logosu ve yanında üç panelli yazı stüdyosu: bölüm iskeleti, taslak ve notlar yan yana.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"İlk kitabını yazanlar için rehber","description":"Notları bölümlere çevirmenin yolu: önerilen çalışma düzeni, açık yazmanın el emeği, alıntı ve kaynak etiği, bir kitabın yapısı. Ücretsiz, üyeliksiz.","inLanguage":"tr","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/tr/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">İçeriğe atla</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide ana sayfa">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Ana gezinme">
+      <a href="index.html#features">Özellikler</a>
+      <a href="guide.html" aria-current="page">Rehber</a>
+      <a href="privacy.html">Gizlilik</a>
+      <a href="support.html">Destek</a>
+      <a href="download.html">İndir</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="Dil seçimi" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html">English</option>
+        <option value="/tr/guide.html" selected>Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html">中文</option>
+        <option value="/ar/guide.html">العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html">Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html">Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">İndir — ücretsiz</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>İlk kitabını yazanlar için rehber</h1>
+  <p class="guide-lead">Bu araç, notlarınızı bölümlere dönüştürüp sizi adım adım bitmiş bir kitaba yürütmek için tasarlandı. Soldan bir bölüm seçin; araştırma çıktıları, sentezler ve alıntılarla besleyin; malzeme olgunlaşınca taslağı yazın. Aşağıda: bu araçla çalışma akışı, her dilde geçerli yazma zanaatı, kaynak etiği ve dosyalarınızın güvenliği.</p>
+
+  <h2>Önerilen çalışma akışı</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>Topla.</b> Araştırma ve okumalarınızdan çıkan her şeyi ilgili bölüme <i>not</i> olarak ekleyin. Henüz yargılamayın — biriktirin. Toplamak ve yazmak farklı işlerdir; ikisini karıştırmak ikisini de yavaşlatır.</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>Sentezle.</b> Notlar birikince tek bir soruya cevap veren <i>sentez</i> notları yazın: "bu bölümün ana fikri ne?" Şema, diyagram ve illüstrasyon fikirlerinizi <i>görsel</i> notu olarak kaydedin — kitap tasarımı aşamasında hazır bir listeniz olur.</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>Yaz.</b> Sentezlere bakarak taslağı yazın: notlar sağ elinizin altında, taslak önünüzde. Dışarıdan metin getirirken <b>Yapıştır</b> satır kırıklarını ve kalıntıları temizler; <b>Düzelt</b> aynı temizliği seçili metne uygular; <b>Editör</b> düğmesi tek geçişte ara başlık, liste, blok alıntı ve akıllı noktalama ekler — <b>Geri Al</b> ile dönebilirsiniz. <b>B / I / H / Liste / ❝</b> düğmeleri seçili metni biçimlendirir. Sessizlik mi lazım? <b>Odak modu</b> iki paneli de gizler; Esc geri getirir.</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>Dinlendir ve düzelt.</b> Bölümü "bitti" işaretlemeden önce en az bir hafta bekletin, sonra yabancı gözüyle okuyun. Mesafe, tutabileceğiniz en ucuz editördür.</p></div>
+  </div>
+  <div class="guide-tipbox"><b>Kararsız mısınız?</b> Nereye ait olduğunu bilmediğiniz her şeyi <b>Karalama Defteri</b>'ne atın; hazır olunca notu "bölüme taşı" ile yerine gönderin.</div>
+  <div class="guide-tipbox"><b>🎤 Sesli not:</b> Not alanlarının ve taslak araç çubuğunun yanındaki mikrofon düğmesine tıklayıp konuşun — söyledikleriniz yazıya dökülür; tekrar tıklayınca durur. <i>(Konuşma tanıma tarayıcının servisiyle çalışır; Chrome/Edge gerekir ve ilk kullanımda mikrofon izni ister.)</i></div>
+
+  <h2>Zanaat: her dilde açık yazmak</h2>
+  <div class="kural"><b>Bir paragraf, bir fikir.</b> Paragraf, düşüncenin birimidir. Paragraf uzadıysa muhtemelen iki fikir taşıyor demektir — bölün.</div>
+  <div class="kural"><b>Kısa cümle kazanır.</b> Bir cümle bir fikir taşısın; okuyucu nefes alsın. Ritim için uzunluğu değiştirin ama kararsız kaldığınızda cümleyi ikiye bölün.</div>
+  <div class="kural"><b>Etken çatıyı tercih edin.</b> "Ekip problemi tanımladı" canlıdır; "problem tanımlandı" faili gizler. Edilgeni yalnızca failin gerçekten önemsiz olduğu yerde kullanın.</div>
+  <div class="kural"><b>Anlatmayın, gösterin.</b> "Depo karmakarışıktı" bir iddiadır; "üç forklift aynı koridoru tıkamıştı" bir sahnedir. Somut ayrıntı, sıfatların ikna edemediğini ikna eder.</div>
+  <div class="kural"><b>Acımasızca budayın.</b> İş görmeyen her kelime, iş gören kelimeleri zayıflatır. Cümle o kelime olmadan da ayakta kalıyorsa, kelime gider.</div>
+  <div class="kural"><b>İlk taslak pürüzlü olur; olması gereken budur.</b> Taslağı ne düşündüğünüzü keşfetmek için yazarsınız; okuyucuya da düşündürtmek için yeniden yazarsınız. Yazarken asla düzeltmeyin — ikisi farklı zihinsel modlardır.</div>
+  <div class="kural"><b>Sesli okuyun.</b> Dilinize takılan cümle okuyucuya da takılır. Gözün affettiğini kulak yakalar.</div>
+  <div class="kural"><b>Tek okuyucuya yazın.</b> Gerçek bir kişi seçin ve ona anlatın. "Herkes" için yazılan kitap hiç kimse için yazılmıştır.</div>
+
+  <h2>Türkçe yazanlara: sık karışan kurallar (TDK)</h2>
+  <div class="kural"><b>de / da:</b> Bağlaç ise ayrı ("ben de geldim"), bulunma eki ise bitişik ("evde"). Test: çıkarınca cümle bozuluyorsa bitişiktir.</div>
+  <div class="kural"><b>ki:</b> Bağlaç ise ayrı ("öyle ki"), aitlik eki ise bitişik ("seninki", "akşamki"). İstisna kalıplar: "sanki, oysaki, çünkü, hâlbuki, mademki, meğerki, belki".</div>
+  <div class="kural"><b>Soru eki mı/mi:</b> Her zaman ayrı yazılır: "geldi mi?", "problem mi?"</div>
+  <div class="kural"><b>Birleşik fiiller:</b> "hissetmek, kaybetmek, reddetmek" bitişik; "fark etmek, terk etmek, söz etmek" ayrı.</div>
+  <div class="kural"><b>Sayılar:</b> Metinde küçük sayılar yazıyla ("üç yöntem"), ölçüm ve istatistikler rakamla ("%69", "55 dakika").</div>
+
+  <h2>Alıntı ve kaynak etiği</h2>
+  <ul>
+    <li>Birebir alıntı → tırnak içinde + kaynak + sayfa numarası. Kitapta 40 kelimeyi geçen alıntılar blok alıntı olur.</li>
+    <li>Parafraz — fikri kendi cümlelerinizle aktarmak — da kaynak ister. İntihalin en yaygın türü, parafraz edip kaynak vermemektir.</li>
+    <li>Taslak içinde <code>[[kaynak:kahneman2011]]</code> yazın; kitaba dönüştürünce otomatik olarak <b>(Kahneman, 2011)</b> olur ve Kaynakça'ya girer.</li>
+    <li>İkincil alıntıdan kaçının: "Kahneman'ın aktardığına göre Simon…" yerine mümkünse asıl kaynağa gidin.</li>
+    <li>Ünlü sözleri kullanmadan önce doğrulayın: Einstein'a atfedilen sözlerin çoğu Einstein'a ait değildir. (Kitabınız için harika bir yan hikâye!)</li>
+  </ul>
+
+  <h2>Kitabın yapısı</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">Önsöz</div><div class="d">Kitabın hikâyesi: neden ve kime yazdınız. Genelde en son yazılır.</div></div>
+    <div class="guide-card"><div class="t">Giriş</div><div class="d">Vaat ve okuma haritası. Okuyucu iki sayfada "bu kitap bana ne verecek?" cevabını almalı.</div></div>
+    <div class="guide-card"><div class="t">Bölümler</div><div class="d">Her bölüm tek bir soruya cevap versin; taslağa başlamadan o soruyu sinopsis alanına yazın.</div></div>
+    <div class="guide-card"><div class="t">Kaynakça</div><div class="d">Otomatik oluşur; siz kaynakları girip atıf işaretçilerini kullanın.</div></div>
+  </div>
+
+  <h2>Kitaba dönüştürünce ne olur?</h2>
+  <p>Sol alttaki <b>"Kitaba Dönüştür"</b> düğmesi kitabınızı üç formatta üretir: <b>Markdown</b> (ham metin), <b>HTML</b> (okumalık/baskı önizleme) ve <b>Word (.docx)</b> — kapak, içindekiler, önsöz, giriş, bölümler ve APA formatında kaynakça ile. Word dosyasını açınca içindekileri güncellemeyi onaylayın (alanlar otomatik dolar). Dosya adları tarih + saat damgalıdır; her dönüştürme ayrı bir çıktı versiyonudur.</p>
+
+  <h2>Versiyonlama ve güvenlik yedeği</h2>
+  <p><b>"Versiyon"</b> düğmesi kitabın o anki halinin anlık görüntüsünü <code>versions/</code> klasörüne kaydeder. Büyük bir değişiklikten (bölüm silme, yeniden yapılandırma) önce bir versiyon alın; listeden tek tıkla <b>geri yükleyebilirsiniz</b> — geri yükleme öncesi mevcut hal de otomatik versiyonlanır, hiçbir şey kaybolmaz.</p>
+  <p><b>Emekler asla boşa gitmez:</b> her kayıtta kitabınızın son hali <code>yedek/kitap-son-hali.md</code> ve <code>yedek/kitap-son-hali.docx</code> dosyalarına da yazılır — notlarınız ve karalama defteriniz dahil. Bu uygulama bir gün hiç açılmasa bile, o Word dosyasını açıp kaldığınız yerden devam edebilirsiniz.</p>
+
+    <div class="guide-close">
+      <p>Bu rehberin anlattığı araç ücretsizdir ve tamamen kendi bilgisayarınızda çalışır.</p>
+      <a class="btn btn-primary" href="download.html">İndir — ücretsiz</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Kitabınızın yol arkadaşı</span>
+    <nav aria-label="Altbilgi gezinmesi">
+      <a href="guide.html">Rehber</a>
+      <a href="privacy.html">Verileriniz nerede durur?</a>
+      <a href="support.html">Bir kahve ısmarla</a>
+      <a href="download.html">İndir</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="Dil seçimi"><a href="/guide.html" lang="en" hreflang="en">English</a>
+    <span class="cur" lang="tr">Türkçe</span>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/guide.html" lang="zh" hreflang="zh">中文</a>
+    <a href="/ar/guide.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/guide.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/guide.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>

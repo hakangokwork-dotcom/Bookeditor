@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>写第一本书的人的指南 — inkGuide</title>
+<meta name="description" content="如何把笔记变成章节：建议的工作流程、清晰写作的功夫、引用与来源伦理，以及一本书的结构。免费，无需注册。">
+<link rel="canonical" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/zh/guide.html">
+<meta property="og:title" content="写第一本书的人的指南">
+<meta property="og:description" content="如何把笔记变成章节：建议的工作流程、清晰写作的功夫、引用与来源伦理，以及一本书的结构。免费，无需注册。">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="inkGuide 标识与三栏写作工作台：章节大纲、草稿与笔记并列。">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="inkGuide 标识与三栏写作工作台：章节大纲、草稿与笔记并列。">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"写第一本书的人的指南","description":"如何把笔记变成章节：建议的工作流程、清晰写作的功夫、引用与来源伦理，以及一本书的结构。免费，无需注册。","inLanguage":"zh","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/zh/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">跳转到正文</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide 首页">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="index.html#features">功能</a>
+      <a href="guide.html" aria-current="page">指南</a>
+      <a href="privacy.html">隐私</a>
+      <a href="support.html">支持</a>
+      <a href="download.html">下载</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="语言" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html">English</option>
+        <option value="/tr/guide.html">Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html" selected>中文</option>
+        <option value="/ar/guide.html">العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html">Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html">Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">免费下载</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>写第一本书的人的指南</h1>
+  <p class="guide-lead">这个工具的使命，是把您的笔记变成章节，并一步一步陪您走到成书的那一刻。在左侧选择一章，把研究成果、综合、引文等作为笔记喂给它；材料成熟之后，再动笔写草稿。下文依次是：如何在本工具中工作、放之四海皆准的清晰写作之道、来源伦理，以及您的文件将何去何从。</p>
+
+  <h2>建议的工作流程</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>收集。</b>把研究和阅读中产生的一切，作为<i>笔记</i>添加到相应章节。先不要评判——只管积累。收集与写作是两种不同的工作，混在一起只会两头都慢。</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>综合。</b>笔记攒多之后，写几条<i>综合</i>笔记，回答一个问题：“这一章的核心思想是什么？”把图表和插图的构思存为<i>视觉</i>笔记——到了设计成书的阶段，您手里就有一份现成的清单。</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>写作。</b>把综合笔记摆在眼前起草：笔记在手边，草稿在面前。从外部带入文字时，<b>粘贴</b>按钮会清理断行和残留；<b>清理</b>对选中的文字做同样的整理；<b>编辑</b>按钮一次性加上小标题、项目列表、引用块和弯引号——<b>撤销</b>可以还原这一切。<b>B / I / H / 列表 / ❝</b> 按钮用于给选中的文字排版。需要安静？<b>专注模式</b>会隐藏两侧面板；按 Esc 即可恢复。</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>搁置与修改。</b>一章写完后，至少让它静置一周再标记为“完成”，然后用陌生人的眼光重读。距离，是您能请到的最便宜的编辑。</p></div>
+  </div>
+  <div class="guide-tipbox"><b>拿不定主意？</b>凡是暂时无处安放的内容，都先丢进<b>随笔本</b>；等它成熟了，再用“移到章节”送它回家。</div>
+  <div class="guide-tipbox"><b>🎤 语音笔记：</b>点击笔记输入框和草稿工具栏旁的麦克风按钮，开口即说——您的话会变成文字；再点一次即停止。<i>（语音识别使用浏览器自带的服务；需要 Chrome/Edge，首次使用时会请求麦克风权限。）</i></div>
+
+  <h2>写作的功夫：无论哪种语言，都把话写清楚</h2>
+  <div class="kural"><b>一段只讲一个意思。</b>段落是思想的单位。一段写得太长，多半是塞了两个意思——拆开它。</div>
+  <div class="kural"><b>短句制胜。</b>一句话只承载一个意思，让读者有喘息的余地。为了节奏可以长短交错，但拿不准时，就把句子一分为二。</div>
+  <div class="kural"><b>多用主动语态。</b>“团队界定了问题”是活的；“问题被界定了”把行动者藏了起来。只有当行动者真的无关紧要时，才用被动。</div>
+  <div class="kural"><b>要呈现，不要只是断言。</b>“仓库一片混乱”是论断；“三辆叉车堵在同一条过道里”是场景。能说服人的是具体的细节，形容词做不到。</div>
+  <div class="kural"><b>狠心删。</b>每一个不干活的词，都在削弱那些干活的词。去掉某个词句子仍然成立，这个词就该删。</div>
+  <div class="kural"><b>初稿本来就该是粗糙的。</b>写初稿，是为了弄清自己在想什么；改稿，是为了让读者也想明白。起草时绝不要边写边改——那是两种不同的思维模式。</div>
+  <div class="kural"><b>读出声来。</b>让您舌头打结的句子，也会让读者磕绊。耳朵能抓住眼睛放过的问题。</div>
+  <div class="kural"><b>为一位读者而写。</b>挑一个具体的、真实的人，讲给他听。写给“所有人”的书，其实谁也没写给。</div>
+
+  <h2>引用与来源伦理</h2>
+  <ul>
+    <li>逐字引用 → 引号 + 来源 + 页码。超过 40 个词的引文，在成书时会变成块引用。</li>
+    <li>转述——用自己的话复述某个观点——同样需要注明来源。最常见的抄袭形式，正是转述而不注明出处。</li>
+    <li>在草稿中写 <code>[[source:kahneman2011]]</code>；成书时它会自动变为<b>（Kahneman, 2011）</b>并进入参考文献。</li>
+    <li>避免二手引用：与其写“据卡尼曼说，西蒙曾说过……”，不如尽量回到原始出处。</li>
+    <li>名言使用前先核实：归在爱因斯坦名下的话，大多并非出自爱因斯坦。（这本身就是您书里一段绝佳的插曲！）</li>
+  </ul>
+
+  <h2>一本书的结构</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">序言</div><div class="d">这本书的故事：您为何而写、为谁而写。通常最后才写。</div></div>
+    <div class="guide-card"><div class="t">导言</div><div class="d">本书的承诺与阅读地图。读者应在两页之内明白“这本书能带给我什么”。</div></div>
+    <div class="guide-card"><div class="t">章节</div><div class="d">每一章只回答一个问题；动笔之前，先把这个问题写进梗概栏。</div></div>
+    <div class="guide-card"><div class="t">参考文献</div><div class="d">自动生成——您只需录入来源并使用引注标记。</div></div>
+  </div>
+
+  <h2>生成书稿时会发生什么？</h2>
+  <p>左下角的<b>「生成书稿」</b>按钮会以三种格式输出您的书：<b>Markdown</b>（纯文本）、<b>HTML</b>（阅读/打印预览）和 <b>Word (.docx)</b>——包含封面、目录、序言、导言、各章以及 APA 参考文献。打开 Word 文件时，请确认更新目录域（页码会自动填充）。文件名带日期时间戳；每次生成都是一个独立的输出版本。</p>
+
+  <h2>快照与安全备份</h2>
+  <p><b>「快照」</b>按钮会把书稿当前的状态保存到 <code>versions/</code> 文件夹。任何大改动（删除章节、调整结构）之前，先拍一张快照；之后在列表中一键即可<b>恢复</b>——恢复前，当前状态也会自动保存快照，所以什么都不会丢。</p>
+  <p><b>您的心血绝不会白费：</b>每次保存时，书稿的最新状态还会写入 <code>yedek/kitap-son-hali.md</code> 和 <code>yedek/kitap-son-hali.docx</code>——连同您的笔记和随笔本。哪怕有一天这个应用再也打不开，您也可以打开那个 Word 文件，从上次停下的地方继续。</p>
+
+    <div class="guide-close">
+      <p>本指南所描述的工具完全免费，并且只在你自己的电脑上运行。</p>
+      <a class="btn btn-primary" href="download.html">免费下载</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>你的写书伙伴</span>
+    <nav aria-label="页脚导航">
+      <a href="guide.html">指南</a>
+      <a href="privacy.html">你的数据存放在哪里？</a>
+      <a href="support.html">请我们喝杯咖啡</a>
+      <a href="download.html">下载</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="语言"><a href="/guide.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/guide.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <span class="cur" lang="zh">中文</span>
+    <a href="/ar/guide.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/guide.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/guide.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>

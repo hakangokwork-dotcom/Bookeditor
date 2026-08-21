@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>دليل من يكتب كتابه الأول — inkGuide</title>
+<meta name="description" content="كيف تتحوّل الملاحظات إلى فصول: خطة عمل مقترحة، وحرفة الكتابة الواضحة، وأخلاقيات الاقتباس والمصادر، وبنية الكتاب. مجاني، بلا تسجيل.">
+<link rel="canonical" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/ar/guide.html">
+<meta property="og:title" content="دليل من يكتب كتابه الأول">
+<meta property="og:description" content="كيف تتحوّل الملاحظات إلى فصول: خطة عمل مقترحة، وحرفة الكتابة الواضحة، وأخلاقيات الاقتباس والمصادر، وبنية الكتاب. مجاني، بلا تسجيل.">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="شعار inkGuide إلى جانب طاولة كتابة من ثلاث لوحات: هيكل الفصول والمسودة والملاحظات جنبًا إلى جنب.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="شعار inkGuide إلى جانب طاولة كتابة من ثلاث لوحات: هيكل الفصول والمسودة والملاحظات جنبًا إلى جنب.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"دليل من يكتب كتابه الأول","description":"كيف تتحوّل الملاحظات إلى فصول: خطة عمل مقترحة، وحرفة الكتابة الواضحة، وأخلاقيات الاقتباس والمصادر، وبنية الكتاب. مجاني، بلا تسجيل.","inLanguage":"ar","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/ar/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">تخطَّ إلى المحتوى</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="الصفحة الرئيسية لـ inkGuide">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="التنقل الرئيسي">
+      <a href="index.html#features">المزايا</a>
+      <a href="guide.html" aria-current="page">الدليل</a>
+      <a href="privacy.html">الخصوصية</a>
+      <a href="support.html">الدعم</a>
+      <a href="download.html">التنزيل</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="اللغة" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html">English</option>
+        <option value="/tr/guide.html">Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html">中文</option>
+        <option value="/ar/guide.html" selected>العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html">Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html">Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">نزِّله — مجانًا</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>دليل من يكتب كتابه الأول</h1>
+  <p class="guide-lead">صُمِّمت هذه الأداة لتحوِّل ملاحظاتك إلى فصول، ولترافقك خطوة بخطوة حتى تُتمّ كتابك. اختر فصلًا من القائمة الجانبية، وغذِّه بالملاحظات — نتائج بحوثك، وتركيباتك، واقتباساتك — فإذا نضجت المادة فاكتب المسودة. في ما يلي: كيف تعمل داخل هذه الأداة، وأصول الكتابة الواضحة في أي لغة، وأخلاقيات المصادر، وما يحدث لملفاتك.</p>
+
+  <h2>سير العمل المقترح</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>اجمَع.</b> أضِف كل ما تُسفر عنه بحوثك وقراءاتك إلى الفصل المناسب بوصفه <i>ملاحظة</i>. لا تُصدِر حكمًا الآن — راكِم فحسب. فالجمع والكتابة عملان مختلفان، والخلط بينهما يُبطئهما معًا.</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>ركِّب.</b> حين تتكدّس الملاحظات، اكتب ملاحظات <i>تركيب</i> تجيب عن سؤال واحد: «ما الفكرة الرئيسة لهذا الفصل؟» واحفظ أفكار المخططات والرسوم بوصفها ملاحظات <i>بصرية</i> — فعند تصميم الكتاب ستجد بين يديك قائمة جاهزة.</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>اكتُب.</b> اكتب المسودة وتركيباتك نُصب عينيك: الملاحظات إلى جانبك والمسودة بين يديك. وإذا جلبت نصًا من خارج التطبيق، فإن زر <b>لصق</b> ينظّف فواصل الأسطر والبقايا؛ وزر <b>تنظيف</b> يطبّق التنظيف نفسه على النص المحدد؛ وزر <b>المحرّر</b> يضيف في مسحة واحدة العناوين الفرعية والقوائم والاقتباسات الكتلية وعلامات الترقيم الذكية — وزر <b>تراجع</b> يُبطل أثره. أزرار <b>B / I / H / قائمة / ❝</b> تنسّق النص المحدد. أتحتاج إلى صمت؟ <b>وضع التركيز</b> يُخفي اللوحتين الجانبيتين، وزر Esc يُعيدهما.</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>أرِح النص ثم راجِع.</b> دَع الفصل يستريح أسبوعًا على الأقل قبل أن تَصِفه بأنه «مكتمل»، ثم أعِد قراءته بعينَي قارئ غريب. فالمسافة أرخصُ محرِّرٍ ستستأجره في حياتك.</p></div>
+  </div>
+  <div class="guide-tipbox"><b>متردّد؟</b> ألقِ بكل ما لا موضع له بعد في <b>دفتر المسودات</b>؛ فإذا نضج أرسِله إلى مكانه بزر «نقل إلى فصل».</div>
+  <div class="guide-tipbox"><b>🎤 الملاحظات الصوتية:</b> انقر زر الميكروفون المجاور لحقول الملاحظات وشريط أدوات المسودة وتكلَّم — يتحول كلامك إلى نص؛ انقر مجددًا للإيقاف. <i>(يستخدم التعرف على الكلام خدمة المتصفح؛ يلزم Chrome أو Edge، ويُطلب إذن الميكروفون عند أول استخدام.)</i></div>
+
+  <h2>الصنعة: الكتابة الواضحة، بأي لغة</h2>
+  <div class="kural"><b>فقرة واحدة، فكرة واحدة.</b> الفقرة هي وحدة الفكر. فإذا استطالت فقرة، فالأرجح أنها تحمل فكرتين — فاقسمها.</div>
+  <div class="kural"><b>الجُمَل القصيرة تنتصر.</b> لتحمل الجملةُ الواحدة فكرةً واحدة، ودَع القارئ يتنفس. نوِّع الطول من أجل الإيقاع، وإذا ساورك الشك فاقطع الجملة جملتين.</div>
+    <div class="kural"><b>آثِر المبني للمعلوم.</b> «حدّد الفريقُ المشكلةَ» جملة حية؛ أما «حُدِّدت المشكلة» فتُخفي الفاعل. لا تلجأ إلى المبني للمجهول إلا حين لا يهمّ الفاعل حقًا.</div>
+  <div class="kural"><b>أرِ القارئ، لا تكتفِ بالإخبار.</b> «كان المستودع فوضويًا» ادّعاء؛ أما «ثلاث رافعات شوكية تسدّ الممرّ نفسه» فمشهد. التفصيل الملموس يُقنع حيث تعجز الصفات.</div>
+  <div class="kural"><b>احذف بلا رحمة.</b> كل كلمة لا تؤدي عملًا تُضعف الكلمات التي تؤديه. فإذا نجت الجملة بلا كلمة، فلترحل الكلمة.</div>
+  <div class="kural"><b>المسودات الأولى خُلقت لتكون خشنة.</b> اكتب المسودة لتكتشف ما تفكر فيه، ثم أعِد كتابتها ليفكر فيه القارئ أيضًا. ولا تحرّر وأنت تكتب — فهما نمطان ذهنيان مختلفان.</div>
+  <div class="kural"><b>اقرأ نصك بصوت عالٍ.</b> الجملة التي يتعثّر بها لسانك سيتعثّر بها قارئك. فالأذن تلتقط ما تتسامح فيه العين.</div>
+  <div class="kural"><b>اكتب لقارئ واحد.</b> اختر شخصًا واحدًا حقيقيًا واشرح له. فالكتاب المكتوب «للجميع» مكتوب لِلا أحد.</div>
+
+  <h2>الاقتباس وأخلاقيات المصادر</h2>
+  <ul>
+    <li>الاقتباس الحرفي ← علامتا تنصيص + المصدر + رقم الصفحة. والاقتباسات التي تتجاوز 40 كلمة تصبح اقتباسات كتلية في الكتاب.</li>
+    <li>إعادة الصياغة — أي التعبير عن فكرةٍ بكلماتك — تحتاج إلى مصدر أيضًا. فأكثر أشكال الانتحال شيوعًا هو إعادة الصياغة دون ذكر المصدر.</li>
+    <li>اكتب <code>[[source:kahneman2011]]</code> في المسودة؛ فعند إنشاء الكتاب تتحول تلقائيًا إلى <b>(Kahneman, 2011)</b> وتدخل قائمة المراجع.</li>
+    <li>تجنّب الاقتباس بالواسطة: بدل «يقول كانمان إن سايمون قال…»، ارجع إلى المصدر الأصلي كلما أمكن.</li>
+    <li>تحقَّق من الأقوال الشهيرة قبل استخدامها: معظم ما يُنسب إلى أينشتاين ليس لأينشتاين. (وتلك قصة جانبية بديعة لكتابك!)</li>
+  </ul>
+
+  <h2>بنية الكتاب</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">التمهيد</div><div class="d">قصة الكتاب: لماذا كتبته ولمن. يُكتب في العادة أخيرًا.</div></div>
+    <div class="guide-card"><div class="t">المقدمة</div><div class="d">وعد الكتاب وخريطة قراءته. خلال صفحتين يجب أن يعرف القارئ: «ماذا سيمنحني هذا الكتاب؟».</div></div>
+    <div class="guide-card"><div class="t">الفصول</div><div class="d">ليُجِب كل فصل عن سؤال واحد؛ اكتب ذلك السؤال في حقل الملخص قبل أن تشرع في المسودة.</div></div>
+    <div class="guide-card"><div class="t">قائمة المراجع</div><div class="d">تُنشأ تلقائيًا — ما عليك سوى إدخال المصادر واستخدام علامات الاستشهاد.</div></div>
+  </div>
+
+  <h2>ماذا يحدث عند إنشاء الكتاب؟</h2>
+  <p>زر <b>«إنشاء الكتاب»</b> في أسفل الشريط الجانبي يُخرج كتابك بثلاث صيغ: <b>Markdown</b> (نص خام) و<b>HTML</b> (معاينة قراءة وطباعة) و<b>Word (.docx)</b> — مع الغلاف والفهرس والتمهيد والمقدمة والفصول وقائمة مراجع بنسق APA. وعند فتح ملف Word وافق على تحديث الفهرس (تمتلئ الحقول تلقائيًا). تحمل أسماء الملفات ختم تاريخ ووقت؛ فكل إنشاء نسخة إخراج مستقلة.</p>
+
+  <h2>اللقطات والنسخ الاحتياطي الآمن</h2>
+  <p>زر <b>«لقطة»</b> يحفظ الحالة الراهنة للكتاب في مجلد <code>versions/</code>. خذ لقطة قبل أي تغيير كبير (حذف فصل، أو إعادة هيكلة)؛ ويمكنك <b>الاستعادة</b> من القائمة بنقرة واحدة — وتُلتقط الحالة الحالية تلقائيًا قبل الاستعادة أيضًا، فلا يضيع شيء أبدًا.</p>
+  <p><b>جهدك لا يذهب سُدًى:</b> مع كل حفظ تُكتب آخر حالة لكتابك أيضًا في <code>yedek/kitap-son-hali.md</code> و<code>yedek/kitap-son-hali.docx</code> — بما في ذلك ملاحظاتك ودفتر مسوداتك. فحتى لو لم يُفتح هذا التطبيق يومًا ما، يمكنك فتح ملف Word ذاك ومواصلة العمل من حيث توقفت.</p>
+
+    <div class="guide-close">
+      <p>الأداة التي يصفها هذا الدليل مجانية وتعمل بالكامل على حاسوبك.</p>
+      <a class="btn btn-primary" href="download.html">نزِّله — مجانًا</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>رفيق كتابك</span>
+    <nav aria-label="تنقل التذييل">
+      <a href="guide.html">الدليل</a>
+      <a href="privacy.html">أين تعيش بياناتك؟</a>
+      <a href="support.html">اشترِ لنا قهوة</a>
+      <a href="download.html">التنزيل</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="اللغة"><a href="/guide.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/guide.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/guide.html" lang="zh" hreflang="zh">中文</a>
+    <span class="cur" lang="ar">العربية</span>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/guide.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/guide.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>

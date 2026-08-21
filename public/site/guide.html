@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+
+<title>Guide for first-time book writers — inkGuide</title>
+<meta name="description" content="How to turn notes into chapters: a suggested workflow, the craft of clear writing, quoting and source ethics, and the structure of a book. Free, no sign-up.">
+<link rel="canonical" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/guide.html">
+<meta property="og:title" content="Guide for first-time book writers">
+<meta property="og:description" content="How to turn notes into chapters: a suggested workflow, the craft of clear writing, quoting and source ethics, and the structure of a book. Free, no sign-up.">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The inkGuide wordmark beside a three-pane writing studio: chapter outline, draft and notes side by side.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="The inkGuide wordmark beside a three-pane writing studio: chapter outline, draft and notes side by side.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Guide for first-time book writers","description":"How to turn notes into chapters: a suggested workflow, the craft of clear writing, quoting and source ethics, and the structure of a book. Free, no sign-up.","inLanguage":"en","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide home">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html#features">Features</a>
+      <a href="guide.html" aria-current="page">Guide</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="support.html">Support</a>
+      <a href="download.html">Download</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="Language" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html" selected>English</option>
+        <option value="/tr/guide.html">Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html">中文</option>
+        <option value="/ar/guide.html">العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html">Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html">Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">Download — free</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>Guide for first-time book writers</h1>
+  <p class="guide-lead">This tool is built to turn your notes into chapters and walk you, step by step, toward a finished book. Pick a chapter on the left, feed it with notes — research outputs, syntheses, quotes — and when the material is ripe, write the draft. Below: how to work in this tool, the universal craft of clear writing, source ethics, and what happens to your files.</p>
+
+  <h2>Suggested workflow</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>Collect.</b> Add everything that comes out of your research and reading to the relevant chapter as a <i>note</i>. Do not judge yet — accumulate. Collecting and writing are different jobs, and mixing them slows both down.</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>Synthesize.</b> Once notes pile up, write <i>synthesis</i> notes that answer one question: "what is the main idea of this chapter?" Save diagram and illustration ideas as <i>visual</i> notes — at book-design time you will have a ready list.</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>Write.</b> Draft with your syntheses in view: notes at your right hand, draft in front of you. When bringing text from outside, the <b>Paste</b> button cleans line breaks and residue; <b>Clean up</b> applies the same cleanup to a selection; the <b>Editor</b> button adds headings, lists, block quotes and smart punctuation in one pass — and <b>Undo</b> reverts it. The <b>B / I / H / List / ❝</b> buttons format the selected text. Need silence? <b>Focus mode</b> hides both panels; Esc brings them back.</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>Rest and revise.</b> Let a chapter rest for at least a week before marking it "done", then reread it with a stranger's eyes. Distance is the cheapest editor you will ever hire.</p></div>
+  </div>
+  <div class="guide-tipbox"><b>Undecided?</b> Throw anything that has no home yet into the <b>Scratchpad</b>; when it is ready, send it where it belongs with "move to chapter".</div>
+  <div class="guide-tipbox"><b>🎤 Voice notes:</b> Click the microphone button next to note fields and the draft toolbar and speak — your words become text; click again to stop. <i>(Speech recognition uses the browser's service; Chrome/Edge required, microphone permission asked on first use.)</i></div>
+
+  <h2>The craft: writing clearly, in any language</h2>
+  <div class="kural"><b>One paragraph, one idea.</b> The paragraph is the unit of thought. If a paragraph runs long, it is probably carrying two ideas — split it.</div>
+  <div class="kural"><b>Short sentences win.</b> One sentence should carry one idea; let the reader breathe. Vary length for rhythm, but when in doubt, cut the sentence in two.</div>
+  <div class="kural"><b>Prefer the active voice.</b> "The team defined the problem" is alive; "the problem was defined" hides the actor. Use the passive only when the actor truly does not matter.</div>
+  <div class="kural"><b>Show, don't only tell.</b> "The warehouse was chaotic" is a claim; "three forklifts blocked the same aisle" is a scene. Concrete detail persuades where adjectives cannot.</div>
+  <div class="kural"><b>Cut ruthlessly.</b> Every word that does no work weakens the words that do. If a sentence survives without a word, the word goes.</div>
+  <div class="kural"><b>First drafts are supposed to be rough.</b> Write the draft to find out what you think; rewrite it so the reader thinks it too. Never edit while drafting — they are different mental modes.</div>
+  <div class="kural"><b>Read it aloud.</b> A sentence that trips your tongue will trip your reader. The ear catches what the eye forgives.</div>
+  <div class="kural"><b>Write for one reader.</b> Pick a single, real person and explain it to them. A book written for "everyone" is written for no one.</div>
+
+  <h2>Quoting &amp; source ethics</h2>
+  <ul>
+    <li>Verbatim quote → quotation marks + source + page number. Quotes longer than 40 words become block quotes in the book.</li>
+    <li>Paraphrasing — restating an idea in your own words — also needs a source. The most common form of plagiarism is paraphrasing without citing.</li>
+    <li>Write <code>[[source:kahneman2011]]</code> in the draft; when the book is built it automatically becomes <b>(Kahneman, 2011)</b> and enters the Bibliography.</li>
+    <li>Avoid secondary quoting: instead of "According to Kahneman, Simon said…", go to the original source whenever possible.</li>
+    <li>Verify famous sayings before you use them: most quotes attributed to Einstein are not Einstein's. (A great side story for your book!)</li>
+  </ul>
+
+  <h2>The structure of a book</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">Preface</div><div class="d">The story of the book: why and for whom you wrote it. Usually written last.</div></div>
+    <div class="guide-card"><div class="t">Introduction</div><div class="d">The promise and a reading map. Within two pages the reader should know "what will this book give me?".</div></div>
+    <div class="guide-card"><div class="t">Chapters</div><div class="d">Each chapter should answer a single question; write that question in the synopsis field before you draft.</div></div>
+    <div class="guide-card"><div class="t">Bibliography</div><div class="d">Generated automatically — you just enter sources and use citation markers.</div></div>
+  </div>
+
+  <h2>What happens when you build the book?</h2>
+  <p>The <b>"Build the Book"</b> button at the bottom left produces your book in three formats: <b>Markdown</b> (raw text), <b>HTML</b> (reading/print preview) and <b>Word (.docx)</b> — with cover, table of contents, preface, introduction, chapters and an APA bibliography. When you open the Word file, confirm updating the table of contents (fields fill automatically). File names carry a date + time stamp; every build is a separate output version.</p>
+
+  <h2>Snapshots &amp; safety backup</h2>
+  <p>The <b>"Snapshot"</b> button saves the current state of the book into the <code>versions/</code> folder. Take a snapshot before any big change (deleting a chapter, restructuring); you can <b>restore</b> from the list with one click — the current state is also snapshotted automatically before restoring, so nothing is ever lost.</p>
+  <p><b>Your work is never wasted:</b> on every save the latest state of your book is also written to <code>yedek/kitap-son-hali.md</code> and <code>yedek/kitap-son-hali.docx</code> — including your notes and scratchpad. Even if this app never opens again one day, you can open that Word file and continue where you left off.</p>
+
+    <div class="guide-close">
+      <p>The tool this guide describes is free and runs entirely on your own computer.</p>
+      <a class="btn btn-primary" href="download.html">Download — free</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Your book's companion</span>
+    <nav aria-label="Footer navigation">
+      <a href="guide.html">Guide</a>
+      <a href="privacy.html">Where does your data live?</a>
+      <a href="support.html">Buy us a coffee</a>
+      <a href="download.html">Download</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="Language"><span class="cur" lang="en">English</span>
+    <a href="/tr/guide.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/guide.html" lang="zh" hreflang="zh">中文</a>
+    <a href="/ar/guide.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/guide.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/guide.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>

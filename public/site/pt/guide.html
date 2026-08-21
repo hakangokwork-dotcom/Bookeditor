@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>Guia para quem escreve o primeiro livro — inkGuide</title>
+<meta name="description" content="Como transformar notas em capítulos: um fluxo de trabalho sugerido, o ofício de escrever com clareza, ética de citação e a estrutura de um livro. Grátis, sem cadastro.">
+<link rel="canonical" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/pt/guide.html">
+<meta property="og:title" content="Guia para quem escreve o primeiro livro">
+<meta property="og:description" content="Como transformar notas em capítulos: um fluxo de trabalho sugerido, o ofício de escrever com clareza, ética de citação e a estrutura de um livro. Grátis, sem cadastro.">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A marca inkGuide ao lado de um estúdio de escrita de três painéis: estrutura de capítulos, rascunho e notas.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="A marca inkGuide ao lado de um estúdio de escrita de três painéis: estrutura de capítulos, rascunho e notas.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Guia para quem escreve o primeiro livro","description":"Como transformar notas em capítulos: um fluxo de trabalho sugerido, o ofício de escrever com clareza, ética de citação e a estrutura de um livro. Grátis, sem cadastro.","inLanguage":"pt","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/pt/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Pular para o conteúdo</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Página inicial do inkGuide">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Navegação principal">
+      <a href="index.html#features">Recursos</a>
+      <a href="guide.html" aria-current="page">Guia</a>
+      <a href="privacy.html">Privacidade</a>
+      <a href="support.html">Apoie</a>
+      <a href="download.html">Baixar</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="Idioma" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html">English</option>
+        <option value="/tr/guide.html">Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html">中文</option>
+        <option value="/ar/guide.html">العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html" selected>Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html">Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">Baixar — grátis</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>Guia para quem escreve o primeiro livro</h1>
+  <p class="guide-lead">Esta ferramenta foi feita para transformar suas anotações em capítulos e conduzir você, passo a passo, até um livro pronto. Escolha um capítulo à esquerda, alimente-o com notas — resultados de pesquisa, sínteses, citações — e, quando o material estiver maduro, escreva o rascunho. A seguir: como trabalhar nesta ferramenta, o ofício universal da escrita clara, a ética das fontes e o que acontece com seus arquivos.</p>
+
+  <h2>Fluxo de trabalho sugerido</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>Colete.</b> Adicione tudo o que sair das suas pesquisas e leituras ao capítulo correspondente como uma <i>nota</i>. Não julgue ainda — acumule. Coletar e escrever são trabalhos diferentes, e misturá-los atrasa os dois.</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>Sintetize.</b> Quando as notas se acumularem, escreva notas de <i>síntese</i> que respondam a uma única pergunta: "qual é a ideia central deste capítulo?". Guarde ideias de diagramas e ilustrações como notas <i>visuais</i> — na hora de diagramar o livro, você terá uma lista pronta.</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>Escreva.</b> Redija com as sínteses à vista: notas à sua direita, rascunho à sua frente. Ao trazer texto de fora, o botão <b>Colar</b> limpa quebras de linha e resíduos; <b>Limpar</b> aplica a mesma limpeza a uma seleção; o botão <b>Editor</b> acrescenta subtítulos, listas, citações em bloco e pontuação tipográfica em uma só passada — e <b>Desfazer</b> a reverte. Os botões <b>B / I / H / Lista / ❝</b> formatam o texto selecionado. Precisa de silêncio? O <b>Modo foco</b> oculta os dois painéis; Esc os traz de volta.</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>Descanse e revise.</b> Deixe o capítulo descansar por pelo menos uma semana antes de marcá-lo como "concluído"; depois, releia-o com olhos de estranho. A distância é o editor mais barato que você jamais vai contratar.</p></div>
+  </div>
+  <div class="guide-tipbox"><b>Em dúvida?</b> Jogue no <b>Bloco de Rascunhos</b> tudo o que ainda não tem lugar; quando amadurecer, envie para onde pertence com "mover para capítulo".</div>
+  <div class="guide-tipbox"><b>🎤 Notas de voz:</b> Clique no botão de microfone ao lado dos campos de nota e da barra do rascunho e fale — suas palavras viram texto; clique de novo para parar. <i>(O reconhecimento de voz usa o serviço do navegador; requer Chrome/Edge, e a permissão do microfone é pedida no primeiro uso.)</i></div>
+
+  <h2>O ofício: escrever com clareza, em qualquer idioma</h2>
+  <div class="kural"><b>Um parágrafo, uma ideia.</b> O parágrafo é a unidade do pensamento. Se um parágrafo se alonga, provavelmente carrega duas ideias — divida-o.</div>
+  <div class="kural"><b>Frases curtas vencem.</b> Cada frase deve carregar uma ideia; deixe o leitor respirar. Varie o tamanho pelo ritmo, mas, na dúvida, corte a frase em duas.</div>
+  <div class="kural"><b>Prefira a voz ativa.</b> "A equipe definiu o problema" tem vida; "o problema foi definido" esconde quem agiu. Use a passiva só quando o agente de fato não importa.</div>
+  <div class="kural"><b>Mostre, não apenas afirme.</b> "O galpão estava um caos" é uma alegação; "três empilhadeiras bloqueavam o mesmo corredor" é uma cena. O detalhe concreto convence onde os adjetivos falham.</div>
+  <div class="kural"><b>Corte sem dó.</b> Cada palavra que não trabalha enfraquece as que trabalham. Se a frase sobrevive sem uma palavra, a palavra sai.</div>
+  <div class="kural"><b>O primeiro rascunho nasce tosco — e deve nascer assim.</b> Escreva o rascunho para descobrir o que você pensa; reescreva-o para que o leitor pense o mesmo. Nunca revise enquanto redige — são modos mentais diferentes.</div>
+  <div class="kural"><b>Leia em voz alta.</b> A frase que tropeça na sua língua vai tropeçar no seu leitor. O ouvido pega o que o olho perdoa.</div>
+  <div class="kural"><b>Escreva para um único leitor.</b> Escolha uma pessoa real e explique a ela. Um livro escrito para "todo mundo" não é escrito para ninguém.</div>
+
+  <h2>Citações e ética das fontes</h2>
+  <ul>
+    <li>Citação literal → aspas + fonte + número da página. Citações com mais de 40 palavras viram citações em bloco no livro.</li>
+    <li>Parafrasear — reformular uma ideia com suas próprias palavras — também exige fonte. A forma mais comum de plágio é parafrasear sem citar.</li>
+    <li>Escreva <code>[[source:kahneman2011]]</code> no rascunho; ao gerar o livro, isso vira automaticamente <b>(Kahneman, 2011)</b> e entra na Bibliografia.</li>
+    <li>Evite a citação de segunda mão: em vez de "Segundo Kahneman, Simon disse…", vá à fonte original sempre que possível.</li>
+    <li>Verifique frases célebres antes de usá-las: a maioria das citações atribuídas a Einstein não é de Einstein. (Uma ótima história paralela para o seu livro!)</li>
+  </ul>
+
+  <h2>A estrutura de um livro</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">Prefácio</div><div class="d">A história do livro: por que e para quem você o escreveu. Costuma ser escrito por último.</div></div>
+    <div class="guide-card"><div class="t">Introdução</div><div class="d">A promessa e um mapa de leitura. Em duas páginas o leitor deve saber "o que este livro vai me dar?".</div></div>
+    <div class="guide-card"><div class="t">Capítulos</div><div class="d">Cada capítulo deve responder a uma única pergunta; escreva essa pergunta no campo de sinopse antes de redigir.</div></div>
+    <div class="guide-card"><div class="t">Bibliografia</div><div class="d">Gerada automaticamente — você só cadastra as fontes e usa os marcadores de citação.</div></div>
+  </div>
+
+  <h2>O que acontece quando você gera o livro?</h2>
+  <p>O botão <b>"Gerar o Livro"</b>, no canto inferior esquerdo, produz seu livro em três formatos: <b>Markdown</b> (texto puro), <b>HTML</b> (pré-visualização de leitura/impressão) e <b>Word (.docx)</b> — com capa, sumário, prefácio, introdução, capítulos e bibliografia em APA. Ao abrir o arquivo Word, confirme a atualização do sumário (os campos se preenchem sozinhos). Os nomes dos arquivos trazem carimbo de data e hora; cada geração é uma versão de saída separada.</p>
+
+  <h2>Snapshots e backup de segurança</h2>
+  <p>O botão <b>"Snapshot"</b> salva o estado atual do livro na pasta <code>versions/</code>. Tire um snapshot antes de qualquer mudança grande (excluir um capítulo, reestruturar); você pode <b>restaurar</b> a partir da lista com um clique — o estado atual também recebe um snapshot automático antes da restauração, então nada se perde jamais.</p>
+  <p><b>Seu trabalho nunca é desperdiçado:</b> a cada salvamento, o estado mais recente do seu livro também é gravado em <code>yedek/kitap-son-hali.md</code> e <code>yedek/kitap-son-hali.docx</code> — incluindo suas notas e o bloco de rascunhos. Mesmo que um dia este aplicativo nunca mais abra, você pode abrir aquele arquivo Word e continuar de onde parou.</p>
+
+    <div class="guide-close">
+      <p>A ferramenta descrita neste guia é gratuita e funciona inteiramente no seu computador.</p>
+      <a class="btn btn-primary" href="download.html">Baixar — grátis</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>O companheiro do seu livro</span>
+    <nav aria-label="Navegação do rodapé">
+      <a href="guide.html">Guia</a>
+      <a href="privacy.html">Onde moram os seus dados?</a>
+      <a href="support.html">Pague-nos um café</a>
+      <a href="download.html">Baixar</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="Idioma"><a href="/guide.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/guide.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/guide.html" lang="zh" hreflang="zh">中文</a>
+    <a href="/ar/guide.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <span class="cur" lang="pt">Português</span>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <a href="/ru/guide.html" lang="ru" hreflang="ru">Русский</a>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>

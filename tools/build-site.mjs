@@ -60,10 +60,15 @@ const LANGS = [
 
 const PAGES = [
   { slug: 'index',    file: 'index.html',    prefix: 'home' },
+  { slug: 'guide',    file: 'guide.html',    prefix: 'guide' },
   { slug: 'privacy',  file: 'privacy.html',  prefix: 'privacy' },
   { slug: 'support',  file: 'support.html',  prefix: 'support' },
   { slug: 'download', file: 'download.html', prefix: 'dl' },
 ];
+
+// Rehber sayfasının gövdesi site-src'den DEĞİL, uygulamanın rehberinden gelir:
+// public/guide/<dil>.json → guideHtml. Tek kaynak; rehber güncellenince site de güncellenir.
+const GUIDE_DIR = path.join(ROOT, 'public', 'guide');
 
 // Eski URL'ler → yeni konumları (hedef dili üretilmişse stub yazılır)
 const STUBS = [
@@ -117,6 +122,22 @@ function jsonLdFor(page, lang, d) {
 
   if (page.slug === 'index' || page.slug === 'download') return ldScript(app);
 
+  // Rehber: yazarlık öğüdü + atıf etiği + kitap yapısı — bağımsız bir yazı.
+  if (page.slug === 'guide') {
+    return ldScript({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: plain(d.guide_og_title || d.guide_title),
+      description: plain(d.guide_meta_desc),
+      inLanguage: lang.code,
+      image: OG_IMAGE,
+      mainEntityOfPage: SITE + pagePath(lang, page),
+      author: { '@type': 'Organization', name: 'inkGuide', url: SITE + '/' },
+      publisher: { '@type': 'Organization', name: 'inkGuide', url: SITE + '/' },
+      isAccessibleForFree: true,
+    });
+  }
+
   // Gizlilik sayfası: dört soru zaten SSS biçiminde — arama sonucunda açılır cevap olabilir.
   if (page.slug === 'privacy') {
     const faq = [1, 2, 3, 4]
@@ -137,6 +158,42 @@ function jsonLdFor(page, lang, d) {
   }
 
   return '';
+}
+
+/**
+ * Uygulamanın rehberini web sayfası gövdesine çevirir.
+ * Uygulamaya özgü parçalar (düğmeler, dış sarmalayıcı) siteye girmez;
+ * geri kalan işaretleme aynen korunur ve site.css'teki .guide sınıflarıyla biçimlenir.
+ */
+function guideBody(langCode, d) {
+  const p = path.join(GUIDE_DIR, `${langCode}.json`);
+  if (!fs.existsSync(p)) {
+    console.error(
+      `HATA: ${langCode} için rehber yok (public/guide/${langCode}.json).\n` +
+        `  Sitede o dilin sayfası İngilizce içerikle yayımlanmamalı; önce rehberi çevirin\n` +
+        `  ya da ${langCode} dilini LANGS listesinden çıkarın.`
+    );
+    process.exit(1);
+  }
+  let html = JSON.parse(fs.readFileSync(p, 'utf8')).guideHtml || '';
+
+  // 1) Uygulama içi eylem düğmeleri ("Yazmaya dön" / "Kaynakları yönet")
+  html = html.replace(/<div class="guide-cta">[\s\S]*?<\/div>/, '');
+  // 2) Kalan tekil düğmeler (varsa)
+  html = html.replace(/<button[\s\S]*?<\/button>/g, '');
+  // 3) Dış sarmalayıcı: sayfanın kendi <article> kabuğu var
+  html = html.replace(/^\s*<div class="editor-inner guide">\s*/, '').replace(/\s*<\/div>\s*$/, '');
+  // 4) Başlık: uygulamada panel bağlamı olduğu için "Rehber" yeterli; arama sonucunda
+  //    değil. Üst etiket ("İlk kitabını yazanlar için") tam başlıkta zaten geçtiği
+  //    için düşer, yoksa aynı cümle iki kez okunur.
+  html = html.replace(/<div class="guide-kicker">[\s\S]*?<\/div>\s*/, '');
+  html = html.replace(/<h1>[\s\S]*?<\/h1>/, `<h1>${d.guide_og_title}</h1>`);
+
+  if (/<button|editor-inner/.test(html)) {
+    console.error(`HATA: ${langCode} rehberinde temizlenmemiş uygulama işaretlemesi kaldı.`);
+    process.exit(1);
+  }
+  return html.trim();
 }
 
 // ---- Yardımcılar ----
@@ -243,6 +300,8 @@ for (const lang of built) {
       page_title: d[`${page.prefix}_title`],
       page_desc: d[`${page.prefix}_meta_desc`],
       page_og_title: d[`${page.prefix}_og_title`],
+      guide_body: page.slug === 'guide' ? guideBody(lang.code, d) : '',
+      cur_guide: page.slug === 'guide' ? ' aria-current="page"' : '',
       cur_privacy: page.slug === 'privacy' ? ' aria-current="page"' : '',
       cur_support: page.slug === 'support' ? ' aria-current="page"' : '',
       cur_download: page.slug === 'download' ? ' aria-current="page"' : '',
@@ -349,9 +408,14 @@ for (const lang of built) {
   const base = lang.root ? `${SITE}/` : `${SITE}/${lang.code}/`;
   const langMtime = mtimeOf(path.join(SRC, 'translations', `${lang.code}.json`));
   for (const pg of PAGES) {
+    // Rehber sayfasının içeriği public/guide/<dil>.json'dan gelir; tazeliği ondan türer.
+    const contentMtime =
+      pg.slug === 'guide' ? mtimeOf(path.join(GUIDE_DIR, `${lang.code}.json`)) : langMtime;
     urls.push({
       loc: pg.slug === 'index' ? base : `${base}${pg.file}`,
-      lastmod: isoDay(Math.max(SHARED_MTIME, langMtime, mtimeOf(path.join(SRC, 'templates', pg.file)))),
+      lastmod: isoDay(
+        Math.max(SHARED_MTIME, langMtime, contentMtime, mtimeOf(path.join(SRC, 'templates', pg.file)))
+      ),
     });
   }
 }

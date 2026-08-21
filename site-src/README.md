@@ -20,3 +20,15 @@
 - Her sayfaya JSON-LD gömülür (`jsonLdFor()`): ana sayfa + indirme → `SoftwareApplication`, gizlilik → `FAQPage` (dört soru). Sürüm numarası `package.json`'dan okunur, elle güncellenmez. **Uydurma puan/yorum (`aggregateRating`, `review`) eklenmez** — gerçek değerlendirme olmadan bunlar yanıltıcıdır ve yaptırım sebebidir.
 - `og.png` (1200×630) `site-src/og.png` dosyasından kopyalanır. Kaynağı [og-image.html](og-image.html); yeniden üretme yönergesi o dosyanın başındadır. Görsel **dile bağlı cümle taşımaz**, çünkü 10 dilde birden kullanılır — değiştirirsen bu kuralı koru.
 - Sosyal ağlar `og:image`'ı agresif önbelleğe alır. Görseli değiştirdiğinde dosya adını da değiştirmen (ör. `og-2.png`) gerekebilir.
+
+## Rehber sayfası (`guide.html`)
+
+Bu sayfanın **gövdesi `site-src/` içinde değildir** — `public/guide/<dil>.json` → `guideHtml` alanından gelir; yani uygulamanın rehberiyle tek kaynaktan beslenir. Rehberi güncellediğinde `npm run build:site` çalıştırman yeterli, site kendiliğinden güncellenir.
+
+`guideBody()` web sürümü için üç şey yapar:
+
+1. Uygulama içi düğmeleri ("Yazmaya dön", "Kaynakları yönet") ve dış sarmalayıcıyı atar.
+2. Üst etiketi (`.guide-kicker`) kaldırır ve `<h1>Rehber</h1>` yerine `guide_og_title`'ı koyar — arama sonucunda "Rehber" tek başına hiçbir şey anlatmaz.
+3. Kalıntı kontrolü yapar: temizlenmemiş `<button>` veya `editor-inner` kalırsa build hata verip durur.
+
+Bir dilin `public/guide/<dil>.json` dosyası yoksa build **durur**. Bu kasıtlıdır: o dilin sayfası İngilizce içerikle yayımlanırsa `hreflang` yanlış beyan olur. Ya rehberi çevir ya da dili `LANGS`'ten çıkar.

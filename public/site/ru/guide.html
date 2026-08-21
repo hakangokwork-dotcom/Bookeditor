@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2355663F' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z'/%3E%3Cpath d='M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../site.css">
+
+<title>Руководство для тех, кто пишет первую книгу — inkGuide</title>
+<meta name="description" content="Как превратить заметки в главы: рабочий порядок, ремесло ясного письма, этика цитирования и структура книги. Бесплатно, без регистрации.">
+<link rel="canonical" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="en" href="https://inkguide.uk/guide.html">
+<link rel="alternate" hreflang="tr" href="https://inkguide.uk/tr/guide.html">
+<link rel="alternate" hreflang="es" href="https://inkguide.uk/es/guide.html">
+<link rel="alternate" hreflang="zh" href="https://inkguide.uk/zh/guide.html">
+<link rel="alternate" hreflang="ar" href="https://inkguide.uk/ar/guide.html">
+<link rel="alternate" hreflang="hi" href="https://inkguide.uk/hi/guide.html">
+<link rel="alternate" hreflang="pt" href="https://inkguide.uk/pt/guide.html">
+<link rel="alternate" hreflang="fr" href="https://inkguide.uk/fr/guide.html">
+<link rel="alternate" hreflang="ru" href="https://inkguide.uk/ru/guide.html">
+<link rel="alternate" hreflang="de" href="https://inkguide.uk/de/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://inkguide.uk/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="inkGuide">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:url" content="https://inkguide.uk/ru/guide.html">
+<meta property="og:title" content="Руководство для тех, кто пишет первую книгу">
+<meta property="og:description" content="Как превратить заметки в главы: рабочий порядок, ремесло ясного письма, этика цитирования и структура книги. Бесплатно, без регистрации.">
+<meta property="og:image" content="https://inkguide.uk/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Логотип inkGuide рядом с трёхпанельным письменным столом: структура глав, черновик и заметки.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://inkguide.uk/og.png">
+<meta name="twitter:image:alt" content="Логотип inkGuide рядом с трёхпанельным письменным столом: структура глав, черновик и заметки.">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Руководство для тех, кто пишет первую книгу","description":"Как превратить заметки в главы: рабочий порядок, ремесло ясного письма, этика цитирования и структура книги. Бесплатно, без регистрации.","inLanguage":"ru","image":"https://inkguide.uk/og.png","mainEntityOfPage":"https://inkguide.uk/ru/guide.html","author":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"publisher":{"@type":"Organization","name":"inkGuide","url":"https://inkguide.uk/"},"isAccessibleForFree":true}</script>
+
+<style>
+  /* --- Rehber sayfası ---
+     Gövde public/guide/<dil>.json'dan gelir (uygulamanın rehberiyle tek kaynak),
+     bu yüzden sınıf adları uygulamadakiyle aynıdır; biçimler site token'larına çekildi. --- */
+  .guide-wrap { max-width: 760px; padding-top: 72px; padding-bottom: 84px; }
+
+  /* Not: uygulamadaki .guide-kicker üst etiketi web sürümünde kaldırılır
+     (build-site.mjs → guideBody), başlıkla aynı cümleyi tekrar etmesin diye. */
+  .guide h1 {
+    font-family: var(--serif); font-size: clamp(34px, 5vw, 48px); font-weight: 600;
+    letter-spacing: -.025em; line-height: 1.1; margin: 16px 0 0;
+  }
+  .guide .guide-lead { font-size: 17px; line-height: 1.8; color: var(--ink-soft); margin: 20px 0 0; }
+  .guide h2 {
+    font-family: var(--serif); margin: 52px 0 16px; font-size: 26px;
+    font-weight: 600; letter-spacing: -.01em;
+  }
+  .guide p, .guide li { font-size: 15.5px; line-height: 1.75; color: var(--ink-soft); margin-bottom: 6px; }
+  .guide ul { padding-inline-start: 22px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 10px; }
+  .guide ul li { margin-bottom: 0; }
+  .guide b { color: var(--ink); font-weight: 600; }
+  .guide code {
+    font-size: 13.5px; background: var(--paper-panel); border: 1px solid var(--line);
+    border-radius: 6px; padding: 2px 7px;
+  }
+
+  .guide .guide-steps { display: flex; flex-direction: column; gap: 16px; }
+  .guide .guide-step { display: flex; gap: 18px; }
+  .guide .guide-num {
+    font-family: var(--serif); font-size: 23px; color: var(--accent);
+    min-width: 30px; flex-shrink: 0; line-height: 1.5;
+  }
+  .guide .guide-step p { margin: 0; }
+
+  .guide .guide-tipbox {
+    border: 1px solid var(--honey-line); border-radius: var(--radius); background: var(--honey-bg);
+    padding: 17px 20px; margin-top: 18px; font-size: 15px; line-height: 1.75; color: var(--ink-soft);
+  }
+
+  .guide .kural {
+    background: var(--white); border: 1px solid var(--line);
+    border-inline-start: 3px solid var(--accent); border-radius: 10px;
+    padding: 14px 17px; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: var(--ink-soft);
+  }
+
+  .guide .guide-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .guide .guide-card {
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--white); padding: 17px 19px;
+  }
+  .guide .guide-card .t { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .guide .guide-card .d { font-size: 14px; line-height: 1.65; color: var(--ink-muted); margin-top: 6px; }
+
+  @media (max-width: 900px) { .guide .guide-cards { grid-template-columns: 1fr; } }
+
+  /* Sayfa sonu: rehberden indirmeye köprü */
+  .guide-close {
+    margin-top: 56px; padding-top: 34px; border-top: 1px solid var(--line);
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .guide-close p { margin: 0; flex: 1; min-width: 240px; font-size: 15.5px; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#content">Перейти к содержимому</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="inkGuide — на главную">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="index.html#features">Возможности</a>
+      <a href="guide.html" aria-current="page">Руководство</a>
+      <a href="privacy.html">Приватность</a>
+      <a href="support.html">Поддержка</a>
+      <a href="download.html">Скачать</a>
+    </nav>
+    <div class="header-cta">
+      <select class="lang-select" aria-label="Язык" onchange="if(this.value)location.href=this.value">
+        <option value="/guide.html">English</option>
+        <option value="/tr/guide.html">Türkçe</option>
+        <option value="/es/guide.html">Español</option>
+        <option value="/zh/guide.html">中文</option>
+        <option value="/ar/guide.html">العربية</option>
+        <option value="/hi/guide.html">हिन्दी</option>
+        <option value="/pt/guide.html">Português</option>
+        <option value="/fr/guide.html">Français</option>
+        <option value="/ru/guide.html" selected>Русский</option>
+        <option value="/de/guide.html">Deutsch</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="download.html">Скачать — бесплатно</a>
+    </div>
+  </div>
+</header>
+
+
+<main id="content">
+
+  <article class="wrap guide-wrap guide">
+<h1>Руководство для тех, кто пишет первую книгу</h1>
+  <p class="guide-lead">Этот инструмент создан, чтобы превратить ваши заметки в главы и шаг за шагом привести вас к законченной книге. Выберите главу слева, наполняйте её заметками — результатами исследований, синтезами, цитатами, — а когда материал созреет, пишите черновик. Ниже: как работать в этом инструменте, универсальное ремесло ясного письма, этика источников и что происходит с вашими файлами.</p>
+
+  <h2>Рекомендуемый порядок работы</h2>
+  <div class="guide-steps">
+    <div class="guide-step"><div class="guide-num">1</div><p><b>Собирайте.</b> Всё, что дают вам чтение и исследования, добавляйте в соответствующую главу как <i>заметку</i>. Пока не оценивайте — накапливайте. Сбор материала и письмо — разные занятия, и попытка совместить их замедляет оба.</p></div>
+    <div class="guide-step"><div class="guide-num">2</div><p><b>Синтезируйте.</b> Когда заметок накопится много, пишите заметки-<i>синтезы</i>, отвечающие на один вопрос: «в чём главная мысль этой главы?» Идеи схем и иллюстраций сохраняйте как <i>визуальные</i> заметки — к моменту оформления книги у вас будет готовый список.</p></div>
+    <div class="guide-step"><div class="guide-num">3</div><p><b>Пишите.</b> Работайте над черновиком, держа синтезы перед глазами: заметки под правой рукой, черновик перед вами. Когда переносите текст извне, кнопка <b>Вставить</b> очищает переносы строк и мусор; <b>Очистить</b> применяет ту же очистку к выделенному; кнопка <b>Редактор</b> за один проход расставляет подзаголовки, списки, блочные цитаты и «умную» пунктуацию — а <b>Отменить</b> откатывает правку. Кнопки <b>B / I / H / Список / ❝</b> форматируют выделенный текст. Нужна тишина? <b>Режим фокуса</b> скрывает обе панели; Esc возвращает их.</p></div>
+    <div class="guide-step"><div class="guide-num">4</div><p><b>Дайте отлежаться и правьте.</b> Прежде чем пометить главу как «готово», дайте ей отлежаться хотя бы неделю, а затем перечитайте её глазами постороннего. Дистанция — самый дешёвый редактор, какого вы когда-либо наймёте.</p></div>
+  </div>
+  <div class="guide-tipbox"><b>Не решили, куда?</b> Всё, чему пока нет места, бросайте в <b>Черновой Блокнот</b>; когда заметка созреет, отправьте её по адресу кнопкой «переместить в главу».</div>
+  <div class="guide-tipbox"><b>🎤 Голосовые заметки:</b> Нажмите кнопку микрофона рядом с полями заметок и панелью черновика и говорите — ваша речь станет текстом; нажмите ещё раз, чтобы остановить. <i>(Распознавание речи использует службу браузера; нужен Chrome или Edge, разрешение на микрофон запрашивается при первом использовании.)</i></div>
+
+  <h2>Ремесло: писать ясно — на любом языке</h2>
+  <div class="kural"><b>Один абзац — одна мысль.</b> Абзац — это единица мышления. Если абзац разросся, он, скорее всего, несёт две мысли — разделите его.</div>
+  <div class="kural"><b>Короткие предложения побеждают.</b> Одно предложение должно нести одну мысль; дайте читателю вдохнуть. Меняйте длину ради ритма, но если сомневаетесь — режьте предложение надвое.</div>
+  <div class="kural"><b>Предпочитайте действительный залог.</b> «Команда определила проблему» — живая фраза; «проблема была определена» прячет действующее лицо. Страдательный залог уместен лишь тогда, когда исполнитель действительно не важен.</div>
+  <div class="kural"><b>Показывайте, а не только рассказывайте.</b> «На складе царил хаос» — это утверждение; «три погрузчика застряли в одном проходе» — это сцена. Конкретная деталь убеждает там, где прилагательные бессильны.</div>
+  <div class="kural"><b>Режьте безжалостно.</b> Каждое слово, которое не работает, ослабляет те, что работают. Если предложение живёт без слова — слово уходит.</div>
+  <div class="kural"><b>Первый черновик и должен быть сырым.</b> Пишите черновик, чтобы понять, что вы думаете; переписывайте, чтобы это понял и читатель. Никогда не правьте во время письма — это разные режимы мышления.</div>
+  <div class="kural"><b>Читайте вслух.</b> Предложение, о которое спотыкается язык, споткнёт и читателя. Ухо ловит то, что прощает глаз.</div>
+  <div class="kural"><b>Пишите для одного читателя.</b> Выберите одного реального человека и объясняйте ему. Книга, написанная «для всех», не написана ни для кого.</div>
+
+  <h2>Цитирование и этика источников</h2>
+  <ul>
+    <li>Дословная цитата → кавычки + источник + номер страницы. Цитаты длиннее 40 слов становятся в книге блочными.</li>
+    <li>Пересказ — передача чужой мысли своими словами — тоже требует источника. Самая распространённая форма плагиата — пересказ без ссылки.</li>
+    <li>Напишите в черновике <code>[[source:kahneman2011]]</code> — при сборке книги это автоматически превратится в <b>(Kahneman, 2011)</b> и попадёт в список литературы.</li>
+    <li>Избегайте цитирования из вторых рук: вместо «по словам Канемана, Саймон сказал…» по возможности обращайтесь к первоисточнику.</li>
+    <li>Проверяйте знаменитые изречения, прежде чем их использовать: большинство цитат, приписываемых Эйнштейну, Эйнштейну не принадлежат. (Отличная побочная история для вашей книги!)</li>
+  </ul>
+
+  <h2>Из чего состоит книга</h2>
+  <div class="guide-cards">
+    <div class="guide-card"><div class="t">Предисловие</div><div class="d">История книги: почему и для кого вы её написали. Обычно пишется в последнюю очередь.</div></div>
+    <div class="guide-card"><div class="t">Введение</div><div class="d">Обещание книги и карта чтения. За две страницы читатель должен понять: «что даст мне эта книга?»</div></div>
+    <div class="guide-card"><div class="t">Главы</div><div class="d">Каждая глава должна отвечать на один вопрос; запишите этот вопрос в поле синопсиса до того, как начнёте писать.</div></div>
+    <div class="guide-card"><div class="t">Список литературы</div><div class="d">Собирается автоматически — вы лишь вносите источники и ставите маркеры цитирования.</div></div>
+  </div>
+
+  <h2>Что происходит при сборке книги?</h2>
+  <p>Кнопка <b>«Собрать Книгу»</b> внизу слева создаёт вашу книгу в трёх форматах: <b>Markdown</b> (простой текст), <b>HTML</b> (просмотр для чтения и печати) и <b>Word (.docx)</b> — с обложкой, оглавлением, предисловием, введением, главами и списком литературы по стандарту APA. Открыв файл Word, подтвердите обновление оглавления (поля заполнятся автоматически). Имена файлов содержат дату и время; каждая сборка — отдельная версия результата.</p>
+
+  <h2>Снимки и страховочная копия</h2>
+  <p>Кнопка <b>«Снимок»</b> сохраняет текущее состояние книги в папку <code>versions/</code>. Делайте снимок перед любым крупным изменением (удалением главы, перестройкой структуры); из списка можно <b>восстановить</b> книгу одним нажатием — перед восстановлением текущее состояние тоже снимается автоматически, так что ничего не теряется.</p>
+  <p><b>Ваш труд никогда не пропадёт:</b> при каждом сохранении последняя версия книги также записывается в <code>yedek/kitap-son-hali.md</code> и <code>yedek/kitap-son-hali.docx</code> — вместе с заметками и черновым блокнотом. Даже если однажды это приложение больше не откроется, вы сможете открыть тот файл Word и продолжить с того же места.</p>
+
+    <div class="guide-close">
+      <p>Инструмент, о котором рассказывает это руководство, бесплатен и работает целиком на вашем компьютере.</p>
+      <a class="btn btn-primary" href="download.html">Скачать — бесплатно</a>
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap bar">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" class="stroke-icon" style="width:18px;height:18px;stroke-width:1.7" aria-hidden="true"><path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/><path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/></svg>
+      <span><span class="ink">ink</span><span class="guide">Guide</span></span>
+    </a>
+    <span>Спутник вашей книги</span>
+    <nav aria-label="Навигация в подвале">
+      <a href="guide.html">Руководство</a>
+      <a href="privacy.html">Где живут ваши данные?</a>
+      <a href="support.html">Угостить нас кофе</a>
+      <a href="download.html">Скачать</a>
+    </nav>
+  </div>
+  <div class="wrap footer-langs" aria-label="Язык"><a href="/guide.html" lang="en" hreflang="en">English</a>
+    <a href="/tr/guide.html" lang="tr" hreflang="tr">Türkçe</a>
+    <a href="/es/guide.html" lang="es" hreflang="es">Español</a>
+    <a href="/zh/guide.html" lang="zh" hreflang="zh">中文</a>
+    <a href="/ar/guide.html" lang="ar" hreflang="ar">العربية</a>
+    <a href="/hi/guide.html" lang="hi" hreflang="hi">हिन्दी</a>
+    <a href="/pt/guide.html" lang="pt" hreflang="pt">Português</a>
+    <a href="/fr/guide.html" lang="fr" hreflang="fr">Français</a>
+    <span class="cur" lang="ru">Русский</span>
+    <a href="/de/guide.html" lang="de" hreflang="de">Deutsch</a></div>
+</footer>
+
+<script data-goatcounter="https://inkguide.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+
+
+</body>
+</html>
