@@ -14,3 +14,9 @@
 - İndirme düğmelerindeki `data-goatcounter-click` nitelikleri tıklama olaylarını adlandırır.
 - ⚠️ Arama motoru doğrulamasını **DNS TXT** ile yap: bu script `public/site/` klasörünü tamamen sildiği için oraya konan `google*.html` doğrulama dosyası ilk üretimde kaybolur. Zorunlu kalırsan `SEARCH_VERIFY` sabitini kullan.
 - Kurulum adımlarının tamamı: [docs/olcum-kurulumu.md](../docs/olcum-kurulumu.md).
+
+## Yapısal veri ve paylaşım görseli
+
+- Her sayfaya JSON-LD gömülür (`jsonLdFor()`): ana sayfa + indirme → `SoftwareApplication`, gizlilik → `FAQPage` (dört soru). Sürüm numarası `package.json`'dan okunur, elle güncellenmez. **Uydurma puan/yorum (`aggregateRating`, `review`) eklenmez** — gerçek değerlendirme olmadan bunlar yanıltıcıdır ve yaptırım sebebidir.
+- `og.png` (1200×630) `site-src/og.png` dosyasından kopyalanır. Kaynağı [og-image.html](og-image.html); yeniden üretme yönergesi o dosyanın başındadır. Görsel **dile bağlı cümle taşımaz**, çünkü 10 dilde birden kullanılır — değiştirirsen bu kuralı koru.
+- Sosyal ağlar `og:image`'ı agresif önbelleğe alır. Görseli değiştirdiğinde dosya adını da değiştirmen (ör. `og-2.png`) gerekebilir.

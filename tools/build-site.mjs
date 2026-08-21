@@ -73,6 +73,72 @@ const STUBS = [
   { file: 'en/index.html', target: '/',                 lang: 'en', title: 'inkGuide' },
 ];
 
+// ---- Yapısal veri (JSON-LD) sabitleri ----
+const REPO = 'https://github.com/hakangokwork-dotcom/Bookeditor';
+const OG_IMAGE = `${SITE}/og.png`;
+const VERSION = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8')).version;
+
+/** HTML parçasını düz metne indirger — JSON-LD içine etiket girmemeli. */
+function plain(html) {
+  return String(html || '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/** </script> kaçışı: JSON-LD gövdesi script etiketini erken kapatamaz. */
+const ldScript = (obj) =>
+  `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`;
+
+/** Sayfaya göre yapısal veri. Uydurma puan/yorum YOK — yalnızca doğrulanabilir alanlar. */
+function jsonLdFor(page, lang, d) {
+  const app = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'inkGuide',
+    url: SITE + '/',
+    description: plain(d[`${page.prefix}_meta_desc`]),
+    applicationCategory: 'WritingApplication',
+    operatingSystem: 'Windows 10+, macOS 12+',
+    softwareVersion: VERSION,
+    downloadUrl: `${REPO}/releases/latest/download/inkGuide.exe`,
+    installUrl: SITE + (lang.root ? '/download.html' : `/${lang.code}/download.html`),
+    inLanguage: built.map((l) => l.code),
+    isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    author: { '@type': 'Organization', name: 'inkGuide', url: SITE + '/' },
+    image: OG_IMAGE,
+  };
+
+  if (page.slug === 'index' || page.slug === 'download') return ldScript(app);
+
+  // Gizlilik sayfası: dört soru zaten SSS biçiminde — arama sonucunda açılır cevap olabilir.
+  if (page.slug === 'privacy') {
+    const faq = [1, 2, 3, 4]
+      .map((n) => ({ q: d[`privacy_qa${n}_h`], a: d[`privacy_qa${n}_p`] }))
+      .filter((x) => x.q && x.a)
+      .map((x) => ({
+        '@type': 'Question',
+        name: plain(x.q),
+        acceptedAnswer: { '@type': 'Answer', text: plain(x.a) },
+      }));
+    if (!faq.length) return '';
+    return ldScript({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage: lang.code,
+      mainEntity: faq,
+    });
+  }
+
+  return '';
+}
+
 // ---- Yardımcılar ----
 const read = (p) => fs.readFileSync(p, 'utf8');
 const PARTIALS = {
@@ -130,6 +196,8 @@ console.log(`Diller: ${built.map((l) => l.code).join(', ')} (atlanan: ${LANGS.fi
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 fs.copyFileSync(path.join(SRC, 'site.css'), path.join(OUT, 'site.css'));
+// Sosyal paylaşım görseli (1200x630). Kaynağı site-src/og-image.html — bkz. o dosyanın başı.
+fs.copyFileSync(path.join(SRC, 'og.png'), path.join(OUT, 'og.png'));
 
 const missing = new Set();
 let written = 0;
@@ -180,6 +248,13 @@ for (const lang of built) {
       cur_download: page.slug === 'download' ? ' aria-current="page"' : '',
       header_cta_href: page.slug === 'download' ? '#downloads' : 'download.html',
       header_cta_label: page.slug === 'download' ? d.header_cta_download : d.header_cta,
+      og_image: OG_IMAGE,
+      og_image_alt: d.og_image_alt,
+      og_locale_alternates: built
+        .filter((l) => l !== lang)
+        .map((l) => `<meta property="og:locale:alternate" content="${l.locale}">`)
+        .join('\n'),
+      jsonld: jsonLdFor(page, lang, d),
       analytics: ANALYTICS,
       verify_meta: VERIFY_META,
       head: PARTIALS.head,
@@ -285,4 +360,4 @@ const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://w
 fs.writeFileSync(path.join(OUT, 'sitemap.xml'), sitemap, 'utf8');
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`, 'utf8');
 
-console.log(`Tamam: ${written} dosya + site.css + sitemap.xml + robots.txt → ${path.relative(ROOT, OUT)}`);
+console.log(`Tamam: ${written} dosya + site.css + og.png + sitemap.xml + robots.txt → ${path.relative(ROOT, OUT)}`);

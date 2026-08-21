@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+  og.png KAYNAĞI — sosyal paylaşım görselinin tasarımı.
+  Bu dosya siteye kopyalanmaz; yalnızca 1200x630 PNG üretmek için kullanılır.
+
+  Yeniden üretmek için: tarayıcıyı 1200x630'a ayarla, bu dosyayı aç,
+  ekran görüntüsünü site-src/og.png olarak kaydet. (build-site.mjs onu
+  public/site/og.png'ye kopyalar.)
+
+  Metin YOKTUR (marka adı ve alan adı dışında): görsel 10 dilde birden
+  kullanıldığı için dile bağlı bir cümle taşımaz.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAF8F3;
+    --paper-panel: #F2F0E9;
+    --ink: #26251F;
+    --ink-muted: #6B6559;
+    --ink-faint: #6E6859;
+    --line: #E4E0D6;
+    --line-soft: #EFEBE1;
+    --accent: #55663F;
+    --accent-wash: #EDEFE4;
+    --accent-wash-line: #DDE2CF;
+    --accent-deep: #43522F;
+    --honey-bg: #FDF9EA;
+    --honey-line: #E9DEBB;
+    --white: #FFFFFF;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: var(--paper);
+    font-family: var(--sans);
+    color: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 512px;
+    align-items: center;
+    gap: 56px;
+    padding: 0 68px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Sol: marka ---- */
+  .mark { display: flex; align-items: center; gap: 18px; }
+  .mark svg { width: 54px; height: 54px; stroke: var(--accent); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .mark .word { font-family: var(--serif); font-size: 62px; font-weight: 600; letter-spacing: -0.5px; line-height: 1; }
+  .mark .word .g { color: var(--accent); }
+
+  .rule { width: 72px; height: 3px; background: var(--accent); border-radius: 2px; margin: 34px 0 30px; }
+
+  .domain {
+    font-size: 27px; font-weight: 500; color: var(--ink-muted);
+    letter-spacing: 0.02em;
+  }
+
+  .chips { display: flex; gap: 10px; margin-top: 34px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--accent-wash-line); background: var(--accent-wash);
+    color: var(--accent-deep); border-radius: 999px;
+    padding: 9px 17px; font-size: 17px; font-weight: 500;
+  }
+  .chip .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-right: 9px; vertical-align: 1px; }
+
+  /* ---- Sağ: soyut üç panelli stüdyo (dile bağlı metin yok) ---- */
+  .studio {
+    border: 1px solid var(--line); border-radius: 16px; background: var(--white);
+    box-shadow: 0 20px 60px rgba(40, 38, 33, .12); overflow: hidden;
+    height: 404px; display: flex; flex-direction: column;
+  }
+  .bar {
+    display: flex; align-items: center; gap: 7px; padding: 13px 16px;
+    border-bottom: 1px solid var(--line-soft); background: #F7F5F0; flex-shrink: 0;
+  }
+  .bar i { width: 10px; height: 10px; border-radius: 50%; background: #DDD8CD; }
+  .panes { display: grid; grid-template-columns: 118px 1fr 84px; flex: 1; min-height: 0; }
+
+  .left { background: var(--paper-panel); border-right: 1px solid var(--line-soft); padding: 16px 12px; display: flex; flex-direction: column; gap: 9px; }
+  .track { height: 6px; border-radius: 3px; background: #E3E0D9; }
+  .track b { display: block; width: 42%; height: 100%; background: var(--accent); border-radius: 3px; }
+  .grp { height: 6px; width: 46px; border-radius: 3px; background: #DCD8CE; margin-top: 8px; }
+  .row { display: flex; align-items: center; gap: 6px; }
+  .row s { width: 6px; height: 6px; border-radius: 50%; background: #CFC9BC; flex-shrink: 0; }
+  .row u { height: 6px; border-radius: 3px; background: #E0DCD2; flex: 1; }
+  .row.on { background: var(--accent-wash); border-radius: 6px; padding: 5px 6px; margin: 0 -6px; }
+  .row.on s { background: var(--accent); }
+  .row.on u { background: var(--accent-wash-line); }
+
+  .mid { padding: 20px 22px; display: flex; flex-direction: column; }
+  .title { height: 11px; width: 168px; border-radius: 4px; background: #D7D2C7; }
+  .tabs { display: flex; gap: 6px; margin-top: 15px; }
+  .tabs i { height: 15px; border-radius: 5px; }
+  .tabs i:nth-child(1) { width: 44px; background: var(--accent); }
+  .tabs i:nth-child(2) { width: 52px; background: var(--white); border: 1px solid var(--line); }
+  .tabs i:nth-child(3) { width: 44px; background: #F4EFE3; border: 1px solid var(--honey-line); }
+  .lines { margin-top: 20px; display: flex; flex-direction: column; gap: 11px; }
+  .lines i { height: 7px; border-radius: 4px; background: #E6E2D8; }
+  .lines i:nth-child(1) { width: 100%; }
+  .lines i:nth-child(2) { width: 96%; }
+  .lines i:nth-child(3) { width: 99%; }
+  .lines i:nth-child(4) { width: 72%; }
+  .lines i:nth-child(5) { width: 98%; }
+  .lines i:nth-child(6) { width: 94%; }
+  .lines i:nth-child(7) { width: 58%; }
+  .notes { display: flex; gap: 9px; margin-top: auto; }
+  .note { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 10px; display: flex; flex-direction: column; gap: 7px; }
+  .note s { width: 7px; height: 7px; border-radius: 50%; }
+  .note i { height: 5px; border-radius: 3px; background: #E6E2D8; }
+  .note i.short { width: 62%; }
+  .note:nth-child(1) s { background: #C9A227; }
+  .note:nth-child(2) s { background: #B08CC9; }
+
+  .right { background: var(--paper-panel); border-left: 1px solid var(--line-soft); padding: 16px 10px; display: flex; flex-direction: column; gap: 10px; }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 9px; display: flex; flex-direction: column; gap: 6px; }
+  .card.tip { background: var(--honey-bg); border-color: var(--honey-line); }
+  .card i { height: 5px; border-radius: 3px; background: #E6E2D8; }
+  .card i.short { width: 58%; }
+</style>
+</head>
+<body>
+
+  <div>
+    <div class="mark">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3.2c3.6 4.1 5.6 6.8 5.6 9.4a5.6 5.6 0 1 1-11.2 0c0-2.6 2-5.3 5.6-9.4Z"/>
+        <path d="M14.2 10.6 12.7 14.2 9.1 15.7l1.5-3.6Z"/>
+      </svg>
+      <span class="word">ink<span class="g">Guide</span></span>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="domain">inkguide.uk</div>
+
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>Free</span>
+      <span class="chip"><span class="dot"></span>No account</span>
+      <span class="chip"><span class="dot"></span>Local-first</span>
+    </div>
+  </div>
+
+  <div class="studio">
+    <div class="bar"><i></i><i></i><i></i></div>
+    <div class="panes">
+
+      <div class="left">
+        <div class="track"><b></b></div>
+        <div class="grp"></div>
+        <div class="row"><s></s><u></u></div>
+        <div class="row on"><s></s><u></u></div>
+        <div class="row"><s></s><u></u></div>
+        <div class="grp"></div>
+        <div class="row"><s></s><u></u></div>
+        <div class="row"><s></s><u></u></div>
+      </div>
+
+      <div class="mid">
+        <div class="title"></div>
+        <div class="tabs"><i></i><i></i><i></i></div>
+        <div class="lines"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="notes">
+          <div class="note"><s></s><i></i><i class="short"></i></div>
+          <div class="note"><s></s><i></i><i class="short"></i></div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="card tip"><i></i><i class="short"></i></div>
+        <div class="card"><i></i><i class="short"></i></div>
+        <div class="card"><i></i><i class="short"></i></div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
