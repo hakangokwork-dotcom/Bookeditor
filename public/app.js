@@ -1891,12 +1891,15 @@ function renderSettings(ed) {
         </div>
       </div>
 
-      <div class="set-card">
+      <div class="set-card set-card-wide">
         <div class="set-title">${esc(t('set.data'))}</div>
         <p class="set-desc">${esc(t('set.dataDesc'))}</p>
-        <div class="set-path">${ic('folder')}<span class="p">data/</span><span class="h">${esc(t('set.dataBooks'))}</span></div>
-        <div class="set-path">${ic('folder')}<span class="p">yedek/</span><span class="h">${esc(t('set.dataBackup'))}</span></div>
-        <div class="set-path">${ic('folder')}<span class="p">versions/</span><span class="h">${esc(t('set.dataVersions'))}</span></div>
+        ${veriYollariHtml()}
+        ${veriTasimaHtml()}
+        <div class="set-field">
+          <button id="setKurtar" class="set-btn">${esc(t('veri.kurtarBtn'))}</button>
+          <div class="set-hint">${esc(t('veri.kurtarHint'))}</div>
+        </div>
       </div>
 
       <div class="set-card">
@@ -1956,20 +1959,170 @@ function renderSettings(ed) {
     applyTheme();
   };
 
+  // Veri evi: klasör açma düğmeleri, Belgeler'e taşıma, kayıp kitap kurtarma
+  bindVeriYollari(ed);
+  $('#setKurtar').onclick = (e) => kurtarmayiBaslat(e.currentTarget);
+
   // Kurulumu yeniden göster
   $('#setRerunOnb').onclick = () => {
     localStorage.removeItem('onboarded');
+    localStorage.removeItem(onbAnahtari());
     showOnboarding();
   };
 }
 
+/* ---------------- Veri evi: kitap nerede duruyor, kayıp kitap nasıl bulunur ----
+   "Kitabım nerede?" sorusunun tek kaynağı. Kullanıcı bu soruyu sormak zorunda
+   kalmasın diye konum açılışta okunur; tanıtımın açılıp açılmayacağına da
+   bu bilgi karar verir. */
+
+let konum = null;            // /api/konum yanıtı (eski sunucuda null kalır)
+let kurtarmaDepolari = null; // taranan diğer kitaplıklar; null = henüz taranmadı
+
+async function fetchKonum() {
+  try {
+    const res = await fetch('/api/konum');
+    if (!res.ok) throw new Error('konum okunamadı');
+    konum = await res.json();
+  } catch {
+    konum = null; // eski sunucu: uç yok; arayüz konumsuz metne düşer
+  }
+  return konum;
+}
+
+async function taraKurtarma() {
+  try {
+    const res = await fetch('/api/kurtarma/tara');
+    if (!res.ok) throw new Error('tarama başarısız');
+    kurtarmaDepolari = (await res.json()).depolar || [];
+  } catch {
+    kurtarmaDepolari = [];
+  }
+  return kurtarmaDepolari;
+}
+
+async function klasorAc(hangi) {
+  try {
+    const res = await fetch('/api/konum/ac', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hangi })
+    });
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.error || 'klasör açılamadı');
+  } catch (e) {
+    alert(t('veri.acHata', { hata: e.message }));
+  }
+}
+
+async function veriEviniTasi() {
+  if (!konum || !konum.onerilenEv) return;
+  if (!confirm(t('veri.tasiOnay', { hedef: konum.onerilenEv }))) return;
+  try {
+    const res = await fetch('/api/konum/tasi', { method: 'POST' });
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.error || 'taşınamadı');
+    alert(t('veri.tasindi', { hedef: j.home }));
+    location.reload();
+  } catch (e) {
+    alert(t('veri.tasiHata', { hata: e.message }));
+  }
+}
+
+/* Ayarlar'dan her an çalıştırılabilen kurtarma: bilgisayarı tarar, başka bir
+   inkGuide kitaplığı bulursa sihirbaz penceresini tek adımla açar. */
+async function kurtarmayiBaslat(btn) {
+  const eskiMetin = btn ? btn.textContent : '';
+  if (btn) { btn.disabled = true; btn.textContent = t('veri.taraniyor'); }
+  await taraKurtarma();
+  if (btn) { btn.disabled = false; btn.textContent = eskiMetin; }
+  if (!kurtarmaDepolari.length) { alert(t('veri.bulunamadi')); return; }
+  onb = { steps: ['kurtarma'], step: 0, salt: true, values: {} };
+  renderOnboarding();
+}
+
+async function kitapAktar(klasor, idler) {
+  const res = await fetch('/api/kurtarma/aktar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ klasor, idler })
+  });
+  const j = await res.json();
+  if (!res.ok) throw new Error(j.error || 'aktarılamadı');
+  return j.aktarilan || [];
+}
+
+/* Ayarlar'daki "Verilerim nerede?" kartı ve tanıtımın ilk adımı aynı gövdeyi
+   kullanır: yol bir kez doğru yazılsın, iki yerde ayrışmasın. */
+function veriYollariHtml() {
+  if (!konum) {
+    // Eski sunucu: mutlak yol bilinmiyor, en azından klasör adları anlatılır
+    return `
+      <div class="set-path">${ic('folder')}<span class="p">data/</span><span class="h">${esc(t('set.dataBooks'))}</span></div>
+      <div class="set-path">${ic('folder')}<span class="p">yedek/</span><span class="h">${esc(t('set.dataBackup'))}</span></div>
+      <div class="set-path">${ic('folder')}<span class="p">versions/</span><span class="h">${esc(t('set.dataVersions'))}</span></div>`;
+  }
+  const satir = (hangi, yol, aciklama) => `
+    <div class="set-path">${ic('folder')}
+      <span class="p" title="${esc(yol)}">${esc(yol)}</span>
+      <span class="h">${esc(aciklama)}</span>
+      <button type="button" class="veri-ac" data-ac="${hangi}">${esc(t('veri.klasoruAc'))}</button>
+    </div>`;
+  return satir('data', konum.klasorler.data, t('set.dataBooks'))
+    + satir('yedek', konum.klasorler.yedek, t('set.dataBackup'))
+    + satir('versions', konum.klasorler.versions, t('set.dataVersions'));
+}
+
+// Veri exe'nin yanındaysa gösterilen uyarı + taşıma düğmesi
+function veriTasimaHtml() {
+  if (!konum || !konum.onerilenEv) return '';
+  return `
+    <div class="veri-uyari">
+      <div class="veri-uyari-metin">${t('veri.exeYaniUyari', { hedef: esc(konum.onerilenEv) })}</div>
+      <button type="button" id="veriTasiBtn" class="set-btn primary">${esc(t('veri.tasiBtn'))}</button>
+    </div>`;
+}
+
+// veriYollariHtml/veriTasimaHtml çıktısını canlı hale getirir
+function bindVeriYollari(kok) {
+  (kok || document).querySelectorAll('[data-ac]').forEach(btn => {
+    btn.onclick = () => klasorAc(btn.dataset.ac);
+  });
+  const tasi = (kok || document).querySelector('#veriTasiBtn');
+  if (tasi) tasi.onclick = veriEviniTasi;
+}
+
 /* ---------------- Kurulum (ilk açılış sihirbazı) ---------------- */
 
-let onb = null; // { step, values: { title, author, target, dicte, uiLang } }
+let onb = null; // { steps: [...], step, values: { title, author, target, dicte, uiLang } }
+
+/* Adımlar sabit değil: bilgisayarda başka bir kitaplık bulunduysa en başa
+   "kitabınızı bulduk" adımı eklenir — yeniden indiren kullanıcının ilk gördüğü
+   şey boş bir kitap değil, kendi kitabı olsun. */
+function onbAdimlari() {
+  const list = ['veri', 'kitap', 'dil'];
+  if (kurtarmaDepolari && kurtarmaDepolari.length) list.unshift('kurtarma');
+  return list;
+}
+
+/* Tanıtım "bu veri evi için" bir kez gösterilir. localStorage exe'ye değil
+   localhost adresine bağlı olduğundan tek bir 'onboarded' işareti yetmez:
+   kullanıcı uygulamayı yeniden indirip başka klasörde açtığında kitabı boş
+   görür ama tanıtım "zaten gösterildi" sayıldığı için bir daha açılmazdı. */
+function onbAnahtari() {
+  return 'onboardedFor:' + ((konum && konum.home) || 'yerel');
+}
+
+function onbGorulduMu() {
+  if (localStorage.getItem(onbAnahtari())) return true;
+  // Eski sürümden kalan işaret: depo zaten doluysa kullanıcı kurulumu görmüştür
+  return !!localStorage.getItem('onboarded') && !(konum && konum.yeniKurulum);
+}
 
 function showOnboarding() {
   const m = (book && book.meta) || {};
   onb = {
+    steps: onbAdimlari(),
     step: 0,
     values: {
       title: m.title || '',
@@ -1984,6 +2137,7 @@ function showOnboarding() {
 
 function closeOnboarding() {
   localStorage.setItem('onboarded', '1');
+  localStorage.setItem(onbAnahtari(), '1');
   onb = null;
   $('#onboardHost').innerHTML = '';
 }
@@ -2045,19 +2199,43 @@ function finishOnboarding() {
   if (book && sel.type === 'settings') renderEditor();
 }
 
-function onbStep0Html() {
+/* "Kitabınızı bulduk" adımı — yalnızca taramada başka bir kitaplık çıkarsa */
+function onbKurtarmaHtml() {
+  const kartlar = kurtarmaDepolari.map((d, i) => `
+    <div class="onb-kurtar">
+      <div class="onb-kurtar-yol">${ic('folder')}<span title="${esc(d.klasor)}">${esc(d.klasor)}</span></div>
+      <ul class="onb-kurtar-liste">
+        ${d.books.map(b => `<li>${ic('book')}<span class="k">${esc(b.title)}</span><span class="w">${esc(t('veri.kelime', { n: b.words.toLocaleString(I18N_LOCALE) }))}</span></li>`).join('')}
+      </ul>
+      <button type="button" class="set-btn primary" data-kurtar="${i}">${esc(t('veri.aktarBtn'))}</button>
+    </div>`).join('');
+  return `
+    <h1 class="onb-h1">${esc(t('veri.kurtarH1'))}</h1>
+    <p class="onb-p">${esc(t('veri.kurtarP'))}</p>
+    ${kartlar}
+    <div class="onb-hint">${esc(t('veri.kurtarNot'))}</div>`;
+}
+
+function onbVeriHtml() {
+  const yol = konum ? konum.klasorler.data : 'data/';
   return `
     <h1 class="onb-h1">${esc(t('onb.s0h1'))}</h1>
     <p class="onb-p">${esc(t('onb.s0p'))}</p>
-    <div class="onb-path">${ic('folder')}<span class="p">data/</span><span class="h">${esc(t('onb.s0path'))}</span></div>
+    <div class="onb-path">${ic('folder')}
+      <span class="p" title="${esc(yol)}">${esc(yol)}</span>
+      <span class="h">${esc(t('onb.s0path'))}</span>
+      ${konum ? `<button type="button" class="veri-ac" data-ac="data">${esc(t('veri.klasoruAc'))}</button>` : ''}
+    </div>
+    ${veriTasimaHtml()}
     <ul class="onb-list">
       <li>${ic('check')}<span>${t('onb.s0li1')}</span></li>
       <li>${ic('check')}<span>${t('onb.s0li2')}</span></li>
       <li>${ic('check')}<span>${t('onb.s0li3')}</span></li>
-    </ul>`;
+    </ul>
+    <div class="onb-hint">${esc(t('veri.ayarlarNot'))}</div>`;
 }
 
-function onbStep1Html() {
+function onbKitapHtml() {
   const v = onb.values;
   const hasBook = !!(book && book.meta && (book.meta.title || '').trim());
   const note = hasBook ? t('onb.s1noteHas') : t('onb.s1noteNew');
@@ -2076,7 +2254,7 @@ function onbStep1Html() {
     </div>`;
 }
 
-function onbStep2Html() {
+function onbDilHtml() {
   const v = onb.values;
   return `
     <h1 class="onb-h1">${esc(t('onb.s2h1'))}</h1>
@@ -2095,12 +2273,15 @@ function onbStep2Html() {
 function renderOnboarding() {
   const host = $('#onboardHost');
   if (!onb) { host.innerHTML = ''; return; }
-  const labels = [t('onb.step0'), t('onb.step1'), t('onb.step2')];
-  const stepsHtml = labels.map((label, i) => `
+  const ETIKET = { kurtarma: 'veri.stepKurtar', veri: 'onb.step0', kitap: 'onb.step1', dil: 'onb.step2' };
+  const GOVDE = { kurtarma: onbKurtarmaHtml, veri: onbVeriHtml, kitap: onbKitapHtml, dil: onbDilHtml };
+  const anahtar = onb.steps[onb.step];
+  const sonAdim = onb.step === onb.steps.length - 1;
+  const stepsHtml = onb.steps.map((k, i) => `
     <div class="onb-step${i === onb.step ? ' now' : ''}${i < onb.step ? ' done' : ''}">
-      <span class="onb-step-dot"></span><span>${esc(label)}</span>
+      <span class="onb-step-dot"></span><span>${esc(t(ETIKET[k]))}</span>
     </div>`).join('');
-  const content = onb.step === 0 ? onbStep0Html() : onb.step === 1 ? onbStep1Html() : onbStep2Html();
+  const content = GOVDE[anahtar]();
 
   host.innerHTML = `
   <div class="onb-backdrop">
@@ -2123,7 +2304,7 @@ function renderOnboarding() {
           <div class="onb-foot">
             <button id="onbBack" class="onb-back" ${onb.step === 0 ? 'disabled' : ''}>${esc(t('onb.back'))}</button>
             <button id="onbSkip" class="onb-skip">${esc(t('onb.skip'))}</button>
-            <button id="onbNext" class="onb-next">${onb.step === 2 ? esc(t('onb.start')) : esc(t('onb.next'))}</button>
+            <button id="onbNext" class="onb-next">${sonAdim ? esc(t(onb.salt ? 'veri.kapat' : 'onb.start')) : esc(t('onb.next'))}</button>
           </div>
         </section>
       </div>
@@ -2134,12 +2315,31 @@ function renderOnboarding() {
   $('#onbBack').onclick = () => { if (onb.step > 0) { onb.step--; renderOnboarding(); } };
   $('#onbSkip').onclick = () => closeOnboarding();
   $('#onbNext').onclick = () => {
-    if (onb.step < 2) { onb.step++; renderOnboarding(); }
+    if (!sonAdim) { onb.step++; renderOnboarding(); }
+    else if (onb.salt) closeOnboarding();   // Ayarlar'dan açılan tek adımlık kurtarma
     else finishOnboarding();
   };
 
   // Adım alanları
-  if (onb.step === 1) {
+  if (anahtar === 'kurtarma') {
+    host.querySelectorAll('[data-kurtar]').forEach(btn => {
+      btn.onclick = async () => {
+        const depo = kurtarmaDepolari[parseInt(btn.dataset.kurtar, 10)];
+        if (!depo) return;
+        btn.disabled = true;
+        try {
+          const aktarilan = await kitapAktar(depo.klasor, depo.books.map(b => b.id));
+          alert(t('veri.aktarildi', { n: aktarilan.length }));
+          location.reload();
+        } catch (e) {
+          btn.disabled = false;
+          alert(t('veri.aktarHata', { hata: e.message }));
+        }
+      };
+    });
+  } else if (anahtar === 'veri') {
+    bindVeriYollari(host);
+  } else if (anahtar === 'kitap') {
     $('#onbTitle').oninput = e => { onb.values.title = e.target.value; };
     $('#onbAuthor').oninput = e => { onb.values.author = e.target.value; };
     host.querySelectorAll('[data-onb-target]').forEach(btn => {
@@ -2157,7 +2357,7 @@ function renderOnboarding() {
         host.querySelectorAll('[data-onb-target]').forEach(b => b.classList.remove('sel'));
       }
     };
-  } else if (onb.step === 2) {
+  } else if (anahtar === 'dil') {
     $('#onbDicte').onchange = e => { onb.values.dicte = e.target.value; };
     $('#onbUiLang').onchange = e => { onb.values.uiLang = e.target.value; };
   }
@@ -2390,6 +2590,9 @@ async function init() {
   };
   // (+ Kısım artık ağacın sonunda — addPart fonksiyonu renderSidebar'dan çağrılır)
 
+  // Veri evi: kitapların gerçek yolu (Ayarlar kartı ve tanıtım bunu kullanır)
+  await fetchKonum();
+
   // Kitaplığı oku: birden fazla kitap varsa Kitaplığım ekranı, tek kitap varsa doğrudan o kitap
   let books = null;
   try {
@@ -2404,8 +2607,15 @@ async function init() {
     await openBook('default');
   }
 
-  // İlk açılış: kurulum sihirbazı (bir kez gösterilir, Ayarlar'dan yeniden açılabilir)
-  if (!localStorage.getItem('onboarded')) showOnboarding();
+  /* İlk açılış tanıtımı. Koşul localStorage'daki tek bir işaret DEĞİL: o işaret
+     exe'ye değil localhost adresine bağlıdır, yani uygulamayı yeniden indiren
+     kullanıcıda kalır ve "verileriniz şurada" ekranı tam gerektiği anda
+     gösterilmezdi. Artık tanıtım her veri evi için bir kez açılır; depo sıfırdan
+     kurulduysa önce bilgisayarda başka bir kitaplık var mı diye bakılır. */
+  if (!onbGorulduMu()) {
+    if (konum && konum.yeniKurulum) await taraKurtarma();
+    showOnboarding();
+  }
 
   // Telefondan gelen yakalamaları izlemeye başla
   startPhoneInboxWatch();

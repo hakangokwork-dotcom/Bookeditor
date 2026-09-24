@@ -166,7 +166,9 @@
   "dl_req3": "~150 MB disk alanı; internet bağlantısı yalnız indirme için",
   "dl_req4": "Verileriniz exe'nin yanındaki <code>data/</code> klasöründe durur — taşırsanız birlikte taşınır",
   "dl_warn": "<strong>İlk açılışta Windows uyarısı görebilirsiniz.</strong><br>inkGuide yeni yayınlanmış, imzasız bir uygulama olduğu için Windows SmartScreen mavi bir uyarı gösterebilir. <strong>\"Ek bilgi\" → \"Yine de çalıştır\"</strong> deyin — uygulama açık kaynaklıdır, kodunun tamamı <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor\" rel=\"noopener\">GitHub'da</a> incelenebilir ve bilgisayarınızdan hiçbir veri göndermez. Tercih ederseniz kaynak koddan da çalıştırabilirsiniz (repo'daki inkGuide.bat).",
-  "dl_steps_h2": "Kurulumdan sonra ilk üç adım",
+  "dl_steps_h2": "Kurulumdan sonra ilk dört adım",
+  "dl_step0_h": "Dosyayı kalıcı bir klasöre koyun",
+  "dl_step0_p": "<code>inkGuide.exe</code> kurulum istemez. İndirilenler klasöründe bırakmak yerine kendinize ait bir yere alın (ör. <code>Belgeler\\inkGuide</code>) — böylece uygulamayı sonra aramazsınız.",
   "dl_step1_h": "Başlatın ve kitabınızı adlandırın",
   "dl_step1_p": "<code>inkGuide.exe</code>'ye çift tıklayın; tarayıcıda çalışma alanı kendiliğinden belirir. Karşılama sihirbazında kitabınıza bir çalışma adı verin — sonradan değişir, mükemmel olması gerekmez.",
   "dl_step2_h": "İskeleti kabaca kurun",
@@ -185,5 +187,6 @@
   "home_fb_p": "Neyin işe yaradığını, neyin yaramadığını, yazı masanızda neyin eksik olduğunu anlatın. Bugüne kadarki her özellik bir yazarın ihtiyacından doğdu — bir sonraki sizinki olabilir.",
   "home_fb_btn": "Görüş ve öneri paylaşın →",
   "home_fb_note": "Burada gerçek yazarların görüşleri yayınlanacak — asla uydurma yorum olmayacak.",
-  "dl_mobile_note": "iPhone, iPad veya Android mi? Kurulum gerekmez — bilgisayarınızda inkGuide’ı açın, Telefon düğmesine tıklayıp QR kodu okutun: cihazınız Wi-Fi üzerinden yakalama arkadaşına dönüşür."
+  "dl_mobile_note": "iPhone, iPad veya Android mi? Kurulum gerekmez — bilgisayarınızda inkGuide’ı açın, Telefon düğmesine tıklayıp QR kodu okutun: cihazınız Wi-Fi üzerinden yakalama arkadaşına dönüşür.",
+  "dl_place": "<strong>Kitaplarınız nerede durur?</strong><br>inkGuide kurulum istemez; indirdiğiniz <code>inkGuide.exe</code> tek dosyadır ve istediğiniz klasörde durabilir. Yazdıklarınız exe'nin yanına değil, <strong>Belgeler\\inkGuide</strong> klasörüne kaydedilir — yani uygulamayı taşısanız da, yeni sürümü başka bir klasöre indirseniz de kitabınız yerinde kalır. Tam yolu uygulama içinde <strong>Ayarlar → Verilerim nerede?</strong> bölümünde görür, klasörü tek tıkla açarsınız. Eski bir sürümden geliyorsanız kitaplarınız exe'nin yanındaki <code>data</code> klasöründe olabilir; inkGuide açılışta onları arar ve bulursa aktarmayı teklif eder."
 }

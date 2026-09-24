@@ -166,7 +166,9 @@
   "dl_req3": "~150 MB Speicherplatz; eine Internetverbindung nur für den Download",
   "dl_req4": "Deine Daten wohnen im Ordner <code>data/</code> neben der Exe — verschiebst du den Ordner, ziehen sie mit um",
   "dl_warn": "<strong>Beim ersten Start kann Windows eine Warnung zeigen.</strong><br>Weil inkGuide eine frisch veröffentlichte, unsignierte Anwendung ist, kann Windows SmartScreen einen blauen Hinweis einblenden. Wähle <strong>„Weitere Informationen“ → „Trotzdem ausführen“</strong> — die App ist Open Source, ihr gesamter Code lässt sich auf <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor\" rel=\"noopener\">GitHub</a> einsehen, und sie sendet keine Daten von deinem Computer. Wer mag, kann sie auch direkt aus dem Quellcode starten (inkGuide.bat im Repository).",
-  "dl_steps_h2": "Deine ersten drei Schritte nach der Installation",
+  "dl_steps_h2": "Deine ersten vier Schritte nach der Installation",
+  "dl_step0_h": "Legen Sie die Datei in einen dauerhaften Ordner",
+  "dl_step0_p": "<code>inkGuide.exe</code> braucht keine Installation. Statt sie in „Downloads“ liegen zu lassen, verschieben Sie sie an einen eigenen Ort (z. B. <code>Dokumente\\inkGuide</code>) — dann müssen Sie später nicht danach suchen.",
   "dl_step1_h": "Starte es und gib deinem Buch einen Namen",
   "dl_step1_p": "Doppelklicke auf <code>inkGuide.exe</code>; der Arbeitsbereich öffnet sich von selbst in deinem Browser. Gib deinem Buch im Willkommens-Assistenten einen Arbeitstitel — er darf sich später ändern und muss nicht perfekt sein.",
   "dl_step2_h": "Skizziere die Gliederung",
@@ -185,5 +187,6 @@
   "home_fb_p": "Sagen Sie uns, was funktioniert, was fehlt und was Ihr Schreibtisch braucht. Jede Funktion entstand aus dem Bedürfnis eines Autors — die nächste kann Ihre sein.",
   "home_fb_btn": "Feedback & Ideen teilen →",
   "home_fb_note": "Hier erscheinen Stimmen echter Autorinnen und Autoren — niemals erfundene Bewertungen.",
-  "dl_mobile_note": "iPhone, iPad oder Android? Keine Installation nötig — öffnen Sie inkGuide am Computer, klicken Sie auf die Telefon-Schaltfläche und scannen Sie den QR-Code: Ihr Gerät wird zum Notiz-Begleiter über WLAN."
+  "dl_mobile_note": "iPhone, iPad oder Android? Keine Installation nötig — öffnen Sie inkGuide am Computer, klicken Sie auf die Telefon-Schaltfläche und scannen Sie den QR-Code: Ihr Gerät wird zum Notiz-Begleiter über WLAN.",
+  "dl_place": "<strong>Wo liegen Ihre Bücher?</strong><br>inkGuide braucht keine Installation; die heruntergeladene <code>inkGuide.exe</code> ist eine einzige Datei und darf in jedem beliebigen Ordner liegen. Was Sie schreiben, wird nicht neben der EXE gespeichert, sondern in <strong>Dokumente\\inkGuide</strong> — Ihr Buch bleibt also liegen, selbst wenn Sie die Anwendung verschieben oder eine neue Version in einen anderen Ordner laden. In der Anwendung sehen Sie den vollständigen Pfad und öffnen den Ordner mit einem Klick unter <strong>Einstellungen → Wo sind meine Daten?</strong> Wenn Sie von einer älteren Version kommen, liegen Ihre Bücher womöglich noch im Ordner <code>data</code> neben der EXE; inkGuide sucht beim Start danach und bietet den Import an."
 }

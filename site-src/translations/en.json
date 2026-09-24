@@ -166,7 +166,9 @@
   "dl_req3": "~150 MB of disk space; an internet connection only for the download",
   "dl_req4": "Your data lives in the <code>data/</code> folder next to the exe — move the folder and it moves along",
   "dl_warn": "<strong>You may see a Windows warning on first launch.</strong><br>Because inkGuide is a newly published, unsigned application, Windows SmartScreen may show a blue warning. Choose <strong>\"More info\" → \"Run anyway\"</strong> — the app is open source, all of its code can be inspected on <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor\" rel=\"noopener\">GitHub</a>, and it sends no data from your computer. If you prefer, you can also run it from source (inkGuide.bat in the repo).",
-  "dl_steps_h2": "Your first three steps after installing",
+  "dl_steps_h2": "Your first four steps after installing",
+  "dl_step0_h": "Put the file in a permanent folder",
+  "dl_step0_p": "<code>inkGuide.exe</code> needs no installer. Rather than leaving it in Downloads, move it somewhere of your own (e.g. <code>Documents\\inkGuide</code>) so you will not have to hunt for it later.",
   "dl_step1_h": "Launch it and name your book",
   "dl_step1_p": "Double-click <code>inkGuide.exe</code>; the workspace appears in your browser by itself. In the welcome wizard, give your book a working title — it can change later, it doesn't have to be perfect.",
   "dl_step2_h": "Rough out the outline",
@@ -185,5 +187,6 @@
   "home_fb_p": "Tell us what works, what doesn’t, and what your writing desk is missing. Every feature so far was born from a writer’s need — the next one can be yours.",
   "home_fb_btn": "Share feedback & ideas →",
   "home_fb_note": "Real writers’ voices will be published here — no invented testimonials, ever.",
-  "dl_mobile_note": "iPhone, iPad or Android? No install needed — open inkGuide on your computer, click the Phone button and scan the QR code: your device becomes a capture companion over Wi-Fi."
+  "dl_mobile_note": "iPhone, iPad or Android? No install needed — open inkGuide on your computer, click the Phone button and scan the QR code: your device becomes a capture companion over Wi-Fi.",
+  "dl_place": "<strong>Where are your books kept?</strong><br>inkGuide needs no installer; the <code>inkGuide.exe</code> you download is a single file and can sit in any folder you like. What you write is saved not next to the exe but in <strong>Documents\\inkGuide</strong> — so your book stays put even if you move the app or download a new version into another folder. Inside the app you can see the full path, and open the folder in one click, under <strong>Settings → Where is my data?</strong> If you are coming from an older version, your books may still be in the <code>data</code> folder next to the exe; inkGuide looks for them on startup and offers to import them."
 }

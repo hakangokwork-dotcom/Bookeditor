@@ -35,6 +35,22 @@ Ardından tarayıcıda **http://localhost:4321** adresini açın.
 - **📖 Kitaba Dönüştür:** kapak + içindekiler + önsöz + giriş + bölümler + kaynakça ile üç format üretir: `.md`, `.html` (baskı önizleme) ve `.docx` (Word — açınca "alanları güncelle" onayı verin, içindekiler dolar). Çıktılar `exports/` klasörüne yazılır.
 - **🧭 İlk Kitap Rehberi** (sol menünün en üstünde): ilk kitabını yazanlar için süreç önerileri, TDK yazım kuralları, alıntı etiği.
 
-## Verileriniz
+## Verileriniz nerede durur?
 
-Her şey `data/book.json` dosyasında durur (her kayıtta `.bak` yedeği alınır). Yazdıklarınız yalnızca sizin bilgisayarınızda — hiçbir yere gönderilmez. Yedeklemek için bu klasörü kopyalamanız yeterli.
+Yazdıklarınız yalnızca sizin bilgisayarınızda — hiçbir yere gönderilmez. Kitap `data/book.json` dosyasında tutulur (her kayıtta `.bak` yedeği alınır); yedeklemek için veri klasörünü kopyalamanız yeterli.
+
+**Veri evi**, uygulamanın nasıl çalıştırıldığına göre seçilir:
+
+| Durum | Verilerin yeri |
+|---|---|
+| İndirilen `inkGuide.exe` | `Belgeler/inkGuide/` — exe'nin yanı **değil** |
+| Exe'nin yanında eski bir `data/library.json` varsa | olduğu yerde kalır; uygulama Belgeler'e taşımayı teklif eder, kendiliğinden taşımaz |
+| Exe'nin yanında `tasinabilir.txt` varsa | exe'nin yanı (USB bellek için taşınabilir mod) |
+| `INKGUIDE_HOME` ortam değişkeni | aynen o klasör |
+| Depodan `npm start` | depo klasörü (geliştirme; hiçbir şey değişmez) |
+
+Veri neden exe'nin yanında değil: exe çoğu kez İndirilenler'de kalır. Kullanıcı onu taşıdığında, yeni sürümü başka bir klasöre indirdiğinde ya da İndirilenler temizlendiğinde yanındaki `data/` ile birlikte kitap da "kaybolmuş" görünüyordu.
+
+**Kayıp kitap kurtarma:** depo sıfırdan kurulduysa uygulama açılışta bilgisayarda başka bir inkGuide kitaplığı arar (İndirilenler, Masaüstü, Belgeler, OneDrive ve exe klasörü; iki alt klasör derinliğine kadar) ve bulursa aktarmayı teklif eder. Aynı taramayı istediğiniz zaman **Ayarlar → Başka klasördeki kitabı bul** ile çalıştırabilirsiniz. Aktarma kopyalar; kaynak klasördeki dosyalara dokunulmaz.
+
+Tam yolları uygulama içinde **Ayarlar → Verilerim nerede?** bölümünde görür, klasörleri oradan tek tıkla açarsınız.

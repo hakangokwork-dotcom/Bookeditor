@@ -166,7 +166,9 @@
   "dl_req3": "约 150 MB 磁盘空间；只有下载时需要联网",
   "dl_req4": "你的数据保存在 exe 旁边的 <code>data/</code> 文件夹里——文件夹搬到哪里，数据就跟到哪里",
   "dl_warn": "<strong>首次启动时，Windows 可能会弹出警告。</strong><br>由于 inkGuide 是刚刚发布、尚未签名的应用，Windows SmartScreen 可能会显示一个蓝色警告。请选择<strong>“更多信息” → “仍要运行”</strong>——这款应用是开源的，所有代码都可以在 <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor\" rel=\"noopener\">GitHub</a> 上查阅，它不会从你的电脑发送任何数据。如果你愿意，也可以直接从源码运行（仓库中的 inkGuide.bat）。",
-  "dl_steps_h2": "装好之后的头三步",
+  "dl_steps_h2": "装好之后的头四步",
+  "dl_step0_h": "把文件放进固定的文件夹",
+  "dl_step0_p": "<code>inkGuide.exe</code> 无需安装。与其留在「下载」里，不如移到您自己的位置（例如 <code>文档\\inkGuide</code>），以后就不用到处找了。",
   "dl_step1_h": "启动，并给你的书起个名字",
   "dl_step1_p": "双击 <code>inkGuide.exe</code>，工作区会自动在浏览器中打开。在欢迎向导里给你的书起一个暂定书名——以后随时可以改，不必一开始就完美。",
   "dl_step2_h": "搭一个粗略的大纲",
@@ -185,5 +187,6 @@
   "home_fb_p": "告诉我们什么好用、什么不好用、您的写作桌还缺什么。迄今为止的每一个功能都源于写作者的需求——下一个可能就来自您。",
   "home_fb_btn": "分享反馈与建议 →",
   "home_fb_note": "这里将发布真实写作者的声音——绝不编造评价。",
-  "dl_mobile_note": "iPhone、iPad 或安卓？无需安装——在电脑上打开 inkGuide，点击手机按钮并扫描二维码：您的设备即可通过 Wi-Fi 成为速记伙伴。"
+  "dl_mobile_note": "iPhone、iPad 或安卓？无需安装——在电脑上打开 inkGuide，点击手机按钮并扫描二维码：您的设备即可通过 Wi-Fi 成为速记伙伴。",
+  "dl_place": "<strong>您的书稿保存在哪里？</strong><br>inkGuide 无需安装；下载得到的 <code>inkGuide.exe</code> 只是一个文件，可以放在任意文件夹。您写下的内容不会存在 exe 旁边，而是保存在 <strong>文档\\inkGuide</strong> 中——所以即使移动应用，或把新版本下载到别的文件夹，书稿依然留在原处。在应用内的<strong>设置 → 我的数据在哪里？</strong>中可以看到完整路径，并一键打开文件夹。如果您从旧版本升级，书稿可能仍在 exe 旁边的 <code>data</code> 文件夹里；inkGuide 启动时会查找并提示导入。"
 }

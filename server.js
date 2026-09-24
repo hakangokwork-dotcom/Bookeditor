@@ -9,21 +9,90 @@ const app = express();
 const PORT = process.env.PORT || 4321;
 
 /* Paketlenmiş (.exe) çalışmada __dirname salt-okunur sanal dosya sistemidir (pkg snapshot).
-   Yazılabilir her şey (veri, export, versiyon, yedek) exe'nin YANINDAKİ klasöre gider;
+   Yazılabilir her şey (veri, export, versiyon, yedek) "veri evine" gider;
    statik varlıklar (public/, şablon, marked) snapshot'tan okunur. */
 const IS_PKG = typeof process.pkg !== 'undefined';
-const WRITE_DIR = IS_PKG ? path.dirname(process.execPath) : __dirname;
+const EXE_DIR = IS_PKG ? path.dirname(process.execPath) : __dirname;
 const ASSET_DIR = __dirname;
 
-const DATA_DIR = path.join(WRITE_DIR, 'data');
-const DATA_FILE = path.join(DATA_DIR, 'book.json');          // varsayılan (ilk) kitap — YERİNDEN OYNATILMAZ
+/* ---------------- Veri evi ----------------
+   Kitap exe'nin yanında DEĞİL, kalıcı bir klasörde durur: Belgeler/inkGuide.
+   Sebep: exe çoğu kez İndirilenler'de kalır. Kullanıcı onu taşıdığında, yeni
+   sürümü başka bir klasöre indirdiğinde ya da İndirilenler temizlendiğinde
+   exe'nin yanındaki data/ ile birlikte kitap da "kaybolmuş" görünür.
+
+   Üç istisna, üçü de geriye uyumluluk için:
+   1) INKGUIDE_HOME ortam değişkeni verilmişse aynen o kullanılır.
+   2) exe'nin yanında tasinabilir.txt varsa taşınabilir moddur (USB bellek) —
+      veri exe'nin yanında kalır.
+   3) exe'nin yanında zaten data/library.json duruyorsa eski kurulum orada
+      çalışmaya devam eder. Arayüz taşımayı TEKLİF eder, kendiliğinden taşımaz:
+      kullanıcının verisi haber verilmeden yer değiştirmez. */
+const PORTABLE_MARKERS = ['tasinabilir.txt', 'portable.txt'];
+const HOME_FOLDER_NAME = 'inkGuide';
+
+// Belgeler klasörü OneDrive'a yönlendirilmiş olabilir; sırayla denenir.
+// OneDrive en sona bırakılır: eşzamanlama, otomatik kayıt sırasında çakışma
+// dosyası üretebilir — tercih her zaman yerel Belgeler'dir.
+function documentsHome() {
+  const home = require('os').homedir();
+  const candidates = [
+    path.join(home, 'Documents'),
+    path.join(home, 'Belgeler'),
+    path.join(home, 'OneDrive', 'Documents'),
+    path.join(home, 'OneDrive', 'Belgeler')
+  ];
+  for (const dir of candidates) {
+    try { if (fs.statSync(dir).isDirectory()) return path.join(dir, HOME_FOLDER_NAME); } catch { /* yoksa sıradaki */ }
+  }
+  return path.join(home, HOME_FOLDER_NAME);
+}
+
+function isPortableInstall() {
+  return PORTABLE_MARKERS.some(name => fs.existsSync(path.join(EXE_DIR, name)));
+}
+
+function hasStore(dir) {
+  return fs.existsSync(path.join(dir, 'data', 'library.json'));
+}
+
+/* Dönüş: { dir, mode }. mode arayüzde "verileriniz nerede" metnini seçer. */
+function resolveHome() {
+  const forced = (process.env.INKGUIDE_HOME || '').trim();
+  if (forced) return { dir: path.resolve(forced), mode: 'ortam' };
+  if (!IS_PKG) return { dir: __dirname, mode: 'gelistirme' };   // depo içinde çalışırken hiçbir şey değişmez
+  if (isPortableInstall()) return { dir: EXE_DIR, mode: 'tasinabilir' };
+  if (hasStore(EXE_DIR)) return { dir: EXE_DIR, mode: 'exe-yani' };
+  return { dir: documentsHome(), mode: 'belgeler' };
+}
+
+/* Yollar taşıma sonrası yeniden hesaplanabilsin diye let; applyHome() tek
+   noktadan günceller. Bu değişkenleri okuyan her yer güncel değeri görür. */
+let WRITE_DIR, HOME_MODE, DATA_DIR, DATA_FILE, LIBRARY_FILE, BOOKS_DIR, ARCHIVE_DIR, EXPORT_DIR, VERSIONS_DIR, YEDEK_DIR;
 const SAMPLE_FILE = path.join(ASSET_DIR, 'data', 'book.sample.json');
-const LIBRARY_FILE = path.join(DATA_DIR, 'library.json');    // kitaplık kaydı
-const BOOKS_DIR = path.join(DATA_DIR, 'books');              // yeni kitaplar buraya
-const ARCHIVE_DIR = path.join(BOOKS_DIR, '_arsiv');          // "silinen" kitaplar asla silinmez, buraya taşınır
-const EXPORT_DIR = path.join(WRITE_DIR, 'exports');
-const VERSIONS_DIR = path.join(WRITE_DIR, 'versions');
-const YEDEK_DIR = path.join(WRITE_DIR, 'yedek');
+
+function applyHome(dir, mode) {
+  WRITE_DIR = dir;
+  HOME_MODE = mode;
+  DATA_DIR = path.join(WRITE_DIR, 'data');
+  DATA_FILE = path.join(DATA_DIR, 'book.json');        // varsayılan (ilk) kitap — YERİNDEN OYNATILMAZ
+  LIBRARY_FILE = path.join(DATA_DIR, 'library.json');  // kitaplık kaydı
+  BOOKS_DIR = path.join(DATA_DIR, 'books');            // yeni kitaplar buraya
+  ARCHIVE_DIR = path.join(BOOKS_DIR, '_arsiv');        // "silinen" kitaplar asla silinmez, buraya taşınır
+  EXPORT_DIR = path.join(WRITE_DIR, 'exports');
+  VERSIONS_DIR = path.join(WRITE_DIR, 'versions');
+  YEDEK_DIR = path.join(WRITE_DIR, 'yedek');
+}
+
+{
+  const h = resolveHome();
+  applyHome(h.dir, h.mode);
+}
+
+/* Bu açılışta depo sıfırdan mı oluşturuldu? Arayüz tanıtımı buna bakar:
+   localStorage exe'ye değil localhost adresine bağlıdır, yani yeniden indiren
+   kullanıcıda "kurulumu gördü" işareti kalır ve tanıtım bir daha açılmazdı. */
+const FRESH_STORE = !hasStore(WRITE_DIR);
 
 /* ---------------- Kitaplık (çoklu kitap) ----------------
    Migrasyon güvenliği: mevcut data/book.json olduğu yerde kalır,
@@ -148,7 +217,8 @@ app.use('/vendor/aes.js', (req, res) =>
 app.use('/vendor/sha256.min.js', (req, res) =>
   res.sendFile(path.join(ASSET_DIR, 'node_modules', 'js-sha256', 'build', 'sha256.min.js'))
 );
-app.use('/exports', express.static(EXPORT_DIR));
+// EXPORT_DIR taşıma sonrası değişebildiği için her istekte güncel değer okunur
+app.use('/exports', (req, res, next) => express.static(EXPORT_DIR)(req, res, next));
 
 // İlk kurulumda kişisel veri dosyası yoksa şablondan oluştur
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
@@ -396,6 +466,206 @@ app.post('/api/version/restore', (req, res) => {
   }
 });
 
+/* ---- Veri evi: yer bilgisi, klasörü açma, taşıma, kayıp kitap kurtarma ----
+   Buradaki uçların tek amacı "kitabım nerede?" sorusunu kullanıcı sormadan
+   cevaplamak. Hiçbiri veri silmez: taşıma kopyalar, kurtarma içe aktarır. */
+
+// Arayüzün açabileceği klasörler — istemci rastgele yol gönderemesin diye beyaz liste
+function knownDirs() {
+  return { home: WRITE_DIR, data: DATA_DIR, exports: EXPORT_DIR, versions: VERSIONS_DIR, yedek: YEDEK_DIR };
+}
+
+app.get('/api/konum', (req, res) => {
+  try {
+    res.json({
+      home: WRITE_DIR,
+      mode: HOME_MODE,
+      exeDir: EXE_DIR,
+      paketli: IS_PKG,
+      // Depo bu açılışta sıfırdan kurulduysa arayüz tanıtımı zorla gösterir
+      yeniKurulum: FRESH_STORE,
+      klasorler: knownDirs(),
+      // Veri exe'nin yanındaysa Belgeler'e taşıma teklif edilir
+      onerilenEv: HOME_MODE === 'exe-yani' ? documentsHome() : null
+    });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+app.post('/api/konum/ac', (req, res) => {
+  try {
+    const dir = knownDirs()[String((req.body || {}).hangi || 'home')];
+    if (!dir) throw new Error('Bilinmeyen klasör');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    const cmd = process.platform === 'darwin' ? ['open', [dir]]
+      : process.platform === 'win32' ? ['explorer', [dir]]
+        : ['xdg-open', [dir]];
+    // execFile: yol kabuk yorumundan geçmez, boşluklu klasör adları güvenlidir
+    require('child_process').execFile(cmd[0], cmd[1], () => { /* explorer 1 döndürebilir, sorun değil */ });
+    res.json({ ok: true, dir });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+/* Taşıma: exe'nin yanındaki depo Belgeler/inkGuide'a KOPYALANIR; kopya bittikten
+   sonra kaynak data/ klasörü "data-tasindi-<zaman>" adına çevrilir. Hiçbir dosya
+   silinmez — kopya yarıda kalırsa ad değişmez ve eski kurulum çalışmaya devam eder. */
+app.post('/api/konum/tasi', (req, res) => {
+  try {
+    if (HOME_MODE !== 'exe-yani') throw new Error('Taşınacak bir şey yok: veriler zaten kalıcı bir klasörde');
+    const hedef = documentsHome();
+    if (hasStore(hedef)) throw new Error('Hedefte zaten bir kitaplık var: ' + hedef + ' — taşıma yerine kitap kurtarmayı kullanın');
+    const kaynak = WRITE_DIR;
+    fs.mkdirSync(hedef, { recursive: true });
+    for (const ad of ['data', 'exports', 'versions', 'yedek']) {
+      const src = path.join(kaynak, ad);
+      if (fs.existsSync(src)) fs.cpSync(src, path.join(hedef, ad), { recursive: true });
+    }
+    if (!hasStore(hedef)) throw new Error('Kopya doğrulanamadı, taşıma geri alındı');
+    fs.renameSync(path.join(kaynak, 'data'), path.join(kaynak, `data-tasindi-${localStamp()}`));
+    applyHome(hedef, 'belgeler');
+    console.log(`Veriler taşındı: ${kaynak} -> ${hedef}`);
+    res.json({ ok: true, home: WRITE_DIR, eski: kaynak });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+/* ---- Kayıp kitap kurtarma ----
+   Eski sürümlerde veri exe'nin yanına yazılıyordu. Kullanıcı yeni sürümü başka
+   bir klasöre indirdiğinde uygulama boş açılır ve kitap "kaybolmuş" görünür.
+   Tarama, bilgisayardaki diğer inkGuide depolarını bulup içe aktarmayı teklif eder. */
+
+const TARAMA_ATLA = new Set(['node_modules', '.git', 'AppData', 'Windows', 'Program Files', 'Program Files (x86)', '$Recycle.Bin', 'System Volume Information']);
+const TARAMA_DERINLIK = 2;      // <kök>/data, <kök>/*/data, <kök>/*/*/data
+const TARAMA_KLASOR_LIMIT = 4000; // devasa ağaçlarda açılışı kilitlememek için
+
+function taramaKokleri() {
+  const home = require('os').homedir();
+  const adlar = ['Downloads', 'İndirilenler', 'Indirilenler', 'Desktop', 'Masaüstü', 'Masaustu', 'Documents', 'Belgeler', 'OneDrive'];
+  const list = [EXE_DIR, documentsHome(), ...adlar.map(a => path.join(home, a))];
+  const gorulen = new Set();
+  return list.filter(d => {
+    const k = path.resolve(d).toLowerCase();
+    if (gorulen.has(k) || !fs.existsSync(d)) return false;
+    gorulen.add(k);
+    return true;
+  });
+}
+
+// Bir depodaki kitapları özetler (başlık + kelime + son değişiklik)
+function depoOzeti(dataDir) {
+  const libFile = path.join(dataDir, 'library.json');
+  let lib;
+  try { lib = JSON.parse(fs.readFileSync(libFile, 'utf8')); } catch { return null; }
+  if (!lib || !Array.isArray(lib.books)) return null;
+  const books = [];
+  for (const entry of lib.books) {
+    const file = path.join(dataDir, entry.file || '');
+    try {
+      const book = JSON.parse(fs.readFileSync(file, 'utf8'));
+      books.push({
+        id: entry.id,
+        title: (book.meta && book.meta.title) || entry.id,
+        words: countBookWords(book),
+        updatedAt: fs.statSync(file).mtime.toISOString()
+      });
+    } catch { /* okunamayan kayıt atlanır, tarama durmaz */ }
+  }
+  if (!books.length) return null;
+  return { klasor: dataDir, books, toplamKelime: books.reduce((n, b) => n + b.words, 0) };
+}
+
+app.get('/api/kurtarma/tara', (req, res) => {
+  try {
+    const bulunan = [];
+    const gorulenDepo = new Set([path.resolve(DATA_DIR).toLowerCase()]);
+    let sayac = 0;
+
+    const bak = (dir, derinlik) => {
+      if (sayac++ > TARAMA_KLASOR_LIMIT) return;
+      const aday = path.join(dir, 'data');
+      const anahtar = path.resolve(aday).toLowerCase();
+      if (!gorulenDepo.has(anahtar) && fs.existsSync(path.join(aday, 'library.json'))) {
+        gorulenDepo.add(anahtar);
+        const ozet = depoOzeti(aday);
+        if (ozet && ozet.toplamKelime > 0) bulunan.push(ozet);
+      }
+      if (derinlik >= TARAMA_DERINLIK) return;
+      let girisler = [];
+      try { girisler = fs.readdirSync(dir, { withFileTypes: true }); } catch { return; }
+      for (const g of girisler) {
+        if (!g.isDirectory() || g.name.startsWith('.') || TARAMA_ATLA.has(g.name)) continue;
+        bak(path.join(dir, g.name), derinlik + 1);
+      }
+    };
+
+    for (const kok of taramaKokleri()) bak(kok, 0);
+    // En dolu kitaplık en üstte
+    bulunan.sort((a, b) => b.toplamKelime - a.toplamKelime);
+    res.json({ depolar: bulunan });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
+/* İçe aktarma: seçilen kitaplar mevcut kitaplığa KOPYALANIR. Kaynak klasöre
+   dokunulmaz; var olan bir kitabın üzerine yazılmaz. Tek istisna, hiç
+   yazılmamış (0 kelime) varsayılan kitaptır — o boş iskeletin üstüne yazılır. */
+app.post('/api/kurtarma/aktar', (req, res) => {
+  try {
+    const { klasor, idler } = req.body || {};
+    if (!klasor || !fs.existsSync(path.join(String(klasor), 'library.json'))) {
+      throw new Error('Geçerli bir inkGuide veri klasörü değil');
+    }
+    if (path.resolve(String(klasor)).toLowerCase() === path.resolve(DATA_DIR).toLowerCase()) {
+      throw new Error('Kaynak ve hedef aynı klasör');
+    }
+    const kaynakDepo = depoOzeti(String(klasor));
+    if (!kaynakDepo) throw new Error('Kaynak kitaplık okunamadı');
+    const secili = Array.isArray(idler) && idler.length
+      ? kaynakDepo.books.filter(b => idler.includes(b.id))
+      : kaynakDepo.books;
+    if (!secili.length) throw new Error('Aktarılacak kitap seçilmedi');
+
+    const kaynakLib = JSON.parse(fs.readFileSync(path.join(String(klasor), 'library.json'), 'utf8'));
+    const lib = readLibrary();
+    if (!fs.existsSync(BOOKS_DIR)) fs.mkdirSync(BOOKS_DIR, { recursive: true });
+
+    // Varsayılan kitap hiç yazılmamışsa ilk aktarılan kitap onun yerine geçer
+    let bosVarsayilan = false;
+    try { bosVarsayilan = countBookWords(JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'))) === 0; } catch { /* okunamıyorsa dokunma */ }
+
+    const aktarilan = [];
+    for (const b of secili) {
+      const kayit = kaynakLib.books.find(x => x.id === b.id);
+      if (!kayit) continue;
+      const src = path.join(String(klasor), kayit.file);
+      if (!fs.existsSync(src)) continue;
+
+      if (bosVarsayilan) {
+        fs.copyFileSync(src, DATA_FILE);
+        bosVarsayilan = false;
+        aktarilan.push({ id: 'default', title: b.title });
+        continue;
+      }
+      const taban = slugify(b.title);
+      let id = taban, i = 2;
+      while (id === 'default' || lib.books.some(x => x.id === id)) id = `${taban}-${i++}`;
+      const file = 'books/' + id + '.json';
+      fs.copyFileSync(src, path.join(DATA_DIR, file));
+      lib.books.push({ id, file, color: kayit.color || null, createdAt: new Date().toISOString() });
+      aktarilan.push({ id, title: b.title });
+    }
+    writeLibrary(lib);
+    res.json({ ok: true, aktarilan });
+  } catch (e) {
+    sendErr(res, e);
+  }
+});
+
 /* ---- Mobil "yakalama arkadaşı": eşleşme + şifreli senkron + gelen kutusu ---- */
 
 let activePort = Number(PORT); // startServer gerçekte bağlanınca günceller
@@ -514,7 +784,11 @@ function startServer(port, attemptsLeft) {
     activePort = port;
     const url = `http://localhost:${port}`;
     console.log(`inkGuide çalışıyor: ${url}`);
-    console.log(`Verileriniz: ${DATA_DIR}`);
+    console.log(`Kitaplarınız: ${DATA_DIR}`);
+    if (HOME_MODE === 'exe-yani') {
+      console.log('Not: veriler uygulamanın yanında duruyor. Uygulamayı taşırsanız');
+      console.log(`kitaplar geride kalır. Ayarlar > Verilerim nerede ekranından ${documentsHome()} klasörüne taşıyabilirsiniz.`);
+    }
     if (IS_PKG && !process.env.NO_BROWSER) openBrowser(url);
   });
   server.on('error', (err) => {

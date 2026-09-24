@@ -585,6 +585,51 @@ textarea.note-edit:focus { outline: none; }
 .set-btn:focus-visible { outline: none; box-shadow: var(--ring); }
 .set-version { font-size: 12.5px; color: var(--muted); margin-top: 14px; }
 
+/* ---------- Veri evi: mutlak yollar, taşıma uyarısı, kayıp kitap kurtarma ----------
+   Yollar artık kısa klasör adları değil tam disk yolları; satır sarılabilir
+   olmalı ki uzun Windows yolları kartı taşırmasın. */
+.set-card-wide { grid-column: 1 / -1; }
+/* Yol uzunsa kendi satırını alır, açıklama ve düğme altına sarar; kısaysa tek satır kalır */
+.set-path, .onb-path { flex-wrap: wrap; row-gap: 8px; }
+.set-path .p, .onb-path .p {
+  flex: 1 1 260px; min-width: 0; overflow-wrap: anywhere; word-break: break-word;
+  font-variant-numeric: tabular-nums;
+}
+.set-path .h, .onb-path .h { flex: none; }
+.veri-ac {
+  flex: none; margin-inline-start: auto;  /* RTL'de de satır sonuna otursun */ padding: 5px 11px; border: 1px solid var(--border); border-radius: 7px;
+  background: var(--bg); font-family: inherit; font-size: 12px; color: var(--text); cursor: pointer;
+  transition: background .12s, border-color .12s;
+}
+.veri-ac:hover { background: var(--accent-soft); border-color: var(--accent); }
+.veri-ac:focus-visible { outline: none; box-shadow: var(--ring); }
+
+.veri-uyari {
+  margin-top: 14px; padding: 13px 15px; border: 1px solid var(--warn); border-radius: 10px;
+  background: var(--tip-bg); font-size: 13px; line-height: 1.6; color: var(--text);
+  display: flex; flex-direction: column; gap: 11px; align-items: flex-start;
+}
+.veri-uyari-metin b { font-weight: 600; overflow-wrap: anywhere; }
+.set-btn.primary { background: var(--accent); border-color: var(--accent); color: #FFF; font-weight: 600; }
+.set-btn.primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); }
+.set-btn:disabled { opacity: .55; cursor: default; }
+
+.onb-kurtar {
+  margin-top: 18px; padding: 15px 17px; border: 1px solid var(--border); border-radius: 11px;
+  background: var(--panel-bg);
+}
+.onb-kurtar-yol { display: flex; align-items: center; gap: 9px; font-size: 12.5px; color: var(--muted); }
+.onb-kurtar-yol svg { width: 15px; height: 15px; color: var(--accent); flex: none; }
+.onb-kurtar-yol span { min-width: 0; overflow-wrap: anywhere; }
+.onb-kurtar-liste { list-style: none; padding: 0; margin: 12px 0 15px; display: flex; flex-direction: column; gap: 9px; }
+.onb-kurtar-liste li { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.onb-kurtar-liste svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+.onb-kurtar-liste .k { font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.onb-kurtar-liste .w { margin-left: auto; flex: none; font-size: 12.5px; color: var(--muted); }
+[dir="rtl"] .onb-kurtar-liste .w { margin-left: 0; margin-right: auto; }
+[data-theme="dark"] .veri-ac:hover { background: #31362A; }
+[data-theme="dark"] .set-btn.primary { color: #1C1A16; }
+
 /* ---------- Kurulum sihirbazı (ilk açılış) ---------- */
 .onb-backdrop {
   position: fixed; inset: 0; z-index: 90; background: #EFEDE6;

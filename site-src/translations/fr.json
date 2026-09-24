@@ -166,7 +166,9 @@
   "dl_req3": "Environ 150 Mo d'espace disque ; une connexion internet uniquement pour le téléchargement",
   "dl_req4": "Vos données vivent dans le dossier <code>data/</code> à côté de l'exe — déplacez le dossier et elles suivent",
   "dl_warn": "<strong>Un avertissement de Windows peut apparaître au premier lancement.</strong><br>inkGuide étant une application récente et non signée, Windows SmartScreen peut afficher un avertissement bleu. Choisissez <strong>« Informations complémentaires » → « Exécuter quand même »</strong> — l'application est open source, tout son code peut être inspecté sur <a href=\"https://github.com/hakangokwork-dotcom/Bookeditor\" rel=\"noopener\">GitHub</a>, et elle n'envoie aucune donnée depuis votre ordinateur. Si vous préférez, vous pouvez aussi la lancer depuis le code source (inkGuide.bat dans le dépôt).",
-  "dl_steps_h2": "Vos trois premiers pas après l'installation",
+  "dl_steps_h2": "Vos quatre premiers pas après l'installation",
+  "dl_step0_h": "Placez le fichier dans un dossier permanent",
+  "dl_step0_p": "<code>inkGuide.exe</code> ne demande aucune installation. Plutôt que de le laisser dans Téléchargements, déplacez-le dans un endroit à vous (par exemple <code>Documents\\inkGuide</code>) pour ne pas avoir à le chercher plus tard.",
   "dl_step1_h": "Lancez-la et nommez votre livre",
   "dl_step1_p": "Double-cliquez sur <code>inkGuide.exe</code> ; l'espace de travail s'ouvre de lui-même dans votre navigateur. Dans l'assistant de bienvenue, donnez à votre livre un titre provisoire — il pourra changer plus tard, il n'a pas besoin d'être parfait.",
   "dl_step2_h": "Esquissez le plan",
@@ -185,5 +187,6 @@
   "home_fb_p": "Dites-nous ce qui fonctionne, ce qui manque à votre table d’écriture. Chaque fonctionnalité est née du besoin d’un écrivain — la prochaine peut être la vôtre.",
   "home_fb_btn": "Partagez avis et idées →",
   "home_fb_note": "Des voix d’écrivains réels seront publiées ici — jamais de témoignages inventés.",
-  "dl_mobile_note": "iPhone, iPad ou Android ? Rien à installer — ouvrez inkGuide sur votre ordinateur, cliquez sur le bouton Téléphone et scannez le code QR : votre appareil devient un compagnon de capture en Wi-Fi."
+  "dl_mobile_note": "iPhone, iPad ou Android ? Rien à installer — ouvrez inkGuide sur votre ordinateur, cliquez sur le bouton Téléphone et scannez le code QR : votre appareil devient un compagnon de capture en Wi-Fi.",
+  "dl_place": "<strong>Où vos livres sont-ils conservés ?</strong><br>inkGuide ne demande aucune installation ; le <code>inkGuide.exe</code> que vous téléchargez est un fichier unique et peut se trouver dans le dossier de votre choix. Ce que vous écrivez n'est pas enregistré à côté de l'exécutable mais dans <strong>Documents\\inkGuide</strong> — votre livre reste donc en place même si vous déplacez l'application ou téléchargez une nouvelle version dans un autre dossier. Dans l'application, vous voyez le chemin complet et ouvrez le dossier en un clic via <strong>Réglages → Où sont mes données ?</strong> Si vous venez d'une ancienne version, vos livres se trouvent peut-être encore dans le dossier <code>data</code> à côté de l'exécutable ; inkGuide les recherche au démarrage et propose de les importer."
 }
