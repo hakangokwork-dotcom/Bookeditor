@@ -6,7 +6,7 @@ on:
       tag:
         description: 'Yüklenecek release etiketi'
         required: true
-        default: 'v1.0.0'
+        default: 'v1.1.0'
   release:
     types: [published]
 

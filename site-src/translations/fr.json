@@ -155,7 +155,7 @@
   "dl_install_h2": "Installez-le sur votre ordinateur",
   "dl_install_lead": "Un seul fichier, pas d'installateur : téléchargez, double-cliquez, écrivez. Il fonctionne aussi hors connexion ; la version macOS est en chemin.",
   "dl_win_name": "Télécharger pour Windows",
-  "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 Mo · fichier portable unique · Windows 10+",
+  "dl_win_meta": "inkGuide.exe · v1.1.0 · 64 Mo · fichier portable unique · Windows 10+",
   "dl_win_go": "Le téléchargement démarre aussitôt ↓",
   "dl_mac_name": "Télécharger pour macOS",
   "dl_mac_meta": "macOS 12+ · ~24 Mo · décompressez puis double-cliquez",

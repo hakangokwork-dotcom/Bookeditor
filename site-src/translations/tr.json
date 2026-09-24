@@ -155,7 +155,7 @@
   "dl_install_h2": "Bilgisayarınıza kurun",
   "dl_install_lead": "Tek dosya, kurulum yok: indirin, çift tıklayın, yazın. İnternet olmadan da çalışır; macOS sürümü yolda.",
   "dl_win_name": "Windows için indir",
-  "dl_win_meta": "inkGuide.exe · v1.0.0 · 64 MB · kurulumsuz tek dosya · Windows 10+",
+  "dl_win_meta": "inkGuide.exe · v1.1.0 · 64 MB · kurulumsuz tek dosya · Windows 10+",
   "dl_win_go": "İndirme hemen başlar ↓",
   "dl_mac_name": "macOS için indir",
   "dl_mac_meta": "macOS 12+ · ~24 MB · arşivi açıp çift tıklayın",
