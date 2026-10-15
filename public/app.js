@@ -1893,12 +1893,18 @@ function renderSettings(ed) {
 
       <div class="set-card set-card-wide">
         <div class="set-title">${esc(t('set.data'))}</div>
-        <p class="set-desc">${esc(t('set.dataDesc'))}</p>
+        <p class="set-desc">${esc(tWeb('set.dataDesc'))}</p>
         ${veriYollariHtml()}
         ${veriTasimaHtml()}
-        <div class="set-field">
+        ${window.INKGUIDE_WEB ? '' : `<div class="set-field">
           <button id="setKurtar" class="set-btn">${esc(t('veri.kurtarBtn'))}</button>
           <div class="set-hint">${esc(t('veri.kurtarHint'))}</div>
+        </div>`}
+        <div class="set-field">
+          <button id="setYedekIndir" class="set-btn">${esc(t('yedek.indir'))}</button>
+          <button id="setYedekYukle" class="set-btn">${esc(t('yedek.yukle'))}</button>
+          <input type="file" id="setYedekDosya" accept=".json,application/json" hidden>
+          <div class="set-hint">${esc(t('yedek.hint'))}</div>
         </div>
       </div>
 
@@ -1917,7 +1923,7 @@ function renderSettings(ed) {
         <div class="set-field">
           <button id="setRerunOnb" class="set-btn">${esc(t('set.rerunOnb'))}</button>
         </div>
-        <div class="set-version">${esc(t('set.version', { v: APP_VERSION }))}</div>
+        <div class="set-version">${esc(tWeb('set.version', { v: APP_VERSION }))}</div>
       </div>
     </div>
   </div>`;
@@ -1961,7 +1967,10 @@ function renderSettings(ed) {
 
   // Veri evi: klasör açma düğmeleri, Belgeler'e taşıma, kayıp kitap kurtarma
   bindVeriYollari(ed);
-  $('#setKurtar').onclick = (e) => kurtarmayiBaslat(e.currentTarget);
+  if ($('#setKurtar')) $('#setKurtar').onclick = (e) => kurtarmayiBaslat(e.currentTarget);
+  $('#setYedekIndir').onclick = kitapligiIndir;
+  $('#setYedekYukle').onclick = () => $('#setYedekDosya').click();
+  $('#setYedekDosya').onchange = (e) => { if (e.target.files[0]) kitapIceAktar(e.target.files[0]); };
 
   // Kurulumu yeniden göster
   $('#setRerunOnb').onclick = () => {
@@ -2055,6 +2064,11 @@ async function kitapAktar(klasor, idler) {
 /* Ayarlar'daki "Verilerim nerede?" kartı ve tanıtımın ilk adımı aynı gövdeyi
    kullanır: yol bir kez doğru yazılsın, iki yerde ayrışmasın. */
 function veriYollariHtml() {
+  if (window.INKGUIDE_WEB) {
+    return `
+      <div class="set-path">${ic('folder')}<span class="p">${esc(t('web.where'))}</span></div>
+      <div class="set-hint">${esc(t('web.warn'))} <a href="${masaustuIndirUrl()}" target="_blank" rel="noopener">${esc(t('web.download'))}</a></div>`;
+  }
   if (!konum) {
     // Eski sunucu: mutlak yol bilinmiyor, en azından klasör adları anlatılır
     return `
@@ -2090,6 +2104,63 @@ function bindVeriYollari(kok) {
   });
   const tasi = (kok || document).querySelector('#veriTasiBtn');
   if (tasi) tasi.onclick = veriEviniTasi;
+}
+
+/* Kitaplık yedeği: kitapları web ile masaüstü sürümü arasında taşımanın yolu.
+   Yalnız var olan /api uçlarını kullanır, iki sürümde de aynen çalışır.
+   İçe aktarma hiçbir kitabın üzerine yazmaz — her kitap yeni bir kayıt olur. */
+// Web sürümünde "bu bilgisayarda / klasör" diyen metnin web.* karşılığı kullanılır
+const tWeb = (key, params) => t(window.INKGUIDE_WEB ? key.replace(/^(onb|set)\./, 'web.') : key, params);
+
+function masaustuIndirUrl() {
+  return 'https://inkguide.uk' + (I18N_LANG === 'en' ? '' : '/' + I18N_LANG) + '/download.html';
+}
+
+async function kitapligiIndir() {
+  await flushSaveNow();
+  const books = [];
+  for (const b of await fetchLibrary()) {
+    const res = await fetch('/api/book?bookId=' + encodeURIComponent(b.id));
+    if (res.ok) books.push({ color: b.color, book: await res.json() });
+  }
+  const dosya = { app: 'inkGuide', kind: 'library', exportedAt: new Date().toISOString(), books };
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([JSON.stringify(dosya, null, 2)], { type: 'application/json' }));
+  a.download = 'inkguide-kitaplik-' + new Date().toISOString().slice(0, 10) + '.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 10000);
+}
+
+async function kitapIceAktar(file) {
+  let data = null;
+  try { data = JSON.parse(await file.text()); } catch { /* aşağıda bozuk sayılır */ }
+  // Kitaplık yedeği ya da tek kitap dosyası (masaüstündeki data/book.json)
+  const items = data && Array.isArray(data.books) ? data.books : data && data.meta ? [{ book: data }] : [];
+  const gecerli = items.filter(x => x && x.book && x.book.meta && Array.isArray(x.book.parts));
+  if (!gecerli.length) { alert(t('yedek.bozuk')); return; }
+  await flushSaveNow();
+  let n = 0;
+  try {
+    for (const { book: b, color } of gecerli) {
+      const res = await fetch('/api/library', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: (b.meta.title || '').trim() || 'inkGuide', color: color || null })
+      });
+      const yeni = await res.json();
+      if (!yeni.ok) throw new Error(yeni.error);
+      const put = await fetch('/api/book?bookId=' + encodeURIComponent(yeni.id), {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(b)
+      });
+      if (!put.ok) throw new Error((await put.json()).error);
+      n++;
+    }
+  } catch (err) {
+    alert(t('lib.createError') + err.message);
+  }
+  if (n) { alert(t('yedek.tamam', { n })); await showLibrary(); }
 }
 
 /* ---------------- Kurulum (ilk açılış sihirbazı) ---------------- */
@@ -2217,10 +2288,10 @@ function onbKurtarmaHtml() {
 }
 
 function onbVeriHtml() {
-  const yol = konum ? konum.klasorler.data : 'data/';
+  const yol = window.INKGUIDE_WEB ? t('web.where') : konum ? konum.klasorler.data : 'data/';
   return `
-    <h1 class="onb-h1">${esc(t('onb.s0h1'))}</h1>
-    <p class="onb-p">${esc(t('onb.s0p'))}</p>
+    <h1 class="onb-h1">${esc(tWeb('onb.s0h1'))}</h1>
+    <p class="onb-p">${esc(tWeb('onb.s0p'))}</p>
     <div class="onb-path">${ic('folder')}
       <span class="p" title="${esc(yol)}">${esc(yol)}</span>
       <span class="h">${esc(t('onb.s0path'))}</span>
@@ -2228,8 +2299,8 @@ function onbVeriHtml() {
     </div>
     ${veriTasimaHtml()}
     <ul class="onb-list">
-      <li>${ic('check')}<span>${t('onb.s0li1')}</span></li>
-      <li>${ic('check')}<span>${t('onb.s0li2')}</span></li>
+      <li>${ic('check')}<span>${tWeb('onb.s0li1')}</span></li>
+      <li>${ic('check')}<span>${tWeb('onb.s0li2')}</span></li>
       <li>${ic('check')}<span>${t('onb.s0li3')}</span></li>
     </ul>
     <div class="onb-hint">${esc(t('veri.ayarlarNot'))}</div>`;
@@ -2297,7 +2368,7 @@ function renderOnboarding() {
             <span class="onb-wordmark"><span>ink</span><b>Guide</b></span>
           </div>
           <div class="onb-steps">${stepsHtml}</div>
-          <div class="onb-side-note">${esc(t('onb.sideNote'))}</div>
+          <div class="onb-side-note">${esc(tWeb('onb.sideNote'))}</div>
         </aside>
         <section class="onb-content">
           <div class="onb-content-main">${content}</div>
@@ -2617,8 +2688,9 @@ async function init() {
     showOnboarding();
   }
 
-  // Telefondan gelen yakalamaları izlemeye başla
-  startPhoneInboxWatch();
+  // Telefondan gelen yakalamaları izlemeye başla (yerel ağ ister — web'de yok)
+  if (window.INKGUIDE_WEB) $('#phoneBtn').style.display = 'none';
+  else startPhoneInboxWatch();
 }
 
 init();

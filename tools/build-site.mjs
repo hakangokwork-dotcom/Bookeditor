@@ -379,6 +379,7 @@ for (const file of htmlFiles(OUT)) {
     if (/^(https?:|mailto:|data:|#|\/\/)/.test(url)) continue;
     url = url.split('#')[0].split('?')[0];
     if (!url) continue; // yalnız fragment
+    if (url.startsWith('/app/')) continue; // tarayıcı sürümü: yayında tools/build-webapp.mjs üretir
     let target = url.startsWith('/')
       ? path.join(OUT, ...url.split('/').filter(Boolean))
       : path.resolve(path.dirname(file), url);

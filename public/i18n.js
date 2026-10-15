@@ -3694,6 +3694,178 @@ I18N.de = {
   'mobil.tabSettings': 'Einstellungen'
 };
 
+/* ---------------- Web sürümü (inkguide.uk/app) + kitaplık yedeği ---------------- */
+Object.assign(I18N.tr, {
+  "web.version": "Sürüm {v} · web",
+  "web.s0h1": "Kitabınız bu tarayıcıda saklanır",
+  "web.s0li1": "Ayarlar → <b>Kitaplığı dosyaya kaydet</b> ile kitaplarınızın tamamını tek dosya olarak yedekleyebilirsiniz.",
+  "web.s0li2": "\"Versiyon\" düğmesiyle kitabın anlık görüntüleri bu tarayıcıya kaydedilir.",
+  "web.sideNote": "Kurulum yok. Hesap yok, kayıt yok.",
+  "web.where": "Bu tarayıcıda (bu cihazda) saklanır",
+  "web.dataDesc": "Kitaplarınız yalnızca bu tarayıcıda, bu cihazda durur; hiçbir veri sunucuya gönderilmez. Hesap açılmaz.",
+  "web.warn": "Tarayıcı verilerini temizlerseniz kitaplarınız da silinir. Düzenli olarak kitaplığı dosyaya kaydedin ya da masaüstü sürümünü kullanın.",
+  "web.download": "Masaüstü sürümünü indir",
+  "web.s0p": "inkGuide'a hoş geldiniz. Hesap açılmaz, kayıt istenmez. Yazdığınız her şey yalnızca bu tarayıcıda, bu cihazda durur; hiçbir şey sunucuya gönderilmez. Dilediğiniz an masaüstü sürümüne taşıyabilirsiniz.",
+  "yedek.indir": "Kitaplığı dosyaya kaydet (.json)",
+  "yedek.yukle": "Dosyadan kitap içe aktar",
+  "yedek.hint": "Bu dosyayla kitaplarınızı yedekler, web sürümü ile masaüstü sürümü arasında taşırsınız. İçe aktarma mevcut kitapların üzerine yazmaz.",
+  "yedek.bozuk": "Bu dosya bir inkGuide kitaplık yedeği ya da kitap dosyası değil.",
+  "yedek.tamam": "{n} kitap içe aktarıldı."
+});
+Object.assign(I18N.en, {
+  "web.version": "Version {v} · web",
+  "web.s0h1": "Your book is stored in this browser",
+  "web.s0li1": "Settings → <b>Save library to file</b> backs up all your books as a single file.",
+  "web.s0li2": "The \"Snapshot\" button saves snapshots of your book in this browser.",
+  "web.sideNote": "Nothing to install. No account, no sign-up.",
+  "web.where": "Stored in this browser (on this device)",
+  "web.dataDesc": "Your books live only in this browser, on this device; nothing is sent to a server. No account needed.",
+  "web.warn": "If you clear your browser data, your books are deleted too. Save your library to a file regularly, or use the desktop app.",
+  "web.download": "Download the desktop app",
+  "web.s0p": "Welcome to inkGuide. No account, no sign-up. Everything you write stays only in this browser, on this device; nothing is sent to a server. You can move it to the desktop app any time.",
+  "yedek.indir": "Save library to file (.json)",
+  "yedek.yukle": "Import books from file",
+  "yedek.hint": "Use this file to back up your books and move them between the web and desktop versions. Importing never overwrites existing books.",
+  "yedek.bozuk": "This file is not an inkGuide library backup or book file.",
+  "yedek.tamam": "{n} book(s) imported."
+});
+Object.assign(I18N.es, {
+  "web.version": "Versión {v} · web",
+  "web.s0h1": "Tu libro se guarda en este navegador",
+  "web.s0li1": "Ajustes → <b>Guardar biblioteca en archivo</b> respalda todos tus libros en un solo archivo.",
+  "web.s0li2": "El botón «Versión» guarda instantáneas del libro en este navegador.",
+  "web.sideNote": "Sin instalación. Sin cuenta, sin registro.",
+  "web.where": "Guardado en este navegador (en este dispositivo)",
+  "web.dataDesc": "Tus libros viven solo en este navegador, en este dispositivo; nada se envía a un servidor. Sin cuenta.",
+  "web.warn": "Si borras los datos del navegador, tus libros también se borran. Guarda la biblioteca en un archivo con regularidad o usa la app de escritorio.",
+  "web.download": "Descargar la app de escritorio",
+  "web.s0p": "Bienvenido a inkGuide. Sin cuenta, sin registro. Todo lo que escribas queda solo en este navegador, en este dispositivo; nada se envía a un servidor. Puedes pasarlo a la app de escritorio cuando quieras.",
+  "yedek.indir": "Guardar biblioteca en archivo (.json)",
+  "yedek.yukle": "Importar libros desde archivo",
+  "yedek.hint": "Con este archivo respaldas tus libros y los mueves entre la versión web y la de escritorio. Importar nunca sobrescribe libros existentes.",
+  "yedek.bozuk": "Este archivo no es una copia de biblioteca ni un libro de inkGuide.",
+  "yedek.tamam": "{n} libro(s) importado(s)."
+});
+Object.assign(I18N.zh, {
+  "web.version": "版本 {v} · 网页版",
+  "web.s0h1": "您的书稿保存在此浏览器中",
+  "web.s0li1": "设置 → <b>将书库保存为文件</b>，即可把所有书稿备份为一个文件。",
+  "web.s0li2": "「版本」按钮会把书稿快照保存在此浏览器中。",
+  "web.sideNote": "无需安装。无需账号、无需注册。",
+  "web.where": "保存在此浏览器中（本设备）",
+  "web.dataDesc": "您的书稿只保存在此浏览器、此设备上；不会向服务器发送任何数据。无需账号。",
+  "web.warn": "清除浏览器数据会同时删除您的书稿。请定期将书库保存为文件，或使用桌面版。",
+  "web.download": "下载桌面版",
+  "web.s0p": "欢迎使用 inkGuide。无需账号、无需注册。您写的一切只保存在此浏览器、此设备上，不会发送到服务器。您随时可以迁移到桌面版。",
+  "yedek.indir": "将书库保存为文件（.json）",
+  "yedek.yukle": "从文件导入书稿",
+  "yedek.hint": "用此文件备份书稿，并在网页版与桌面版之间迁移。导入不会覆盖现有书稿。",
+  "yedek.bozuk": "此文件不是 inkGuide 书库备份或书稿文件。",
+  "yedek.tamam": "已导入 {n} 本书。"
+});
+Object.assign(I18N.ar, {
+  "web.version": "الإصدار {v} · الويب",
+  "web.s0h1": "كتابك محفوظ في هذا المتصفح",
+  "web.s0li1": "الإعدادات ← <b>احفظ المكتبة في ملف</b> لنسخ جميع كتبك احتياطيًا في ملف واحد.",
+  "web.s0li2": "زر «نسخة» يحفظ لقطات من كتابك في هذا المتصفح.",
+  "web.sideNote": "بلا تثبيت. بلا حساب، بلا تسجيل.",
+  "web.where": "محفوظ في هذا المتصفح (على هذا الجهاز)",
+  "web.dataDesc": "كتبك موجودة في هذا المتصفح فقط، على هذا الجهاز؛ لا يُرسل أي شيء إلى خادم. لا حاجة إلى حساب.",
+  "web.warn": "إذا مسحت بيانات المتصفح فستُحذف كتبك أيضًا. احفظ مكتبتك في ملف بانتظام، أو استخدم تطبيق سطح المكتب.",
+  "web.download": "نزّل تطبيق سطح المكتب",
+  "web.s0p": "مرحبًا بك في inkGuide. بلا حساب، بلا تسجيل. كل ما تكتبه يبقى في هذا المتصفح فقط، على هذا الجهاز؛ لا يُرسل شيء إلى خادم. يمكنك نقله إلى تطبيق سطح المكتب في أي وقت.",
+  "yedek.indir": "احفظ المكتبة في ملف (.json)",
+  "yedek.yukle": "استورد كتبًا من ملف",
+  "yedek.hint": "بهذا الملف تحفظ نسخة من كتبك وتنقلها بين نسخة الويب ونسخة سطح المكتب. الاستيراد لا يكتب فوق الكتب الموجودة.",
+  "yedek.bozuk": "هذا الملف ليس نسخة احتياطية لمكتبة inkGuide ولا ملف كتاب.",
+  "yedek.tamam": "تم استيراد {n} كتاب."
+});
+Object.assign(I18N.hi, {
+  "web.version": "संस्करण {v} · वेब",
+  "web.s0h1": "आपकी किताब इस ब्राउज़र में सहेजी जाती है",
+  "web.s0li1": "सेटिंग्स → <b>लाइब्रेरी को फ़ाइल में सहेजें</b> से आपकी सारी किताबों का एक फ़ाइल में बैकअप बनता है।",
+  "web.s0li2": "\"संस्करण\" बटन किताब के स्नैपशॉट इसी ब्राउज़र में सहेजता है।",
+  "web.sideNote": "कुछ इंस्टॉल नहीं करना। न खाता, न पंजीकरण।",
+  "web.where": "इस ब्राउज़र में (इसी डिवाइस पर) सहेजा गया",
+  "web.dataDesc": "आपकी किताबें केवल इसी ब्राउज़र में, इसी डिवाइस पर रहती हैं; किसी सर्वर पर कुछ नहीं भेजा जाता। खाते की ज़रूरत नहीं।",
+  "web.warn": "ब्राउज़र डेटा साफ़ करने पर आपकी किताबें भी मिट जाती हैं। नियमित रूप से लाइब्रेरी को फ़ाइल में सहेजें, या डेस्कटॉप ऐप इस्तेमाल करें।",
+  "web.download": "डेस्कटॉप ऐप डाउनलोड करें",
+  "web.s0p": "inkGuide में आपका स्वागत है। न खाता, न पंजीकरण। आप जो भी लिखते हैं वह केवल इसी ब्राउज़र में, इसी डिवाइस पर रहता है; किसी सर्वर पर कुछ नहीं जाता। आप कभी भी इसे डेस्कटॉप ऐप में ले जा सकते हैं।",
+  "yedek.indir": "लाइब्रेरी को फ़ाइल में सहेजें (.json)",
+  "yedek.yukle": "फ़ाइल से किताबें आयात करें",
+  "yedek.hint": "इस फ़ाइल से अपनी किताबों का बैकअप लें और उन्हें वेब व डेस्कटॉप संस्करण के बीच ले जाएँ। आयात मौजूदा किताबों को कभी नहीं बदलता।",
+  "yedek.bozuk": "यह फ़ाइल inkGuide लाइब्रेरी बैकअप या किताब फ़ाइल नहीं है।",
+  "yedek.tamam": "{n} किताब(ें) आयात की गईं।"
+});
+Object.assign(I18N.pt, {
+  "web.version": "Versão {v} · web",
+  "web.s0h1": "Seu livro fica salvo neste navegador",
+  "web.s0li1": "Configurações → <b>Salvar biblioteca em arquivo</b> faz backup de todos os seus livros em um único arquivo.",
+  "web.s0li2": "O botão \"Versão\" salva instantâneos do livro neste navegador.",
+  "web.sideNote": "Nada para instalar. Sem conta, sem cadastro.",
+  "web.where": "Guardado neste navegador (neste dispositivo)",
+  "web.dataDesc": "Seus livros ficam só neste navegador, neste dispositivo; nada é enviado a um servidor. Sem conta.",
+  "web.warn": "Se você limpar os dados do navegador, seus livros também serão apagados. Salve a biblioteca em arquivo regularmente ou use o app para computador.",
+  "web.download": "Baixar o app para computador",
+  "web.s0p": "Bem-vindo ao inkGuide. Sem conta, sem cadastro. Tudo o que você escreve fica só neste navegador, neste dispositivo; nada é enviado a um servidor. Você pode levar tudo para o app de computador quando quiser.",
+  "yedek.indir": "Salvar biblioteca em arquivo (.json)",
+  "yedek.yukle": "Importar livros de arquivo",
+  "yedek.hint": "Com este arquivo você faz backup dos livros e os leva entre a versão web e a de computador. Importar nunca sobrescreve livros existentes.",
+  "yedek.bozuk": "Este arquivo não é um backup de biblioteca nem um livro do inkGuide.",
+  "yedek.tamam": "{n} livro(s) importado(s)."
+});
+Object.assign(I18N.fr, {
+  "web.version": "Version {v} · web",
+  "web.s0h1": "Votre livre est stocké dans ce navigateur",
+  "web.s0li1": "Réglages → <b>Enregistrer la bibliothèque dans un fichier</b> sauvegarde tous vos livres en un seul fichier.",
+  "web.s0li2": "Le bouton « Version » enregistre des instantanés du livre dans ce navigateur.",
+  "web.sideNote": "Rien à installer. Pas de compte, pas d’inscription.",
+  "web.where": "Stocké dans ce navigateur (sur cet appareil)",
+  "web.dataDesc": "Vos livres restent uniquement dans ce navigateur, sur cet appareil ; rien n’est envoyé à un serveur. Aucun compte requis.",
+  "web.warn": "Si vous effacez les données du navigateur, vos livres sont aussi supprimés. Enregistrez régulièrement votre bibliothèque dans un fichier, ou utilisez l’application de bureau.",
+  "web.download": "Télécharger l’application de bureau",
+  "web.s0p": "Bienvenue dans inkGuide. Pas de compte, pas d’inscription. Tout ce que vous écrivez reste uniquement dans ce navigateur, sur cet appareil ; rien n’est envoyé à un serveur. Vous pouvez tout transférer vers l’application de bureau à tout moment.",
+  "yedek.indir": "Enregistrer la bibliothèque dans un fichier (.json)",
+  "yedek.yukle": "Importer des livres depuis un fichier",
+  "yedek.hint": "Ce fichier sert à sauvegarder vos livres et à les transférer entre la version web et la version bureau. L’importation n’écrase jamais les livres existants.",
+  "yedek.bozuk": "Ce fichier n’est ni une sauvegarde de bibliothèque ni un livre inkGuide.",
+  "yedek.tamam": "{n} livre(s) importé(s)."
+});
+Object.assign(I18N.ru, {
+  "web.version": "Версия {v} · веб",
+  "web.s0h1": "Ваша книга хранится в этом браузере",
+  "web.s0li1": "Настройки → <b>Сохранить библиотеку в файл</b> — резервная копия всех книг в одном файле.",
+  "web.s0li2": "Кнопка «Версия» сохраняет снимки книги в этом браузере.",
+  "web.sideNote": "Ничего не нужно устанавливать. Без аккаунта, без регистрации.",
+  "web.where": "Хранится в этом браузере (на этом устройстве)",
+  "web.dataDesc": "Ваши книги хранятся только в этом браузере, на этом устройстве; ничего не отправляется на сервер. Аккаунт не нужен.",
+  "web.warn": "Если очистить данные браузера, книги тоже удалятся. Регулярно сохраняйте библиотеку в файл или используйте настольную версию.",
+  "web.download": "Скачать настольную версию",
+  "web.s0p": "Добро пожаловать в inkGuide. Без аккаунта, без регистрации. Всё, что вы пишете, остаётся только в этом браузере, на этом устройстве; ничего не отправляется на сервер. В любой момент можно перенести всё в настольную версию.",
+  "yedek.indir": "Сохранить библиотеку в файл (.json)",
+  "yedek.yukle": "Импортировать книги из файла",
+  "yedek.hint": "С помощью этого файла вы делаете резервную копию книг и переносите их между веб- и настольной версией. Импорт никогда не перезаписывает существующие книги.",
+  "yedek.bozuk": "Этот файл не является резервной копией библиотеки или файлом книги inkGuide.",
+  "yedek.tamam": "Импортировано книг: {n}."
+});
+Object.assign(I18N.de, {
+  "web.version": "Version {v} · Web",
+  "web.s0h1": "Ihr Buch wird in diesem Browser gespeichert",
+  "web.s0li1": "Einstellungen → <b>Bibliothek in Datei speichern</b> sichert alle Ihre Bücher in einer einzigen Datei.",
+  "web.s0li2": "Die Schaltfläche „Version“ speichert Schnappschüsse des Buchs in diesem Browser.",
+  "web.sideNote": "Keine Installation. Kein Konto, keine Registrierung.",
+  "web.where": "In diesem Browser gespeichert (auf diesem Gerät)",
+  "web.dataDesc": "Ihre Bücher liegen nur in diesem Browser, auf diesem Gerät; nichts wird an einen Server gesendet. Kein Konto nötig.",
+  "web.warn": "Wenn Sie die Browserdaten löschen, werden auch Ihre Bücher gelöscht. Speichern Sie Ihre Bibliothek regelmäßig in einer Datei oder nutzen Sie die Desktop-App.",
+  "web.download": "Desktop-App herunterladen",
+  "web.s0p": "Willkommen bei inkGuide. Kein Konto, keine Registrierung. Alles, was Sie schreiben, bleibt nur in diesem Browser, auf diesem Gerät; nichts wird an einen Server gesendet. Sie können jederzeit in die Desktop-App umziehen.",
+  "yedek.indir": "Bibliothek in Datei speichern (.json)",
+  "yedek.yukle": "Bücher aus Datei importieren",
+  "yedek.hint": "Mit dieser Datei sichern Sie Ihre Bücher und übertragen sie zwischen Web- und Desktop-Version. Der Import überschreibt nie vorhandene Bücher.",
+  "yedek.bozuk": "Diese Datei ist weder eine inkGuide-Bibliothekssicherung noch eine Buchdatei.",
+  "yedek.tamam": "{n} Buch/Bücher importiert."
+});
+
 /* ---------------- Seçili dil + t() yardımcıları ---------------- */
 
 /* Varsayılan dil İngilizce (global ürün); kullanıcı Kurulum'da veya Ayarlar'dan değiştirir */
