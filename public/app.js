@@ -23,16 +23,45 @@ function applyTheme() {
 applyTheme();
 darkMedia.addEventListener('change', () => { if (themePref === 'system') applyTheme(); });
 
-/* ---------------- Odak modu ----------------
-   Panelleri gizler, yazı alanı ortalanır; oturumluktur (localStorage'a yazılmaz).
-   Çıkış: Esc veya araç çubuğundaki düğme. */
-function toggleFocusMode(force) {
-  const on = force !== undefined ? force : !document.body.classList.contains('focus-mode');
-  document.body.classList.toggle('focus-mode', on);
-  document.querySelectorAll('#focusBtn').forEach(b => b.classList.toggle('active', on));
+/* ---------------- Yazma görünümü (dört kademe) ----------------
+   0 normal · 1 odak: yan paneller gizli · 2 sayfa: yalnız başlık + metin, geniş ·
+   3 sade: gerçek tam ekran. Seçici yazı alanının altında hep aynı yerde durur
+   (araç çubuğunun sonunda satır kayınca kayboluyordu). Esc bir kademe geri götürür.
+   Oturumluktur (localStorage'a yazılmaz). */
+let viewLevel = 0;
+const VIEW_LEVELS = [
+  { icon: 'layout', tip: 'view.normalTip' },
+  { icon: 'focus', tip: 'tool.focusTip' },
+  { icon: 'page', tip: 'view.pageTip' },
+  { icon: 'zen', tip: 'tool.zenTip' }
+];
+
+function setViewLevel(n) {
+  n = Math.max(0, Math.min(3, n));
+  if (n === 3) { enterZen(); return; }   // sade mod kendi kaplamasını açar; Esc ile 2'ye döner
+  viewLevel = n;
+  document.body.classList.toggle('focus-mode', n >= 1);
+  document.body.classList.toggle('page-mode', n >= 2);
+  document.querySelectorAll('.view-dock [data-level]').forEach(b =>
+    b.classList.toggle('active', Number(b.dataset.level) === viewLevel));
 }
+
+function mountViewDock() {
+  const dock = document.createElement('div');
+  dock.className = 'view-dock';
+  dock.setAttribute('role', 'group');
+  dock.setAttribute('aria-label', t('view.aria'));
+  dock.innerHTML = VIEW_LEVELS.map((v, i) =>
+    `<button type="button" data-level="${i}" class="${i === viewLevel ? 'active' : ''}" title="${esc(t(v.tip))}" aria-label="${esc(t(v.tip))}">${ic(v.icon)}</button>`).join('');
+  dock.onclick = (e) => {
+    const b = e.target.closest('[data-level]');
+    if (b) setViewLevel(Number(b.dataset.level));
+  };
+  document.body.appendChild(dock);
+}
+
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && document.body.classList.contains('focus-mode')) toggleFocusMode(false);
+  if (e.key === 'Escape' && viewLevel > 0 && !zenActive) setViewLevel(viewLevel - 1);
 });
 
 /* ---------------- Sade (zen) mod ----------------
@@ -82,6 +111,7 @@ function exitZen() {
   const o = document.getElementById('zenOverlay');
   if (o) o.remove();
   if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+  setViewLevel(2); // sade moddan bir kademe geri: sayfa görünümü
   renderEditor(); // sayaç ve önizleme tazelensin
 }
 
@@ -114,6 +144,8 @@ const ICONS = {
   phone: '<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 19h2"/>',
   check: '<path d="M20 6 9 17l-5-5"/>',
   focus: '<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  layout: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18"/>',
+  page: '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/>',
   zen: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"/>',
   book: '<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>'
 };
@@ -480,9 +512,7 @@ function draftToolsHtml() {
     <button id="fixBtn" title="${esc(t('tool.fixTip'))}">${ic('sparkles')} ${esc(t('tool.fix'))}</button>
     <button id="editorPassBtn" class="editor-btn" title="${esc(t('tool.editorTip'))}">${ic('wand')} ${esc(t('tool.editor'))}</button>
     <button id="editorUndoBtn" title="${esc(t('tool.undoTip'))}">${ic('undo')} ${esc(t('tool.undo'))}</button>
-    <button id="draftMic" class="mic" title="${esc(t('tool.micTip'))}">${ic('mic')}</button>
-    <button id="focusBtn" class="${document.body.classList.contains('focus-mode') ? 'active' : ''}" title="${esc(t('tool.focusTip'))}">${ic('focus')}</button>
-    <button id="zenBtn" title="${esc(t('tool.zenTip'))}">${ic('zen')}</button>`;
+    <button id="draftMic" class="mic" title="${esc(t('tool.micTip'))}">${ic('mic')}</button>`;
 }
 
 function bindDraftTools() {
@@ -521,10 +551,6 @@ function bindDraftTools() {
   }
   const dm = $('#draftMic');
   if (dm) dm.onclick = () => toggleDictation(dm, (t) => insertAtCursor(t));
-  const fb = $('#focusBtn');
-  if (fb) fb.onclick = () => toggleFocusMode();
-  const zb = $('#zenBtn');
-  if (zb) zb.onclick = () => enterZen();
 }
 
 /* ---------------- Kaydetme ---------------- */
@@ -2636,6 +2662,7 @@ async function openBook(id) {
 }
 
 async function init() {
+  mountViewDock();
   // Rehber + ipucu paketi arka planda yüklenir (bitince açık görünümleri tazeler)
   loadGuidePack();
   // Statik düğmeler (bir kez bağlanır)

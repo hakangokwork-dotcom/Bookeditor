@@ -835,6 +835,42 @@ body.focus-mode .rail, body.focus-mode .sidebar, body.focus-mode .companion {
 body.focus-mode .editor { padding: 64px 48px 120px; }
 @media (max-width: 1100px) { body.focus-mode .app { grid-template-columns: 0px 1fr 0px; } }
 
+/* Sayfa görünümü: yalnız başlık + metin; yazı alanı ekranı doldurur.
+   :has ile yalnız metin editörü açıkken uygulanır (Kaynaklar vb. ekranlar etkilenmez). */
+body.page-mode .editor-inner:has(> textarea.draft) { max-width: 880px; }
+body.page-mode .editor-inner:has(> textarea.draft) > :not(.chapter-header):not(textarea.draft) { display: none; }
+body.page-mode .editor-inner:has(> textarea.draft) .status-select { display: none; }
+body.page-mode .editor-inner:has(> textarea.draft) .chapter-header { margin-bottom: 18px; }
+body.page-mode textarea.draft {
+  /* !important: karalama editörü min-height'ı satır içi verir */
+  min-height: calc(100vh - 230px) !important;
+  padding: 8px 0; font-size: 19px; line-height: 1.85; resize: none;
+  border-color: transparent; background: transparent; box-shadow: none;
+}
+body.page-mode textarea.draft:focus { border-color: transparent; box-shadow: none; }
+
+/* Yazma görünümü seçicisi: editör sütununun altında ortada, hep aynı yerde */
+.view-dock {
+  position: fixed; bottom: 18px; z-index: 50;
+  left: calc(288px + (100vw - 288px - 316px) / 2); transform: translateX(-50%);
+  display: flex; gap: 2px; padding: 4px;
+  background: var(--panel-bg); border: 1px solid var(--border); border-radius: 999px;
+  box-shadow: var(--shadow); opacity: .85; transition: opacity .2s ease, left .22s ease;
+}
+.view-dock:hover, .view-dock:focus-within { opacity: 1; }
+body:not(:has(#draftText)) .view-dock { display: none; }
+@media (max-width: 1100px) { .view-dock { left: calc(250px + (100vw - 250px - 48px) / 2); } }
+body.focus-mode .view-dock { left: 50%; }
+.view-dock button {
+  width: 32px; height: 32px; display: grid; place-items: center;
+  border: none; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer;
+}
+.view-dock button svg { width: 17px; height: 17px; }
+.view-dock button:hover { background: var(--hover); color: var(--text); }
+.view-dock button.active { background: var(--accent); color: #fff; }
+[data-theme="dark"] .view-dock button.active { color: #1C1A16; }
+.view-dock button:focus-visible { outline: none; box-shadow: var(--ring); }
+
 /* ==================== Karanlık mod ====================
    Sıcak koyu palet — kaynak: Tasarım Sistemi (paper-dark #1C1A16, panel-dark #262319,
    surface-dark #2E2B24, border-dark #3A362F, accent-dark #A9BA8B). */

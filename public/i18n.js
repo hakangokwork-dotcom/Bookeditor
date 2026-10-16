@@ -3696,6 +3696,9 @@ I18N.de = {
 
 /* ---------------- Web sürümü (inkguide.uk/app) + kitaplık yedeği ---------------- */
 Object.assign(I18N.tr, {
+  "view.aria": "Yazma görünümü",
+  "view.normalTip": "Normal görünüm — tüm paneller açık",
+  "view.pageTip": "Sayfa görünümü — yalnız başlık ve metin kalır, yazı alanı büyür (çıkış: Esc)",
   "web.version": "Sürüm {v} · web",
   "web.s0h1": "Kitabınız bu tarayıcıda saklanır",
   "web.s0li1": "Ayarlar → <b>Kitaplığı dosyaya kaydet</b> ile kitaplarınızın tamamını tek dosya olarak yedekleyebilirsiniz.",
@@ -3713,6 +3716,9 @@ Object.assign(I18N.tr, {
   "yedek.tamam": "{n} kitap içe aktarıldı."
 });
 Object.assign(I18N.en, {
+  "view.aria": "Writing view",
+  "view.normalTip": "Normal view — all panels visible",
+  "view.pageTip": "Page view — only the title and your text remain, the writing area grows (exit: Esc)",
   "web.version": "Version {v} · web",
   "web.s0h1": "Your book is stored in this browser",
   "web.s0li1": "Settings → <b>Save library to file</b> backs up all your books as a single file.",
@@ -3730,6 +3736,9 @@ Object.assign(I18N.en, {
   "yedek.tamam": "{n} book(s) imported."
 });
 Object.assign(I18N.es, {
+  "view.aria": "Vista de escritura",
+  "view.normalTip": "Vista normal — todos los paneles visibles",
+  "view.pageTip": "Vista de página — solo quedan el título y tu texto, el área de escritura crece (salir: Esc)",
   "web.version": "Versión {v} · web",
   "web.s0h1": "Tu libro se guarda en este navegador",
   "web.s0li1": "Ajustes → <b>Guardar biblioteca en archivo</b> respalda todos tus libros en un solo archivo.",
@@ -3747,6 +3756,9 @@ Object.assign(I18N.es, {
   "yedek.tamam": "{n} libro(s) importado(s)."
 });
 Object.assign(I18N.zh, {
+  "view.aria": "写作视图",
+  "view.normalTip": "普通视图 — 显示所有面板",
+  "view.pageTip": "页面视图 — 只保留标题和正文，写作区域放大（退出：Esc）",
   "web.version": "版本 {v} · 网页版",
   "web.s0h1": "您的书稿保存在此浏览器中",
   "web.s0li1": "设置 → <b>将书库保存为文件</b>，即可把所有书稿备份为一个文件。",
@@ -3764,6 +3776,9 @@ Object.assign(I18N.zh, {
   "yedek.tamam": "已导入 {n} 本书。"
 });
 Object.assign(I18N.ar, {
+  "view.aria": "عرض الكتابة",
+  "view.normalTip": "العرض العادي — كل اللوحات ظاهرة",
+  "view.pageTip": "عرض الصفحة — يبقى العنوان ونصك فقط وتتسع مساحة الكتابة (للخروج: Esc)",
   "web.version": "الإصدار {v} · الويب",
   "web.s0h1": "كتابك محفوظ في هذا المتصفح",
   "web.s0li1": "الإعدادات ← <b>احفظ المكتبة في ملف</b> لنسخ جميع كتبك احتياطيًا في ملف واحد.",
@@ -3781,6 +3796,9 @@ Object.assign(I18N.ar, {
   "yedek.tamam": "تم استيراد {n} كتاب."
 });
 Object.assign(I18N.hi, {
+  "view.aria": "लेखन दृश्य",
+  "view.normalTip": "सामान्य दृश्य — सभी पैनल दिखते हैं",
+  "view.pageTip": "पेज दृश्य — केवल शीर्षक और आपका पाठ रहता है, लेखन क्षेत्र बड़ा हो जाता है (बाहर: Esc)",
   "web.version": "संस्करण {v} · वेब",
   "web.s0h1": "आपकी किताब इस ब्राउज़र में सहेजी जाती है",
   "web.s0li1": "सेटिंग्स → <b>लाइब्रेरी को फ़ाइल में सहेजें</b> से आपकी सारी किताबों का एक फ़ाइल में बैकअप बनता है।",
@@ -3798,6 +3816,9 @@ Object.assign(I18N.hi, {
   "yedek.tamam": "{n} किताब(ें) आयात की गईं।"
 });
 Object.assign(I18N.pt, {
+  "view.aria": "Modo de escrita",
+  "view.normalTip": "Visão normal — todos os painéis visíveis",
+  "view.pageTip": "Visão de página — ficam só o título e o seu texto, a área de escrita aumenta (sair: Esc)",
   "web.version": "Versão {v} · web",
   "web.s0h1": "Seu livro fica salvo neste navegador",
   "web.s0li1": "Configurações → <b>Salvar biblioteca em arquivo</b> faz backup de todos os seus livros em um único arquivo.",
@@ -3815,6 +3836,9 @@ Object.assign(I18N.pt, {
   "yedek.tamam": "{n} livro(s) importado(s)."
 });
 Object.assign(I18N.fr, {
+  "view.aria": "Affichage d’écriture",
+  "view.normalTip": "Affichage normal — tous les panneaux visibles",
+  "view.pageTip": "Affichage page — seuls le titre et votre texte restent, la zone d’écriture s’agrandit (sortie : Échap)",
   "web.version": "Version {v} · web",
   "web.s0h1": "Votre livre est stocké dans ce navigateur",
   "web.s0li1": "Réglages → <b>Enregistrer la bibliothèque dans un fichier</b> sauvegarde tous vos livres en un seul fichier.",
@@ -3832,6 +3856,9 @@ Object.assign(I18N.fr, {
   "yedek.tamam": "{n} livre(s) importé(s)."
 });
 Object.assign(I18N.ru, {
+  "view.aria": "Режим письма",
+  "view.normalTip": "Обычный вид — все панели видны",
+  "view.pageTip": "Вид страницы — остаются только заголовок и текст, область письма увеличивается (выход: Esc)",
   "web.version": "Версия {v} · веб",
   "web.s0h1": "Ваша книга хранится в этом браузере",
   "web.s0li1": "Настройки → <b>Сохранить библиотеку в файл</b> — резервная копия всех книг в одном файле.",
@@ -3849,6 +3876,9 @@ Object.assign(I18N.ru, {
   "yedek.tamam": "Импортировано книг: {n}."
 });
 Object.assign(I18N.de, {
+  "view.aria": "Schreibansicht",
+  "view.normalTip": "Normale Ansicht — alle Bereiche sichtbar",
+  "view.pageTip": "Seitenansicht — nur Titel und Text bleiben, der Schreibbereich wird größer (Beenden: Esc)",
   "web.version": "Version {v} · Web",
   "web.s0h1": "Ihr Buch wird in diesem Browser gespeichert",
   "web.s0li1": "Einstellungen → <b>Bibliothek in Datei speichern</b> sichert alle Ihre Bücher in einer einzigen Datei.",
