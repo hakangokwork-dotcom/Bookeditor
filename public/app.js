@@ -265,7 +265,7 @@ const UI_LANGS = [
 let uiLang = I18N_LANG;
 
 // Uygulama sürümü (package.json ile eşleşir)
-const APP_VERSION = '1.2.0';
+const APP_VERSION = '1.2.1';
 
 function toggleDictation(btn, insertFn) {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;

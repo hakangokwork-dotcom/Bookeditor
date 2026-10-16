@@ -1,6 +1,6 @@
 {
   "name": "inkguide",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "inkGuide — your book's companion: notes, syntheses, sources and one-click book export. Local-first.",
   "main": "server.js",
   "bin": "server.js",
