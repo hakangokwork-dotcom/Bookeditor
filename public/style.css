@@ -1076,3 +1076,27 @@ body.focus-mode .view-dock { left: 50%; }
 }
 .btn-take-version:hover { background: var(--accent-deep); }
 .mini-modal .versions-box { max-height: 240px; padding: 0; }
+
+/* ---------------- Hesap ve eşitleme ---------------- */
+.sync-who { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text); margin-bottom: 4px; }
+.sync-who svg { color: var(--accent); }
+.sync-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.sync-warn { color: var(--danger); }
+.sync-err { min-height: 18px; font-size: 13px; color: var(--danger); }
+.sync-link {
+  align-self: flex-start; border: none; background: none; padding: 0; cursor: pointer;
+  font: inherit; font-size: 13px; color: var(--accent-deep); text-decoration: underline; text-underline-offset: 3px;
+}
+[data-theme="dark"] .sync-link { color: var(--accent); }
+.sync-rec {
+  display: block; padding: 14px 16px; border-radius: 10px; border: 1px dashed var(--accent);
+  background: var(--bg); font-size: 17px; letter-spacing: .06em; text-align: center; user-select: all; word-break: break-all;
+}
+.sync-ok { display: flex; gap: 8px; align-items: center; font-size: 14px; cursor: pointer; }
+.sync-chip {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted);
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px;
+}
+.sync-chip svg { color: var(--accent); }
+.lib-modal-foot .create:disabled { opacity: .45; cursor: not-allowed; }
+.tree-item.add-part.add-chapter { margin: 4px 0 6px 22px; }

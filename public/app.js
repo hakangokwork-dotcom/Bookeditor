@@ -265,7 +265,7 @@ const UI_LANGS = [
 let uiLang = I18N_LANG;
 
 // Uygulama sürümü (package.json ile eşleşir)
-const APP_VERSION = '1.2.1';
+const APP_VERSION = '1.3.0';
 
 function toggleDictation(btn, insertFn) {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -566,6 +566,7 @@ function setSaveIndicator(text, saving) {
 }
 
 function scheduleSave() {
+  syncTouched();
   const si = $('#saveIndicator');
   si.classList.remove('dim');
   setSaveIndicator(t('save.saving'), true);
@@ -580,6 +581,7 @@ function scheduleSave() {
       });
       setSaveIndicator(t('save.saved', { time: new Date().toLocaleTimeString(I18N_LOCALE) }), false);
       saveDimTimer = setTimeout(() => si.classList.add('dim'), 4000);
+      syncSoon();
     } catch {
       setSaveIndicator(t('save.error'), false);
     }
@@ -654,6 +656,10 @@ function renderSidebar() {
       );
       tree.appendChild(item);
     }
+    // Boş kısım: bölüm eklemenin tek yolu bölüm editörüydü, boş kısımda o da yoktu
+    if (!part.chapters.length) {
+      tree.appendChild(mkItem('add-part add-chapter', ic('plus') + ' ' + esc(t('ch.add')), () => addChapterTo(part)));
+    }
   }
 
   // Ağacın sonunda sessiz "+ Kısım" satırı
@@ -684,6 +690,7 @@ function renderSidebar() {
 
 function select(type, id = null) {
   sel = { type, id };
+  if (book) book.lastSel = sel;
   previewMode = false;
   if (type === 'scratch') scratchPadId = null;
   renderSidebar();
@@ -1335,14 +1342,7 @@ function renderChapter(ed) {
 
   $('#chUp').onclick = () => moveChapter(part, ch, -1);
   $('#chDown').onclick = () => moveChapter(part, ch, 1);
-  $('#chAdd').onclick = () => {
-    const title = prompt(t('ch.newPrompt'));
-    if (!title) return;
-    const nc = { id: uid('c'), title, status: 'taslak', synopsis: '', draft: '', notes: [] };
-    part.chapters.splice(part.chapters.indexOf(ch) + 1, 0, nc);
-    scheduleSave();
-    select('chapter', nc.id);
-  };
+  $('#chAdd').onclick = () => addChapterTo(part, ch);
   $('#chDel').onclick = () => {
     if (!confirm(t('ch.delConfirm', { title: ch.title }))) return;
     part.chapters = part.chapters.filter(c => c.id !== ch.id);
@@ -1569,9 +1569,22 @@ function versionLabel(f) {
 function addPart() {
   const title = prompt(t('part.newPrompt'));
   if (!title) return;
-  book.parts.push({ id: uid('p'), title, chapters: [] });
+  const part = { id: uid('p'), title, chapters: [] };
+  book.parts.push(part);
   scheduleSave();
   renderSidebar();
+  // Kısım tek başına yazılamaz: ilk bölümü hemen açılır (yoksa yazı açık kalan eski bölüme gidiyordu)
+  addChapterTo(part);
+}
+
+// Bölüm ekler (after verilirse onun arkasına) ve yazmak için açar
+function addChapterTo(part, after) {
+  const title = prompt(t('ch.newPrompt'));
+  if (!title) return;
+  const nc = { id: uid('c'), title, status: 'taslak', synopsis: '', draft: '', notes: [] };
+  part.chapters.splice(after ? part.chapters.indexOf(after) + 1 : part.chapters.length, 0, nc);
+  scheduleSave();
+  select('chapter', nc.id);
 }
 
 /* Versiyonlar penceresi: rail'deki saat ikonuna tıklayınca açılır */
@@ -1716,6 +1729,7 @@ function renderLibrary(books) {
       </span>
       <span class="lib-nav-active">${esc(t('lib.title'))}</span>
       ${book ? `<button class="lib-back" id="libBackBtn">${esc(t('lib.back'))}</button>` : ''}
+      ${syncHeaderBtnHtml()}
       <button class="lib-new-btn" id="libNewBtn">${ic('plus')} ${esc(t('lib.new'))}</button>
     </div>
   </header>
@@ -1749,6 +1763,7 @@ function renderLibrary(books) {
         const res = await fetch('/api/library/' + encodeURIComponent(id), { method: 'DELETE' });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error);
+        syncForget(books.find(b => b.id === id));
         if (bookId === id) { bookId = 'default'; localStorage.setItem('inkguide.bookId', bookId); }
         showLibrary();
       } catch (err) {
@@ -1917,6 +1932,8 @@ function renderSettings(ed) {
         </div>
       </div>
 
+      ${syncCardHtml()}
+
       <div class="set-card set-card-wide">
         <div class="set-title">${esc(t('set.data'))}</div>
         <p class="set-desc">${esc(tWeb('set.dataDesc'))}</p>
@@ -1993,6 +2010,7 @@ function renderSettings(ed) {
 
   // Veri evi: klasör açma düğmeleri, Belgeler'e taşıma, kayıp kitap kurtarma
   bindVeriYollari(ed);
+  bindSyncCard();
   if ($('#setKurtar')) $('#setKurtar').onclick = (e) => kurtarmayiBaslat(e.currentTarget);
   $('#setYedekIndir').onclick = kitapligiIndir;
   $('#setYedekYukle').onclick = () => $('#setYedekDosya').click();
@@ -2175,6 +2193,7 @@ async function kitapIceAktar(file) {
       });
       const yeni = await res.json();
       if (!yeni.ok) throw new Error(yeni.error);
+      delete b.cloud;
       const put = await fetch('/api/book?bookId=' + encodeURIComponent(yeni.id), {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -2329,7 +2348,8 @@ function onbVeriHtml() {
       <li>${ic('check')}<span>${tWeb('onb.s0li2')}</span></li>
       <li>${ic('check')}<span>${t('onb.s0li3')}</span></li>
     </ul>
-    <div class="onb-hint">${esc(t('veri.ayarlarNot'))}</div>`;
+    <div class="onb-hint">${esc(t('veri.ayarlarNot'))}</div>
+    <div class="onb-hint"><button type="button" class="sync-link" data-sync="login">${esc(t('sync.haveAccount'))}</button></div>`;
 }
 
 function onbKitapHtml() {
@@ -2651,6 +2671,8 @@ async function openBook(id) {
   convError = null;
   clearTimeout(saveTimer);
   migrateBook();
+  const ls = book.lastSel;
+  if (ls && ls.type && (ls.type !== 'chapter' || findChapter(ls.id))) sel = { type: ls.type, id: ls.id || null };
   $('#libraryView').hidden = true;
   $('#exportResult').innerHTML = '';
   renderSidebar();
@@ -2692,12 +2714,19 @@ async function init() {
   await fetchKonum();
 
   // Kitaplığı oku: birden fazla kitap varsa Kitaplığım ekranı, tek kitap varsa doğrudan o kitap
+  // Hesap açıksa önce bulutla eşitle (çevrimdışıysa en çok birkaç saniye bekler)
+  const bulutSon = await syncAtStart();
+
   let books = null;
   try {
     books = await fetchLibrary();
   } catch { /* eski sunucu: kitaplık ucu yok */ }
 
-  if (books && books.length > 1) {
+  // Kaldığı yerden: son açılan kitap (yoksa bulutta en son yazılan) doğrudan açılır
+  const sonKitap = localStorage.getItem('inkguide.bookId') || bulutSon;
+  if (books && sonKitap && books.some(b => b.id === sonKitap)) {
+    await openBook(sonKitap);
+  } else if (books && books.length > 1) {
     await showLibrary();
   } else if (books && books.length === 1) {
     await openBook(books[0].id);

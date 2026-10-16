@@ -17,6 +17,7 @@ copy('public/app.js', 'app.js');
 copy('public/i18n.js', 'i18n.js');
 copy('public/style.css', 'style.css');
 copy('public/web.js', 'web.js');
+copy('public/sync.js', 'sync.js');
 copy('public/guide', 'guide');
 copy('lib/export.js', 'export.js');
 copy('data/book.sample.json', 'book.sample.json');
@@ -33,5 +34,8 @@ if (html === before || !html.includes('src="web.js"') || html.includes('"/vendor
   console.error('index.html beklenen biçimde değil — web.js eklenemedi');
   process.exit(1);
 }
+// Önbellek: Pages dosyaları 10 dk saklar; yeni app.js eski style.css ile karışmasın diye her derleme ayrı sürüm
+const v = Date.now().toString(36);
+html = html.replace(/(src|href)="((?:vendor\/)?[\w.-]+\.(?:js|css))"/g, `$1="$2?v=${v}"`);
 fs.writeFileSync(path.join(out, 'index.html'), html);
 console.log('Web sürümü hazır:', out);

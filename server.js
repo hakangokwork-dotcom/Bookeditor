@@ -249,11 +249,12 @@ app.get('/api/library', (req, res) => {
   try {
     const lib = readLibrary();
     const books = lib.books.map(entry => {
-      let meta = {}, totalWords = 0, chapters = 0, done = 0, updatedAt = entry.createdAt || null;
+      let meta = {}, totalWords = 0, chapters = 0, done = 0, updatedAt = entry.createdAt || null, cloud = null;
       try {
         const file = dataFileFor(entry);
         const book = JSON.parse(fs.readFileSync(file, 'utf8'));
         meta = book.meta || {};
+        cloud = book.cloud || null;
         totalWords = countBookWords(book);
         for (const p of book.parts || []) {
           chapters += (p.chapters || []).length;
@@ -270,7 +271,7 @@ app.get('/api/library', (req, res) => {
         title: meta.title || 'Adsız kitap',
         subtitle: meta.subtitle || '',
         targetWords: meta.targetWords || 60000,
-        totalWords, chapters, done, updatedAt
+        totalWords, chapters, done, updatedAt, cloud
       };
     });
     res.json({ books });

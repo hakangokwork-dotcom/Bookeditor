@@ -35,3 +35,7 @@ Thumbs.db
 
 # Proje kokundeki calistirilabilir kopya (release'ten gelir)
 inkGuide.exe
+
+# Eşitleme servisi derleme/bağımlılık çıktıları
+sync-server/node_modules/
+sync-server/.cloudflare/

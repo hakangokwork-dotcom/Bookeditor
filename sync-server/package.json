@@ -1,0 +1,14 @@
+{
+  "name": "inkguide-sync",
+  "private": true,
+  "type": "module",
+  "description": "inkGuide uçtan uca şifreli eşitleme servisi (Cloudflare Worker + D1)",
+  "scripts": {
+    "deploy": "cf deploy"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^2.0.0-beta.v.1",
+    "cf": "^1.0.0-beta.17",
+    "vite": "^8.3.4"
+  }
+}

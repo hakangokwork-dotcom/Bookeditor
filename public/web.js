@@ -117,7 +117,7 @@
           id: entry.id, color: entry.color || null, createdAt: entry.createdAt || null,
           title: meta.title || 'Adsız kitap', subtitle: meta.subtitle || '',
           targetWords: meta.targetWords || 60000, totalWords: countBookWords(book),
-          chapters, done, updatedAt: entry.updatedAt || entry.createdAt || null
+          chapters, done, updatedAt: entry.updatedAt || entry.createdAt || null, cloud: book.cloud || null
         });
       }
       return { books };
