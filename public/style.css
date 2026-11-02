@@ -68,6 +68,10 @@ svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width:
 .brand .wordmark { font-size: 14px; letter-spacing: -.015em; color: var(--text); }
 .brand .wordmark b { font-weight: 700; }
 .book-head { padding: 12px 18px 16px; border-bottom: 1px solid var(--border-soft); }
+.book-title[contenteditable], .book-subtitle[contenteditable] { outline: none; border-radius: 5px; cursor: text; }
+.book-title[contenteditable]:hover, .book-title[contenteditable]:focus,
+.book-subtitle[contenteditable]:hover, .book-subtitle[contenteditable]:focus { box-shadow: 0 0 0 1px var(--border); }
+.book-subtitle[contenteditable]:empty::before { content: attr(title); color: var(--muted); opacity: .5; font-size: 12px; }
 .book-title { font-size: 23px; font-weight: 600; font-family: var(--font-serif); letter-spacing: -.01em; line-height: 1.15; }
 .book-subtitle { font-size: 12.5px; color: var(--muted); font-style: italic; margin-top: 4px; }
 .progress-wrap { margin-top: 16px; }
@@ -519,7 +523,7 @@ textarea.note-edit:focus { outline: none; }
 .lib-modal-body { padding: 18px 26px 8px; display: flex; flex-direction: column; gap: 14px; }
 .lib-modal-body label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; }
 .lib-modal-body label .opt { color: var(--muted); font-weight: 400; }
-.lib-modal-body input[type=text], .lib-modal-body input[type=number] {
+.lib-modal-body input[type=text], .lib-modal-body input[type=number], .lib-modal-body input[type=password] {
   width: 100%; padding: 10px 13px; border: 1px solid var(--border); border-radius: 9px;
   font-family: inherit; font-size: 14px;
 }
@@ -957,6 +961,7 @@ body.focus-mode .view-dock { left: 50%; }
 [data-theme="dark"] .note-del, [data-theme="dark"] .del-link { color: #6E695E; }
 [data-theme="dark"] .lib-modal-body input[type=text],
 [data-theme="dark"] .lib-modal-body input[type=number],
+[data-theme="dark"] .lib-modal-body input[type=password],
 [data-theme="dark"] .tray-add input,
 [data-theme="dark"] .lib-targets input[type=number] { background: var(--panel-bg); color: var(--text); }
 [data-theme="dark"] .lib-target-chip.sel { color: var(--accent); }

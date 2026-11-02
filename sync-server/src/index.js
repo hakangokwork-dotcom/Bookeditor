@@ -46,7 +46,7 @@ function b64(v, name, max = 512) {
 }
 function username(v) {
   const u = String(v || '').trim().toLowerCase();
-  if (!/^[a-z0-9_.-]{3,32}$/.test(u)) throw fail('bad_username');
+  if (!/^[a-z0-9_.@+-]{3,64}$/.test(u)) throw fail('bad_username');
   return u;
 }
 async function sha256(str) {

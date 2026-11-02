@@ -265,7 +265,7 @@ const UI_LANGS = [
 let uiLang = I18N_LANG;
 
 // Uygulama sürümü (package.json ile eşleşir)
-const APP_VERSION = '1.3.0';
+const APP_VERSION = '1.3.1';
 
 function toggleDictation(btn, insertFn) {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -605,9 +605,20 @@ async function flushSaveNow() {
 
 /* ---------------- Sol panel ---------------- */
 
+// Kitap adı / alt başlık yerinde düzenlenir (bölüm başlığı gibi); Enter bitirir, boş ad kabul edilmez
+function bindMetaEdit(el, key, required) {
+  if (document.activeElement !== el) el.textContent = book.meta[key] || '';
+  el.oninput = () => {
+    const v = el.textContent.replace(/\s+/g, ' ').trim();
+    if (v || !required) { book.meta[key] = v; scheduleSave(); }
+  };
+  el.onkeydown = (e) => { if (e.key === 'Enter') { e.preventDefault(); el.blur(); } };
+  el.onblur = () => { el.textContent = book.meta[key] || ''; };
+}
+
 function renderSidebar() {
-  $('#bookTitle').textContent = book.meta.title;
-  $('#bookSubtitle').textContent = book.meta.subtitle || '';
+  bindMetaEdit($('#bookTitle'), 'title', true);
+  bindMetaEdit($('#bookSubtitle'), 'subtitle', false);
 
   const tw = totalWords();
   const target = book.meta.targetWords || 60000;
@@ -658,7 +669,7 @@ function renderSidebar() {
     }
     // Boş kısım: bölüm eklemenin tek yolu bölüm editörüydü, boş kısımda o da yoktu
     if (!part.chapters.length) {
-      tree.appendChild(mkItem('add-part add-chapter', ic('plus') + ' ' + esc(t('ch.add')), () => addChapterTo(part)));
+      tree.appendChild(mkItem('add-part add-chapter', ic('plus') + ' ' + esc(t(isEssays() ? 'essay.add' : 'ch.add')), () => addChapterTo(part)));
     }
   }
 
@@ -1259,7 +1270,7 @@ function renderChapter(ed) {
     <div class="small-actions">
       <button id="chUp">${ic('up')} ${esc(t('ch.up'))}</button>
       <button id="chDown">${ic('down')} ${esc(t('ch.down'))}</button>
-      <button id="chAdd">${ic('plus')} ${esc(t('ch.add'))}</button>
+      <button id="chAdd">${ic('plus')} ${esc(t(isEssays() ? 'essay.add' : 'ch.add'))}</button>
       <button id="chDel" class="danger">${ic('trash')} ${esc(t('ch.del'))}</button>
     </div>
   </div>`;
@@ -1577,9 +1588,11 @@ function addPart() {
   addChapterTo(part);
 }
 
+const isEssays = () => book && book.meta && book.meta.kind === 'essays';
+
 // Bölüm ekler (after verilirse onun arkasına) ve yazmak için açar
 function addChapterTo(part, after) {
-  const title = prompt(t('ch.newPrompt'));
+  const title = prompt(t(isEssays() ? 'essay.newPrompt' : 'ch.newPrompt'));
   if (!title) return;
   const nc = { id: uid('c'), title, status: 'taslak', synopsis: '', draft: '', notes: [] };
   part.chapters.splice(after ? part.chapters.indexOf(after) + 1 : part.chapters.length, 0, nc);
@@ -1711,6 +1724,7 @@ function libCardHtml(b, i) {
       <div class="lib-nums"><span>${(b.totalWords || 0).toLocaleString(I18N_LOCALE)} / ${(b.targetWords || 60000).toLocaleString(I18N_LOCALE)}</span><span>%${st.pct}</span></div>
       <div class="lib-meta">
         <span class="lib-pill ${st.cls}"><span class="dot"></span> ${st.label}</span>
+        ${b.kind === 'essays' ? `<span class="lib-pill">${esc(t('lib.kindEssay'))}</span>` : ''}
         <span class="lib-time">${relTime(b.updatedAt)}</span>
       </div>
     </div>
@@ -1783,11 +1797,20 @@ function openNewBookForm() {
   const host = $('#libModalHost');
   let color = COVER_COLORS[0];
   let target = 60000;
+  let kind = 'book';
   host.innerHTML = `
   <div class="lib-modal-backdrop" id="libModalBack">
     <div class="lib-modal">
       <div class="lib-modal-head"><span class="t">${esc(t('lib.new'))}</span><button class="lib-modal-close" id="libModalClose" title="${esc(t('close'))}">✕</button></div>
       <form class="lib-modal-body" id="libNewForm">
+        <div>
+          <label>${esc(t('lib.kind'))}</label>
+          <div class="lib-targets">
+            <button type="button" class="lib-target-chip sel" data-kind="book">${esc(t('lib.kindBook'))}</button>
+            <button type="button" class="lib-target-chip" data-kind="essays">${esc(t('lib.kindEssay'))}</button>
+          </div>
+          <div class="set-hint" id="nbKindHint" hidden>${esc(t('lib.kindEssayHint'))}</div>
+        </div>
         <div>
           <label for="nbTitle">${esc(t('lib.bookName'))}</label>
           <input type="text" id="nbTitle" placeholder="${esc(t('lib.bookNamePh'))}" required autocomplete="off">
@@ -1831,9 +1854,17 @@ function openNewBookForm() {
       color = btn.dataset.color;
     };
   });
-  host.querySelectorAll('.lib-target-chip').forEach(btn => {
+  host.querySelectorAll('[data-kind]').forEach(btn => {
     btn.onclick = () => {
-      host.querySelectorAll('.lib-target-chip').forEach(b => b.classList.remove('sel'));
+      host.querySelectorAll('[data-kind]').forEach(b => b.classList.remove('sel'));
+      btn.classList.add('sel');
+      kind = btn.dataset.kind;
+      $('#nbKindHint').hidden = kind !== 'essays';
+    };
+  });
+  host.querySelectorAll('[data-target]').forEach(btn => {
+    btn.onclick = () => {
+      host.querySelectorAll('[data-target]').forEach(b => b.classList.remove('sel'));
       btn.classList.add('sel');
       target = parseInt(btn.dataset.target, 10);
       $('#nbCustomTarget').value = '';
@@ -1843,7 +1874,7 @@ function openNewBookForm() {
     const v = parseInt(e.target.value, 10);
     if (v > 0) {
       target = v;
-      host.querySelectorAll('.lib-target-chip').forEach(b => b.classList.remove('sel'));
+      host.querySelectorAll('[data-target]').forEach(b => b.classList.remove('sel'));
     }
   };
 
@@ -1860,9 +1891,10 @@ function openNewBookForm() {
           subtitle: $('#nbSubtitle').value.trim(),
           targetWords: target,
           color,
+          kind,
           // Yeni kitap iskeleti aktif arayüz dilinde açılsın (sunucu şablonu Türkçe kalabilir)
-          partTitle: t('sample.partTitle'),
-          chapterTitle: t('sample.chapterTitle')
+          partTitle: t(kind === 'essays' ? 'essay.part' : 'sample.partTitle'),
+          chapterTitle: t(kind === 'essays' ? 'essay.first' : 'sample.chapterTitle')
         })
       });
       const data = await res.json();

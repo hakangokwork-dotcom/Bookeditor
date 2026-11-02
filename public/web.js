@@ -116,7 +116,7 @@
         books.push({
           id: entry.id, color: entry.color || null, createdAt: entry.createdAt || null,
           title: meta.title || 'Adsız kitap', subtitle: meta.subtitle || '',
-          targetWords: meta.targetWords || 60000, totalWords: countBookWords(book),
+          targetWords: meta.targetWords || 60000, kind: meta.kind || null, totalWords: countBookWords(book),
           chapters, done, updatedAt: entry.updatedAt || entry.createdAt || null, cloud: book.cloud || null
         });
       }
@@ -124,7 +124,7 @@
     },
 
     'POST /api/library': async (q, body) => {
-      const { title, subtitle, targetWords, color, partTitle, chapterTitle } = body || {};
+      const { title, subtitle, targetWords, color, partTitle, chapterTitle, kind } = body || {};
       if (!title || !String(title).trim()) throw fail('Kitap adı gerekli');
       const lib = await readLibrary();
       const base = slugify(title);
@@ -135,6 +135,7 @@
       book.meta.subtitle = String(subtitle || '').trim();
       const tw = parseInt(targetWords, 10);
       if (tw > 0) book.meta.targetWords = tw;
+    if (kind === 'essays') book.meta.kind = 'essays';
       if (partTitle && String(partTitle).trim() && book.parts && book.parts[0]) book.parts[0].title = String(partTitle).trim();
       if (chapterTitle && String(chapterTitle).trim() && book.parts?.[0]?.chapters?.[0]) book.parts[0].chapters[0].title = String(chapterTitle).trim();
       await put('book:' + id, book);

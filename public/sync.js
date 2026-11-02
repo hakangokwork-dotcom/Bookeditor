@@ -363,7 +363,7 @@ function openSyncModal(mode) {
           <input type="${type}" id="${id}" ${extra} required>
         </div>`;
   const forms = {
-    signup: field('syU', 'sync.username', 'text', 'autocomplete="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9_.\\-]{3,32}"')
+    signup: field('syU', 'sync.username', 'text', 'autocomplete="username" minlength="3" maxlength="64" pattern="[A-Za-z0-9_.@+\\-]{3,64}"')
       + field('syP', 'sync.password', 'password', 'autocomplete="new-password" minlength="8"')
       + field('syP2', 'sync.password2', 'password', 'autocomplete="new-password" minlength="8"')
       + `<div class="set-hint">${esc(t('sync.signupHint'))}</div>`,

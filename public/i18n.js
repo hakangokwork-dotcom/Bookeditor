@@ -4266,6 +4266,29 @@ Object.assign(I18N.de, {
   "yedek.tamam": "{n} Buch/Bücher importiert."
 });
 
+/* Deneme defteri: her deneme bir bölüm olarak durur, sonra sıralanıp kitap olarak dışa aktarılır */
+const ESSAY_I18N = {
+  tr: ['Tür', 'Kitap', 'Deneme', 'Her deneme ayrı bir bölüm olarak durur. Sonra sıralayıp kısımlara ayırarak kitap olarak dışa aktarabilirsin.', 'Denemeler', 'İlk deneme', 'deneme ekle', 'Yeni deneme başlığı:'],
+  en: ['Type', 'Book', 'Essays', 'Each essay is its own chapter. Later you can reorder them, group them into parts and export them as a book.', 'Essays', 'First essay', 'add essay', 'New essay title:'],
+  es: ['Tipo', 'Libro', 'Ensayos', 'Cada ensayo es un capítulo propio. Después puedes ordenarlos, agruparlos en partes y exportarlos como libro.', 'Ensayos', 'Primer ensayo', 'añadir ensayo', 'Título del nuevo ensayo:'],
+  zh: ['类型', '图书', '随笔', '每篇随笔都是独立的一章。之后可以重新排序、分篇，并导出为一本书。', '随笔', '第一篇随笔', '添加随笔', '新随笔标题：'],
+  ar: ['النوع', 'كتاب', 'مقالات', 'كل مقالة فصل مستقل. يمكنك لاحقًا ترتيبها وتجميعها في أقسام وتصديرها ككتاب.', 'مقالات', 'المقالة الأولى', 'إضافة مقالة', 'عنوان المقالة الجديدة:'],
+  hi: ['प्रकार', 'किताब', 'निबंध', 'हर निबंध अपना अलग अध्याय है। बाद में आप उन्हें क्रम में लगाकर, खंडों में बाँटकर किताब के रूप में निर्यात कर सकते हैं।', 'निबंध', 'पहला निबंध', 'निबंध जोड़ें', 'नए निबंध का शीर्षक:'],
+  pt: ['Tipo', 'Livro', 'Ensaios', 'Cada ensaio é um capítulo próprio. Depois você pode reordená-los, agrupá-los em partes e exportá-los como livro.', 'Ensaios', 'Primeiro ensaio', 'adicionar ensaio', 'Título do novo ensaio:'],
+  fr: ['Type', 'Livre', 'Essais', 'Chaque essai est un chapitre à part. Plus tard, vous pourrez les réordonner, les regrouper en parties et les exporter en livre.', 'Essais', 'Premier essai', 'ajouter un essai', 'Titre du nouvel essai :'],
+  ru: ['Тип', 'Книга', 'Эссе', 'Каждое эссе — отдельная глава. Позже их можно упорядочить, разбить на части и экспортировать как книгу.', 'Эссе', 'Первое эссе', 'добавить эссе', 'Название нового эссе:'],
+  de: ['Art', 'Buch', 'Essays', 'Jeder Essay ist ein eigenes Kapitel. Später kannst du sie ordnen, in Teile gliedern und als Buch exportieren.', 'Essays', 'Erster Essay', 'Essay hinzufügen', 'Titel des neuen Essays:']
+};
+for (const [l, v] of Object.entries(ESSAY_I18N)) {
+  ['lib.kind', 'lib.kindBook', 'lib.kindEssay', 'lib.kindEssayHint', 'essay.part', 'essay.first', 'essay.add', 'essay.newPrompt']
+    .forEach((k, i) => { I18N[l][k] = v[i]; });
+}
+Object.entries({
+  tr: 'Değiştirmek için tıklayın', en: 'Click to rename', es: 'Haz clic para cambiar', zh: '点击修改',
+  ar: 'انقر للتعديل', hi: 'बदलने के लिए क्लिक करें', pt: 'Clique para alterar', fr: 'Cliquez pour modifier',
+  ru: 'Нажмите, чтобы изменить', de: 'Zum Ändern klicken'
+}).forEach(([l, v]) => { I18N[l]['book.renameTip'] = v; });
+
 /* ---------------- Seçili dil + t() yardımcıları ---------------- */
 
 /* Varsayılan dil İngilizce (global ürün); kullanıcı Kurulum'da veya Ayarlar'dan değiştirir */

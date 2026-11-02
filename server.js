@@ -270,7 +270,7 @@ app.get('/api/library', (req, res) => {
         createdAt: entry.createdAt || null,
         title: meta.title || 'Adsız kitap',
         subtitle: meta.subtitle || '',
-        targetWords: meta.targetWords || 60000,
+        targetWords: meta.targetWords || 60000, kind: meta.kind || null,
         totalWords, chapters, done, updatedAt, cloud
       };
     });
@@ -285,7 +285,7 @@ app.post('/api/library', (req, res) => {
   try {
     // partTitle / chapterTitle isteğe bağlı: yeni kitabın iskeleti arayüz dilinde
     // açılsın diye istemci gönderir; gönderilmezse şablondaki adlar aynen kalır.
-    const { title, subtitle, targetWords, color, partTitle, chapterTitle } = req.body || {};
+    const { title, subtitle, targetWords, color, partTitle, chapterTitle, kind } = req.body || {};
     if (!title || !String(title).trim()) throw new Error('Kitap adı gerekli');
     const lib = readLibrary();
     const base = slugify(title);
@@ -297,6 +297,7 @@ app.post('/api/library', (req, res) => {
     book.meta.subtitle = String(subtitle || '').trim();
     const tw = parseInt(targetWords, 10);
     if (tw > 0) book.meta.targetWords = tw;
+    if (kind === 'essays') book.meta.kind = 'essays';
     if (partTitle && String(partTitle).trim() && book.parts && book.parts[0]) {
       book.parts[0].title = String(partTitle).trim();
     }
