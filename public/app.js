@@ -767,7 +767,7 @@ function mentorNudge(m) {
   const N = m.pack.nudges, has = id => m.done[m.pack.stages.findIndex(s => s.id === id)];
   if (m.essay) {
     const c = m.cur, w = c ? m.words(c) : 0;
-    if (!c || w === 0) return N.w0;
+    if (!c || w === 0) return has('spark') ? null : N.w0;
     if (c.status === 'bitti') return m.all.length >= 3 ? N.collection : N.finished;
     if (w < 150) return N.wLow;
     if (w < 600) return (c.title || '').trim() ? N.wMid : N.noTitleEarly;
@@ -793,19 +793,44 @@ function mentorNudge(m) {
   return N.chLow;
 }
 
+// Aşamanın önerileri tek tek gösterilir: şimdi → adımlar → içine bak → kendine sor → söz → dikkat
+function mentorTips(m, s, idx, U) {
+  const tips = [];
+  if (mentorView === null || idx === m.current) {
+    const now = m.allDone ? U.allDone : mentorNudge(m);
+    if (now) tips.push({ k: 'now', text: now });
+  }
+  const inward = s.inward || [];
+  s.steps.forEach(x => tips.push({ k: 'steps', text: x }));
+  if (inward[0]) tips.push({ k: 'inward', text: inward[0] });
+  s.checks.forEach(x => tips.push({ k: 'checks', text: x }));
+  if (s.quote) tips.push({ k: 'quote', text: s.quote.text, by: s.quote.by });
+  inward.slice(1).forEach(x => tips.push({ k: 'inward', text: x }));
+  tips.push({ k: 'pitfall', text: s.pitfall });
+  return tips;
+}
+
+let mentorTip = 0, mentorTipKey = '';
+
 function renderMentor() {
   const host = $('#mentor');
   if (!host || !book) return;
   const m = mentorState();
   host.hidden = !m;
+  const tipCard = $('.companion .tip-card');
+  if (tipCard) tipCard.hidden = !!m; // koç varken Günün İpucu ikinci bir "sonraki ipucu" olmasın
   if (!m || host.contains(document.activeElement)) return; // yazarken alanı ezme
   const U = mentorPack.ui;
   const open = localStorage.getItem('inkguide.mentorOpen') !== '0';
   const idx = mentorView === null ? m.current : mentorView;
   const s = m.pack.stages[idx];
-  const isDone = m.done[idx], manualDone = m.manual.includes(s.id) && !m.auto[s.id];
-  const canMark = m.essay ? !!m.cur : true;
-  const li = arr => arr.map(x => `<li>${esc(x)}</li>`).join('');
+  const key = (m.cur ? m.cur.id : 'book') + ':' + idx;
+  if (key !== mentorTipKey) { mentorTipKey = key; mentorTip = 0; }
+  const tips = mentorTips(m, s, idx, U);
+  mentorTip = Math.min(mentorTip, tips.length - 1);
+  const tip = tips[mentorTip];
+  const last = mentorTip === tips.length - 1;
+  const lastStage = idx === m.pack.stages.length - 1;
   host.innerHTML = `
     <button class="mentor-head" id="mentorToggle" aria-expanded="${open}">
       ${ic('pen')} <span class="mentor-name">${esc(U.title)}</span>
@@ -815,23 +840,19 @@ function renderMentor() {
     ${open ? `
     <div class="mentor-body">
       <div class="mentor-dots">${m.pack.stages.map((x, i) => `<button class="mentor-dot${m.done[i] ? ' done' : ''}${i === idx ? ' on' : ''}" data-mstage="${i}" title="${esc(x.title)}"></button>`).join('')}</div>
-      <div class="mentor-title">${isDone ? ic('check') + ' ' : ''}${esc(s.title)}</div>
-      ${mentorView === null && (m.allDone || mentorNudge(m)) ? `<p class="mentor-nudge">${esc(m.allDone ? U.allDone : mentorNudge(m))}</p>` : ''}
+      <div class="mentor-title">${m.done[idx] ? ic('check') + ' ' : ''}${esc(s.title)}</div>
       <p class="mentor-goal">${esc(s.goal)}</p>
       ${s.field ? `<textarea class="mentor-field" id="mentorField" rows="3" placeholder="${esc(U[s.field + 'Ph'])}">${esc(book.meta[s.field] || '')}</textarea>` : ''}
-      <div class="mentor-label">${esc(U.steps)}</div>
-      <ol class="mentor-steps">${li(s.steps)}</ol>
-      <details class="mentor-more">
-        <summary>${esc(U.checks)}</summary>
-        <ul>${li(s.checks)}</ul>
-        <p class="mentor-pitfall"><b>${esc(U.pitfall)}:</b> ${esc(s.pitfall)}</p>
-      </details>
-      <div class="mentor-actions">
-        <button id="mentorPrev" title="${esc(U.prev)}" ${idx === 0 ? 'disabled' : ''}>‹</button>
-        ${canMark && !m.auto[s.id] ? `<button id="mentorDone" class="${manualDone ? '' : 'primary'}">${esc(manualDone ? U.undo : U.done)}</button>` : ''}
-        ${mentorView !== null && mentorView !== m.current ? `<button id="mentorNow">${esc(U.current)}</button>` : ''}
-        <button id="mentorNext" title="${esc(U.next)}" ${idx === m.pack.stages.length - 1 ? 'disabled' : ''}>›</button>
+      <div class="mentor-tip k-${tip.k}">
+        <div class="mentor-label">${esc(U[tip.k])}<span class="mentor-count">${mentorTip + 1}/${tips.length}</span></div>
+        <p>${esc(tip.text)}</p>
+        ${tip.by ? `<p class="mentor-by">— ${esc(tip.by)}</p>` : ''}
       </div>
+      <div class="mentor-actions">
+        <button id="mentorPrev" title="${esc(U.prevTip)}" ${mentorTip === 0 ? 'disabled' : ''}>‹</button>
+        ${last && lastStage ? '' : `<button id="mentorNext" class="primary">${esc(last ? U.nextStage : U.nextTip)}</button>`}
+      </div>
+      ${mentorView !== null && mentorView !== m.current ? `<button class="mentor-link" id="mentorNow">${esc(U.current)}</button>` : ''}
       ${m.essay && m.all.length >= 3 ? `<button class="mentor-tobook" id="mentorToBook">${esc(U.toBook)}</button>` : ''}
     </div>` : ''}`;
 
@@ -839,20 +860,21 @@ function renderMentor() {
   if (!open) return;
   const view = i => { mentorView = i === m.current ? null : i; renderMentor(); };
   host.querySelectorAll('[data-mstage]').forEach(b => { b.onclick = () => view(+b.dataset.mstage); });
-  $('#mentorPrev').onclick = () => view(Math.max(0, idx - 1));
-  $('#mentorNext').onclick = () => view(Math.min(m.pack.stages.length - 1, idx + 1));
+  $('#mentorPrev').onclick = () => { mentorTip--; renderMentor(); };
+  const next = $('#mentorNext');
+  if (next) next.onclick = () => {
+    if (!last) { mentorTip++; renderMentor(); return; }
+    // Aşamanın son önerisi: metinden anlaşılamayan aşama burada "geçildi" sayılır
+    const o = m.owner;
+    if (o && !m.auto[s.id] && !m.done[idx]) { o.coach = [...new Set([...(o.coach || []), s.id])]; scheduleSave(); }
+    const cur = mentorState().current;
+    mentorView = idx + 1 === cur ? null : idx + 1;
+    renderMentor();
+  };
   const now = $('#mentorNow');
   if (now) now.onclick = () => view(m.current);
   const f = $('#mentorField');
   if (f) f.oninput = () => { book.meta[s.field] = f.value; scheduleSave(); };
-  const d = $('#mentorDone');
-  if (d) d.onclick = () => {
-    const o = m.owner;
-    o.coach = manualDone ? (o.coach || []).filter(x => x !== s.id) : [...new Set([...(o.coach || []), s.id])];
-    mentorView = null;
-    scheduleSave();
-    renderMentor();
-  };
   const tb = $('#mentorToBook');
   if (tb) tb.onclick = () => {
     if (!confirm(U.toBookConfirm)) return;

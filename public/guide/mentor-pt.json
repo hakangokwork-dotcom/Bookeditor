@@ -2,70 +2,183 @@
   "ui": {
     "title": "Mentor de escrita",
     "stage": "Etapa {n}/{total}",
-    "steps": "O que fazer agora",
+    "steps": "Passo",
     "checks": "Pergunte a si mesmo",
     "pitfall": "Atenção",
-    "done": "Já fiz",
-    "undo": "Desfazer",
-    "prev": "Etapa anterior",
-    "next": "Próxima etapa",
     "current": "Voltar para sua etapa",
     "allDone": "Todas as etapas estão feitas. Parabéns!",
     "premisePh": "Este livro mostra a [quem] [o quê] [como]…",
     "readerPh": "Um único leitor: quem é, o que sabe, do que precisa…",
     "toBook": "Transformar estes ensaios em livro",
-    "toBookConfirm": "Transformar este caderno em livro? Seus ensaios viram capítulos que você pode reordenar e agrupar em partes. Dá para voltar atrás em Configurações."
+    "toBookConfirm": "Transformar este caderno em livro? Seus ensaios viram capítulos que você pode reordenar e agrupar em partes. Dá para voltar atrás em Configurações.",
+    "now": "Agora",
+    "inward": "Olhe para dentro",
+    "quote": "Palavras",
+    "nextTip": "Próxima dica →",
+    "nextStage": "Próxima etapa →",
+    "prevTip": "Dica anterior"
   },
   "essay": {
     "stages": [
       {
-        "id": "spark", "title": "Pegue a faísca",
+        "id": "spark",
+        "title": "Pegue a faísca",
         "goal": "Anote o momento pequeno e concreto, ou a pergunta, que cutucou você.",
-        "steps": ["Escreva em uma frase o momento que incomodou ou intrigou você.", "Onde e quando aconteceu, o que você tinha nas mãos? Escreva isso também.", "Pergunte \"Por quê?\" uma vez, mas não responda ainda."],
-        "checks": ["Esse momento aconteceu mesmo comigo?", "Tenho pelo menos um pouco de curiosidade sobre essa pergunta?"],
-        "pitfall": "Começar com um tema enorme como \"o tempo\" ou \"o medo\". Comece pequeno; o tema grande chega sozinho."
+        "steps": [
+          "Escreva em uma frase o momento que incomodou ou intrigou você.",
+          "Onde e quando aconteceu, o que você tinha nas mãos? Escreva isso também.",
+          "Pergunte \"Por quê?\" uma vez, mas não responda ainda."
+        ],
+        "checks": [
+          "Esse momento aconteceu mesmo comigo?",
+          "Tenho pelo menos um pouco de curiosidade sobre essa pergunta?"
+        ],
+        "pitfall": "Começar com um tema enorme como \"o tempo\" ou \"o medo\". Comece pequeno; o tema grande chega sozinho.",
+        "inward": [
+          "Por que esse momento incomodou você? O incômodo muitas vezes é um pensamento que você ainda não nomeou, batendo à porta.",
+          "O que você percebeu em si mesmo naquele instante, antes de desviar o olhar? O ensaio começa onde você virou o rosto."
+        ],
+        "quote": {
+          "text": "Sou eu mesmo a matéria do meu livro.",
+          "by": "Montaigne, Ensaios, Ao leitor"
+        }
       },
       {
-        "id": "free", "title": "Escreva sem parar",
+        "id": "free",
+        "title": "Escreva sem parar",
         "goal": "Descubra o que você pensa escrevendo; não tente consertar nada.",
-        "steps": ["Escreva por 15–20 minutos sem pausa.", "Não apague, não volte.", "Quando fugir do assunto, siga a fuga; deixe vir frases que começam com \"Na verdade…\"."],
-        "checks": ["Escrevi algo que eu não tinha em mente no começo?", "Consegui escrever sem me julgar?"],
-        "pitfall": "Caçar frases bonitas logo no primeiro parágrafo. O primeiro rascunho tem o direito de ser ruim."
+        "steps": [
+          "Escreva por 15–20 minutos sem pausa.",
+          "Não apague, não volte.",
+          "Quando fugir do assunto, siga a fuga; deixe vir frases que começam com \"Na verdade…\"."
+        ],
+        "checks": [
+          "Escrevi algo que eu não tinha em mente no começo?",
+          "Consegui escrever sem me julgar?"
+        ],
+        "pitfall": "Caçar frases bonitas logo no primeiro parágrafo. O primeiro rascunho tem o direito de ser ruim.",
+        "inward": [
+          "Para quem você tenta se provar enquanto escreve? Tire essa pessoa da sala; um ensaio se escreve sem testemunhas.",
+          "Repare onde sua caneta hesita. Ali espera um medo ou uma verdade ainda não dita."
+        ],
+        "quote": {
+          "text": "Há, antes de tudo, dois tipos de escritores: os que escrevem por causa do assunto e os que escrevem por escrever.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "core", "title": "Descubra do que se trata de verdade",
+        "id": "core",
+        "title": "Descubra do que se trata de verdade",
         "goal": "Enxergue o assunto real por baixo do acontecido: o que você quer mesmo dizer.",
-        "steps": ["Leia o rascunho do início; encontre a frase que mais surpreende você.", "Complete a frase \"No fundo, este texto é sobre …\".", "Escreva-a no campo \"Ponto de partida\" lá em cima."],
-        "checks": ["Meu texto vai além de \"o que aconteceu\" até \"o que isso me ensinou\"?", "Um amigo se interessaria se eu dissesse essa frase em voz alta?"],
-        "pitfall": "Contar o acontecido sem buscar o sentido. Um ensaio não fica no fato; vai aonde o fato leva o seu pensamento."
+        "steps": [
+          "Leia o rascunho do início; encontre a frase que mais surpreende você.",
+          "Complete a frase \"No fundo, este texto é sobre …\".",
+          "Escreva-a no campo \"Ponto de partida\", acima do seu rascunho."
+        ],
+        "checks": [
+          "Meu texto vai além de \"o que aconteceu\" até \"o que isso me ensinou\"?",
+          "Um amigo se interessaria se eu dissesse essa frase em voz alta?"
+        ],
+        "pitfall": "Contar o acontecido sem buscar o sentido. Um ensaio não fica no fato; vai aonde o fato leva o seu pensamento.",
+        "inward": [
+          "Esse pensamento é mesmo seu, ou você o leu em algum lugar e o adotou? O que você alcança sozinho brilha menos, mas está vivo.",
+          "O que você evita dizer sobre si neste texto? Muitas vezes é essa a verdadeira questão."
+        ],
+        "quote": {
+          "text": "Quando lemos, outra pessoa pensa por nós.",
+          "by": "Schopenhauer, Sobre a leitura e os livros"
+        }
       },
       {
-        "id": "shape", "title": "Dê forma",
+        "id": "shape",
+        "title": "Dê forma",
         "goal": "Organize o caminho do momento concreto até a ideia, para que o leitor também possa percorrê-lo.",
-        "steps": ["Abra com a cena concreta.", "Amplie a ideia passo a passo; ligue cada passo a um exemplo.", "Termine onde você chegou, não com um veredito.", "Troque parágrafos de lugar se precisar."],
-        "checks": ["O leitor continuaria depois do primeiro parágrafo?", "Cada parágrafo vai um passo além do anterior?"],
-        "pitfall": "Voltar à redação escolar (introdução–desenvolvimento–\"concluindo\"). Um ensaio é uma conversa, não uma prova."
+        "steps": [
+          "Abra com a cena concreta.",
+          "Amplie a ideia passo a passo; ligue cada passo a um exemplo.",
+          "Termine onde você chegou, não com um veredito.",
+          "Troque parágrafos de lugar se precisar."
+        ],
+        "checks": [
+          "O leitor continuaria depois do primeiro parágrafo?",
+          "Cada parágrafo vai um passo além do anterior?"
+        ],
+        "pitfall": "Voltar à redação escolar (introdução–desenvolvimento–\"concluindo\"). Um ensaio é uma conversa, não uma prova.",
+        "inward": [
+          "Você quer parecer alguém que sabe tudo, ou alguém que pensa? O ensaio pede a segunda opção; sua dúvida também faz parte do texto."
+        ],
+        "quote": {
+          "text": "Use palavras comuns e diga coisas incomuns.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "cut", "title": "Corte e simplifique",
+        "id": "cut",
+        "title": "Corte e simplifique",
         "goal": "Jogue fora o excesso e deixe sua voz clara.",
-        "steps": ["Corte pelo menos 10% do texto.", "Tire muletas como \"eu acho\", \"na verdade\", \"meio que\".", "Leia em voz alta; conserte onde você tropeçar."],
-        "checks": ["Se eu tirar esta frase, perde-se alguma coisa?", "Soa como eu falando?"],
-        "pitfall": "Amar cada frase e não cortar nenhuma."
+        "steps": [
+          "Corte pelo menos 10% do texto.",
+          "Tire muletas como \"eu acho\", \"na verdade\", \"meio que\".",
+          "Leia em voz alta; conserte onde você tropeçar."
+        ],
+        "checks": [
+          "Se eu tirar esta frase, perde-se alguma coisa?",
+          "Soa como eu falando?"
+        ],
+        "pitfall": "Amar cada frase e não cortar nenhuma.",
+        "inward": [
+          "Que frase você escreveu só para parecer inteligente? Corte essa primeiro; o resto vai confiar em você.",
+          "Se você não consegue largar uma frase, pergunte: eu a guardo para o leitor ou para o meu próprio espelho?"
+        ],
+        "quote": {
+          "text": "O estilo é a fisionomia do espírito.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "title", "title": "O título fica por último",
+        "id": "title",
+        "title": "O título fica por último",
         "goal": "Encontre um nome que sugira aonde o texto chegou.",
-        "steps": ["Releia o último parágrafo e sua frase de ponto de partida.", "Escreva três títulos: um a partir de um objeto concreto, um da pergunta, um da ideia a que você chegou.", "Diga-os em voz alta; escolha o que desperta mais curiosidade."],
-        "checks": ["O título sugere o assunto sem entregar o final?", "Ele ganha um sentido novo depois que o texto é lido?"],
-        "pitfall": "Se apegar ao título provisório. Se o texto foi para outro lugar, o título deve ir junto."
+        "steps": [
+          "Releia o último parágrafo e sua frase de ponto de partida.",
+          "Escreva três títulos: um a partir de um objeto concreto, um da pergunta, um da ideia a que você chegou.",
+          "Diga-os em voz alta; escolha o que desperta mais curiosidade."
+        ],
+        "checks": [
+          "O título sugere o assunto sem entregar o final?",
+          "Ele ganha um sentido novo depois que o texto é lido?"
+        ],
+        "pitfall": "Se apegar ao título provisório. Se o texto foi para outro lugar, o título deve ir junto.",
+        "inward": [
+          "No fim do texto, você está um pouco diferente de quem começou? O título pode ser o nome dessa diferença."
+        ],
+        "quote": {
+          "text": "A verdade é mais bela nua.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "share", "title": "Compartilhe e solte",
+        "id": "share",
+        "title": "Compartilhe e solte",
         "goal": "Entregue o texto a um leitor e depois finalize.",
-        "steps": ["Peça a alguém de confiança para ler; pergunte só \"Onde você se entediou, onde parou?\".", "Aplique no máximo duas das observações.", "Marque como \"Concluído\" lá em cima."],
-        "checks": ["Consertei os pontos onde o leitor parou?", "Polir mais vai melhorar de verdade, ou só estou adiando?"],
-        "pitfall": "Polir para sempre um texto pronto. Um ensaio é uma tentativa; não precisa ser perfeito."
+        "steps": [
+          "Peça a alguém de confiança para ler; pergunte só \"Onde você se entediou, onde parou?\".",
+          "Aplique no máximo duas das observações.",
+          "Marque como \"Concluído\" lá em cima."
+        ],
+        "checks": [
+          "Consertei os pontos onde o leitor parou?",
+          "Polir mais vai melhorar de verdade, ou só estou adiando?"
+        ],
+        "pitfall": "Polir para sempre um texto pronto. Um ensaio é uma tentativa; não precisa ser perfeito.",
+        "inward": [
+          "O que você espera: elogio ou compreensão? Quando souber separar os dois, a crítica vai fazer você crescer.",
+          "Se você reluta em terminar, pergunte: de qual versão de mim estou me despedindo quando isto acabar?"
+        ],
+        "quote": {
+          "text": "Que sei eu?",
+          "by": "Montaigne"
+        }
       }
     ],
     "nudges": {
@@ -84,62 +197,174 @@
   "book": {
     "stages": [
       {
-        "id": "premise", "title": "Resuma a promessa em uma frase",
+        "id": "premise",
+        "title": "Resuma a promessa em uma frase",
         "goal": "Diga em uma frase o que o livro promete ao leitor.",
-        "steps": ["Complete: \"Este livro mostra a [quem] [o quê] [como]\".", "Simplifique como se explicasse a alguém tomando um café.", "Escreva no quadro abaixo."],
-        "checks": ["É uma frase só?", "Responde ao \"e daí?\" do leitor?"],
+        "steps": [
+          "Complete: \"Este livro mostra a [quem] [o quê] [como]\".",
+          "Simplifique como se explicasse a alguém tomando um café.",
+          "Escreva no quadro deste cartão."
+        ],
+        "checks": [
+          "É uma frase só?",
+          "Responde ao \"e daí?\" do leitor?"
+        ],
         "pitfall": "Confundir tema com promessa. \"Minha mãe\" é um tema; \"Como carreguei o luto depois de perder minha mãe\" é uma promessa.",
-        "field": "premise"
+        "field": "premise",
+        "inward": [
+          "O que faltaria no mundo se você não escrevesse este livro? Se não tem resposta, a promessa ainda não está pronta.",
+          "Você escreve para ser reconhecido, para largar um peso ou para ajudar alguém? A resposta honesta define sua voz."
+        ],
+        "quote": {
+          "text": "Há, antes de tudo, dois tipos de escritores: os que escrevem por causa do assunto e os que escrevem por escrever.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "reader", "title": "Escolha um único leitor",
+        "id": "reader",
+        "title": "Escolha um único leitor",
         "goal": "Tenha claro para quem você está escrevendo.",
-        "steps": ["Pense em uma pessoa que você conhece.", "Escreva o que ela sabe sobre o assunto e do que precisa.", "Escreva o que vai mudar na vida dela quando terminar o livro."],
-        "checks": ["Consigo descrever meu leitor sem dizer \"todo mundo\"?", "Por que esse leitor pegaria o livro?"],
+        "steps": [
+          "Pense em uma pessoa que você conhece.",
+          "Escreva o que ela sabe sobre o assunto e do que precisa.",
+          "Escreva o que vai mudar na vida dela quando terminar o livro."
+        ],
+        "checks": [
+          "Consigo descrever meu leitor sem dizer \"todo mundo\"?",
+          "Por que esse leitor pegaria o livro?"
+        ],
         "pitfall": "Tentar escrever para todo mundo e não alcançar ninguém.",
-        "field": "reader"
+        "field": "reader",
+        "inward": [
+          "Ao descrever seu leitor, você não está descrevendo a si mesmo alguns anos atrás? Muitos bons livros nascem assim."
+        ]
       },
       {
-        "id": "toc", "title": "Monte o sumário",
+        "id": "toc",
+        "title": "Monte o sumário",
         "goal": "Desenhe o esqueleto do livro, capítulo por capítulo.",
-        "steps": ["Escreva 8–15 títulos de capítulo (\"+ adicionar capítulo a esta parte\").", "Ordene-os pela jornada do leitor.", "Agrupe em partes se precisar."],
-        "checks": ["Lidos em ordem, os capítulos cumprem minha promessa?", "Há dois capítulos repetindo um ao outro?"],
-        "pitfall": "Aperfeiçoar o plano e nunca começar a escrever. O plano pode mudar enquanto você escreve."
+        "steps": [
+          "Escreva 8–15 títulos de capítulo (\"+ adicionar capítulo a esta parte\").",
+          "Ordene-os pela jornada do leitor.",
+          "Agrupe em partes se precisar."
+        ],
+        "checks": [
+          "Lidos em ordem, os capítulos cumprem minha promessa?",
+          "Há dois capítulos repetindo um ao outro?"
+        ],
+        "pitfall": "Aperfeiçoar o plano e nunca começar a escrever. O plano pode mudar enquanto você escreve.",
+        "inward": [
+          "Qual capítulo do seu plano você vive adiando? O coração do livro costuma estar ali."
+        ]
       },
       {
-        "id": "questions", "title": "Dê uma pergunta a cada capítulo",
+        "id": "questions",
+        "title": "Dê uma pergunta a cada capítulo",
         "goal": "Saiba qual pergunta cada capítulo responde para o leitor.",
-        "steps": ["Na sinopse de cada capítulo, escreva a pergunta do leitor.", "Anote como o capítulo começa (uma cena, uma lembrança, um exemplo).", "Escreva onde o capítulo deixa o leitor."],
-        "checks": ["Este capítulo foca em uma única pergunta?", "O leitor faria mesmo essa pergunta?"],
-        "pitfall": "Enfiar três assuntos diferentes em um só capítulo."
+        "steps": [
+          "Na sinopse de cada capítulo, escreva a pergunta do leitor.",
+          "Anote como o capítulo começa (uma cena, uma lembrança, um exemplo).",
+          "Escreva onde o capítulo deixa o leitor."
+        ],
+        "checks": [
+          "Este capítulo foca em uma única pergunta?",
+          "O leitor faria mesmo essa pergunta?"
+        ],
+        "pitfall": "Enfiar três assuntos diferentes em um só capítulo.",
+        "inward": [
+          "De qual destas perguntas você realmente não sabe a resposta? Pensar com honestidade onde você não sabe vale mais do que repetir o que já sabe."
+        ],
+        "quote": {
+          "text": "A verdade apenas aprendida adere a nós como um membro artificial; a conquistada pelo próprio pensamento é como um membro natural.",
+          "by": "Schopenhauer, Pensar por si mesmo"
+        }
       },
       {
-        "id": "draft", "title": "Escreva o primeiro rascunho de porta fechada",
+        "id": "draft",
+        "title": "Escreva o primeiro rascunho de porta fechada",
         "goal": "Termine todos os capítulos sem julgá-los, mesmo que fiquem ruins.",
-        "steps": ["Defina uma meta diária pequena: 300 palavras ou uma única cena.", "Comece pelo capítulo fácil; você não precisa seguir a ordem.", "Não volte para consertar; deixe uma nota e siga em frente.", "Não mostre o rascunho a ninguém ainda."],
-        "checks": ["Escrevi hoje?", "Respondi à pergunta do capítulo?"],
-        "pitfall": "Reescrever o capítulo um dez vezes e nunca chegar ao dois."
+        "steps": [
+          "Defina uma meta diária pequena: 300 palavras ou uma única cena.",
+          "Comece pelo capítulo fácil; você não precisa seguir a ordem.",
+          "Não volte para consertar; deixe uma nota e siga em frente.",
+          "Não mostre o rascunho a ninguém ainda."
+        ],
+        "checks": [
+          "Escrevi hoje?",
+          "Respondi à pergunta do capítulo?"
+        ],
+        "pitfall": "Reescrever o capítulo um dez vezes e nunca chegar ao dois.",
+        "inward": [
+          "Se hoje você fugiu da escrita, repare no que não queria sentir. A fuga também é informação.",
+          "Num rascunho você não precisa agradar ninguém, nem a si mesmo."
+        ],
+        "quote": {
+          "text": "Quando lemos, outra pessoa pensa por nós.",
+          "by": "Schopenhauer, Sobre a leitura e os livros"
+        }
       },
       {
-        "id": "revise", "title": "Revise em camadas",
+        "id": "revise",
+        "title": "Revise em camadas",
         "goal": "Passe pelo rascunho do grande para o pequeno.",
-        "steps": ["Primeiro a estrutura: ordem dos capítulos, capítulos desnecessários.", "Depois: cada capítulo responde à sua pergunta?", "Por último: frases e palavras; corte 10%.", "Faça cada camada em uma leitura separada."],
-        "checks": ["Este capítulo serve à promessa?", "Meu leitor ficaria entediado aqui?"],
-        "pitfall": "Mexer em vírgulas antes de a estrutura estar firme."
+        "steps": [
+          "Primeiro a estrutura: ordem dos capítulos, capítulos desnecessários.",
+          "Depois: cada capítulo responde à sua pergunta?",
+          "Por último: frases e palavras; corte 10%.",
+          "Faça cada camada em uma leitura separada."
+        ],
+        "checks": [
+          "Este capítulo serve à promessa?",
+          "Meu leitor ficaria entediado aqui?"
+        ],
+        "pitfall": "Mexer em vírgulas antes de a estrutura estar firme.",
+        "inward": [
+          "Se você inventa desculpas para manter um parágrafo, está guardando-o para si, não para o leitor."
+        ],
+        "quote": {
+          "text": "O estilo é a fisionomia do espírito.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       },
       {
-        "id": "feedback", "title": "Abra a porta: ouça leitores",
+        "id": "feedback",
+        "title": "Abra a porta: ouça leitores",
         "goal": "Descubra onde um leitor de verdade empaca.",
-        "steps": ["Entregue o rascunho a 1–3 pessoas.", "Pergunte: \"Onde você se entediou, onde ficou confuso, o que ficou com você?\".", "Conserte o que duas pessoas apontaram."],
-        "checks": ["Meu leitor consegue contar a promessa com as próprias palavras?", "Ouvi sem me defender?"],
-        "pitfall": "Aplicar todas as sugestões e perder a voz do livro."
+        "steps": [
+          "Entregue o rascunho a 1–3 pessoas.",
+          "Pergunte: \"Onde você se entediou, onde ficou confuso, o que ficou com você?\".",
+          "Conserte o que duas pessoas apontaram."
+        ],
+        "checks": [
+          "Meu leitor consegue contar a promessa com as próprias palavras?",
+          "Ouvi sem me defender?"
+        ],
+        "pitfall": "Aplicar todas as sugestões e perder a voz do livro.",
+        "inward": [
+          "Sua primeira reação à crítica é a voz do seu orgulho; a voz do livro vem com a segunda. Espere por ela."
+        ]
       },
       {
-        "id": "finish", "title": "Finalize e exporte",
+        "id": "finish",
+        "title": "Finalize e exporte",
         "goal": "Dê o livro por pronto e deixe-o pronto para compartilhar.",
-        "steps": ["Confira uma última vez o título e o subtítulo diante da promessa.", "Marque os capítulos como \"Concluído\".", "Exporte com o botão do livro no canto inferior direito, e comemore."],
-        "checks": ["O título reflete a promessa?", "Os ajustes que faltam importam de verdade?"],
-        "pitfall": "Adiar o fim para sempre com um \"só mais um pouquinho\"."
+        "steps": [
+          "Confira uma última vez o título e o subtítulo diante da promessa.",
+          "Marque os capítulos como \"Concluído\".",
+          "Exporte com o botão do livro no canto inferior direito, e comemore."
+        ],
+        "checks": [
+          "O título reflete a promessa?",
+          "Os ajustes que faltam importam de verdade?"
+        ],
+        "pitfall": "Adiar o fim para sempre com um \"só mais um pouquinho\".",
+        "inward": [
+          "Quando este livro estiver pronto, de qual versão de você estará se despedindo? Terminar abre espaço para escrever o próximo você."
+        ],
+        "quote": {
+          "text": "A verdade é mais bela nua.",
+          "by": "Schopenhauer, Sobre a escrita e o estilo"
+        }
       }
     ],
     "nudges": {

@@ -2,70 +2,183 @@
   "ui": {
     "title": "Schreibcoach",
     "stage": "Phase {n}/{total}",
-    "steps": "Was jetzt zu tun ist",
+    "steps": "Schritt",
     "checks": "Frag dich",
     "pitfall": "Vorsicht",
-    "done": "Erledigt",
-    "undo": "Rückgängig",
-    "prev": "Vorherige Phase",
-    "next": "Nächste Phase",
     "current": "Zurück zu deiner Phase",
     "allDone": "Alle Phasen sind geschafft. Glückwunsch!",
     "premisePh": "Dieses Buch zeigt [wem] [was] [wie]…",
     "readerPh": "Ein einziger Leser: wer er ist, was er weiß, was er braucht…",
     "toBook": "Aus diesen Essays ein Buch machen",
-    "toBookConfirm": "Dieses Heft in ein Buch verwandeln? Deine Essays werden zu Kapiteln, die du umsortieren und in Teile gliedern kannst. In den Einstellungen kannst du das rückgängig machen."
+    "toBookConfirm": "Dieses Heft in ein Buch verwandeln? Deine Essays werden zu Kapiteln, die du umsortieren und in Teile gliedern kannst. In den Einstellungen kannst du das rückgängig machen.",
+    "now": "Jetzt",
+    "inward": "Schau nach innen",
+    "quote": "Worte",
+    "nextTip": "Nächster Tipp →",
+    "nextStage": "Nächste Phase →",
+    "prevTip": "Vorheriger Tipp"
   },
   "essay": {
     "stages": [
       {
-        "id": "spark", "title": "Fang den Funken",
+        "id": "spark",
+        "title": "Fang den Funken",
         "goal": "Halte den kleinen, konkreten Moment oder die Frage fest, die dich angestoßen hat.",
-        "steps": ["Schreib in einem Satz den Moment auf, der dich gestört oder neugierig gemacht hat.", "Wo und wann war das, was hattest du in der Hand? Schreib das auch auf.", "Frag einmal „Warum?“, aber antworte noch nicht."],
-        "checks": ["Ist mir dieser Moment wirklich passiert?", "Macht mich diese Frage wenigstens ein bisschen neugierig?"],
-        "pitfall": "Mit einem großen Thema wie „Zeit“ oder „Angst“ anfangen. Fang klein an; das große Thema kommt von selbst."
+        "steps": [
+          "Schreib in einem Satz den Moment auf, der dich gestört oder neugierig gemacht hat.",
+          "Wo und wann war das, was hattest du in der Hand? Schreib das auch auf.",
+          "Frag einmal „Warum?“, aber antworte noch nicht."
+        ],
+        "checks": [
+          "Ist mir dieser Moment wirklich passiert?",
+          "Macht mich diese Frage wenigstens ein bisschen neugierig?"
+        ],
+        "pitfall": "Mit einem großen Thema wie „Zeit“ oder „Angst“ anfangen. Fang klein an; das große Thema kommt von selbst.",
+        "inward": [
+          "Warum hat dich dieser Moment beunruhigt? Unruhe ist oft ein Gedanke, dem du noch keinen Namen gegeben hast und der an die Tür klopft.",
+          "Was hast du in diesem Moment an dir bemerkt, bevor du schnell weggeschaut hast? Der Essay beginnt dort, wo du den Kopf abgewendet hast."
+        ],
+        "quote": {
+          "text": "Ich selbst bin der Inhalt meines Buches.",
+          "by": "Montaigne, Essais, An den Leser"
+        }
       },
       {
-        "id": "free", "title": "Schreib ohne anzuhalten",
+        "id": "free",
+        "title": "Schreib ohne anzuhalten",
         "goal": "Finde beim Schreiben heraus, was du denkst; versuch nichts zu verbessern.",
-        "steps": ["Schreib 15–20 Minuten ohne Pause.", "Nichts löschen, nicht zurückgehen.", "Wenn du vom Thema abschweifst, folge dem Abschweifen; lass Sätze zu, die mit „Eigentlich…“ beginnen."],
-        "checks": ["Habe ich etwas geschrieben, das ich am Anfang nicht im Kopf hatte?", "Konnte ich schreiben, ohne mich zu bewerten?"],
-        "pitfall": "Schon im ersten Absatz nach schönen Sätzen suchen. Ein erster Entwurf darf schlecht sein."
+        "steps": [
+          "Schreib 15–20 Minuten ohne Pause.",
+          "Nichts löschen, nicht zurückgehen.",
+          "Wenn du vom Thema abschweifst, folge dem Abschweifen; lass Sätze zu, die mit „Eigentlich…“ beginnen."
+        ],
+        "checks": [
+          "Habe ich etwas geschrieben, das ich am Anfang nicht im Kopf hatte?",
+          "Konnte ich schreiben, ohne mich zu bewerten?"
+        ],
+        "pitfall": "Schon im ersten Absatz nach schönen Sätzen suchen. Ein erster Entwurf darf schlecht sein.",
+        "inward": [
+          "Wem willst du beim Schreiben etwas beweisen? Schick ihn aus dem Zimmer; ein Essay wird ohne Zeugen geschrieben.",
+          "Achte darauf, wo dein Stift zögert. Dort wartet entweder eine Angst oder eine noch unausgesprochene Wahrheit."
+        ],
+        "quote": {
+          "text": "Es gibt allererst zweierlei Schriftsteller: solche, die der Sache wegen, und solche, die des Schreibens wegen schreiben.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "core", "title": "Finde, worum es wirklich geht",
+        "id": "core",
+        "title": "Finde, worum es wirklich geht",
         "goal": "Sieh das eigentliche Thema unter dem Ereignis: was du wirklich sagen willst.",
-        "steps": ["Lies den Entwurf von vorn; finde den Satz, der dich am meisten überrascht.", "Vervollständige den Satz „Eigentlich geht es in diesem Text um …“.", "Schreib ihn oben in das Feld „Ausgangspunkt“."],
-        "checks": ["Geht mein Text über „was passiert ist“ hinaus zu „was es mich gelehrt hat“?", "Würde ein Freund aufhorchen, wenn ich diesen Satz laut sage?"],
-        "pitfall": "Das Ereignis erzählen, ohne nach seiner Bedeutung zu suchen. Ein Essay bleibt nicht beim Ereignis; er geht dorthin, wohin das Ereignis dein Denken führt."
+        "steps": [
+          "Lies den Entwurf von vorn; finde den Satz, der dich am meisten überrascht.",
+          "Vervollständige den Satz „Eigentlich geht es in diesem Text um …“.",
+          "Schreib ihn in das Feld „Ausgangspunkt“ über deinem Entwurf."
+        ],
+        "checks": [
+          "Geht mein Text über „was passiert ist“ hinaus zu „was es mich gelehrt hat“?",
+          "Würde ein Freund aufhorchen, wenn ich diesen Satz laut sage?"
+        ],
+        "pitfall": "Das Ereignis erzählen, ohne nach seiner Bedeutung zu suchen. Ein Essay bleibt nicht beim Ereignis; er geht dorthin, wohin das Ereignis dein Denken führt.",
+        "inward": [
+          "Ist dieser Gedanke wirklich deiner, oder hast du ihn irgendwo gelesen und übernommen? Ein selbst erreichter Gedanke glänzt weniger, aber er lebt.",
+          "Was vermeidest du in diesem Text über dich zu sagen? Oft liegt genau dort das eigentliche Anliegen."
+        ],
+        "quote": {
+          "text": "Wenn wir lesen, denkt ein anderer für uns.",
+          "by": "Schopenhauer, Über Lesen und Bücher"
+        }
       },
       {
-        "id": "shape", "title": "Gib ihm eine Form",
+        "id": "shape",
+        "title": "Gib ihm eine Form",
         "goal": "Ordne den Weg vom konkreten Moment zum Gedanken so, dass auch ein Leser ihn gehen kann.",
-        "steps": ["Beginne mit der konkreten Szene.", "Erweitere den Gedanken Schritt für Schritt; verknüpfe jeden Schritt mit einem Beispiel.", "Hör dort auf, wo du angekommen bist, nicht mit einem Urteil.", "Verschieb Absätze, wenn nötig."],
-        "checks": ["Würde ein Leser nach dem ersten Absatz weiterlesen?", "Geht jeder Absatz einen Schritt weiter als der vorige?"],
-        "pitfall": "In den Schulaufsatz zurückfallen (Einleitung–Hauptteil–„abschließend“). Ein Essay ist ein Gespräch, kein Beweis."
+        "steps": [
+          "Beginne mit der konkreten Szene.",
+          "Erweitere den Gedanken Schritt für Schritt; verknüpfe jeden Schritt mit einem Beispiel.",
+          "Hör dort auf, wo du angekommen bist, nicht mit einem Urteil.",
+          "Verschieb Absätze, wenn nötig."
+        ],
+        "checks": [
+          "Würde ein Leser nach dem ersten Absatz weiterlesen?",
+          "Geht jeder Absatz einen Schritt weiter als der vorige?"
+        ],
+        "pitfall": "In den Schulaufsatz zurückfallen (Einleitung–Hauptteil–„abschließend“). Ein Essay ist ein Gespräch, kein Beweis.",
+        "inward": [
+          "Willst du wirken wie jemand, der alles weiß, oder wie jemand, der denkt? Der Essay verlangt das Zweite; dein Zweifel gehört zum Text."
+        ],
+        "quote": {
+          "text": "Man gebrauche gewöhnliche Worte und sage ungewöhnliche Dinge.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "cut", "title": "Kürze und vereinfache",
+        "id": "cut",
+        "title": "Kürze und vereinfache",
         "goal": "Wirf Überflüssiges raus und mach deine Stimme klar.",
-        "steps": ["Streich mindestens 10 % des Textes.", "Jäte Füllwörter wie „ich finde“, „eigentlich“, „irgendwie“.", "Lies laut vor; korrigier die Stellen, an denen du stolperst."],
-        "checks": ["Fehlt etwas, wenn ich diesen Satz streiche?", "Klingt es, als würde ich sprechen?"],
-        "pitfall": "Jeden Satz lieben und keinen streichen."
+        "steps": [
+          "Streich mindestens 10 % des Textes.",
+          "Jäte Füllwörter wie „ich finde“, „eigentlich“, „irgendwie“.",
+          "Lies laut vor; korrigier die Stellen, an denen du stolperst."
+        ],
+        "checks": [
+          "Fehlt etwas, wenn ich diesen Satz streiche?",
+          "Klingt es, als würde ich sprechen?"
+        ],
+        "pitfall": "Jeden Satz lieben und keinen streichen.",
+        "inward": [
+          "Welchen Satz hast du nur geschrieben, um klug zu klingen? Streich ihn zuerst; dann vertraut dir der Rest.",
+          "Wenn du einen Satz nicht loslassen kannst, frag dich: Behalte ich ihn für den Leser oder für meinen eigenen Spiegel?"
+        ],
+        "quote": {
+          "text": "Stil ist die Physiognomie des Geistes.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "title", "title": "Der Titel kommt zuletzt",
+        "id": "title",
+        "title": "Der Titel kommt zuletzt",
         "goal": "Finde einen Namen, der ahnen lässt, wo der Text angekommen ist.",
-        "steps": ["Lies den letzten Absatz und deinen Ausgangssatz noch einmal.", "Schreib drei Titel: einen von einem konkreten Gegenstand, einen von der Frage, einen von dem Gedanken, bei dem du angekommen bist.", "Sag sie laut; nimm den, der am neugierigsten macht."],
-        "checks": ["Lässt der Titel das Thema ahnen, ohne das Ende zu verraten?", "Bekommt er nach dem Lesen eine neue Bedeutung?"],
-        "pitfall": "Am Arbeitstitel festhalten. Wenn der Text woanders hingegangen ist, sollte der Titel mitgehen."
+        "steps": [
+          "Lies den letzten Absatz und deinen Ausgangssatz noch einmal.",
+          "Schreib drei Titel: einen von einem konkreten Gegenstand, einen von der Frage, einen von dem Gedanken, bei dem du angekommen bist.",
+          "Sag sie laut; nimm den, der am neugierigsten macht."
+        ],
+        "checks": [
+          "Lässt der Titel das Thema ahnen, ohne das Ende zu verraten?",
+          "Bekommt er nach dem Lesen eine neue Bedeutung?"
+        ],
+        "pitfall": "Am Arbeitstitel festhalten. Wenn der Text woanders hingegangen ist, sollte der Titel mitgehen.",
+        "inward": [
+          "Bist du am Ende des Textes ein wenig anders als der, der ihn begonnen hat? Der Titel kann der Name dieses Unterschieds sein."
+        ],
+        "quote": {
+          "text": "Die Wahrheit ist nackt am schönsten.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "share", "title": "Teil ihn und lass los",
+        "id": "share",
+        "title": "Teil ihn und lass los",
         "goal": "Gib den Text einem Leser und schließ ihn dann ab.",
-        "steps": ["Lass jemanden lesen, dem du vertraust; frag nur „Wo hast du dich gelangweilt, wo hast du aufgehört?“.", "Setz höchstens zwei der Anmerkungen um.", "Markier ihn oben als „Fertig“."],
-        "checks": ["Habe ich die Stellen verbessert, an denen der Leser hängen blieb?", "Würde weiteres Feilen ihn wirklich besser machen, oder schiebe ich nur auf?"],
-        "pitfall": "Einen fertigen Text ewig polieren. Ein Essay ist ein Versuch; er muss nicht perfekt sein."
+        "steps": [
+          "Lass jemanden lesen, dem du vertraust; frag nur „Wo hast du dich gelangweilt, wo hast du aufgehört?“.",
+          "Setz höchstens zwei der Anmerkungen um.",
+          "Markier ihn oben als „Fertig“."
+        ],
+        "checks": [
+          "Habe ich die Stellen verbessert, an denen der Leser hängen blieb?",
+          "Würde weiteres Feilen ihn wirklich besser machen, oder schiebe ich nur auf?"
+        ],
+        "pitfall": "Einen fertigen Text ewig polieren. Ein Essay ist ein Versuch; er muss nicht perfekt sein.",
+        "inward": [
+          "Worauf wartest du: auf Lob oder auf Verständnis? Sobald du beides auseinanderhalten kannst, lässt dich Kritik wachsen.",
+          "Wenn du zögerst, fertig zu werden, frag dich: Von welcher Version meiner selbst verabschiede ich mich, wenn das hier fertig ist?"
+        ],
+        "quote": {
+          "text": "Was weiß ich?",
+          "by": "Montaigne"
+        }
       }
     ],
     "nudges": {
@@ -84,62 +197,174 @@
   "book": {
     "stages": [
       {
-        "id": "premise", "title": "Bring das Versprechen auf einen Satz",
+        "id": "premise",
+        "title": "Bring das Versprechen auf einen Satz",
         "goal": "Sag in einem Satz, was das Buch seinem Leser verspricht.",
-        "steps": ["Füll aus: „Dieses Buch zeigt [wem] [was] [wie]“.", "Vereinfache es, als würdest du es jemandem beim Kaffee erklären.", "Schreib es in das Feld unten."],
-        "checks": ["Ist es ein einziger Satz?", "Beantwortet es das „Na und?“ des Lesers?"],
+        "steps": [
+          "Füll aus: „Dieses Buch zeigt [wem] [was] [wie]“.",
+          "Vereinfache es, als würdest du es jemandem beim Kaffee erklären.",
+          "Schreib es in das Feld auf dieser Karte."
+        ],
+        "checks": [
+          "Ist es ein einziger Satz?",
+          "Beantwortet es das „Na und?“ des Lesers?"
+        ],
         "pitfall": "Ein Thema für ein Versprechen halten. „Meine Mutter“ ist ein Thema; „Wie ich die Trauer nach dem Tod meiner Mutter getragen habe“ ist ein Versprechen.",
-        "field": "premise"
+        "field": "premise",
+        "inward": [
+          "Was würde der Welt fehlen, wenn du dieses Buch nicht schreibst? Wenn du keine Antwort hast, ist das Versprechen noch nicht reif.",
+          "Schreibst du es, um anerkannt zu werden, um eine Last abzulegen oder um jemandem zu helfen? Die ehrliche Antwort bestimmt deine Stimme."
+        ],
+        "quote": {
+          "text": "Es gibt allererst zweierlei Schriftsteller: solche, die der Sache wegen, und solche, die des Schreibens wegen schreiben.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "reader", "title": "Wähl einen einzigen Leser",
+        "id": "reader",
+        "title": "Wähl einen einzigen Leser",
         "goal": "Werd dir klar, für wen du schreibst.",
-        "steps": ["Denk an einen Menschen, den du kennst.", "Schreib auf, was er über das Thema weiß und was er braucht.", "Schreib auf, was sich in seinem Leben ändert, wenn er das Buch fertig gelesen hat."],
-        "checks": ["Kann ich meinen Leser beschreiben, ohne „alle“ zu sagen?", "Warum würde dieser Leser zu dem Buch greifen?"],
+        "steps": [
+          "Denk an einen Menschen, den du kennst.",
+          "Schreib auf, was er über das Thema weiß und was er braucht.",
+          "Schreib auf, was sich in seinem Leben ändert, wenn er das Buch fertig gelesen hat."
+        ],
+        "checks": [
+          "Kann ich meinen Leser beschreiben, ohne „alle“ zu sagen?",
+          "Warum würde dieser Leser zu dem Buch greifen?"
+        ],
         "pitfall": "Für alle schreiben wollen und niemanden erreichen.",
-        "field": "reader"
+        "field": "reader",
+        "inward": [
+          "Beschreibst du mit deinem Leser in Wahrheit dich selbst vor ein paar Jahren? Viele gute Bücher entstehen so."
+        ]
       },
       {
-        "id": "toc", "title": "Bau das Inhaltsverzeichnis",
+        "id": "toc",
+        "title": "Bau das Inhaltsverzeichnis",
         "goal": "Leg das Gerüst des Buchs an, Kapitel für Kapitel.",
-        "steps": ["Schreib 8–15 Kapiteltitel („+ Kapitel zu diesem Teil hinzufügen“).", "Ordne sie entlang der Reise des Lesers.", "Fass sie bei Bedarf zu Teilen zusammen."],
-        "checks": ["Lösen die Kapitel der Reihe nach mein Versprechen ein?", "Wiederholen sich zwei Kapitel?"],
-        "pitfall": "Den Plan perfektionieren und nie mit dem Schreiben anfangen. Der Plan darf sich beim Schreiben ändern."
+        "steps": [
+          "Schreib 8–15 Kapiteltitel („+ Kapitel zu diesem Teil hinzufügen“).",
+          "Ordne sie entlang der Reise des Lesers.",
+          "Fass sie bei Bedarf zu Teilen zusammen."
+        ],
+        "checks": [
+          "Lösen die Kapitel der Reihe nach mein Versprechen ein?",
+          "Wiederholen sich zwei Kapitel?"
+        ],
+        "pitfall": "Den Plan perfektionieren und nie mit dem Schreiben anfangen. Der Plan darf sich beim Schreiben ändern.",
+        "inward": [
+          "Welches Kapitel deines Plans schiebst du immer wieder auf? Oft schlägt genau dort das Herz des Buches."
+        ]
       },
       {
-        "id": "questions", "title": "Gib jedem Kapitel eine Frage",
+        "id": "questions",
+        "title": "Gib jedem Kapitel eine Frage",
         "goal": "Wisse, welche Frage jedes Kapitel für den Leser beantwortet.",
-        "steps": ["Schreib in die Zusammenfassung jedes Kapitels die Frage des Lesers.", "Notier, wie das Kapitel beginnt (eine Szene, eine Erinnerung, ein Beispiel).", "Schreib auf, wo das Kapitel den Leser zurücklässt."],
-        "checks": ["Konzentriert sich dieses Kapitel auf eine einzige Frage?", "Würde der Leser sie wirklich stellen?"],
-        "pitfall": "Drei verschiedene Themen in ein Kapitel stopfen."
+        "steps": [
+          "Schreib in die Zusammenfassung jedes Kapitels die Frage des Lesers.",
+          "Notier, wie das Kapitel beginnt (eine Szene, eine Erinnerung, ein Beispiel).",
+          "Schreib auf, wo das Kapitel den Leser zurücklässt."
+        ],
+        "checks": [
+          "Konzentriert sich dieses Kapitel auf eine einzige Frage?",
+          "Würde der Leser sie wirklich stellen?"
+        ],
+        "pitfall": "Drei verschiedene Themen in ein Kapitel stopfen.",
+        "inward": [
+          "Auf welche dieser Fragen kennst du die Antwort wirklich nicht? Ehrlich dort zu denken, wo du nichts weißt, ist mehr wert, als zu wiederholen, was du weißt."
+        ],
+        "quote": {
+          "text": "Die bloß erlernte Wahrheit klebt uns nur an wie ein angesetztes Glied; die durch eigenes Denken erworbene aber gleicht dem natürlichen Gliede.",
+          "by": "Schopenhauer, Selbstdenken"
+        }
       },
       {
-        "id": "draft", "title": "Schreib den ersten Entwurf bei geschlossener Tür",
+        "id": "draft",
+        "title": "Schreib den ersten Entwurf bei geschlossener Tür",
         "goal": "Schreib alle Kapitel fertig, ohne sie zu bewerten, auch wenn sie schlecht sind.",
-        "steps": ["Setz dir ein kleines Tagesziel: 300 Wörter oder eine einzige Szene.", "Fang mit dem leichten Kapitel an; du musst nicht der Reihe nach gehen.", "Geh nicht zurück zum Verbessern; mach eine Notiz und schreib weiter.", "Zeig den Entwurf noch niemandem."],
-        "checks": ["Habe ich heute geschrieben?", "Habe ich die Frage des Kapitels beantwortet?"],
-        "pitfall": "Kapitel eins zehnmal umschreiben und nie bei Kapitel zwei ankommen."
+        "steps": [
+          "Setz dir ein kleines Tagesziel: 300 Wörter oder eine einzige Szene.",
+          "Fang mit dem leichten Kapitel an; du musst nicht der Reihe nach gehen.",
+          "Geh nicht zurück zum Verbessern; mach eine Notiz und schreib weiter.",
+          "Zeig den Entwurf noch niemandem."
+        ],
+        "checks": [
+          "Habe ich heute geschrieben?",
+          "Habe ich die Frage des Kapitels beantwortet?"
+        ],
+        "pitfall": "Kapitel eins zehnmal umschreiben und nie bei Kapitel zwei ankommen.",
+        "inward": [
+          "Wenn du heute dem Schreiben ausgewichen bist, achte darauf, was du nicht fühlen wolltest. Auch Ausweichen ist eine Auskunft.",
+          "Im Entwurf musst du niemandem gefallen, nicht einmal dir selbst."
+        ],
+        "quote": {
+          "text": "Wenn wir lesen, denkt ein anderer für uns.",
+          "by": "Schopenhauer, Über Lesen und Bücher"
+        }
       },
       {
-        "id": "revise", "title": "Überarbeite in Schichten",
+        "id": "revise",
+        "title": "Überarbeite in Schichten",
         "goal": "Geh den Entwurf vom Großen zum Kleinen durch.",
-        "steps": ["Zuerst die Struktur: Reihenfolge der Kapitel, überflüssige Kapitel.", "Dann: Beantwortet jedes Kapitel seine Frage?", "Zuletzt: Sätze und Wörter; streich 10 %.", "Nimm dir jede Schicht in einem eigenen Durchgang vor."],
-        "checks": ["Dient dieses Kapitel dem Versprechen?", "Würde sich mein Leser hier langweilen?"],
-        "pitfall": "An Kommas feilen, bevor die Struktur steht."
+        "steps": [
+          "Zuerst die Struktur: Reihenfolge der Kapitel, überflüssige Kapitel.",
+          "Dann: Beantwortet jedes Kapitel seine Frage?",
+          "Zuletzt: Sätze und Wörter; streich 10 %.",
+          "Nimm dir jede Schicht in einem eigenen Durchgang vor."
+        ],
+        "checks": [
+          "Dient dieses Kapitel dem Versprechen?",
+          "Würde sich mein Leser hier langweilen?"
+        ],
+        "pitfall": "An Kommas feilen, bevor die Struktur steht.",
+        "inward": [
+          "Wenn du Ausreden suchst, um einen Absatz zu behalten, behältst du ihn für dich, nicht für den Leser."
+        ],
+        "quote": {
+          "text": "Stil ist die Physiognomie des Geistes.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       },
       {
-        "id": "feedback", "title": "Öffne die Tür: hol dir Leserfeedback",
+        "id": "feedback",
+        "title": "Öffne die Tür: hol dir Leserfeedback",
         "goal": "Finde heraus, wo ein echter Leser hängen bleibt.",
-        "steps": ["Gib den Entwurf 1–3 Menschen.", "Frag: „Wo hast du dich gelangweilt, wo warst du verwirrt, was ist hängen geblieben?“.", "Verbessere, was zwei Leute gesagt haben."],
-        "checks": ["Kann mein Leser das Versprechen in eigenen Worten wiedergeben?", "Habe ich zugehört, ohne mich zu verteidigen?"],
-        "pitfall": "Jeden Vorschlag umsetzen und dabei die Stimme des Buchs verlieren."
+        "steps": [
+          "Gib den Entwurf 1–3 Menschen.",
+          "Frag: „Wo hast du dich gelangweilt, wo warst du verwirrt, was ist hängen geblieben?“.",
+          "Verbessere, was zwei Leute gesagt haben."
+        ],
+        "checks": [
+          "Kann mein Leser das Versprechen in eigenen Worten wiedergeben?",
+          "Habe ich zugehört, ohne mich zu verteidigen?"
+        ],
+        "pitfall": "Jeden Vorschlag umsetzen und dabei die Stimme des Buchs verlieren.",
+        "inward": [
+          "Deine erste Reaktion auf Kritik ist die Stimme deines Stolzes; die Stimme des Buches kommt mit der zweiten. Warte auf sie."
+        ]
       },
       {
-        "id": "finish", "title": "Abschließen und exportieren",
+        "id": "finish",
+        "title": "Abschließen und exportieren",
         "goal": "Erklär das Buch für fertig und mach es teilbar.",
-        "steps": ["Prüf Titel und Untertitel ein letztes Mal am Versprechen.", "Markier die Kapitel als „Fertig“.", "Exportier mit dem Buch-Knopf unten rechts, und feier das."],
-        "checks": ["Spiegelt der Titel das Versprechen wider?", "Sind die restlichen Korrekturen wirklich wichtig?"],
-        "pitfall": "Das Ende mit „nur noch ein bisschen“ ewig hinausschieben."
+        "steps": [
+          "Prüf Titel und Untertitel ein letztes Mal am Versprechen.",
+          "Markier die Kapitel als „Fertig“.",
+          "Exportier mit dem Buch-Knopf unten rechts, und feier das."
+        ],
+        "checks": [
+          "Spiegelt der Titel das Versprechen wider?",
+          "Sind die restlichen Korrekturen wirklich wichtig?"
+        ],
+        "pitfall": "Das Ende mit „nur noch ein bisschen“ ewig hinausschieben.",
+        "inward": [
+          "Von welcher Version deiner selbst verabschiedest du dich, wenn dieses Buch fertig ist? Fertigwerden schafft Platz, um das nächste Du zu schreiben."
+        ],
+        "quote": {
+          "text": "Die Wahrheit ist nackt am schönsten.",
+          "by": "Schopenhauer, Über Schriftstellerei und Stil"
+        }
       }
     ],
     "nudges": {

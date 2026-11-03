@@ -2,70 +2,183 @@
   "ui": {
     "title": "Yazı koçu",
     "stage": "Aşama {n}/{total}",
-    "steps": "Şimdi ne yapmalı",
+    "steps": "Adım",
     "checks": "Kendine sor",
     "pitfall": "Dikkat",
-    "done": "Bunu yaptım",
-    "undo": "Geri al",
-    "prev": "Önceki aşama",
-    "next": "Sonraki aşama",
     "current": "Şu anki aşamana dön",
     "allDone": "Bütün aşamalar tamam. Tebrikler!",
     "premisePh": "Bu kitap [kime], [neyi] [nasıl] gösteriyor…",
     "readerPh": "Tek bir okur: kim, ne biliyor, neye ihtiyacı var…",
     "toBook": "Denemeleri kitaplaştır",
-    "toBookConfirm": "Bu defter kitaba dönüşsün mü? Denemelerin bölüm olur, kısımlara ayırıp sıralayabilirsin. Ayarlar'dan geri alabilirsin."
+    "toBookConfirm": "Bu defter kitaba dönüşsün mü? Denemelerin bölüm olur, kısımlara ayırıp sıralayabilirsin. Ayarlar'dan geri alabilirsin.",
+    "now": "Şimdi",
+    "inward": "İçine bak",
+    "quote": "Söz",
+    "nextTip": "Sonraki ipucu →",
+    "nextStage": "Sonraki aşama →",
+    "prevTip": "Önceki ipucu"
   },
   "essay": {
     "stages": [
       {
-        "id": "spark", "title": "Kıvılcımı yakala",
+        "id": "spark",
+        "title": "Kıvılcımı yakala",
         "goal": "Seni dürten küçük, somut bir anı ya da soruyu yazıya geçir.",
-        "steps": ["Seni rahatsız eden ya da meraklandıran anı tek cümleyle yaz.", "Nerede, ne zaman geçti, elinde ne vardı? Onu da yaz.", "\"Neden?\" diye bir kez sor ama cevabını henüz yazma."],
-        "checks": ["Bu an gerçekten başıma geldi mi?", "Bu soruyu birazcık bile merak ediyor muyum?"],
-        "pitfall": "\"Zaman\", \"korku\" gibi büyük bir konuyla başlamak. Küçük bir anla başla, büyük konu kendiliğinden gelir."
+        "steps": [
+          "Seni rahatsız eden ya da meraklandıran anı tek cümleyle yaz.",
+          "Nerede, ne zaman geçti, elinde ne vardı? Onu da yaz.",
+          "\"Neden?\" diye bir kez sor ama cevabını henüz yazma."
+        ],
+        "checks": [
+          "Bu an gerçekten başıma geldi mi?",
+          "Bu soruyu birazcık bile merak ediyor muyum?"
+        ],
+        "pitfall": "\"Zaman\", \"korku\" gibi büyük bir konuyla başlamak. Küçük bir anla başla, büyük konu kendiliğinden gelir.",
+        "inward": [
+          "Bu an seni neden rahatsız etti? Rahatsızlık çoğu zaman, henüz adını koymadığın bir düşüncenin kapıyı çalmasıdır.",
+          "O anda kendinle ilgili neyi fark edip hemen başka yere baktın? Deneme, başını çevirdiğin o yerden başlar."
+        ],
+        "quote": {
+          "text": "Kitabımın konusu kendimim.",
+          "by": "Montaigne, Denemeler, Okura"
+        }
       },
       {
-        "id": "free", "title": "Durmadan yaz",
+        "id": "free",
+        "title": "Durmadan yaz",
         "goal": "Ne düşündüğünü yazarken bul; düzeltmeye çalışma.",
-        "steps": ["15–20 dakika ara vermeden yaz.", "Silme, geri dönme.", "Konudan sapınca sapmanın peşinden git; \"Aslında…\" diye başlayan cümlelere izin ver."],
-        "checks": ["Başta aklımda olmayan bir şey yazdım mı?", "Kendimi yargılamadan yazabildim mi?"],
-        "pitfall": "Daha ilk paragrafta güzel cümle aramak. İlk taslağın kötü olma hakkı var."
+        "steps": [
+          "15–20 dakika ara vermeden yaz.",
+          "Silme, geri dönme.",
+          "Konudan sapınca sapmanın peşinden git; \"Aslında…\" diye başlayan cümlelere izin ver."
+        ],
+        "checks": [
+          "Başta aklımda olmayan bir şey yazdım mı?",
+          "Kendimi yargılamadan yazabildim mi?"
+        ],
+        "pitfall": "Daha ilk paragrafta güzel cümle aramak. İlk taslağın kötü olma hakkı var.",
+        "inward": [
+          "Yazarken kime kendini kanıtlamaya çalışıyorsun? O kişiyi odadan çıkar; deneme tanıksız yazılır.",
+          "Kaleminin duraksadığı yere dikkat et. Orada ya bir korku ya da henüz söylenmemiş bir gerçek bekliyor."
+        ],
+        "quote": {
+          "text": "Önce iki tür yazar vardır: konusu için yazanlar ve yazmak için yazanlar.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "core", "title": "Asıl derdini bul",
+        "id": "core",
+        "title": "Asıl derdini bul",
         "goal": "Olayın altındaki asıl konuyu, gerçekten ne demek istediğini gör.",
-        "steps": ["Taslağı baştan oku; seni en çok şaşırtan cümleyi bul.", "\"Bu yazı aslında … hakkında\" cümlesini tamamla.", "Bu cümleyi yukarıdaki \"Çıkış noktası\" alanına yaz."],
-        "checks": ["Yazım \"ne oldu\"nun ötesine geçip \"bu bana ne anlattı\"ya varıyor mu?", "Bu cümleyi bir arkadaşıma söylesem ilgisini çeker mi?"],
-        "pitfall": "Olayı anlatıp anlamını aramamak. Deneme olayda kalmaz, olayın sana ne düşündürdüğüne gider."
+        "steps": [
+          "Taslağı baştan oku; seni en çok şaşırtan cümleyi bul.",
+          "\"Bu yazı aslında … hakkında\" cümlesini tamamla.",
+          "Bu cümleyi taslağın üstündeki \"Çıkış noktası\" alanına yaz."
+        ],
+        "checks": [
+          "Yazım \"ne oldu\"nun ötesine geçip \"bu bana ne anlattı\"ya varıyor mu?",
+          "Bu cümleyi bir arkadaşıma söylesem ilgisini çeker mi?"
+        ],
+        "pitfall": "Olayı anlatıp anlamını aramamak. Deneme olayda kalmaz, olayın sana ne düşündürdüğüne gider.",
+        "inward": [
+          "Bu düşünce gerçekten senin mi, yoksa bir yerde okuyup benimsediğin mi? Kendi vardığın düşünce daha az parlaktır ama canlıdır.",
+          "Bu yazıda kendinle ilgili söylemekten kaçındığın şey ne? Asıl dert çoğu zaman odur."
+        ],
+        "quote": {
+          "text": "Okurken başka biri bizim yerimize düşünür.",
+          "by": "Schopenhauer, Okumak ve Kitaplar Üzerine"
+        }
       },
       {
-        "id": "shape", "title": "Biçim ver",
+        "id": "shape",
+        "title": "Biçim ver",
         "goal": "Somut andan düşünceye giden yolu okurun da yürüyebileceği bir sıraya koy.",
-        "steps": ["Somut sahneyle aç.", "Düşünceyi adım adım genişlet; her adımı bir örneğe bağla.", "Kesin bir hükümle değil, vardığın yerle bitir.", "Gerekirse paragrafların yerini değiştir."],
-        "checks": ["Okur ilk paragraftan sonra okumaya devam eder mi?", "Her paragraf bir öncekinden bir adım ileri gidiyor mu?"],
-        "pitfall": "Okul kompozisyonuna dönmek (giriş–gelişme–\"sonuç olarak\"). Deneme bir sohbettir, ispat değildir."
+        "steps": [
+          "Somut sahneyle aç.",
+          "Düşünceyi adım adım genişlet; her adımı bir örneğe bağla.",
+          "Kesin bir hükümle değil, vardığın yerle bitir.",
+          "Gerekirse paragrafların yerini değiştir."
+        ],
+        "checks": [
+          "Okur ilk paragraftan sonra okumaya devam eder mi?",
+          "Her paragraf bir öncekinden bir adım ileri gidiyor mu?"
+        ],
+        "pitfall": "Okul kompozisyonuna dönmek (giriş–gelişme–\"sonuç olarak\"). Deneme bir sohbettir, ispat değildir.",
+        "inward": [
+          "Okura her şeyi biliyormuş gibi mi görünmek istiyorsun, yoksa düşünürken mi? Deneme ikincisini ister; şüphen de metnin bir parçasıdır."
+        ],
+        "quote": {
+          "text": "Sıradan sözcüklerle sıradışı şeyler söyle.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "cut", "title": "Kes ve sadeleştir",
+        "id": "cut",
+        "title": "Kes ve sadeleştir",
         "goal": "Fazlalıkları at, sesini netleştir.",
-        "steps": ["Metnin en az %10'unu kes.", "\"Bence\", \"aslında\", \"sanki\" gibi dolgu sözcükleri ayıkla.", "Metni sesli oku; tökezlediğin yeri düzelt."],
-        "checks": ["Bu cümleyi çıkarsam bir şey kaybolur mu?", "Konuşur gibi mi yazmışım?"],
-        "pitfall": "Her cümleyi sevip hiçbirini kesememek."
+        "steps": [
+          "Metnin en az %10'unu kes.",
+          "\"Bence\", \"aslında\", \"sanki\" gibi dolgu sözcükleri ayıkla.",
+          "Metni sesli oku; tökezlediğin yeri düzelt."
+        ],
+        "checks": [
+          "Bu cümleyi çıkarsam bir şey kaybolur mu?",
+          "Konuşur gibi mi yazmışım?"
+        ],
+        "pitfall": "Her cümleyi sevip hiçbirini kesememek.",
+        "inward": [
+          "Hangi cümleyi yalnızca akıllı görünmek için yazdın? Önce onu kes; geri kalanı sana güvenecek.",
+          "Bir cümleden vazgeçemiyorsan sor: onu okur için mi tutuyorum, kendi aynam için mi?"
+        ],
+        "quote": {
+          "text": "Üslup, zihnin yüz çizgileridir.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "title", "title": "Başlığı en son koy",
+        "id": "title",
+        "title": "Başlığı en son koy",
         "goal": "Yazının vardığı yeri sezdiren bir ad bul.",
-        "steps": ["Son paragrafı ve çıkış cümleni yeniden oku.", "Üç başlık yaz: biri somut nesneden, biri sorudan, biri vardığın düşünceden.", "Sesli söyle; en çok merak uyandıranı seç."],
-        "checks": ["Başlık sonu ele vermeden yazının neyle ilgili olduğunu sezdiriyor mu?", "Yazı bitince başlık yeni bir anlam kazanıyor mu?"],
-        "pitfall": "Baştaki çalışma başlığına takılı kalmak. Yazı başka yere gittiyse başlık da gitmeli."
+        "steps": [
+          "Son paragrafı ve çıkış cümleni yeniden oku.",
+          "Üç başlık yaz: biri somut nesneden, biri sorudan, biri vardığın düşünceden.",
+          "Sesli söyle; en çok merak uyandıranı seç."
+        ],
+        "checks": [
+          "Başlık sonu ele vermeden yazının neyle ilgili olduğunu sezdiriyor mu?",
+          "Yazı bitince başlık yeni bir anlam kazanıyor mu?"
+        ],
+        "pitfall": "Baştaki çalışma başlığına takılı kalmak. Yazı başka yere gittiyse başlık da gitmeli.",
+        "inward": [
+          "Yazının sonunda, başladığın kişiden biraz farklı mısın? Başlık o farkın adı olabilir."
+        ],
+        "quote": {
+          "text": "Hakikat en güzel çıplakken görünür.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "share", "title": "Okut ve bırak",
+        "id": "share",
+        "title": "Okut ve bırak",
         "goal": "Yazıyı bir okura ver, sonra bitir.",
-        "steps": ["Güvendiğin birine okut; yalnızca \"Nerede sıkıldın, nerede durdun?\" diye sor.", "Notlardan en fazla ikisini uygula.", "Yukarıdan \"Bitti\" olarak işaretle."],
-        "checks": ["Okurun durduğu yerleri düzelttim mi?", "Daha fazla düzeltmek yazıyı iyileştirir mi, yoksa sadece erteliyor muyum?"],
-        "pitfall": "Bitmiş yazıyı sonsuza dek cilalamak. Deneme bir denemedir; mükemmel olmak zorunda değil."
+        "steps": [
+          "Güvendiğin birine okut; yalnızca \"Nerede sıkıldın, nerede durdun?\" diye sor.",
+          "Notlardan en fazla ikisini uygula.",
+          "Yukarıdan \"Bitti\" olarak işaretle."
+        ],
+        "checks": [
+          "Okurun durduğu yerleri düzelttim mi?",
+          "Daha fazla düzeltmek yazıyı iyileştirir mi, yoksa sadece erteliyor muyum?"
+        ],
+        "pitfall": "Bitmiş yazıyı sonsuza dek cilalamak. Deneme bir denemedir; mükemmel olmak zorunda değil.",
+        "inward": [
+          "Ne bekliyorsun: övülmeyi mi, anlaşılmayı mı? İkisini ayırabildiğinde eleştiri seni büyütür.",
+          "Bitirmekten çekiniyorsan sor: bu yazı bitince kendimin hangi haliyle vedalaşacağım?"
+        ],
+        "quote": {
+          "text": "Ne biliyorum ki?",
+          "by": "Montaigne"
+        }
       }
     ],
     "nudges": {
@@ -84,62 +197,174 @@
   "book": {
     "stages": [
       {
-        "id": "premise", "title": "Vaadi tek cümleye indir",
+        "id": "premise",
+        "title": "Vaadi tek cümleye indir",
         "goal": "Kitabın okura ne vaat ettiğini tek cümleyle söyle.",
-        "steps": ["\"Bu kitap [kime], [neyi] [nasıl] gösteriyor\" kalıbını doldur.", "Kahvede soran birine anlatır gibi sadeleştir.", "Aşağıdaki kutuya yaz."],
-        "checks": ["Tek cümle mi?", "Okur bunu okuyunca \"bana ne?\" sorusunun cevabını alıyor mu?"],
+        "steps": [
+          "\"Bu kitap [kime], [neyi] [nasıl] gösteriyor\" kalıbını doldur.",
+          "Kahvede soran birine anlatır gibi sadeleştir.",
+          "Bu karttaki kutuya yaz."
+        ],
+        "checks": [
+          "Tek cümle mi?",
+          "Okur bunu okuyunca \"bana ne?\" sorusunun cevabını alıyor mu?"
+        ],
         "pitfall": "Konuyu vaat sanmak. \"Annem\" bir konudur; \"Annemi kaybettikten sonra yası nasıl taşıdım\" bir vaattir.",
-        "field": "premise"
+        "field": "premise",
+        "inward": [
+          "Bu kitabı yazmazsan dünyada eksik kalacak olan ne? Cevabın yoksa vaat henüz hazır değil.",
+          "Bu kitabı tanınmak için mi, bir yükü indirmek için mi, birine yardım etmek için mi yazıyorsun? Dürüst cevap sesini belirler."
+        ],
+        "quote": {
+          "text": "Önce iki tür yazar vardır: konusu için yazanlar ve yazmak için yazanlar.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "reader", "title": "Tek bir okur seç",
+        "id": "reader",
+        "title": "Tek bir okur seç",
         "goal": "Kitabı kime yazdığını netleştir.",
-        "steps": ["Tanıdığın tek bir kişiyi düşün.", "Konu hakkında ne bildiğini, neye ihtiyaç duyduğunu yaz.", "Kitabı bitirince hayatında neyin değişeceğini yaz."],
-        "checks": ["\"Herkes\" demeden okurumu tarif edebiliyor muyum?", "Bu okur kitabı neden eline alır?"],
+        "steps": [
+          "Tanıdığın tek bir kişiyi düşün.",
+          "Konu hakkında ne bildiğini, neye ihtiyaç duyduğunu yaz.",
+          "Kitabı bitirince hayatında neyin değişeceğini yaz."
+        ],
+        "checks": [
+          "\"Herkes\" demeden okurumu tarif edebiliyor muyum?",
+          "Bu okur kitabı neden eline alır?"
+        ],
         "pitfall": "Herkese yazmaya çalışınca kimseye ulaşamamak.",
-        "field": "reader"
+        "field": "reader",
+        "inward": [
+          "Okurunu tarif ederken aslında birkaç yıl önceki kendini mi anlatıyorsun? İyi kitapların çoğu böyle doğar."
+        ]
       },
       {
-        "id": "toc", "title": "İçindekileri kur",
+        "id": "toc",
+        "title": "İçindekileri kur",
         "goal": "Kitabın iskeletini bölüm bölüm çıkar.",
-        "steps": ["8–15 bölüm başlığı yaz (\"+ bu kısma bölüm ekle\").", "Bölümleri okurun yolculuğuna göre sırala.", "Gerekirse kısımlara ayır."],
-        "checks": ["Bölümleri sırayla okuyunca vaadim yerine geliyor mu?", "Birbirinin tekrarı olan iki bölüm var mı?"],
-        "pitfall": "Planı kusursuz yapmaya uğraşıp hiç yazmaya başlamamak. Plan yazdıkça değişebilir."
+        "steps": [
+          "8–15 bölüm başlığı yaz (\"+ bu kısma bölüm ekle\").",
+          "Bölümleri okurun yolculuğuna göre sırala.",
+          "Gerekirse kısımlara ayır."
+        ],
+        "checks": [
+          "Bölümleri sırayla okuyunca vaadim yerine geliyor mu?",
+          "Birbirinin tekrarı olan iki bölüm var mı?"
+        ],
+        "pitfall": "Planı kusursuz yapmaya uğraşıp hiç yazmaya başlamamak. Plan yazdıkça değişebilir.",
+        "inward": [
+          "Planında en çok ertelediğin bölüm hangisi? Kitabın kalbi çoğu zaman oradadır."
+        ]
       },
       {
-        "id": "questions", "title": "Her bölüme bir soru ver",
+        "id": "questions",
+        "title": "Her bölüme bir soru ver",
         "goal": "Her bölümün okur için hangi soruyu cevapladığını bil.",
-        "steps": ["Her bölümün özet alanına okurun sorusunu yaz.", "Bölümün neyle açılacağını not et (sahne, anı, örnek).", "Bölümün okuru nerede bırakacağını yaz."],
-        "checks": ["Bu bölüm tek bir soruya mı odaklanıyor?", "Okur bu soruyu gerçekten sorar mı?"],
-        "pitfall": "Bir bölüme üç ayrı konu sıkıştırmak."
+        "steps": [
+          "Her bölümün özet alanına okurun sorusunu yaz.",
+          "Bölümün neyle açılacağını not et (sahne, anı, örnek).",
+          "Bölümün okuru nerede bırakacağını yaz."
+        ],
+        "checks": [
+          "Bu bölüm tek bir soruya mı odaklanıyor?",
+          "Okur bu soruyu gerçekten sorar mı?"
+        ],
+        "pitfall": "Bir bölüme üç ayrı konu sıkıştırmak.",
+        "inward": [
+          "Bu soruların hangisinin cevabını gerçekten bilmiyorsun? Bilmediğin yerde dürüstçe düşünmek, bildiğini tekrarlamaktan değerlidir."
+        ],
+        "quote": {
+          "text": "Yalnızca öğrenilmiş hakikat bize takma bir uzuv gibi yapışır; kendi düşünerek varılan ise doğal bir uzuv gibidir.",
+          "by": "Schopenhauer, Kendi Başına Düşünmek Üzerine"
+        }
       },
       {
-        "id": "draft", "title": "İlk taslağı kapı kapalı yaz",
+        "id": "draft",
+        "title": "İlk taslağı kapı kapalı yaz",
         "goal": "Bütün bölümleri yargılamadan, kötü bile olsa bitir.",
-        "steps": ["Her gün küçük bir hedef koy: 300 kelime ya da tek bir sahne.", "Kolay bölümden başla; sırayla gitmek zorunda değilsin.", "Geri dönüp düzeltme; notunu al, devam et.", "Taslağı henüz kimseye gösterme."],
-        "checks": ["Bugün yazdım mı?", "Bölümün sorusuna bir cevap verdim mi?"],
-        "pitfall": "Birinci bölümü on kez düzeltip ikinciye hiç geçmemek."
+        "steps": [
+          "Her gün küçük bir hedef koy: 300 kelime ya da tek bir sahne.",
+          "Kolay bölümden başla; sırayla gitmek zorunda değilsin.",
+          "Geri dönüp düzeltme; notunu al, devam et.",
+          "Taslağı henüz kimseye gösterme."
+        ],
+        "checks": [
+          "Bugün yazdım mı?",
+          "Bölümün sorusuna bir cevap verdim mi?"
+        ],
+        "pitfall": "Birinci bölümü on kez düzeltip ikinciye hiç geçmemek.",
+        "inward": [
+          "Bugün yazmaktan kaçtıysan, neyi hissetmek istemediğini fark et. Kaçış da bir bilgidir.",
+          "Taslakta kimseyi memnun etmek zorunda değilsin; kendini bile."
+        ],
+        "quote": {
+          "text": "Okurken başka biri bizim yerimize düşünür.",
+          "by": "Schopenhauer, Okumak ve Kitaplar Üzerine"
+        }
       },
       {
-        "id": "revise", "title": "Katman katman düzelt",
+        "id": "revise",
+        "title": "Katman katman düzelt",
         "goal": "Taslağı büyükten küçüğe doğru elden geçir.",
-        "steps": ["Önce yapı: bölüm sırası, gereksiz bölümler.", "Sonra her bölüm sorusunu cevaplıyor mu?", "En son cümleler ve kelimeler; %10 kes.", "Her katmanı ayrı bir okumada yap."],
-        "checks": ["Bu bölüm vaade hizmet ediyor mu?", "Okurum burada sıkılır mı?"],
-        "pitfall": "Yapı oturmadan virgülle uğraşmak."
+        "steps": [
+          "Önce yapı: bölüm sırası, gereksiz bölümler.",
+          "Sonra her bölüm sorusunu cevaplıyor mu?",
+          "En son cümleler ve kelimeler; %10 kes.",
+          "Her katmanı ayrı bir okumada yap."
+        ],
+        "checks": [
+          "Bu bölüm vaade hizmet ediyor mu?",
+          "Okurum burada sıkılır mı?"
+        ],
+        "pitfall": "Yapı oturmadan virgülle uğraşmak.",
+        "inward": [
+          "Bir paragrafı korumak için bahane üretiyorsan, onu okur için değil kendin için tutuyorsun."
+        ],
+        "quote": {
+          "text": "Üslup, zihnin yüz çizgileridir.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       },
       {
-        "id": "feedback", "title": "Kapıyı aç: okur görüşü al",
+        "id": "feedback",
+        "title": "Kapıyı aç: okur görüşü al",
         "goal": "Gerçek bir okurun nerede takıldığını öğren.",
-        "steps": ["1–3 kişiye taslağı ver.", "\"Nerede sıkıldın, nerede kafan karıştı, aklında ne kaldı?\" diye sor.", "İki kişinin birden söylediği şeyi düzelt."],
-        "checks": ["Okurum vaadi kendi sözleriyle anlatabiliyor mu?", "Notları savunmaya geçmeden dinledim mi?"],
-        "pitfall": "Her öneriyi uygulayıp kitabın sesini kaybetmek."
+        "steps": [
+          "1–3 kişiye taslağı ver.",
+          "\"Nerede sıkıldın, nerede kafan karıştı, aklında ne kaldı?\" diye sor.",
+          "İki kişinin birden söylediği şeyi düzelt."
+        ],
+        "checks": [
+          "Okurum vaadi kendi sözleriyle anlatabiliyor mu?",
+          "Notları savunmaya geçmeden dinledim mi?"
+        ],
+        "pitfall": "Her öneriyi uygulayıp kitabın sesini kaybetmek.",
+        "inward": [
+          "Eleştiriye ilk tepkin gururunun sesidir; kitabın sesi ikinci tepkide gelir. Onu bekle."
+        ]
       },
       {
-        "id": "finish", "title": "Bitir ve dışa aktar",
+        "id": "finish",
+        "title": "Bitir ve dışa aktar",
         "goal": "Kitabı tamamlanmış say ve paylaşılabilir hâle getir.",
-        "steps": ["Başlığı ve alt başlığı vaade göre son kez gözden geçir.", "Bölümleri \"Bitti\" olarak işaretle.", "Sağ alttaki kitap düğmesiyle dışa aktar ve kutla."],
-        "checks": ["Başlık vaadi yansıtıyor mu?", "Kalan düzeltmeler gerçekten önemli mi?"],
-        "pitfall": "\"Biraz daha\" diye bitirmeyi sonsuza dek ertelemek."
+        "steps": [
+          "Başlığı ve alt başlığı vaade göre son kez gözden geçir.",
+          "Bölümleri \"Bitti\" olarak işaretle.",
+          "Sağ alttaki kitap düğmesiyle dışa aktar ve kutla."
+        ],
+        "checks": [
+          "Başlık vaadi yansıtıyor mu?",
+          "Kalan düzeltmeler gerçekten önemli mi?"
+        ],
+        "pitfall": "\"Biraz daha\" diye bitirmeyi sonsuza dek ertelemek.",
+        "inward": [
+          "Bu kitap bitince kendinin hangi haliyle vedalaşıyorsun? Bitirmek, bir sonraki seni yazmaya yer açmaktır."
+        ],
+        "quote": {
+          "text": "Hakikat en güzel çıplakken görünür.",
+          "by": "Schopenhauer, Yazarlık ve Üslup Üzerine"
+        }
       }
     ],
     "nudges": {
