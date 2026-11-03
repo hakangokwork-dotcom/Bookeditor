@@ -16,7 +16,9 @@
     "quote": "Palavras",
     "nextTip": "Próxima dica →",
     "nextStage": "Próxima etapa →",
-    "prevTip": "Dica anterior"
+    "prevTip": "Dica anterior",
+    "quoteTitle": "Palavras para hoje",
+    "quoteNext": "Outra →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "O primeiro rascunho está pronto; isso é enorme. Descanse alguns dias e depois revise começando pela estrutura.",
       "finished": "Seu livro está pronto! Exporte e não esqueça que você merece uma comemoração."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "Escrevo porque não sei o que penso até ler o que digo.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "Escrevo inteiramente para descobrir o que estou pensando, o que estou olhando, o que vejo e o que isso significa.",
+      "by": "Joan Didion, Por que escrevo"
+    },
+    {
+      "text": "Pensamento claro vira escrita clara; um não existe sem o outro.",
+      "by": "William Zinsser, Como escrever bem"
+    },
+    {
+      "text": "Escrever é pensar no papel.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "Quase toda boa escrita começa com primeiras tentativas terríveis. Você precisa começar de algum lugar.",
+      "by": "Anne Lamott, Palavra por palavra"
+    },
+    {
+      "text": "O momento mais assustador é sempre logo antes de começar.",
+      "by": "Stephen King, Sobre a escrita"
+    },
+    {
+      "text": "Você não pode esperar pela inspiração. Tem que ir atrás dela com um porrete.",
+      "by": "Jack London"
+    },
+    {
+      "text": "Se há um livro que você quer ler, mas que ainda não foi escrito, então você deve escrevê-lo.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "Se eu não tivesse escrito, teria enlouquecido.",
+      "by": "Sait Faik Abasıyanık, Um ponto no mapa"
+    },
+    {
+      "text": "Entre em si mesmo.",
+      "by": "Rainer Maria Rilke, Cartas a um jovem poeta"
+    },
+    {
+      "text": "Fiz esta carta mais longa do que de costume porque não tive tempo de fazê-la mais curta.",
+      "by": "Blaise Pascal, Cartas provinciais"
+    },
+    {
+      "text": "Uma vida sem exame não vale a pena ser vivida.",
+      "by": "Sócrates, na Apologia de Platão"
+    },
+    {
+      "text": "Um livro deve ser o machado para o mar congelado dentro de nós.",
+      "by": "Franz Kafka, carta a Oskar Pollak"
+    },
+    {
+      "text": "O talento se parece com o atirador que acerta um alvo que os outros não conseguem alcançar; o gênio, com aquele que acerta um alvo que os outros nem conseguem ver.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }

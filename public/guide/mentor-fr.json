@@ -16,7 +16,9 @@
     "quote": "Paroles",
     "nextTip": "Conseil suivant →",
     "nextStage": "Étape suivante →",
-    "prevTip": "Conseil précédent"
+    "prevTip": "Conseil précédent",
+    "quoteTitle": "Les mots du jour",
+    "quoteNext": "Une autre →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "Le premier jet est fini ; c'est énorme. Fais une pause de quelques jours, puis révise en commençant par la structure.",
       "finished": "Ton livre est fini ! Exporte-le, et n'oublie pas que tu te dois une fête."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "J'écris parce que je ne sais pas ce que je pense avant d'avoir lu ce que je dis.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "J'écris uniquement pour découvrir ce que je pense, ce que je regarde, ce que je vois et ce que cela signifie.",
+      "by": "Joan Didion, Pourquoi j'écris"
+    },
+    {
+      "text": "Une pensée claire devient une écriture claire ; l'une ne peut exister sans l'autre.",
+      "by": "William Zinsser, On Writing Well"
+    },
+    {
+      "text": "Écrire, c'est penser sur le papier.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "Presque tous les bons textes commencent par de premiers essais épouvantables. Il faut bien commencer quelque part.",
+      "by": "Anne Lamott, Bird by Bird"
+    },
+    {
+      "text": "Le moment le plus effrayant est toujours celui qui précède le début.",
+      "by": "Stephen King, Écriture : Mémoires d'un métier"
+    },
+    {
+      "text": "Tu ne peux pas attendre l'inspiration. Tu dois lui courir après avec une massue.",
+      "by": "Jack London"
+    },
+    {
+      "text": "S'il y a un livre que tu veux lire mais qui n'a pas encore été écrit, alors tu dois l'écrire.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "Si je n'avais pas écrit, je serais devenu fou.",
+      "by": "Sait Faik Abasıyanık, Un point sur la carte"
+    },
+    {
+      "text": "Rentrez en vous-même.",
+      "by": "Rainer Maria Rilke, Lettres à un jeune poète"
+    },
+    {
+      "text": "Je n'ai fait celle-ci plus longue que parce que je n'ai pas eu le loisir de la faire plus courte.",
+      "by": "Blaise Pascal, Les Provinciales"
+    },
+    {
+      "text": "Une vie sans examen ne vaut pas la peine d'être vécue.",
+      "by": "Socrate, dans l'Apologie de Platon"
+    },
+    {
+      "text": "Un livre doit être la hache qui brise la mer gelée en nous.",
+      "by": "Franz Kafka, lettre à Oskar Pollak"
+    },
+    {
+      "text": "Le talent ressemble au tireur qui atteint une cible que les autres ne peuvent atteindre ; le génie, à celui qui atteint une cible que les autres ne peuvent même pas voir.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }

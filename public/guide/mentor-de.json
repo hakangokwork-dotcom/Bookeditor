@@ -16,7 +16,9 @@
     "quote": "Worte",
     "nextTip": "Nächster Tipp →",
     "nextStage": "Nächste Phase →",
-    "prevTip": "Vorheriger Tipp"
+    "prevTip": "Vorheriger Tipp",
+    "quoteTitle": "Worte für heute",
+    "quoteNext": "Noch eins →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "Der erste Entwurf ist fertig; das ist großartig. Mach ein paar Tage Pause und überarbeite dann, angefangen bei der Struktur.",
       "finished": "Dein Buch ist fertig! Exportier es, und vergiss nicht: Du schuldest dir eine Feier."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "Ich schreibe, weil ich nicht weiß, was ich denke, bis ich lese, was ich sage.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "Ich schreibe einzig, um herauszufinden, was ich denke, was ich betrachte, was ich sehe und was es bedeutet.",
+      "by": "Joan Didion, Warum ich schreibe"
+    },
+    {
+      "text": "Klares Denken wird zu klarem Schreiben; das eine gibt es nicht ohne das andere.",
+      "by": "William Zinsser, On Writing Well"
+    },
+    {
+      "text": "Schreiben ist Denken auf Papier.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "Fast alles gute Schreiben beginnt mit schrecklichen ersten Versuchen. Irgendwo musst du anfangen.",
+      "by": "Anne Lamott, Bird by Bird"
+    },
+    {
+      "text": "Der beängstigendste Moment ist immer der kurz vor dem Anfangen.",
+      "by": "Stephen King, Das Leben und das Schreiben"
+    },
+    {
+      "text": "Du kannst nicht auf die Inspiration warten. Du musst ihr mit einem Knüppel nachjagen.",
+      "by": "Jack London"
+    },
+    {
+      "text": "Wenn es ein Buch gibt, das du lesen willst, das aber noch nicht geschrieben wurde, dann musst du es schreiben.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "Hätte ich nicht geschrieben, wäre ich verrückt geworden.",
+      "by": "Sait Faik Abasıyanık, Ein Punkt auf der Landkarte"
+    },
+    {
+      "text": "Gehen Sie in sich.",
+      "by": "Rainer Maria Rilke, Briefe an einen jungen Dichter"
+    },
+    {
+      "text": "Ich habe diesen Brief nur deshalb so lang gemacht, weil ich keine Zeit hatte, ihn kürzer zu machen.",
+      "by": "Blaise Pascal, Briefe in die Provinz"
+    },
+    {
+      "text": "Ein Leben ohne Selbsterforschung verdient nicht gelebt zu werden.",
+      "by": "Sokrates, in Platons Apologie"
+    },
+    {
+      "text": "Ein Buch muss die Axt sein für das gefrorene Meer in uns.",
+      "by": "Franz Kafka, Brief an Oskar Pollak"
+    },
+    {
+      "text": "Talent gleicht dem Schützen, der ein Ziel trifft, welches die Übrigen nicht erreichen können; Genie dem, der eines trifft, bis zu welchem sie nicht einmal zu sehen vermögen.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }

@@ -184,6 +184,7 @@ async function loadGuidePack() {
     try { const r = await fetch('guide/mentor-' + l + '.json'); if (r.ok) { mentorPack = await r.json(); break; } } catch {}
   }
   if (book) renderMentor();
+  renderQuote();
   // İçerik geldiğinde açık görünümleri tazele
   if (book) {
     renderTip();
@@ -821,7 +822,8 @@ function renderMentor() {
   host.hidden = !m;
   const tipCard = $('.companion .tip-card');
   if (tipCard) tipCard.hidden = !!m; // koç varken Günün İpucu ikinci bir "sonraki ipucu" olmasın
-  if (!m || host.contains(document.activeElement)) return; // yazarken alanı ezme
+  // Yalnız vaat/okur kutusuna yazarken yeniden çizme; düğmeye tıklamak da odak alır, onu engellememeli
+  if (!m || document.activeElement === $('#mentorField')) return;
   const U = mentorPack.ui;
   const open = localStorage.getItem('inkguide.mentorOpen') !== '0';
   const idx = mentorView === null ? m.current : mentorView;
@@ -884,6 +886,27 @@ function renderMentor() {
     const c = $('#libComposeBtn');
     if (c) c.click();
   };
+}
+
+// Günün sözü: yazmak ve düşünmek üzerine; her gün bir başkası, istenirse sıradaki
+let quoteIndex = Math.floor(Date.now() / 86400000);
+const todaysQuote = () => {
+  const qs = mentorPack && mentorPack.quotes;
+  return qs && qs.length ? qs[quoteIndex % qs.length] : null;
+};
+
+function renderQuote() {
+  const el = $('#quoteCard');
+  if (!el) return;
+  const q = todaysQuote();
+  el.hidden = !q;
+  if (!q) return;
+  el.innerHTML = `
+    <div class="tip-label">${ic('notes')} <span>${esc(mentorPack.ui.quoteTitle)}</span></div>
+    <blockquote class="quote-text">${esc(q.text)}</blockquote>
+    <div class="quote-by">— ${esc(q.by)}</div>
+    <button class="tip-next" id="quoteNext">${esc(mentorPack.ui.quoteNext)}</button>`;
+  $('#quoteNext').onclick = () => { quoteIndex++; renderQuote(); };
 }
 
 function select(type, id = null) {
@@ -1965,6 +1988,7 @@ function renderLibrary(all) {
   <main class="lib-main">
     <h1>${esc(t('lib.title'))}</h1>
     <p class="lib-sub">${esc(t('lib.sub', { n: books.length, w: totalWordsAll.toLocaleString(I18N_LOCALE) }))}</p>
+    ${todaysQuote() ? `<p class="lib-quote">“${esc(todaysQuote().text)}” <span>— ${esc(todaysQuote().by)}</span></p>` : ''}
 
     <h2 class="lib-section">${esc(t('lib.books'))}</h2>
     <div class="lib-grid">

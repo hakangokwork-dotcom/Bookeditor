@@ -16,7 +16,9 @@
     "quote": "Palabras",
     "nextTip": "Siguiente consejo →",
     "nextStage": "Siguiente etapa →",
-    "prevTip": "Consejo anterior"
+    "prevTip": "Consejo anterior",
+    "quoteTitle": "Palabras para hoy",
+    "quoteNext": "Otra →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "El primer borrador está hecho; eso es mucho. Descansa unos días y luego revisa empezando por la estructura.",
       "finished": "¡Tu libro está terminado! Expórtalo, y no olvides que te debes una celebración."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "Escribo porque no sé lo que pienso hasta que leo lo que digo.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "Escribo únicamente para descubrir qué estoy pensando, qué estoy mirando, qué veo y qué significa.",
+      "by": "Joan Didion, Por qué escribo"
+    },
+    {
+      "text": "El pensamiento claro se convierte en escritura clara; uno no puede existir sin el otro.",
+      "by": "William Zinsser, On Writing Well"
+    },
+    {
+      "text": "Escribir es pensar en papel.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "Casi toda la buena escritura empieza con primeros intentos terribles. Tienes que empezar por algún lado.",
+      "by": "Anne Lamott, Pájaro a pájaro"
+    },
+    {
+      "text": "El momento más aterrador es siempre justo antes de empezar.",
+      "by": "Stephen King, Mientras escribo"
+    },
+    {
+      "text": "No puedes esperar a la inspiración. Tienes que ir tras ella con un garrote.",
+      "by": "Jack London"
+    },
+    {
+      "text": "Si hay un libro que quieres leer, pero aún no se ha escrito, entonces debes escribirlo tú.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "Si no hubiera escrito, me habría vuelto loco.",
+      "by": "Sait Faik Abasıyanık, Un punto en el mapa"
+    },
+    {
+      "text": "Entre en sí mismo.",
+      "by": "Rainer Maria Rilke, Cartas a un joven poeta"
+    },
+    {
+      "text": "He hecho esta carta más larga de lo habitual porque no he tenido tiempo de hacerla más corta.",
+      "by": "Blaise Pascal, Cartas provinciales"
+    },
+    {
+      "text": "Una vida sin examen no merece la pena ser vivida.",
+      "by": "Sócrates, en la Apología de Platón"
+    },
+    {
+      "text": "Un libro debe ser el hacha que rompa el mar helado que llevamos dentro.",
+      "by": "Franz Kafka, carta a Oskar Pollak"
+    },
+    {
+      "text": "El talento se parece al tirador que da en un blanco que los demás no pueden alcanzar; el genio, al que da en uno que los demás ni siquiera alcanzan a ver.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }

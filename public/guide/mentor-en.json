@@ -16,7 +16,9 @@
     "quote": "Words",
     "nextTip": "Next tip →",
     "nextStage": "Next stage →",
-    "prevTip": "Previous tip"
+    "prevTip": "Previous tip",
+    "quoteTitle": "Words for today",
+    "quoteNext": "Another →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "The first draft is done; that's big. Take a few days off, then revise starting with structure.",
       "finished": "Your book is done! Export it, and don't forget you owe yourself a celebration."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "I write because I don't know what I think until I read what I say.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "I write entirely to find out what I'm thinking, what I'm looking at, what I see and what it means.",
+      "by": "Joan Didion, Why I Write"
+    },
+    {
+      "text": "Clear thinking becomes clear writing; one can't exist without the other.",
+      "by": "William Zinsser, On Writing Well"
+    },
+    {
+      "text": "Writing is thinking on paper.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "Almost all good writing begins with terrible first efforts. You need to start somewhere.",
+      "by": "Anne Lamott, Bird by Bird"
+    },
+    {
+      "text": "The scariest moment is always just before you start.",
+      "by": "Stephen King, On Writing"
+    },
+    {
+      "text": "You can't wait for inspiration. You have to go after it with a club.",
+      "by": "Jack London"
+    },
+    {
+      "text": "If there's a book that you want to read, but it hasn't been written yet, then you must write it.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "If I hadn't written, I would have gone mad.",
+      "by": "Sait Faik Abasıyanık, A Dot on the Map"
+    },
+    {
+      "text": "Go into yourself.",
+      "by": "Rainer Maria Rilke, Letters to a Young Poet"
+    },
+    {
+      "text": "I have made this longer than usual because I have not had time to make it shorter.",
+      "by": "Blaise Pascal, Provincial Letters"
+    },
+    {
+      "text": "The unexamined life is not worth living.",
+      "by": "Socrates, in Plato's Apology"
+    },
+    {
+      "text": "A book must be the axe for the frozen sea within us.",
+      "by": "Franz Kafka, letter to Oskar Pollak"
+    },
+    {
+      "text": "Talent hits a target no one else can hit; genius hits a target no one else can see.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }

@@ -16,7 +16,9 @@
     "quote": "Söz",
     "nextTip": "Sonraki ipucu →",
     "nextStage": "Sonraki aşama →",
-    "prevTip": "Önceki ipucu"
+    "prevTip": "Önceki ipucu",
+    "quoteTitle": "Günün sözü",
+    "quoteNext": "Başka söz →"
   },
   "essay": {
     "stages": [
@@ -378,5 +380,63 @@
       "draftDone": "İlk taslak bitti; bu büyük bir iş. Birkaç gün ara ver, sonra yapıdan başlayarak düzelt.",
       "finished": "Kitabın bitti! Dışa aktar ve kendine bir kutlama borçlu olduğunu unutma."
     }
-  }
+  },
+  "quotes": [
+    {
+      "text": "Yazıyorum, çünkü söylediğimi okuyana kadar ne düşündüğümü bilmiyorum.",
+      "by": "Flannery O'Connor"
+    },
+    {
+      "text": "Yalnızca ne düşündüğümü, neye baktığımı, ne gördüğümü ve bunun ne anlama geldiğini bulmak için yazıyorum.",
+      "by": "Joan Didion, Neden Yazıyorum"
+    },
+    {
+      "text": "Açık düşünce açık yazıya dönüşür; biri olmadan öteki olmaz.",
+      "by": "William Zinsser, Yazmak Üzerine"
+    },
+    {
+      "text": "Yazmak, kâğıt üzerinde düşünmektir.",
+      "by": "William Zinsser"
+    },
+    {
+      "text": "İyi yazıların neredeyse hepsi berbat ilk denemelerle başlar. Bir yerden başlaman gerekir.",
+      "by": "Anne Lamott, Kuş Kuş"
+    },
+    {
+      "text": "En korkutucu an, her zaman başlamadan hemen önceki andır.",
+      "by": "Stephen King, Yazma Sanatı"
+    },
+    {
+      "text": "İlhamı bekleyemezsin. Elinde sopayla peşine düşmelisin.",
+      "by": "Jack London"
+    },
+    {
+      "text": "Okumak istediğin bir kitap varsa ama henüz yazılmamışsa, onu sen yazmalısın.",
+      "by": "Toni Morrison"
+    },
+    {
+      "text": "Yazmasam deli olacaktım.",
+      "by": "Sait Faik Abasıyanık, Haritada Bir Nokta"
+    },
+    {
+      "text": "Kendi içinize dönün.",
+      "by": "Rainer Maria Rilke, Genç Bir Şaire Mektuplar"
+    },
+    {
+      "text": "Bu mektubu her zamankinden uzun yazdım, çünkü kısaltmaya vaktim olmadı.",
+      "by": "Blaise Pascal, Taşralı Mektuplar"
+    },
+    {
+      "text": "Sorgulanmamış bir hayat yaşanmaya değmez.",
+      "by": "Sokrates, Platon'un Savunma'sında"
+    },
+    {
+      "text": "Bir kitap, içimizdeki donmuş denizi kıran bir balta olmalıdır.",
+      "by": "Franz Kafka, Oskar Pollak'a mektup"
+    },
+    {
+      "text": "Yetenek, kimsenin vuramadığı bir hedefi vurur; deha ise kimsenin göremediği bir hedefi.",
+      "by": "Arthur Schopenhauer"
+    }
+  ]
 }
