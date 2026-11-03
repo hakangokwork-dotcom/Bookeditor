@@ -4302,6 +4302,22 @@ const ESSAY_I18N_2 = {
   ru: ['новое эссе', 'Эссе без названия', 'Название — можно оставить на конец', 'Отправная точка — момент или вопрос, который заставил вас писать', 'Напр.: Подписка закончилась; нужно ли мне на самом деле это приложение для заметок?', 'Сначала вы решаете, что скажете: обещание в одной фразе, читатель, оглавление. Затем пишете главу за главой.', 'Вы понимаете, что думаете, в процессе письма. Начинаете с маленького момента, название ставите последним. Позже эссе можно собрать в книгу.', 'Тип меняет только вид и писательского коуча; написанное остаётся как есть.'],
   de: ['neuer Essay', 'Essay ohne Titel', 'Titel — darf bis zum Schluss warten', 'Ausgangspunkt — der Moment oder die Frage, die dich zum Schreiben gebracht hat', 'Z. B. Mein Abo ist abgelaufen; brauche ich die Notiz-App wirklich?', 'Du legst zuerst fest, was du sagen willst: ein Versprechen in einem Satz, ein Leser, ein Inhaltsverzeichnis. Dann schreibst du Kapitel für Kapitel.', 'Du findest beim Schreiben heraus, was du denkst. Du beginnst mit einem kleinen Moment und setzt den Titel zuletzt. Essays lassen sich später zu einem Buch sammeln.', 'Die Art ändert nur die Ansicht und den Schreibcoach; dein Text bleibt, wie er ist.']
 };
+/* Kitaplık: kitaplar ve denemeler ayrı bölümler; denemelerden kitap kopyalanarak kurulur */
+const LIB_I18N = {
+  tr: ['Kitaplarım', 'Denemelerim', 'Yeni deneme', 'Denemelerden kitap yap', 'Seçtiğin denemeler yeni bir kitaba bölüm olarak kopyalanır; denemelerin olduğu gibi yerinde kalır.'],
+  en: ['My books', 'My essays', 'New essay', 'Make a book from essays', 'The essays you pick are copied into a new book as chapters; your essays stay where they are.'],
+  es: ['Mis libros', 'Mis ensayos', 'Nuevo ensayo', 'Hacer un libro con ensayos', 'Los ensayos que elijas se copian a un libro nuevo como capítulos; tus ensayos quedan donde están.'],
+  zh: ['我的书', '我的随笔', '新随笔', '用随笔编成书', '所选随笔会作为章节复制到一本新书中；原随笔保持不变。'],
+  ar: ['كتبي', 'مقالاتي', 'مقالة جديدة', 'اصنع كتابًا من المقالات', 'تُنسخ المقالات التي تختارها إلى كتاب جديد كفصول؛ وتبقى مقالاتك في مكانها.'],
+  hi: ['मेरी किताबें', 'मेरे निबंध', 'नया निबंध', 'निबंधों से किताब बनाएँ', 'चुने गए निबंध नई किताब में अध्याय बनकर कॉपी होते हैं; आपके निबंध अपनी जगह बने रहते हैं।'],
+  pt: ['Meus livros', 'Meus ensaios', 'Novo ensaio', 'Fazer um livro com ensaios', 'Os ensaios escolhidos são copiados para um novo livro como capítulos; seus ensaios continuam onde estão.'],
+  fr: ['Mes livres', 'Mes essais', 'Nouvel essai', 'Faire un livre avec des essais', 'Les essais choisis sont copiés dans un nouveau livre comme chapitres ; vos essais restent à leur place.'],
+  ru: ['Мои книги', 'Мои эссе', 'Новое эссе', 'Собрать книгу из эссе', 'Выбранные эссе копируются в новую книгу как главы; сами эссе остаются на месте.'],
+  de: ['Meine Bücher', 'Meine Essays', 'Neuer Essay', 'Buch aus Essays machen', 'Die gewählten Essays werden als Kapitel in ein neues Buch kopiert; deine Essays bleiben, wo sie sind.']
+};
+for (const [l, v] of Object.entries(LIB_I18N)) {
+  ['lib.books', 'lib.essays', 'lib.newEssay', 'lib.compose', 'lib.composeDesc'].forEach((k, i) => { I18N[l][k] = v[i]; });
+}
 for (const [l, v] of Object.entries(ESSAY_I18N_2)) {
   ['essay.new', 'essay.untitled', 'essay.titlePh', 'essay.seed', 'essay.seedPh', 'lib.kindBookHint', 'lib.kindEssayHint', 'set.kindHint']
     .forEach((k, i) => { I18N[l][k] = v[i]; });

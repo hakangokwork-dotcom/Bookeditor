@@ -157,6 +157,16 @@ function wcText(t) {
   return t ? String(t).trim().split(/\s+/).filter(Boolean).length : 0;
 }
 
+// Deneme defteri: kitaplıkta denemeler tek tek listelenir (taslağın tamamı gönderilmez)
+function essaySummaries(book) {
+  if (!book || !book.meta || book.meta.kind !== 'essays') return null;
+  const out = [];
+  for (const p of book.parts || []) for (const c of p.chapters || []) {
+    const words = String(c.draft || '').replace(/[#>*_`]/g, ' ').trim().split(/\s+/).filter(Boolean);
+    out.push({ id: c.id, title: c.title || '', first: words.slice(0, 8).join(' '), words: wcText(c.draft), status: c.status || 'taslak' });
+  }
+  return out;
+}
 function countBookWords(book) {
   let n = 0;
   for (const p of book.parts || []) for (const c of p.chapters || []) n += wcText(c.draft);
@@ -249,12 +259,13 @@ app.get('/api/library', (req, res) => {
   try {
     const lib = readLibrary();
     const books = lib.books.map(entry => {
-      let meta = {}, totalWords = 0, chapters = 0, done = 0, updatedAt = entry.createdAt || null, cloud = null;
+      let meta = {}, totalWords = 0, chapters = 0, done = 0, updatedAt = entry.createdAt || null, cloud = null, essays = null;
       try {
         const file = dataFileFor(entry);
         const book = JSON.parse(fs.readFileSync(file, 'utf8'));
         meta = book.meta || {};
         cloud = book.cloud || null;
+        essays = essaySummaries(book);
         totalWords = countBookWords(book);
         for (const p of book.parts || []) {
           chapters += (p.chapters || []).length;
@@ -271,7 +282,7 @@ app.get('/api/library', (req, res) => {
         title: meta.title || 'Adsız kitap',
         subtitle: meta.subtitle || '',
         targetWords: meta.targetWords || 60000, kind: meta.kind || null,
-        totalWords, chapters, done, updatedAt, cloud
+        totalWords, chapters, done, updatedAt, cloud, essays
       };
     });
     res.json({ books });

@@ -41,6 +41,16 @@
     return s || 'kitap';
   }
   const wcText = (t) => t ? String(t).trim().split(/\s+/).filter(Boolean).length : 0;
+  // Deneme defteri: kitaplıkta denemeler tek tek listelenir (taslağın tamamı gönderilmez)
+  function essaySummaries(book) {
+    if (!book || !book.meta || book.meta.kind !== 'essays') return null;
+    const out = [];
+    for (const p of book.parts || []) for (const c of p.chapters || []) {
+      const words = String(c.draft || '').replace(/[#>*_`]/g, ' ').trim().split(/\s+/).filter(Boolean);
+      out.push({ id: c.id, title: c.title || '', first: words.slice(0, 8).join(' '), words: wcText(c.draft), status: c.status || 'taslak' });
+    }
+    return out;
+  }
   function countBookWords(book) {
     let n = 0;
     for (const p of book.parts || []) for (const c of p.chapters || []) n += wcText(c.draft);
@@ -117,7 +127,7 @@
           id: entry.id, color: entry.color || null, createdAt: entry.createdAt || null,
           title: meta.title || 'Adsız kitap', subtitle: meta.subtitle || '',
           targetWords: meta.targetWords || 60000, kind: meta.kind || null, totalWords: countBookWords(book),
-          chapters, done, updatedAt: entry.updatedAt || entry.createdAt || null, cloud: book.cloud || null
+          chapters, done, updatedAt: entry.updatedAt || entry.createdAt || null, cloud: book.cloud || null, essays: essaySummaries(book)
         });
       }
       return { books };

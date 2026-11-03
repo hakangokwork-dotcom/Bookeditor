@@ -1147,3 +1147,48 @@ body.focus-mode .view-dock { left: 50%; }
 [data-theme="dark"] .mentor-tip { background: #2E2A1E; border-color: #4A4230; }
 [data-theme="dark"] .mentor-tip.k-inward { background: #2B2633; border-color: #463D52; }
 [data-theme="dark"] .mentor-tip.k-inward .mentor-label { color: #BFA9D8; }
+
+/* Kitaplık: Kitaplarım ve Denemelerim ayrı bölümler.
+   Kitap = zeytin, yuvarlak kapak. Deneme = kiremit mürekkep, kâğıt yaprağı (keskin köşe, kıvrık köşe, kenar çizgisi). */
+:root { --essay: #9A5B3C; --essay-deep: #7A4429; --essay-soft: #F5E9E0; --essay-paper: #FFFDF8; --essay-line: #E7C9B7; }
+[data-theme="dark"] { --essay: #D4A07F; --essay-deep: #E2B79A; --essay-soft: #3A2D25; --essay-paper: #2B2722; --essay-line: #5A4335; }
+.app.essay-mode, .app.essay-mode ~ .view-dock { --accent: var(--essay); --accent-deep: var(--essay-deep); --accent-soft: var(--essay-soft); --ring: 0 0 0 3px rgba(154, 91, 60, .22); }
+
+.lib-section { font-family: var(--font-serif); font-size: 21px; font-weight: 600; margin: 40px 0 0; display: flex; align-items: center; gap: 10px; }
+.lib-section::before { content: ''; width: 10px; height: 10px; border-radius: 3px; background: var(--accent); }
+.lib-section + .lib-grid { margin-top: 16px; }
+.lib-section-row { display: flex; align-items: baseline; gap: 18px; }
+.lib-section-row .lib-section { margin-top: 52px; }
+.lib-section-row .lib-section::before { border-radius: 0; background: var(--essay); }
+.lib-section-row .lib-back { color: var(--essay-deep); }
+.lib-section-hint { margin: 6px 0 16px; font-size: 13.5px; color: var(--muted-2); max-width: 640px; }
+.lib-new-btn.lib-new-essay { background: var(--essay); border-color: var(--essay); }
+.lib-new-btn.lib-new-essay:hover { background: var(--essay-deep); border-color: var(--essay-deep); }
+.lib-new-btn + .lib-new-btn { margin-left: 0; }
+
+.lib-essays { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+.lib-essay {
+  position: relative; min-height: 150px; padding: 18px 20px 14px 26px; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 12px;
+  background: linear-gradient(225deg, transparent 15px, var(--essay-paper) 15px);
+  border-radius: 2px; filter: drop-shadow(0 1px 1px rgba(40, 38, 33, .10)) drop-shadow(0 4px 10px rgba(40, 38, 33, .06));
+  transition: transform .12s, filter .12s;
+}
+/* defter kenar çizgisi */
+.lib-essay::before { content: ''; position: absolute; left: 14px; top: 0; bottom: 0; width: 1.5px; background: var(--essay-line); }
+/* kıvrık köşe */
+.lib-essay::after { content: ''; position: absolute; top: 0; right: 0; width: 21px; height: 21px; background: linear-gradient(225deg, transparent 50%, var(--essay-soft) 50%); border-bottom-left-radius: 3px; }
+.lib-essay:hover { transform: translateY(-2px) rotate(-.4deg); filter: drop-shadow(0 2px 2px rgba(40, 38, 33, .12)) drop-shadow(0 8px 18px rgba(40, 38, 33, .10)); }
+.lib-essay-title { font-family: var(--font-serif); font-size: 16.5px; line-height: 1.35; color: var(--text); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.lib-essay-title.untitled, .cmp-item .untitled { font-style: italic; color: var(--muted); }
+.lib-essay-meta { display: flex; align-items: center; gap: 7px; font-size: 12px; color: var(--muted); }
+.lib-essay-words { margin-left: auto; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.lib-essay-new { align-items: center; justify-content: center; flex-direction: row; gap: 8px; color: var(--essay-deep); font-weight: 600; font-size: 14px; background: none; filter: none; border: 1.5px dashed var(--essay-line); }
+.lib-essay-new::before, .lib-essay-new::after { display: none; }
+.lib-essay-new:hover { background: var(--essay-soft); filter: none; }
+.lib-essay-new svg { width: 16px; height: 16px; }
+.cmp-list { max-height: 260px; overflow-y: auto; border: 1px solid var(--border); border-radius: 9px; }
+.cmp-item { display: flex !important; align-items: center; gap: 9px; padding: 8px 12px; margin: 0 !important; font-weight: 400 !important; font-size: 13.5px !important; border-top: 1px solid var(--border-soft); cursor: pointer; }
+.cmp-item:first-child { border-top: 0; }
+.cmp-item span:nth-of-type(1) { flex: 1; }
+.lib-new .lib-new-hint { padding: 0 26px; text-align: center; line-height: 1.5; }

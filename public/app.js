@@ -623,6 +623,8 @@ function bindMetaEdit(el, key, required) {
 }
 
 function renderSidebar() {
+  // Deneme açıkken çalışma alanı deneme rengine geçer (kitaplık ekranı etkilenmez)
+  $('.app').classList.toggle('essay-mode', !!isEssays());
   bindMetaEdit($('#bookTitle'), 'title', true);
   bindMetaEdit($('#bookSubtitle'), 'subtitle', false);
 
@@ -876,13 +878,11 @@ function renderMentor() {
   const f = $('#mentorField');
   if (f) f.oninput = () => { book.meta[s.field] = f.value; scheduleSave(); };
   const tb = $('#mentorToBook');
-  if (tb) tb.onclick = () => {
-    if (!confirm(U.toBookConfirm)) return;
-    delete book.meta.kind;
-    mentorView = null;
-    scheduleSave();
-    renderSidebar();
-    renderEditor();
+  // Denemeler yerinde kalır; seçilenler yeni bir kitaba kopyalanır (Kitaplığım → Denemelerden kitap yap)
+  if (tb) tb.onclick = async () => {
+    await showLibrary();
+    const c = $('#libComposeBtn');
+    if (c) c.click();
   };
 }
 
@@ -1928,9 +1928,26 @@ function libCardHtml(b, i) {
   </div>`;
 }
 
-function renderLibrary(books) {
+function renderLibrary(all) {
   const view = $('#libraryView');
-  const totalWordsAll = books.reduce((a, b) => a + (b.totalWords || 0), 0);
+  // Kitaplar ve denemeler ayrı yaşar: deneme defterleri kitap ızgarasında değil, Denemelerim'de listelenir
+  const books = all.filter(b => b.kind !== 'essays');
+  const essays = all.filter(b => b.kind === 'essays')
+    .flatMap(b => (b.essays || []).map(e => Object.assign({ bookId: b.id }, e)));
+  const totalWordsAll = all.reduce((a, b) => a + (b.totalWords || 0), 0);
+  // Deneme bir kapak değil, bir yapraktır: kartı da kâğıt gibi
+  const essayRow = (e) => {
+    const st = e.status === 'bitti' ? 'bitti' : (e.words ? 'yaziliyor' : 'taslak');
+    return `
+      <div class="lib-essay" data-essay="${esc(e.bookId)}|${esc(e.id)}">
+        <div class="lib-essay-title${e.title ? '' : ' untitled'}">${esc(e.title || (e.first ? e.first + '…' : t('essay.untitled')))}</div>
+        <div class="lib-essay-meta">
+          <span class="status-dot status-${st === 'yaziliyor' ? 'yazılıyor' : st === 'bitti' ? 'bitti' : 'bos'}"></span>
+          <span>${esc(t('status.' + st))}</span>
+          <span class="lib-essay-words">${e.words ? esc(t('words', { n: e.words.toLocaleString(I18N_LOCALE) })) : ''}</span>
+        </div>
+      </div>`;
+  };
   view.innerHTML = `
   <header class="lib-header">
     <div class="lib-header-inner">
@@ -1941,19 +1958,32 @@ function renderLibrary(books) {
       <span class="lib-nav-active">${esc(t('lib.title'))}</span>
       ${book ? `<button class="lib-back" id="libBackBtn">${esc(t('lib.back'))}</button>` : ''}
       ${syncHeaderBtnHtml()}
+      <button class="lib-new-btn lib-new-essay" id="libNewEssayBtn">${ic('pen')} ${esc(t('lib.newEssay'))}</button>
       <button class="lib-new-btn" id="libNewBtn">${ic('plus')} ${esc(t('lib.new'))}</button>
     </div>
   </header>
   <main class="lib-main">
     <h1>${esc(t('lib.title'))}</h1>
     <p class="lib-sub">${esc(t('lib.sub', { n: books.length, w: totalWordsAll.toLocaleString(I18N_LOCALE) }))}</p>
+
+    <h2 class="lib-section">${esc(t('lib.books'))}</h2>
     <div class="lib-grid">
       ${books.map((b, i) => libCardHtml(b, i)).join('')}
       <div class="lib-card lib-new" id="libNewCard">
         ${ic('plus')}
         <div class="lib-new-title">${esc(t('lib.new'))}</div>
-        <div class="lib-new-hint">${esc(t('lib.newHint'))}</div>
+        <div class="lib-new-hint">${esc(t('lib.kindBookHint'))}</div>
       </div>
+    </div>
+
+    <div class="lib-section-row">
+      <h2 class="lib-section">${esc(t('lib.essays'))}</h2>
+      ${essays.length ? `<button class="lib-back" id="libComposeBtn">${esc(t('lib.compose'))}</button>` : ''}
+    </div>
+    <p class="lib-section-hint">${esc(t('lib.kindEssayHint'))}</p>
+    <div class="lib-essays">
+      ${essays.map(essayRow).join('')}
+      <div class="lib-essay lib-essay-new" id="libNewEssayRow">${ic('pen')}<span>${esc(t('lib.newEssay'))}</span></div>
     </div>
   </main>
   <div id="libModalHost"></div>`;
@@ -1963,6 +1993,9 @@ function renderLibrary(books) {
       if (e.target.closest('[data-archive]')) return;
       openBook(card.dataset.open);
     };
+  });
+  view.querySelectorAll('[data-essay]').forEach(row => {
+    row.onclick = () => { const [b, c] = row.dataset.essay.split('|'); openEssay(b, c); };
   });
 
   view.querySelectorAll('[data-archive]').forEach(btn => {
@@ -1974,7 +2007,7 @@ function renderLibrary(books) {
         const res = await fetch('/api/library/' + encodeURIComponent(id), { method: 'DELETE' });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error);
-        syncForget(books.find(b => b.id === id));
+        syncForget(all.find(b => b.id === id));
         if (bookId === id) { bookId = 'default'; localStorage.setItem('inkguide.bookId', bookId); }
         showLibrary();
       } catch (err) {
@@ -1986,28 +2019,131 @@ function renderLibrary(books) {
   const openForm = () => openNewBookForm();
   $('#libNewBtn').onclick = openForm;
   $('#libNewCard').onclick = openForm;
+  const startEssay = () => newEssay(all.find(b => b.kind === 'essays'));
+  $('#libNewEssayBtn').onclick = startEssay;
+  $('#libNewEssayRow').onclick = startEssay;
+  const compose = $('#libComposeBtn');
+  if (compose) compose.onclick = () => openComposeForm(essays);
   const back = $('#libBackBtn');
   if (back) back.onclick = () => { $('#libraryView').hidden = true; };
+}
+
+async function openEssay(bid, cid) {
+  await openBook(bid);
+  if (bookId === bid && findChapter(cid)) select('chapter', cid);
+}
+
+// Yeni deneme hiçbir şey sormaz: defter yoksa sessizce açılır, boş sayfaya düşülür
+async function newEssay(notebook) {
+  let id = notebook && notebook.id;
+  try {
+    if (!id) {
+      const res = await fetch('/api/library', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title: t('lib.essays'), kind: 'essays', targetWords: 20000, color: COVER_COLORS[3], partTitle: t('essay.part') })
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error);
+      id = data.id;
+    }
+  } catch (err) {
+    alert(t('lib.createError') + err.message);
+    return;
+  }
+  await openBook(id);
+  if (bookId !== id) return;
+  const part = book.parts[book.parts.length - 1];
+  if (!part) return;
+  // Son deneme hâlâ boş ve başlıksızsa yenisini açma, ona dön
+  const last = part.chapters[part.chapters.length - 1];
+  if (last && !last.title && !wordCount(last.draft)) { select('chapter', last.id); return; }
+  addChapterTo(part);
+}
+
+// Denemelerden kitap: seçilen denemeler yeni kitaba bölüm olarak KOPYALANIR; denemeler yerinde kalır
+function openComposeForm(essays) {
+  const host = $('#libModalHost');
+  host.innerHTML = `
+  <div class="lib-modal-backdrop" id="cmpBack">
+    <div class="lib-modal">
+      <div class="lib-modal-head"><span class="t">${esc(t('lib.compose'))}</span><button class="lib-modal-close" id="cmpClose" title="${esc(t('close'))}">✕</button></div>
+      <form class="lib-modal-body" id="cmpForm">
+        <p class="set-desc">${esc(t('lib.composeDesc'))}</p>
+        <div>
+          <label for="cmpTitle">${esc(t('lib.bookName'))}</label>
+          <input type="text" id="cmpTitle" placeholder="${esc(t('lib.bookNamePh'))}" required autocomplete="off">
+        </div>
+        <div>
+          <label>${esc(t('lib.essays'))}</label>
+          <div class="cmp-list">
+            ${essays.map((e, i) => `<label class="cmp-item"><input type="checkbox" value="${i}" checked> <span class="${e.title ? '' : 'untitled'}">${esc(e.title || (e.first ? e.first + '…' : t('essay.untitled')))}</span> <span class="lib-essay-words">${e.words ? e.words.toLocaleString(I18N_LOCALE) : ''}</span></label>`).join('')}
+          </div>
+        </div>
+      </form>
+      <div class="lib-modal-foot">
+        <button type="button" class="cancel" id="cmpCancel">${esc(t('lib.cancel'))}</button>
+        <button type="submit" class="create" form="cmpForm">${esc(t('lib.create'))}</button>
+      </div>
+    </div>
+  </div>`;
+  const close = () => { host.innerHTML = ''; };
+  $('#cmpClose').onclick = close;
+  $('#cmpCancel').onclick = close;
+  $('#cmpBack').onclick = (e) => { if (e.target.id === 'cmpBack') close(); };
+  $('#cmpTitle').focus();
+  $('#cmpForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const title = $('#cmpTitle').value.trim();
+    const picked = [...host.querySelectorAll('.cmp-item input:checked')].map(x => essays[+x.value]);
+    if (!title || !picked.length) return;
+    try {
+      // Denemelerin tam metni defterlerinden okunur (kitaplık listesi yalnız özet taşır)
+      const sources = {};
+      for (const bid of new Set(picked.map(p => p.bookId))) {
+        const r = await fetch('/api/book?bookId=' + encodeURIComponent(bid));
+        if (!r.ok) throw new Error(bid);
+        sources[bid] = (await r.json()).parts.flatMap(p => p.chapters);
+      }
+      const chapters = picked.map(p => {
+        const src = sources[p.bookId].find(c => c.id === p.id);
+        if (!src) throw new Error(p.id);
+        return Object.assign(JSON.parse(JSON.stringify(src)), {
+          id: uid('c'), title: src.title || (p.first ? p.first + '…' : t('essay.untitled')), coach: undefined
+        });
+      });
+      const res = await fetch('/api/library', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ title, targetWords: 60000, color: COVER_COLORS[0], partTitle: t('sample.partTitle'), chapterTitle: t('sample.chapterTitle') })
+      });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error);
+      const r2 = await fetch('/api/book?bookId=' + encodeURIComponent(data.id));
+      const nb = await r2.json();
+      nb.parts = [{ id: uid('p'), title: t('sample.partTitle'), chapters }];
+      const put = await fetch('/api/book?bookId=' + encodeURIComponent(data.id), {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(nb)
+      });
+      if (!put.ok) throw new Error('save');
+      close();
+      openBook(data.id);
+    } catch (err) {
+      alert(t('lib.createError') + err.message);
+    }
+  };
 }
 
 function openNewBookForm() {
   const host = $('#libModalHost');
   let color = COVER_COLORS[0];
   let target = 60000;
-  let kind = 'book';
   host.innerHTML = `
   <div class="lib-modal-backdrop" id="libModalBack">
     <div class="lib-modal">
       <div class="lib-modal-head"><span class="t">${esc(t('lib.new'))}</span><button class="lib-modal-close" id="libModalClose" title="${esc(t('close'))}">✕</button></div>
       <form class="lib-modal-body" id="libNewForm">
-        <div>
-          <label>${esc(t('lib.kind'))}</label>
-          <div class="lib-targets">
-            <button type="button" class="lib-target-chip sel" data-kind="book">${esc(t('lib.kindBook'))}</button>
-            <button type="button" class="lib-target-chip" data-kind="essays">${esc(t('lib.kindEssay'))}</button>
-          </div>
-          <div class="set-hint" id="nbKindHint">${esc(t('lib.kindBookHint'))}</div>
-        </div>
+        <p class="set-desc">${esc(t('lib.kindBookHint'))}</p>
         <div>
           <label for="nbTitle">${esc(t('lib.bookName'))}</label>
           <input type="text" id="nbTitle" placeholder="${esc(t('lib.bookNamePh'))}" required autocomplete="off">
@@ -2051,14 +2187,6 @@ function openNewBookForm() {
       color = btn.dataset.color;
     };
   });
-  host.querySelectorAll('[data-kind]').forEach(btn => {
-    btn.onclick = () => {
-      host.querySelectorAll('[data-kind]').forEach(b => b.classList.remove('sel'));
-      btn.classList.add('sel');
-      kind = btn.dataset.kind;
-      $('#nbKindHint').textContent = t(kind === 'essays' ? 'lib.kindEssayHint' : 'lib.kindBookHint');
-    };
-  });
   host.querySelectorAll('[data-target]').forEach(btn => {
     btn.onclick = () => {
       host.querySelectorAll('[data-target]').forEach(b => b.classList.remove('sel'));
@@ -2086,13 +2214,11 @@ function openNewBookForm() {
         body: JSON.stringify({
           title,
           subtitle: $('#nbSubtitle').value.trim(),
-          // Deneme defterinde kitap hedefi (60.000) anlamsız; seçim değişmediyse daha küçük bir hedef
-          targetWords: kind === 'essays' && target === 60000 ? 20000 : target,
+          targetWords: target,
           color,
-          kind,
           // Yeni kitap iskeleti aktif arayüz dilinde açılsın (sunucu şablonu Türkçe kalabilir)
-          partTitle: t(kind === 'essays' ? 'essay.part' : 'sample.partTitle'),
-          chapterTitle: t(kind === 'essays' ? 'essay.first' : 'sample.chapterTitle')
+          partTitle: t('sample.partTitle'),
+          chapterTitle: t('sample.chapterTitle')
         })
       });
       const data = await res.json();
