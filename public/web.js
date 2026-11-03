@@ -135,9 +135,14 @@
       book.meta.subtitle = String(subtitle || '').trim();
       const tw = parseInt(targetWords, 10);
       if (tw > 0) book.meta.targetWords = tw;
-    if (kind === 'essays') book.meta.kind = 'essays';
+    if (kind === 'essays') {
+      // Denemenin başlığı en son konur: ilk deneme başlıksız açılır
+      book.meta.kind = 'essays';
+      const first = book.parts && book.parts[0] && book.parts[0].chapters && book.parts[0].chapters[0];
+      if (first) first.title = '';
+    }
       if (partTitle && String(partTitle).trim() && book.parts && book.parts[0]) book.parts[0].title = String(partTitle).trim();
-      if (chapterTitle && String(chapterTitle).trim() && book.parts?.[0]?.chapters?.[0]) book.parts[0].chapters[0].title = String(chapterTitle).trim();
+      if (chapterTitle && String(chapterTitle).trim() && book.parts?.[0]?.chapters?.[0] && kind !== 'essays') book.parts[0].chapters[0].title = String(chapterTitle).trim();
       await put('book:' + id, book);
       const now = new Date().toISOString();
       lib.books.push({ id, color: color || null, createdAt: now, updatedAt: now });

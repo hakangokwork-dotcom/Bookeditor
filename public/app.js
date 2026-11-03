@@ -161,6 +161,8 @@ function ic(name) {
    en.json'a düşülür; o da yoksa küçük bir "yükleniyor" yer tutucusu gösterilir. */
 
 let guidePack = null; // { guideHtml: string, tips: string[] }
+let mentorPack = null; // guide/mentor-<dil>.json — yazı koçu aşamaları ve ipuçları
+let mentorView = null; // kullanıcı ‹ › ile başka aşamaya bakıyorsa onun sırası
 
 async function fetchGuidePack(lang) {
   const res = await fetch('guide/' + encodeURIComponent(lang) + '.json');
@@ -178,6 +180,10 @@ async function loadGuidePack() {
   } catch {
     try { guidePack = await fetchGuidePack('en'); } catch { guidePack = null; }
   }
+  for (const l of [I18N_LANG, 'en']) {
+    try { const r = await fetch('guide/mentor-' + l + '.json'); if (r.ok) { mentorPack = await r.json(); break; } } catch {}
+  }
+  if (book) renderMentor();
   // İçerik geldiğinde açık görünümleri tazele
   if (book) {
     renderTip();
@@ -640,8 +646,27 @@ function renderSidebar() {
     return el;
   };
 
+  // Deneme defteri: kısım yok, düz deneme listesi; başlıksız deneme ilk kelimeleriyle görünür
+  if (isEssays()) {
+    for (const part of book.parts) for (const ch of part.chapters) {
+      const wc = wordCount(ch.draft);
+      const derived = ch.status === 'bitti' ? 'bitti' : (wc > 0 ? 'yaziliyor' : 'bos');
+      tree.appendChild(mkItem(
+        'chapter essay st-' + derived + (ch.title ? '' : ' untitled') + (sel.type === 'chapter' && sel.id === ch.id ? ' selected' : ''),
+        `<span class="status-dot status-${derived === 'yaziliyor' ? 'yazılıyor' : derived}"></span>
+         <span class="chapter-label">${esc(pieceLabel(ch))}</span>
+         ${wc ? `<span class="chapter-words">${wc.toLocaleString(I18N_LOCALE)}</span>` : ''}
+         <span class="row-arrows">
+           <button data-cmv="${ch.id}|-1" title="${esc(t('tree.chUp'))}">${ic('up')}</button>
+           <button data-cmv="${ch.id}|1" title="${esc(t('tree.chDown'))}">${ic('down')}</button>
+         </span>`,
+        () => select('chapter', ch.id)));
+    }
+    tree.appendChild(mkItem('add-part', ic('plus') + ' ' + esc(t('essay.new')), () => addChapterTo(book.parts[book.parts.length - 1])));
+  }
+
   // Varyant A: sol panel yalnızca kitaba ait — özel sayfalar ve araçlar sağdaki rayda
-  for (const part of book.parts) {
+  if (!isEssays()) for (const part of book.parts) {
     tree.appendChild(mkItem('part-title',
       `<span class="caret">${ic('down')}</span> <span class="chapter-label">${esc(part.title)}</span>
        <span class="row-arrows">
@@ -657,7 +682,7 @@ function renderSidebar() {
         'chapter st-' + (derived === 'yazılıyor' ? 'yaziliyor' : derived) +
           (sel.type === 'chapter' && sel.id === ch.id ? ' selected' : ''),
         `<span class="status-dot status-${derived}"></span>
-         <span class="chapter-label">${esc(ch.title)}</span>
+         <span class="chapter-label">${esc(pieceLabel(ch))}</span>
          ${wc ? `<span class="chapter-words">${wc.toLocaleString(I18N_LOCALE)}</span>` : ''}
          <span class="row-arrows">
            <button data-cmv="${ch.id}|-1" title="${esc(t('tree.chUp'))}">${ic('up')}</button>
@@ -674,7 +699,8 @@ function renderSidebar() {
   }
 
   // Ağacın sonunda sessiz "+ Kısım" satırı
-  tree.appendChild(mkItem('add-part', ic('plus') + ' ' + esc(t('btn.addPart')), addPart));
+  if (!isEssays()) tree.appendChild(mkItem('add-part', ic('plus') + ' ' + esc(t('btn.addPart')), addPart));
+  renderMentor();
 
   tree.querySelectorAll('[data-cmv]').forEach(btn => {
     btn.onclick = (e) => {
@@ -699,8 +725,148 @@ function renderSidebar() {
   });
 }
 
+/* ---------------- Yazı koçu (sol panel) ----------------
+   Deneme: seçili denemenin aşaması (yazarak keşif, başlık en son).
+   Kitap: bütün kitabın aşaması (önce vaat ve plan, sonra taslak).
+   Aşama gözlenebilen veriden çıkarılır; gözlenemeyenler "Bunu yaptım" ile işaretlenir. */
+function mentorState() {
+  const essay = isEssays();
+  const pack = mentorPack && mentorPack[essay ? 'essay' : 'book'];
+  if (!pack) return null;
+  const all = book.parts.flatMap(p => p.chapters);
+  const cur = sel.type === 'chapter' ? all.find(c => c.id === sel.id) : null;
+  const words = c => wordCount(c.draft);
+  const filled = s => !!(s || '').trim();
+  let owner, auto;
+  if (essay) {
+    owner = cur;
+    const w = cur ? words(cur) : 0;
+    auto = {
+      spark: w >= 20, free: w >= 600, core: !!cur && filled(cur.synopsis),
+      title: !!cur && filled(cur.title) && w >= 150, share: !!cur && cur.status === 'bitti'
+    };
+  } else {
+    owner = book.meta;
+    const n = all.length;
+    auto = {
+      premise: filled(book.meta.premise), reader: filled(book.meta.reader), toc: n >= 5,
+      questions: n > 0 && all.filter(c => filled(c.synopsis)).length / n >= 0.8,
+      draft: n > 0 && all.every(c => words(c) >= 600),
+      finish: n > 0 && all.every(c => c.status === 'bitti')
+    };
+  }
+  const manual = (owner && owner.coach) || [];
+  const done = pack.stages.map(s => !!auto[s.id] || manual.includes(s.id));
+  let current = done.indexOf(false);
+  const allDone = current < 0;
+  if (allDone) current = pack.stages.length - 1;
+  return { essay, pack, all, cur, owner, auto, manual, done, current, allDone, words };
+}
+
+function mentorNudge(m) {
+  const N = m.pack.nudges, has = id => m.done[m.pack.stages.findIndex(s => s.id === id)];
+  if (m.essay) {
+    const c = m.cur, w = c ? m.words(c) : 0;
+    if (!c || w === 0) return N.w0;
+    if (c.status === 'bitti') return m.all.length >= 3 ? N.collection : N.finished;
+    if (w < 150) return N.wLow;
+    if (w < 600) return (c.title || '').trim() ? N.wMid : N.noTitleEarly;
+    if (!has('core')) return N.noCore;
+    if (w > 1500 && !has('cut')) return N.long;
+    if (!has('shape')) return N.openConcrete;
+    if (!(c.title || '').trim()) return N.titleTime;
+    return m.all.length >= 3 ? N.collection : N.titleTime;
+  }
+  if (m.allDone) return N.finished;
+  if (!has('premise')) return N.noPremise;
+  if (!has('reader')) return null; // aşamanın kendi hedefi yeterli
+  if (m.all.length < 3) return N.fewChapters;
+  if (has('draft')) return N.draftDone;
+  if (m.cur) {
+    const w = m.words(m.cur);
+    if (w === 0) return N.chEmpty;
+    if (w < 150) return N.chLow;
+    if (w > 1500) return N.chLong;
+    if (w < 600) return N.chMid;
+  }
+  if (!has('questions') && m.all.length >= 5) return N.noQuestions;
+  return N.chLow;
+}
+
+function renderMentor() {
+  const host = $('#mentor');
+  if (!host || !book) return;
+  const m = mentorState();
+  host.hidden = !m;
+  if (!m || host.contains(document.activeElement)) return; // yazarken alanı ezme
+  const U = mentorPack.ui;
+  const open = localStorage.getItem('inkguide.mentorOpen') !== '0';
+  const idx = mentorView === null ? m.current : mentorView;
+  const s = m.pack.stages[idx];
+  const isDone = m.done[idx], manualDone = m.manual.includes(s.id) && !m.auto[s.id];
+  const canMark = m.essay ? !!m.cur : true;
+  const li = arr => arr.map(x => `<li>${esc(x)}</li>`).join('');
+  host.innerHTML = `
+    <button class="mentor-head" id="mentorToggle" aria-expanded="${open}">
+      ${ic('pen')} <span class="mentor-name">${esc(U.title)}</span>
+      <span class="mentor-stage">${esc(U.stage.replace('{n}', idx + 1).replace('{total}', m.pack.stages.length))}</span>
+      <span class="caret">${ic(open ? 'down' : 'up')}</span>
+    </button>
+    ${open ? `
+    <div class="mentor-body">
+      <div class="mentor-dots">${m.pack.stages.map((x, i) => `<button class="mentor-dot${m.done[i] ? ' done' : ''}${i === idx ? ' on' : ''}" data-mstage="${i}" title="${esc(x.title)}"></button>`).join('')}</div>
+      <div class="mentor-title">${isDone ? ic('check') + ' ' : ''}${esc(s.title)}</div>
+      ${mentorView === null && (m.allDone || mentorNudge(m)) ? `<p class="mentor-nudge">${esc(m.allDone ? U.allDone : mentorNudge(m))}</p>` : ''}
+      <p class="mentor-goal">${esc(s.goal)}</p>
+      ${s.field ? `<textarea class="mentor-field" id="mentorField" rows="3" placeholder="${esc(U[s.field + 'Ph'])}">${esc(book.meta[s.field] || '')}</textarea>` : ''}
+      <div class="mentor-label">${esc(U.steps)}</div>
+      <ol class="mentor-steps">${li(s.steps)}</ol>
+      <details class="mentor-more">
+        <summary>${esc(U.checks)}</summary>
+        <ul>${li(s.checks)}</ul>
+        <p class="mentor-pitfall"><b>${esc(U.pitfall)}:</b> ${esc(s.pitfall)}</p>
+      </details>
+      <div class="mentor-actions">
+        <button id="mentorPrev" title="${esc(U.prev)}" ${idx === 0 ? 'disabled' : ''}>‹</button>
+        ${canMark && !m.auto[s.id] ? `<button id="mentorDone" class="${manualDone ? '' : 'primary'}">${esc(manualDone ? U.undo : U.done)}</button>` : ''}
+        ${mentorView !== null && mentorView !== m.current ? `<button id="mentorNow">${esc(U.current)}</button>` : ''}
+        <button id="mentorNext" title="${esc(U.next)}" ${idx === m.pack.stages.length - 1 ? 'disabled' : ''}>›</button>
+      </div>
+      ${m.essay && m.all.length >= 3 ? `<button class="mentor-tobook" id="mentorToBook">${esc(U.toBook)}</button>` : ''}
+    </div>` : ''}`;
+
+  $('#mentorToggle').onclick = () => { localStorage.setItem('inkguide.mentorOpen', open ? '0' : '1'); renderMentor(); };
+  if (!open) return;
+  const view = i => { mentorView = i === m.current ? null : i; renderMentor(); };
+  host.querySelectorAll('[data-mstage]').forEach(b => { b.onclick = () => view(+b.dataset.mstage); });
+  $('#mentorPrev').onclick = () => view(Math.max(0, idx - 1));
+  $('#mentorNext').onclick = () => view(Math.min(m.pack.stages.length - 1, idx + 1));
+  const now = $('#mentorNow');
+  if (now) now.onclick = () => view(m.current);
+  const f = $('#mentorField');
+  if (f) f.oninput = () => { book.meta[s.field] = f.value; scheduleSave(); };
+  const d = $('#mentorDone');
+  if (d) d.onclick = () => {
+    const o = m.owner;
+    o.coach = manualDone ? (o.coach || []).filter(x => x !== s.id) : [...new Set([...(o.coach || []), s.id])];
+    mentorView = null;
+    scheduleSave();
+    renderMentor();
+  };
+  const tb = $('#mentorToBook');
+  if (tb) tb.onclick = () => {
+    if (!confirm(U.toBookConfirm)) return;
+    delete book.meta.kind;
+    mentorView = null;
+    scheduleSave();
+    renderSidebar();
+    renderEditor();
+  };
+}
+
 function select(type, id = null) {
   sel = { type, id };
+  mentorView = null;
   if (book) book.lastSel = sel;
   previewMode = false;
   if (type === 'scratch') scratchPadId = null;
@@ -939,7 +1105,7 @@ function makeNoteEditable(el, note, rerender) {
 function chapterOptionsHtml() {
   return book.parts.map(p =>
     `<optgroup label="${esc(p.title)}">` +
-    p.chapters.map(c => `<option value="${esc(c.id)}">${esc(c.title)}</option>`).join('') +
+    p.chapters.map(c => `<option value="${esc(c.id)}">${esc(pieceLabel(c))}</option>`).join('') +
     '</optgroup>'
   ).join('');
 }
@@ -1197,6 +1363,7 @@ function renderChapter(ed) {
   const found = findChapter(sel.id);
   if (!found) { select('guide'); return; }
   const { part, chapter: ch } = found;
+  const essay = isEssays();
 
   const srcOptions = book.sources.map(s => `<option value="${esc(s.id)}">${esc(s.id)}</option>`).join('');
 
@@ -1217,9 +1384,9 @@ function renderChapter(ed) {
 
   ed.innerHTML = `
   <div class="editor-inner">
-    <div style="font-size:12px;color:var(--muted);letter-spacing:.02em;margin-bottom:6px">${esc(part.title)}</div>
+    ${essay ? '' : `<div style="font-size:12px;color:var(--muted);letter-spacing:.02em;margin-bottom:6px">${esc(part.title)}</div>`}
     <div class="chapter-header">
-      <input class="chapter-title-input" id="chTitle" value="${esc(ch.title)}">
+      <input class="chapter-title-input" id="chTitle" value="${esc(ch.title)}"${essay ? ` placeholder="${esc(t('essay.titlePh'))}"` : ''}>
       <!-- Tek elle verilen karar: bitti mi, değil mi? "Yazılıyor" kelime sayısından türetilir -->
       <select class="status-select" id="chStatus">
         <option value="taslak" ${ch.status !== 'bitti' ? 'selected' : ''}>${esc(t('status.taslak'))}</option>
@@ -1227,8 +1394,8 @@ function renderChapter(ed) {
       </select>
     </div>
 
-    <div class="field-label">${ic('file')} ${esc(t('ch.synopsis'))}</div>
-    <textarea class="synopsis" id="chSynopsis">${esc(ch.synopsis)}</textarea>
+    <div class="field-label">${ic('file')} ${esc(t(essay ? 'essay.seed' : 'ch.synopsis'))}</div>
+    <textarea class="synopsis${essay ? ' seed' : ''}" id="chSynopsis"${essay ? ` placeholder="${esc(t('essay.seedPh'))}"` : ''}>${esc(ch.synopsis)}</textarea>
 
     <div class="field-label">${ic('pen')} ${esc(t('ch.draft'))}</div>
     <div class="draft-toolbar">
@@ -1355,7 +1522,7 @@ function renderChapter(ed) {
   $('#chDown').onclick = () => moveChapter(part, ch, 1);
   $('#chAdd').onclick = () => addChapterTo(part, ch);
   $('#chDel').onclick = () => {
-    if (!confirm(t('ch.delConfirm', { title: ch.title }))) return;
+    if (!confirm(t('ch.delConfirm', { title: pieceLabel(ch) }))) return;
     part.chapters = part.chapters.filter(c => c.id !== ch.id);
     scheduleSave();
     select('guide');
@@ -1590,10 +1757,18 @@ function addPart() {
 
 const isEssays = () => book && book.meta && book.meta.kind === 'essays';
 
+// Başlıksız deneme listede ilk kelimeleriyle görünür
+function pieceLabel(ch) {
+  if (ch.title) return ch.title;
+  const words = (ch.draft || '').replace(/[#>*_`\-]/g, ' ').trim().split(/\s+/).filter(Boolean);
+  return words.length ? words.slice(0, 6).join(' ') + (words.length > 6 ? '…' : '') : t('essay.untitled');
+}
+
 // Bölüm ekler (after verilirse onun arkasına) ve yazmak için açar
 function addChapterTo(part, after) {
-  const title = prompt(t(isEssays() ? 'essay.newPrompt' : 'ch.newPrompt'));
-  if (!title) return;
+  // Denemede başlık en sona kalabilir: sormadan açılır
+  const title = isEssays() ? '' : prompt(t('ch.newPrompt'));
+  if (title === null || (!title && !isEssays())) return;
   const nc = { id: uid('c'), title, status: 'taslak', synopsis: '', draft: '', notes: [] };
   part.chapters.splice(after ? part.chapters.indexOf(after) + 1 : part.chapters.length, 0, nc);
   scheduleSave();
@@ -1809,7 +1984,7 @@ function openNewBookForm() {
             <button type="button" class="lib-target-chip sel" data-kind="book">${esc(t('lib.kindBook'))}</button>
             <button type="button" class="lib-target-chip" data-kind="essays">${esc(t('lib.kindEssay'))}</button>
           </div>
-          <div class="set-hint" id="nbKindHint" hidden>${esc(t('lib.kindEssayHint'))}</div>
+          <div class="set-hint" id="nbKindHint">${esc(t('lib.kindBookHint'))}</div>
         </div>
         <div>
           <label for="nbTitle">${esc(t('lib.bookName'))}</label>
@@ -1859,7 +2034,7 @@ function openNewBookForm() {
       host.querySelectorAll('[data-kind]').forEach(b => b.classList.remove('sel'));
       btn.classList.add('sel');
       kind = btn.dataset.kind;
-      $('#nbKindHint').hidden = kind !== 'essays';
+      $('#nbKindHint').textContent = t(kind === 'essays' ? 'lib.kindEssayHint' : 'lib.kindBookHint');
     };
   });
   host.querySelectorAll('[data-target]').forEach(btn => {
@@ -1889,7 +2064,8 @@ function openNewBookForm() {
         body: JSON.stringify({
           title,
           subtitle: $('#nbSubtitle').value.trim(),
-          targetWords: target,
+          // Deneme defterinde kitap hedefi (60.000) anlamsız; seçim değişmediyse daha küçük bir hedef
+          targetWords: kind === 'essays' && target === 60000 ? 20000 : target,
           color,
           kind,
           // Yeni kitap iskeleti aktif arayüz dilinde açılsın (sunucu şablonu Türkçe kalabilir)
@@ -1946,6 +2122,13 @@ function renderSettings(ed) {
         <div class="set-field"><label for="setTitle">${esc(t('set.title'))}</label><input id="setTitle" type="text" value="${esc(m.title)}" placeholder="${esc(t('set.titlePh'))}"></div>
         <div class="set-field"><label for="setSubtitle">${esc(t('set.subtitle'))} <span class="opt">${esc(t('lib.opt'))}</span></label><input id="setSubtitle" type="text" value="${esc(m.subtitle || '')}" placeholder="${esc(t('set.subtitlePh'))}"></div>
         <div class="set-field"><label for="setAuthor">${esc(t('set.author'))}</label><input id="setAuthor" type="text" value="${esc(m.author || '')}" placeholder="${esc(t('set.authorPh'))}"></div>
+        <div class="set-field"><label for="setKind">${esc(t('lib.kind'))}</label>
+          <select id="setKind">
+            <option value="book" ${m.kind !== 'essays' ? 'selected' : ''}>${esc(t('lib.kindBook'))}</option>
+            <option value="essays" ${m.kind === 'essays' ? 'selected' : ''}>${esc(t('lib.kindEssay'))}</option>
+          </select>
+          <div class="set-hint">${esc(t('set.kindHint'))}</div>
+        </div>
         <div class="set-field"><label for="setTarget">${esc(t('set.target'))}</label><input id="setTarget" type="number" min="1000" step="1000" value="${m.targetWords || 60000}"></div>
       </div>
 
@@ -2018,6 +2201,12 @@ function renderSettings(ed) {
   $('#setTarget').oninput = e => {
     const v = parseInt(e.target.value, 10);
     if (v > 0) { m.targetWords = v; scheduleSave(); }
+  };
+  // Tür değişimi yalnız görünümü değiştirir; kısımlar/bölümler olduğu gibi kalır (denemeler → kitap)
+  $('#setKind').onchange = e => {
+    if (e.target.value === 'essays') m.kind = 'essays'; else delete m.kind;
+    scheduleSave();
+    renderSidebar();
   };
 
   // Dil tercihleri — arayüz dili değişince bekleyen kayıt gönderilir ve sayfa yenilenir

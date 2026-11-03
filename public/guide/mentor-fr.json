@@ -1,0 +1,157 @@
+{
+  "ui": {
+    "title": "Coach d'écriture",
+    "stage": "Étape {n}/{total}",
+    "steps": "Que faire maintenant",
+    "checks": "Demande-toi",
+    "pitfall": "Attention",
+    "done": "C'est fait",
+    "undo": "Annuler",
+    "prev": "Étape précédente",
+    "next": "Étape suivante",
+    "current": "Revenir à ton étape",
+    "allDone": "Toutes les étapes sont faites. Félicitations !",
+    "premisePh": "Ce livre montre à [qui] [quoi] [comment]…",
+    "readerPh": "Un seul lecteur : qui il est, ce qu'il sait, ce dont il a besoin…",
+    "toBook": "Faire un livre de ces essais",
+    "toBookConfirm": "Transformer ce carnet en livre ? Tes essais deviennent des chapitres que tu peux réordonner et regrouper en parties. Tu peux revenir en arrière dans les Réglages."
+  },
+  "essay": {
+    "stages": [
+      {
+        "id": "spark", "title": "Attrape l'étincelle",
+        "goal": "Note le petit moment concret, ou la question, qui t'a fait réagir.",
+        "steps": ["Écris en une phrase le moment qui t'a dérangé ou intrigué.", "Où et quand c'était, qu'avais-tu dans les mains ? Écris-le aussi.", "Demande-toi « Pourquoi ? » une fois, mais n'y réponds pas encore."],
+        "checks": ["Ce moment m'est-il vraiment arrivé ?", "Cette question me rend-elle un peu curieux ?"],
+        "pitfall": "Commencer par un grand sujet comme « le temps » ou « la peur ». Commence petit ; le grand sujet arrive tout seul."
+      },
+      {
+        "id": "free", "title": "Écris sans t'arrêter",
+        "goal": "Découvre ce que tu penses en écrivant ; n'essaie de rien corriger.",
+        "steps": ["Écris 15 à 20 minutes sans pause.", "N'efface pas, ne reviens pas en arrière.", "Si tu t'écartes du sujet, suis l'écart ; laisse venir les phrases qui commencent par « En fait… »."],
+        "checks": ["Ai-je écrit quelque chose que je n'avais pas en tête au départ ?", "Ai-je pu écrire sans me juger ?"],
+        "pitfall": "Chercher de belles phrases dès le premier paragraphe. Un premier jet a le droit d'être mauvais."
+      },
+      {
+        "id": "core", "title": "Trouve de quoi ça parle vraiment",
+        "goal": "Vois le vrai sujet sous l'événement : ce que tu veux vraiment dire.",
+        "steps": ["Relis le brouillon depuis le début ; trouve la phrase qui te surprend le plus.", "Complète la phrase « Au fond, ce texte parle de … ».", "Écris-la dans le champ « Point de départ » en haut."],
+        "checks": ["Mon texte va-t-il au-delà de « ce qui s'est passé » jusqu'à « ce que ça m'a appris » ?", "Un ami serait-il intéressé si je disais cette phrase à voix haute ?"],
+        "pitfall": "Raconter l'événement sans en chercher le sens. Un essai ne reste pas sur l'événement ; il va là où l'événement mène ta pensée."
+      },
+      {
+        "id": "shape", "title": "Donne-lui une forme",
+        "goal": "Ordonne le chemin du moment concret à la pensée, pour que le lecteur puisse le suivre aussi.",
+        "steps": ["Ouvre sur la scène concrète.", "Élargis la pensée pas à pas ; relie chaque pas à un exemple.", "Termine là où tu es arrivé, pas sur un verdict.", "Déplace des paragraphes si besoin."],
+        "checks": ["Un lecteur continuerait-il après le premier paragraphe ?", "Chaque paragraphe va-t-il un pas plus loin que le précédent ?"],
+        "pitfall": "Retomber dans la dissertation scolaire (introduction–développement–« en conclusion »). Un essai est une conversation, pas une démonstration."
+      },
+      {
+        "id": "cut", "title": "Coupe et simplifie",
+        "goal": "Jette le superflu et rends ta voix claire.",
+        "steps": ["Coupe au moins 10 % du texte.", "Chasse les mots de remplissage comme « je pense », « en fait », « un peu ».", "Lis à voix haute ; corrige là où tu butes."],
+        "checks": ["Si j'enlève cette phrase, perd-on quelque chose ?", "Est-ce que ça sonne comme moi quand je parle ?"],
+        "pitfall": "Aimer chaque phrase et n'en couper aucune."
+      },
+      {
+        "id": "title", "title": "Le titre en dernier",
+        "goal": "Trouve un nom qui laisse deviner où le texte est arrivé.",
+        "steps": ["Relis le dernier paragraphe et ta phrase de point de départ.", "Écris trois titres : un à partir d'un objet concret, un à partir de la question, un à partir de la pensée où tu es arrivé.", "Dis-les à voix haute ; choisis celui qui éveille le plus la curiosité."],
+        "checks": ["Le titre laisse-t-il deviner le sujet sans dévoiler la fin ?", "Prend-il un sens nouveau une fois le texte lu ?"],
+        "pitfall": "S'accrocher au titre provisoire. Si le texte est parti ailleurs, le titre doit suivre."
+      },
+      {
+        "id": "share", "title": "Fais-le lire et lâche prise",
+        "goal": "Donne le texte à un lecteur, puis termine-le.",
+        "steps": ["Fais-le lire à quelqu'un de confiance ; demande seulement « Où t'es-tu ennuyé, où t'es-tu arrêté ? ».", "Applique au plus deux remarques.", "Marque-le « Terminé » en haut."],
+        "checks": ["Ai-je corrigé les endroits où le lecteur s'est arrêté ?", "Peaufiner encore l'améliorerait-il vraiment, ou est-ce que je repousse ?"],
+        "pitfall": "Peaufiner sans fin un texte fini. Un essai est une tentative ; il n'a pas à être parfait."
+      }
+    ],
+    "nudges": {
+      "w0": "Qu'est-ce qui t'a fait réfléchir aujourd'hui, même un peu ? Écris-le en une phrase ; le reste suivra.",
+      "wLow": "Bon début. Maintenant continue 15 minutes sans rien corriger.",
+      "wMid": "Si tu sens que tu t'écartes, suis l'écart ; c'est là que l'essai commence.",
+      "noTitleEarly": "Ne te presse pas pour le titre ; dans un essai, il vient souvent en dernier.",
+      "noCore": "Maintenant relis et complète la phrase « Au fond, ce texte parle de … ».",
+      "openConcrete": "Ton ouverture commence-t-elle par un moment concret ? Place le lecteur là.",
+      "long": "Le texte est devenu long et dense. Essaie d'en couper 10 % ; ce qui reste sera plus fort.",
+      "titleTime": "Maintenant tu sais ce que tu dis. Essaie trois titres et garde le plus intrigant.",
+      "finished": "Bravo, tu as terminé un essai. Fais-le lire, puis attrape ta prochaine étincelle.",
+      "collection": "Tes essais partagent-ils une même préoccupation ? C'est peut-être le début d'un livre."
+    }
+  },
+  "book": {
+    "stages": [
+      {
+        "id": "premise", "title": "Résume la promesse en une phrase",
+        "goal": "Dis en une phrase ce que le livre promet à son lecteur.",
+        "steps": ["Complète : « Ce livre montre à [qui] [quoi] [comment] ».", "Simplifie comme si tu l'expliquais à quelqu'un autour d'un café.", "Écris-la dans la case ci-dessous."],
+        "checks": ["Est-ce une seule phrase ?", "Répond-elle au « et alors ? » du lecteur ?"],
+        "pitfall": "Confondre un sujet et une promesse. « Ma mère » est un sujet ; « Comment j'ai porté le deuil après avoir perdu ma mère » est une promesse.",
+        "field": "premise"
+      },
+      {
+        "id": "reader", "title": "Choisis un seul lecteur",
+        "goal": "Sache clairement pour qui tu écris.",
+        "steps": ["Pense à une personne que tu connais.", "Écris ce qu'elle sait du sujet et ce dont elle a besoin.", "Écris ce qui changera dans sa vie quand elle aura fini le livre."],
+        "checks": ["Puis-je décrire mon lecteur sans dire « tout le monde » ?", "Pourquoi ce lecteur prendrait-il ce livre ?"],
+        "pitfall": "Vouloir écrire pour tout le monde et ne toucher personne.",
+        "field": "reader"
+      },
+      {
+        "id": "toc", "title": "Construis la table des matières",
+        "goal": "Pose le squelette du livre, chapitre par chapitre.",
+        "steps": ["Écris 8 à 15 titres de chapitre (« + ajouter un chapitre à cette partie »).", "Range-les selon le parcours du lecteur.", "Regroupe-les en parties si besoin."],
+        "checks": ["Lus dans l'ordre, les chapitres tiennent-ils ma promesse ?", "Deux chapitres se répètent-ils ?"],
+        "pitfall": "Perfectionner le plan sans jamais commencer à écrire. Le plan peut changer en cours de route."
+      },
+      {
+        "id": "questions", "title": "Donne une question à chaque chapitre",
+        "goal": "Sache à quelle question chaque chapitre répond pour le lecteur.",
+        "steps": ["Dans le résumé de chaque chapitre, écris la question du lecteur.", "Note comment le chapitre s'ouvre (une scène, un souvenir, un exemple).", "Écris où le chapitre laisse le lecteur."],
+        "checks": ["Ce chapitre se concentre-t-il sur une seule question ?", "Le lecteur la poserait-il vraiment ?"],
+        "pitfall": "Entasser trois sujets différents dans un seul chapitre."
+      },
+      {
+        "id": "draft", "title": "Écris le premier jet porte fermée",
+        "goal": "Termine tous les chapitres sans les juger, même s'ils sont mauvais.",
+        "steps": ["Fixe-toi un petit objectif quotidien : 300 mots ou une seule scène.", "Commence par le chapitre facile ; pas besoin de suivre l'ordre.", "Ne reviens pas corriger ; laisse une note et continue.", "Ne montre le brouillon à personne pour l'instant."],
+        "checks": ["Ai-je écrit aujourd'hui ?", "Ai-je répondu à la question du chapitre ?"],
+        "pitfall": "Réécrire dix fois le chapitre un sans jamais arriver au deux."
+      },
+      {
+        "id": "revise", "title": "Révise par couches",
+        "goal": "Reprends le brouillon du plus grand au plus petit.",
+        "steps": ["D'abord la structure : ordre des chapitres, chapitres inutiles.", "Ensuite : chaque chapitre répond-il à sa question ?", "En dernier : phrases et mots ; coupe 10 %.", "Fais chaque couche dans une lecture séparée."],
+        "checks": ["Ce chapitre sert-il la promesse ?", "Mon lecteur s'ennuierait-il ici ?"],
+        "pitfall": "S'occuper des virgules avant que la structure soit en place."
+      },
+      {
+        "id": "feedback", "title": "Ouvre la porte : demande l'avis de lecteurs",
+        "goal": "Découvre où un vrai lecteur bloque.",
+        "steps": ["Donne le brouillon à 1 à 3 personnes.", "Demande : « Où t'es-tu ennuyé, où t'es-tu perdu, qu'est-ce qui t'est resté ? ».", "Corrige ce que deux personnes ont relevé."],
+        "checks": ["Mon lecteur peut-il dire la promesse avec ses propres mots ?", "Ai-je écouté sans me défendre ?"],
+        "pitfall": "Appliquer toutes les suggestions et perdre la voix du livre."
+      },
+      {
+        "id": "finish", "title": "Termine et exporte",
+        "goal": "Déclare le livre fini et rends-le partageable.",
+        "steps": ["Vérifie une dernière fois le titre et le sous-titre par rapport à la promesse.", "Marque les chapitres « Terminé ».", "Exporte avec le bouton livre en bas à droite, et fête ça."],
+        "checks": ["Le titre reflète-t-il la promesse ?", "Les corrections restantes comptent-elles vraiment ?"],
+        "pitfall": "Repousser la fin à l'infini avec un « encore un petit peu »."
+      }
+    ],
+    "nudges": {
+      "noPremise": "D'abord une phrase : que promet ce livre, et à qui ?",
+      "fewChapters": "Ta promesse est prête. Maintenant liste 8 à 15 titres de chapitre ; l'ordre pourra changer.",
+      "noQuestions": "Donne à chaque chapitre la question que son lecteur poserait.",
+      "chEmpty": "Ouvre ce chapitre sur une scène ou un souvenir. La première phrase n'a pas à être parfaite.",
+      "chLow": "Objectif du jour : 300 mots. On corrige une fois le brouillon fini.",
+      "chMid": "Es-tu près de répondre à la question du chapitre ? Jette un œil au résumé.",
+      "chLong": "Ce chapitre a grandi. Répond-il à deux questions différentes ? Coupe-le en deux si besoin.",
+      "draftDone": "Le premier jet est fini ; c'est énorme. Fais une pause de quelques jours, puis révise en commençant par la structure.",
+      "finished": "Ton livre est fini ! Exporte-le, et n'oublie pas que tu te dois une fête."
+    }
+  }
+}

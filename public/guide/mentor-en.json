@@ -1,0 +1,157 @@
+{
+  "ui": {
+    "title": "Writing coach",
+    "stage": "Stage {n}/{total}",
+    "steps": "What to do now",
+    "checks": "Ask yourself",
+    "pitfall": "Watch out",
+    "done": "I did this",
+    "undo": "Undo",
+    "prev": "Previous stage",
+    "next": "Next stage",
+    "current": "Back to your stage",
+    "allDone": "Every stage is done. Congratulations!",
+    "premisePh": "This book shows [whom] [what] [how]…",
+    "readerPh": "One reader: who they are, what they know, what they need…",
+    "toBook": "Turn these essays into a book",
+    "toBookConfirm": "Turn this notebook into a book? Your essays become chapters you can reorder and group into parts. You can switch back in Settings."
+  },
+  "essay": {
+    "stages": [
+      {
+        "id": "spark", "title": "Catch the spark",
+        "goal": "Put down the small, concrete moment or question that nudged you.",
+        "steps": ["Write the moment that bothered or intrigued you in one sentence.", "Where and when did it happen, what was in your hands? Write that too.", "Ask \"Why?\" once, but don't answer it yet."],
+        "checks": ["Did this moment really happen to me?", "Am I even a little curious about this question?"],
+        "pitfall": "Starting with a big subject like \"time\" or \"fear\". Start small; the big subject arrives on its own."
+      },
+      {
+        "id": "free", "title": "Write without stopping",
+        "goal": "Find out what you think by writing; don't try to fix anything.",
+        "steps": ["Write for 15–20 minutes without a break.", "Don't delete, don't go back.", "When you drift off topic, follow the drift; allow sentences that start with \"Actually…\"."],
+        "checks": ["Did I write something I didn't have in mind at the start?", "Could I write without judging myself?"],
+        "pitfall": "Hunting for beautiful sentences in the first paragraph. A first draft has the right to be bad."
+      },
+      {
+        "id": "core", "title": "Find what it's really about",
+        "goal": "See the real subject under the event: what you truly want to say.",
+        "steps": ["Read the draft from the top; find the sentence that surprises you most.", "Finish the sentence \"This piece is really about …\".", "Write it in the \"Starting point\" field above."],
+        "checks": ["Does my piece move past \"what happened\" to \"what it taught me\"?", "Would a friend be interested if I said this sentence out loud?"],
+        "pitfall": "Telling the event without looking for its meaning. An essay doesn't stay with the event; it goes where the event leads your thinking."
+      },
+      {
+        "id": "shape", "title": "Give it shape",
+        "goal": "Order the path from the concrete moment to the thought so a reader can walk it too.",
+        "steps": ["Open with the concrete scene.", "Widen the thought step by step; tie each step to an example.", "End where you arrived, not with a verdict.", "Move paragraphs around if needed."],
+        "checks": ["Would a reader keep going after the first paragraph?", "Does each paragraph go one step beyond the last?"],
+        "pitfall": "Falling back to the school essay (intro–body–\"in conclusion\"). An essay is a conversation, not a proof."
+      },
+      {
+        "id": "cut", "title": "Cut and simplify",
+        "goal": "Throw out the extra and make your voice clear.",
+        "steps": ["Cut at least 10% of the text.", "Weed out fillers like \"I think\", \"actually\", \"sort of\".", "Read it aloud; fix where you stumble."],
+        "checks": ["If I remove this sentence, is anything lost?", "Does it sound like me talking?"],
+        "pitfall": "Loving every sentence and cutting none."
+      },
+      {
+        "id": "title", "title": "Title it last",
+        "goal": "Find a name that hints at where the piece arrived.",
+        "steps": ["Reread the last paragraph and your starting-point sentence.", "Write three titles: one from a concrete object, one from the question, one from the thought you reached.", "Say them aloud; pick the one that sparks the most curiosity."],
+        "checks": ["Does the title hint at the subject without giving the ending away?", "Does it gain a new meaning once the piece is read?"],
+        "pitfall": "Clinging to the working title. If the piece went somewhere else, the title should follow."
+      },
+      {
+        "id": "share", "title": "Share it and let go",
+        "goal": "Give the piece to a reader, then finish it.",
+        "steps": ["Have someone you trust read it; ask only \"Where did you get bored, where did you stop?\"", "Apply at most two of the notes.", "Mark it \"Done\" at the top."],
+        "checks": ["Did I fix the places where the reader stopped?", "Would more polishing really improve it, or am I just postponing?"],
+        "pitfall": "Polishing a finished piece forever. An essay is an attempt; it doesn't have to be perfect."
+      }
+    ],
+    "nudges": {
+      "w0": "What made you think today, even a little? Write it in one sentence; the rest will follow.",
+      "wLow": "Good start. Now keep going for 15 minutes without fixing anything.",
+      "wMid": "If you feel yourself drifting, follow the drift; that's where the essay begins.",
+      "noTitleEarly": "Don't rush the title; in an essay it usually comes last.",
+      "noCore": "Now read it and finish the sentence \"This piece is really about …\".",
+      "openConcrete": "Does your opening start with a concrete moment? Put the reader there.",
+      "long": "This has grown long and full. Try cutting 10%; what's left will be stronger.",
+      "titleTime": "Now you know what you're saying. Try three titles and pick the most intriguing.",
+      "finished": "Congratulations, you finished an essay. Have someone read it, then catch your next spark.",
+      "collection": "Do your essays share a common concern? It may be the beginning of a book."
+    }
+  },
+  "book": {
+    "stages": [
+      {
+        "id": "premise", "title": "Boil the promise down to one sentence",
+        "goal": "Say in one sentence what the book promises its reader.",
+        "steps": ["Fill in: \"This book shows [whom] [what] [how]\".", "Simplify it as if explaining to someone over coffee.", "Write it in the box below."],
+        "checks": ["Is it one sentence?", "Does it answer the reader's \"so what?\""],
+        "pitfall": "Mistaking a topic for a promise. \"My mother\" is a topic; \"How I carried grief after losing my mother\" is a promise.",
+        "field": "premise"
+      },
+      {
+        "id": "reader", "title": "Pick a single reader",
+        "goal": "Get clear on whom you're writing for.",
+        "steps": ["Think of one person you know.", "Write what they know about the subject and what they need.", "Write what will change in their life once they finish the book."],
+        "checks": ["Can I describe my reader without saying \"everyone\"?", "Why would this reader pick up the book?"],
+        "pitfall": "Trying to write for everyone and reaching no one.",
+        "field": "reader"
+      },
+      {
+        "id": "toc", "title": "Build the table of contents",
+        "goal": "Lay out the book's skeleton, chapter by chapter.",
+        "steps": ["Write 8–15 chapter titles (\"+ add chapter to this part\").", "Order them along the reader's journey.", "Group them into parts if needed."],
+        "checks": ["Read in order, do the chapters deliver my promise?", "Are two chapters repeating each other?"],
+        "pitfall": "Perfecting the plan and never starting to write. The plan can change as you write."
+      },
+      {
+        "id": "questions", "title": "Give every chapter a question",
+        "goal": "Know which question each chapter answers for the reader.",
+        "steps": ["In each chapter's synopsis, write the reader's question.", "Note how the chapter opens (a scene, a memory, an example).", "Write where the chapter leaves the reader."],
+        "checks": ["Does this chapter focus on a single question?", "Would the reader really ask it?"],
+        "pitfall": "Cramming three separate topics into one chapter."
+      },
+      {
+        "id": "draft", "title": "Write the first draft with the door closed",
+        "goal": "Finish every chapter without judging it, even if it's bad.",
+        "steps": ["Set a small daily goal: 300 words or a single scene.", "Start with the easy chapter; you don't have to go in order.", "Don't go back to fix; leave a note and keep going.", "Don't show the draft to anyone yet."],
+        "checks": ["Did I write today?", "Did I give an answer to the chapter's question?"],
+        "pitfall": "Rewriting chapter one ten times and never reaching chapter two."
+      },
+      {
+        "id": "revise", "title": "Revise in layers",
+        "goal": "Go over the draft from big to small.",
+        "steps": ["First structure: chapter order, unneeded chapters.", "Then: does each chapter answer its question?", "Last: sentences and words; cut 10%.", "Do each layer in a separate read."],
+        "checks": ["Does this chapter serve the promise?", "Would my reader get bored here?"],
+        "pitfall": "Fussing over commas before the structure is settled."
+      },
+      {
+        "id": "feedback", "title": "Open the door: get reader feedback",
+        "goal": "Learn where a real reader gets stuck.",
+        "steps": ["Give the draft to 1–3 people.", "Ask: \"Where were you bored, where were you confused, what stayed with you?\"", "Fix what two people said."],
+        "checks": ["Can my reader tell the promise in their own words?", "Did I listen without defending?"],
+        "pitfall": "Applying every suggestion and losing the book's voice."
+      },
+      {
+        "id": "finish", "title": "Finish and export",
+        "goal": "Call the book done and make it shareable.",
+        "steps": ["Check the title and subtitle against the promise one last time.", "Mark the chapters \"Done\".", "Export with the book button at the bottom right, and celebrate."],
+        "checks": ["Does the title reflect the promise?", "Do the remaining fixes really matter?"],
+        "pitfall": "Postponing the finish forever with \"just a bit more\"."
+      }
+    ],
+    "nudges": {
+      "noPremise": "One sentence first: what does this book promise, and to whom?",
+      "fewChapters": "Your promise is ready. Now list 8–15 chapter titles; the order can change later.",
+      "noQuestions": "Give each chapter the one question its reader would ask.",
+      "chEmpty": "Open this chapter with a scene or a memory. The first sentence doesn't have to be perfect.",
+      "chLow": "Today's goal: 300 words. Fixing comes after the draft is done.",
+      "chMid": "Are you close to answering the chapter's question? Glance at the synopsis.",
+      "chLong": "This chapter has grown. Is it answering two separate questions? Split it if needed.",
+      "draftDone": "The first draft is done; that's big. Take a few days off, then revise starting with structure.",
+      "finished": "Your book is done! Export it, and don't forget you owe yourself a celebration."
+    }
+  }
+}

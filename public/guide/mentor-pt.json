@@ -1,0 +1,157 @@
+{
+  "ui": {
+    "title": "Mentor de escrita",
+    "stage": "Etapa {n}/{total}",
+    "steps": "O que fazer agora",
+    "checks": "Pergunte a si mesmo",
+    "pitfall": "Atenção",
+    "done": "Já fiz",
+    "undo": "Desfazer",
+    "prev": "Etapa anterior",
+    "next": "Próxima etapa",
+    "current": "Voltar para sua etapa",
+    "allDone": "Todas as etapas estão feitas. Parabéns!",
+    "premisePh": "Este livro mostra a [quem] [o quê] [como]…",
+    "readerPh": "Um único leitor: quem é, o que sabe, do que precisa…",
+    "toBook": "Transformar estes ensaios em livro",
+    "toBookConfirm": "Transformar este caderno em livro? Seus ensaios viram capítulos que você pode reordenar e agrupar em partes. Dá para voltar atrás em Configurações."
+  },
+  "essay": {
+    "stages": [
+      {
+        "id": "spark", "title": "Pegue a faísca",
+        "goal": "Anote o momento pequeno e concreto, ou a pergunta, que cutucou você.",
+        "steps": ["Escreva em uma frase o momento que incomodou ou intrigou você.", "Onde e quando aconteceu, o que você tinha nas mãos? Escreva isso também.", "Pergunte \"Por quê?\" uma vez, mas não responda ainda."],
+        "checks": ["Esse momento aconteceu mesmo comigo?", "Tenho pelo menos um pouco de curiosidade sobre essa pergunta?"],
+        "pitfall": "Começar com um tema enorme como \"o tempo\" ou \"o medo\". Comece pequeno; o tema grande chega sozinho."
+      },
+      {
+        "id": "free", "title": "Escreva sem parar",
+        "goal": "Descubra o que você pensa escrevendo; não tente consertar nada.",
+        "steps": ["Escreva por 15–20 minutos sem pausa.", "Não apague, não volte.", "Quando fugir do assunto, siga a fuga; deixe vir frases que começam com \"Na verdade…\"."],
+        "checks": ["Escrevi algo que eu não tinha em mente no começo?", "Consegui escrever sem me julgar?"],
+        "pitfall": "Caçar frases bonitas logo no primeiro parágrafo. O primeiro rascunho tem o direito de ser ruim."
+      },
+      {
+        "id": "core", "title": "Descubra do que se trata de verdade",
+        "goal": "Enxergue o assunto real por baixo do acontecido: o que você quer mesmo dizer.",
+        "steps": ["Leia o rascunho do início; encontre a frase que mais surpreende você.", "Complete a frase \"No fundo, este texto é sobre …\".", "Escreva-a no campo \"Ponto de partida\" lá em cima."],
+        "checks": ["Meu texto vai além de \"o que aconteceu\" até \"o que isso me ensinou\"?", "Um amigo se interessaria se eu dissesse essa frase em voz alta?"],
+        "pitfall": "Contar o acontecido sem buscar o sentido. Um ensaio não fica no fato; vai aonde o fato leva o seu pensamento."
+      },
+      {
+        "id": "shape", "title": "Dê forma",
+        "goal": "Organize o caminho do momento concreto até a ideia, para que o leitor também possa percorrê-lo.",
+        "steps": ["Abra com a cena concreta.", "Amplie a ideia passo a passo; ligue cada passo a um exemplo.", "Termine onde você chegou, não com um veredito.", "Troque parágrafos de lugar se precisar."],
+        "checks": ["O leitor continuaria depois do primeiro parágrafo?", "Cada parágrafo vai um passo além do anterior?"],
+        "pitfall": "Voltar à redação escolar (introdução–desenvolvimento–\"concluindo\"). Um ensaio é uma conversa, não uma prova."
+      },
+      {
+        "id": "cut", "title": "Corte e simplifique",
+        "goal": "Jogue fora o excesso e deixe sua voz clara.",
+        "steps": ["Corte pelo menos 10% do texto.", "Tire muletas como \"eu acho\", \"na verdade\", \"meio que\".", "Leia em voz alta; conserte onde você tropeçar."],
+        "checks": ["Se eu tirar esta frase, perde-se alguma coisa?", "Soa como eu falando?"],
+        "pitfall": "Amar cada frase e não cortar nenhuma."
+      },
+      {
+        "id": "title", "title": "O título fica por último",
+        "goal": "Encontre um nome que sugira aonde o texto chegou.",
+        "steps": ["Releia o último parágrafo e sua frase de ponto de partida.", "Escreva três títulos: um a partir de um objeto concreto, um da pergunta, um da ideia a que você chegou.", "Diga-os em voz alta; escolha o que desperta mais curiosidade."],
+        "checks": ["O título sugere o assunto sem entregar o final?", "Ele ganha um sentido novo depois que o texto é lido?"],
+        "pitfall": "Se apegar ao título provisório. Se o texto foi para outro lugar, o título deve ir junto."
+      },
+      {
+        "id": "share", "title": "Compartilhe e solte",
+        "goal": "Entregue o texto a um leitor e depois finalize.",
+        "steps": ["Peça a alguém de confiança para ler; pergunte só \"Onde você se entediou, onde parou?\".", "Aplique no máximo duas das observações.", "Marque como \"Concluído\" lá em cima."],
+        "checks": ["Consertei os pontos onde o leitor parou?", "Polir mais vai melhorar de verdade, ou só estou adiando?"],
+        "pitfall": "Polir para sempre um texto pronto. Um ensaio é uma tentativa; não precisa ser perfeito."
+      }
+    ],
+    "nudges": {
+      "w0": "O que fez você pensar hoje, nem que seja um pouco? Escreva em uma frase; o resto vem.",
+      "wLow": "Bom começo. Agora continue por 15 minutos sem consertar nada.",
+      "wMid": "Se sentir que está fugindo do assunto, siga a fuga; é ali que o ensaio começa.",
+      "noTitleEarly": "Não tenha pressa com o título; no ensaio, ele costuma vir por último.",
+      "noCore": "Agora leia e complete a frase \"No fundo, este texto é sobre …\".",
+      "openConcrete": "Sua abertura começa com um momento concreto? Coloque o leitor lá.",
+      "long": "O texto ficou longo e cheio. Tente cortar 10%; o que sobrar vai ficar mais forte.",
+      "titleTime": "Agora você sabe o que está dizendo. Teste três títulos e escolha o mais intrigante.",
+      "finished": "Parabéns, você terminou um ensaio. Peça para alguém ler e depois pegue sua próxima faísca.",
+      "collection": "Seus ensaios têm uma inquietação em comum? Pode ser o começo de um livro."
+    }
+  },
+  "book": {
+    "stages": [
+      {
+        "id": "premise", "title": "Resuma a promessa em uma frase",
+        "goal": "Diga em uma frase o que o livro promete ao leitor.",
+        "steps": ["Complete: \"Este livro mostra a [quem] [o quê] [como]\".", "Simplifique como se explicasse a alguém tomando um café.", "Escreva no quadro abaixo."],
+        "checks": ["É uma frase só?", "Responde ao \"e daí?\" do leitor?"],
+        "pitfall": "Confundir tema com promessa. \"Minha mãe\" é um tema; \"Como carreguei o luto depois de perder minha mãe\" é uma promessa.",
+        "field": "premise"
+      },
+      {
+        "id": "reader", "title": "Escolha um único leitor",
+        "goal": "Tenha claro para quem você está escrevendo.",
+        "steps": ["Pense em uma pessoa que você conhece.", "Escreva o que ela sabe sobre o assunto e do que precisa.", "Escreva o que vai mudar na vida dela quando terminar o livro."],
+        "checks": ["Consigo descrever meu leitor sem dizer \"todo mundo\"?", "Por que esse leitor pegaria o livro?"],
+        "pitfall": "Tentar escrever para todo mundo e não alcançar ninguém.",
+        "field": "reader"
+      },
+      {
+        "id": "toc", "title": "Monte o sumário",
+        "goal": "Desenhe o esqueleto do livro, capítulo por capítulo.",
+        "steps": ["Escreva 8–15 títulos de capítulo (\"+ adicionar capítulo a esta parte\").", "Ordene-os pela jornada do leitor.", "Agrupe em partes se precisar."],
+        "checks": ["Lidos em ordem, os capítulos cumprem minha promessa?", "Há dois capítulos repetindo um ao outro?"],
+        "pitfall": "Aperfeiçoar o plano e nunca começar a escrever. O plano pode mudar enquanto você escreve."
+      },
+      {
+        "id": "questions", "title": "Dê uma pergunta a cada capítulo",
+        "goal": "Saiba qual pergunta cada capítulo responde para o leitor.",
+        "steps": ["Na sinopse de cada capítulo, escreva a pergunta do leitor.", "Anote como o capítulo começa (uma cena, uma lembrança, um exemplo).", "Escreva onde o capítulo deixa o leitor."],
+        "checks": ["Este capítulo foca em uma única pergunta?", "O leitor faria mesmo essa pergunta?"],
+        "pitfall": "Enfiar três assuntos diferentes em um só capítulo."
+      },
+      {
+        "id": "draft", "title": "Escreva o primeiro rascunho de porta fechada",
+        "goal": "Termine todos os capítulos sem julgá-los, mesmo que fiquem ruins.",
+        "steps": ["Defina uma meta diária pequena: 300 palavras ou uma única cena.", "Comece pelo capítulo fácil; você não precisa seguir a ordem.", "Não volte para consertar; deixe uma nota e siga em frente.", "Não mostre o rascunho a ninguém ainda."],
+        "checks": ["Escrevi hoje?", "Respondi à pergunta do capítulo?"],
+        "pitfall": "Reescrever o capítulo um dez vezes e nunca chegar ao dois."
+      },
+      {
+        "id": "revise", "title": "Revise em camadas",
+        "goal": "Passe pelo rascunho do grande para o pequeno.",
+        "steps": ["Primeiro a estrutura: ordem dos capítulos, capítulos desnecessários.", "Depois: cada capítulo responde à sua pergunta?", "Por último: frases e palavras; corte 10%.", "Faça cada camada em uma leitura separada."],
+        "checks": ["Este capítulo serve à promessa?", "Meu leitor ficaria entediado aqui?"],
+        "pitfall": "Mexer em vírgulas antes de a estrutura estar firme."
+      },
+      {
+        "id": "feedback", "title": "Abra a porta: ouça leitores",
+        "goal": "Descubra onde um leitor de verdade empaca.",
+        "steps": ["Entregue o rascunho a 1–3 pessoas.", "Pergunte: \"Onde você se entediou, onde ficou confuso, o que ficou com você?\".", "Conserte o que duas pessoas apontaram."],
+        "checks": ["Meu leitor consegue contar a promessa com as próprias palavras?", "Ouvi sem me defender?"],
+        "pitfall": "Aplicar todas as sugestões e perder a voz do livro."
+      },
+      {
+        "id": "finish", "title": "Finalize e exporte",
+        "goal": "Dê o livro por pronto e deixe-o pronto para compartilhar.",
+        "steps": ["Confira uma última vez o título e o subtítulo diante da promessa.", "Marque os capítulos como \"Concluído\".", "Exporte com o botão do livro no canto inferior direito, e comemore."],
+        "checks": ["O título reflete a promessa?", "Os ajustes que faltam importam de verdade?"],
+        "pitfall": "Adiar o fim para sempre com um \"só mais um pouquinho\"."
+      }
+    ],
+    "nudges": {
+      "noPremise": "Primeiro uma frase: o que este livro promete, e para quem?",
+      "fewChapters": "Sua promessa está pronta. Agora liste 8–15 títulos de capítulo; a ordem pode mudar depois.",
+      "noQuestions": "Dê a cada capítulo a pergunta que o leitor faria.",
+      "chEmpty": "Abra este capítulo com uma cena ou uma lembrança. A primeira frase não precisa ser perfeita.",
+      "chLow": "Meta de hoje: 300 palavras. Consertar fica para depois do rascunho.",
+      "chMid": "Você está perto de responder à pergunta do capítulo? Dê uma olhada na sinopse.",
+      "chLong": "Este capítulo cresceu. Ele responde a duas perguntas diferentes? Divida se precisar.",
+      "draftDone": "O primeiro rascunho está pronto; isso é enorme. Descanse alguns dias e depois revise começando pela estrutura.",
+      "finished": "Seu livro está pronto! Exporte e não esqueça que você merece uma comemoração."
+    }
+  }
+}

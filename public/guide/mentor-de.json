@@ -1,0 +1,157 @@
+{
+  "ui": {
+    "title": "Schreibcoach",
+    "stage": "Phase {n}/{total}",
+    "steps": "Was jetzt zu tun ist",
+    "checks": "Frag dich",
+    "pitfall": "Vorsicht",
+    "done": "Erledigt",
+    "undo": "Rückgängig",
+    "prev": "Vorherige Phase",
+    "next": "Nächste Phase",
+    "current": "Zurück zu deiner Phase",
+    "allDone": "Alle Phasen sind geschafft. Glückwunsch!",
+    "premisePh": "Dieses Buch zeigt [wem] [was] [wie]…",
+    "readerPh": "Ein einziger Leser: wer er ist, was er weiß, was er braucht…",
+    "toBook": "Aus diesen Essays ein Buch machen",
+    "toBookConfirm": "Dieses Heft in ein Buch verwandeln? Deine Essays werden zu Kapiteln, die du umsortieren und in Teile gliedern kannst. In den Einstellungen kannst du das rückgängig machen."
+  },
+  "essay": {
+    "stages": [
+      {
+        "id": "spark", "title": "Fang den Funken",
+        "goal": "Halte den kleinen, konkreten Moment oder die Frage fest, die dich angestoßen hat.",
+        "steps": ["Schreib in einem Satz den Moment auf, der dich gestört oder neugierig gemacht hat.", "Wo und wann war das, was hattest du in der Hand? Schreib das auch auf.", "Frag einmal „Warum?“, aber antworte noch nicht."],
+        "checks": ["Ist mir dieser Moment wirklich passiert?", "Macht mich diese Frage wenigstens ein bisschen neugierig?"],
+        "pitfall": "Mit einem großen Thema wie „Zeit“ oder „Angst“ anfangen. Fang klein an; das große Thema kommt von selbst."
+      },
+      {
+        "id": "free", "title": "Schreib ohne anzuhalten",
+        "goal": "Finde beim Schreiben heraus, was du denkst; versuch nichts zu verbessern.",
+        "steps": ["Schreib 15–20 Minuten ohne Pause.", "Nichts löschen, nicht zurückgehen.", "Wenn du vom Thema abschweifst, folge dem Abschweifen; lass Sätze zu, die mit „Eigentlich…“ beginnen."],
+        "checks": ["Habe ich etwas geschrieben, das ich am Anfang nicht im Kopf hatte?", "Konnte ich schreiben, ohne mich zu bewerten?"],
+        "pitfall": "Schon im ersten Absatz nach schönen Sätzen suchen. Ein erster Entwurf darf schlecht sein."
+      },
+      {
+        "id": "core", "title": "Finde, worum es wirklich geht",
+        "goal": "Sieh das eigentliche Thema unter dem Ereignis: was du wirklich sagen willst.",
+        "steps": ["Lies den Entwurf von vorn; finde den Satz, der dich am meisten überrascht.", "Vervollständige den Satz „Eigentlich geht es in diesem Text um …“.", "Schreib ihn oben in das Feld „Ausgangspunkt“."],
+        "checks": ["Geht mein Text über „was passiert ist“ hinaus zu „was es mich gelehrt hat“?", "Würde ein Freund aufhorchen, wenn ich diesen Satz laut sage?"],
+        "pitfall": "Das Ereignis erzählen, ohne nach seiner Bedeutung zu suchen. Ein Essay bleibt nicht beim Ereignis; er geht dorthin, wohin das Ereignis dein Denken führt."
+      },
+      {
+        "id": "shape", "title": "Gib ihm eine Form",
+        "goal": "Ordne den Weg vom konkreten Moment zum Gedanken so, dass auch ein Leser ihn gehen kann.",
+        "steps": ["Beginne mit der konkreten Szene.", "Erweitere den Gedanken Schritt für Schritt; verknüpfe jeden Schritt mit einem Beispiel.", "Hör dort auf, wo du angekommen bist, nicht mit einem Urteil.", "Verschieb Absätze, wenn nötig."],
+        "checks": ["Würde ein Leser nach dem ersten Absatz weiterlesen?", "Geht jeder Absatz einen Schritt weiter als der vorige?"],
+        "pitfall": "In den Schulaufsatz zurückfallen (Einleitung–Hauptteil–„abschließend“). Ein Essay ist ein Gespräch, kein Beweis."
+      },
+      {
+        "id": "cut", "title": "Kürze und vereinfache",
+        "goal": "Wirf Überflüssiges raus und mach deine Stimme klar.",
+        "steps": ["Streich mindestens 10 % des Textes.", "Jäte Füllwörter wie „ich finde“, „eigentlich“, „irgendwie“.", "Lies laut vor; korrigier die Stellen, an denen du stolperst."],
+        "checks": ["Fehlt etwas, wenn ich diesen Satz streiche?", "Klingt es, als würde ich sprechen?"],
+        "pitfall": "Jeden Satz lieben und keinen streichen."
+      },
+      {
+        "id": "title", "title": "Der Titel kommt zuletzt",
+        "goal": "Finde einen Namen, der ahnen lässt, wo der Text angekommen ist.",
+        "steps": ["Lies den letzten Absatz und deinen Ausgangssatz noch einmal.", "Schreib drei Titel: einen von einem konkreten Gegenstand, einen von der Frage, einen von dem Gedanken, bei dem du angekommen bist.", "Sag sie laut; nimm den, der am neugierigsten macht."],
+        "checks": ["Lässt der Titel das Thema ahnen, ohne das Ende zu verraten?", "Bekommt er nach dem Lesen eine neue Bedeutung?"],
+        "pitfall": "Am Arbeitstitel festhalten. Wenn der Text woanders hingegangen ist, sollte der Titel mitgehen."
+      },
+      {
+        "id": "share", "title": "Teil ihn und lass los",
+        "goal": "Gib den Text einem Leser und schließ ihn dann ab.",
+        "steps": ["Lass jemanden lesen, dem du vertraust; frag nur „Wo hast du dich gelangweilt, wo hast du aufgehört?“.", "Setz höchstens zwei der Anmerkungen um.", "Markier ihn oben als „Fertig“."],
+        "checks": ["Habe ich die Stellen verbessert, an denen der Leser hängen blieb?", "Würde weiteres Feilen ihn wirklich besser machen, oder schiebe ich nur auf?"],
+        "pitfall": "Einen fertigen Text ewig polieren. Ein Essay ist ein Versuch; er muss nicht perfekt sein."
+      }
+    ],
+    "nudges": {
+      "w0": "Was hat dich heute zum Nachdenken gebracht, auch nur ein bisschen? Schreib es in einem Satz; der Rest kommt.",
+      "wLow": "Guter Anfang. Jetzt schreib 15 Minuten weiter, ohne etwas zu verbessern.",
+      "wMid": "Wenn du merkst, dass du abschweifst, folge dem; dort beginnt der Essay.",
+      "noTitleEarly": "Keine Eile mit dem Titel; beim Essay kommt er meist zuletzt.",
+      "noCore": "Lies jetzt und vervollständige den Satz „Eigentlich geht es in diesem Text um …“.",
+      "openConcrete": "Beginnt dein Einstieg mit einem konkreten Moment? Versetz den Leser dorthin.",
+      "long": "Das ist lang und voll geworden. Versuch, 10 % zu streichen; was bleibt, wird stärker.",
+      "titleTime": "Jetzt weißt du, was du sagst. Probier drei Titel und nimm den spannendsten.",
+      "finished": "Glückwunsch, du hast einen Essay fertig. Lass ihn jemanden lesen, dann fang deinen nächsten Funken.",
+      "collection": "Haben deine Essays ein gemeinsames Anliegen? Vielleicht ist das der Anfang eines Buchs."
+    }
+  },
+  "book": {
+    "stages": [
+      {
+        "id": "premise", "title": "Bring das Versprechen auf einen Satz",
+        "goal": "Sag in einem Satz, was das Buch seinem Leser verspricht.",
+        "steps": ["Füll aus: „Dieses Buch zeigt [wem] [was] [wie]“.", "Vereinfache es, als würdest du es jemandem beim Kaffee erklären.", "Schreib es in das Feld unten."],
+        "checks": ["Ist es ein einziger Satz?", "Beantwortet es das „Na und?“ des Lesers?"],
+        "pitfall": "Ein Thema für ein Versprechen halten. „Meine Mutter“ ist ein Thema; „Wie ich die Trauer nach dem Tod meiner Mutter getragen habe“ ist ein Versprechen.",
+        "field": "premise"
+      },
+      {
+        "id": "reader", "title": "Wähl einen einzigen Leser",
+        "goal": "Werd dir klar, für wen du schreibst.",
+        "steps": ["Denk an einen Menschen, den du kennst.", "Schreib auf, was er über das Thema weiß und was er braucht.", "Schreib auf, was sich in seinem Leben ändert, wenn er das Buch fertig gelesen hat."],
+        "checks": ["Kann ich meinen Leser beschreiben, ohne „alle“ zu sagen?", "Warum würde dieser Leser zu dem Buch greifen?"],
+        "pitfall": "Für alle schreiben wollen und niemanden erreichen.",
+        "field": "reader"
+      },
+      {
+        "id": "toc", "title": "Bau das Inhaltsverzeichnis",
+        "goal": "Leg das Gerüst des Buchs an, Kapitel für Kapitel.",
+        "steps": ["Schreib 8–15 Kapiteltitel („+ Kapitel zu diesem Teil hinzufügen“).", "Ordne sie entlang der Reise des Lesers.", "Fass sie bei Bedarf zu Teilen zusammen."],
+        "checks": ["Lösen die Kapitel der Reihe nach mein Versprechen ein?", "Wiederholen sich zwei Kapitel?"],
+        "pitfall": "Den Plan perfektionieren und nie mit dem Schreiben anfangen. Der Plan darf sich beim Schreiben ändern."
+      },
+      {
+        "id": "questions", "title": "Gib jedem Kapitel eine Frage",
+        "goal": "Wisse, welche Frage jedes Kapitel für den Leser beantwortet.",
+        "steps": ["Schreib in die Zusammenfassung jedes Kapitels die Frage des Lesers.", "Notier, wie das Kapitel beginnt (eine Szene, eine Erinnerung, ein Beispiel).", "Schreib auf, wo das Kapitel den Leser zurücklässt."],
+        "checks": ["Konzentriert sich dieses Kapitel auf eine einzige Frage?", "Würde der Leser sie wirklich stellen?"],
+        "pitfall": "Drei verschiedene Themen in ein Kapitel stopfen."
+      },
+      {
+        "id": "draft", "title": "Schreib den ersten Entwurf bei geschlossener Tür",
+        "goal": "Schreib alle Kapitel fertig, ohne sie zu bewerten, auch wenn sie schlecht sind.",
+        "steps": ["Setz dir ein kleines Tagesziel: 300 Wörter oder eine einzige Szene.", "Fang mit dem leichten Kapitel an; du musst nicht der Reihe nach gehen.", "Geh nicht zurück zum Verbessern; mach eine Notiz und schreib weiter.", "Zeig den Entwurf noch niemandem."],
+        "checks": ["Habe ich heute geschrieben?", "Habe ich die Frage des Kapitels beantwortet?"],
+        "pitfall": "Kapitel eins zehnmal umschreiben und nie bei Kapitel zwei ankommen."
+      },
+      {
+        "id": "revise", "title": "Überarbeite in Schichten",
+        "goal": "Geh den Entwurf vom Großen zum Kleinen durch.",
+        "steps": ["Zuerst die Struktur: Reihenfolge der Kapitel, überflüssige Kapitel.", "Dann: Beantwortet jedes Kapitel seine Frage?", "Zuletzt: Sätze und Wörter; streich 10 %.", "Nimm dir jede Schicht in einem eigenen Durchgang vor."],
+        "checks": ["Dient dieses Kapitel dem Versprechen?", "Würde sich mein Leser hier langweilen?"],
+        "pitfall": "An Kommas feilen, bevor die Struktur steht."
+      },
+      {
+        "id": "feedback", "title": "Öffne die Tür: hol dir Leserfeedback",
+        "goal": "Finde heraus, wo ein echter Leser hängen bleibt.",
+        "steps": ["Gib den Entwurf 1–3 Menschen.", "Frag: „Wo hast du dich gelangweilt, wo warst du verwirrt, was ist hängen geblieben?“.", "Verbessere, was zwei Leute gesagt haben."],
+        "checks": ["Kann mein Leser das Versprechen in eigenen Worten wiedergeben?", "Habe ich zugehört, ohne mich zu verteidigen?"],
+        "pitfall": "Jeden Vorschlag umsetzen und dabei die Stimme des Buchs verlieren."
+      },
+      {
+        "id": "finish", "title": "Abschließen und exportieren",
+        "goal": "Erklär das Buch für fertig und mach es teilbar.",
+        "steps": ["Prüf Titel und Untertitel ein letztes Mal am Versprechen.", "Markier die Kapitel als „Fertig“.", "Exportier mit dem Buch-Knopf unten rechts, und feier das."],
+        "checks": ["Spiegelt der Titel das Versprechen wider?", "Sind die restlichen Korrekturen wirklich wichtig?"],
+        "pitfall": "Das Ende mit „nur noch ein bisschen“ ewig hinausschieben."
+      }
+    ],
+    "nudges": {
+      "noPremise": "Erst ein Satz: Was verspricht dieses Buch, und wem?",
+      "fewChapters": "Dein Versprechen steht. Jetzt notier 8–15 Kapiteltitel; die Reihenfolge kann sich später ändern.",
+      "noQuestions": "Gib jedem Kapitel die eine Frage, die sein Leser stellen würde.",
+      "chEmpty": "Beginne dieses Kapitel mit einer Szene oder einer Erinnerung. Der erste Satz muss nicht perfekt sein.",
+      "chLow": "Ziel für heute: 300 Wörter. Verbessert wird, wenn der Entwurf fertig ist.",
+      "chMid": "Bist du nah dran, die Frage des Kapitels zu beantworten? Wirf einen Blick in die Zusammenfassung.",
+      "chLong": "Dieses Kapitel ist gewachsen. Beantwortet es zwei verschiedene Fragen? Teil es, wenn nötig.",
+      "draftDone": "Der erste Entwurf ist fertig; das ist großartig. Mach ein paar Tage Pause und überarbeite dann, angefangen bei der Struktur.",
+      "finished": "Dein Buch ist fertig! Exportier es, und vergiss nicht: Du schuldest dir eine Feier."
+    }
+  }
+}
